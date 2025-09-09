@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.34">
+
+  <meta name="author" content="Jordi Mateo Fornés">
+  <title>SO - Fall 2025 – Introducció</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introducció</h1>
+  <p class="subtitle">Unitat 1 · Sistemes Operatius (SO)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Jordi Mateo Fornés 
+</div>
+</div>
+</div>
+
+</section>
+<section>
+<section id="presentacions" class="title-slide slide level1 center">
+<h1>Presentacions</h1>
+
+</section>
+<section id="qui-soc" class="slide level2 smaller">
+<h2>Qui soc?</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="currículum">Currículum</h3>
+<ul>
+<li class="fragment">Enginyer i Doctor en Informàtica per la <a href="http://www.udl.cat/">UdL</a>.</li>
+</ul>
+<h3 id="docència">Docència</h3>
+<ul>
+<li class="fragment">Professor <strong>agregat</strong> a la <a href="http://www.udl.cat/">UdL</a> des de 2019.</li>
+<li class="fragment">Sistemes Operatius (<em>GTIDIC</em>, <em>GEI</em>).</li>
+<li class="fragment">Administració de Sistemes (<em>GTIDIC</em>, <em>GEI</em>).</li>
+<li class="fragment">Desenvolupament d’Aplicacions per a dispositus mòvils (<em>GTIDIC</em>).</li>
+<li class="fragment">Cloud Compunting (<em>Master in Health Data Science</em>)</li>
+<li class="fragment">High Performance Computing (<em>Màster en Enginyeria Informàtica</em>)</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<h3 id="recerca">Recerca</h3>
+<ul>
+<li class="fragment">Membre del grup de recerca <a href="http://gcd.udl.cat"><strong>Grup de computació distribuïda</strong></a> des de 2012 (Universitat de Lleida).</li>
+<li class="fragment">Membre del grup de recerca <a href="https://www.dcs.gla.ac.uk/essence/index.html"><strong>Essence: Data Engineering &amp; Distributed Computing Systems</strong></a> des de 2022 (Universitat de Glasgow).</li>
+<li class="fragment">Computació distribuïda: <em>Cloud, Edge i Fog Computing</em>.</li>
+<li class="fragment">Camps d’aplicació: <em>Salut electrònica i Energia</em>.</li>
+</ul>
+</div></div>
+</section>
+<section id="qui-sou" class="slide level2">
+<h2>Qui sou?</h2>
+<h4 id="què-us-ha-portat-fins-aquí">Què us ha portat fins aquí?</h4>
+<div class="center-container">
+<p><img data-src="../figures/slides/01-introduction/how_are_you.png" style="width:40.0%"></p>
+</div>
+<aside class="notes">
+<p>Per conèixer-vos una mica millor, m’agradaria que responguéssiu 4 preguntes de forma breu i concisa, que m’ajudaran a entendre les vostres motivacions i expectatives respecte a aquesta assignatura. Us deixo 5 minuts per respondre-les.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="introducció-al-curs" class="title-slide slide level1 center">
+<h1>Introducció al curs</h1>
+
+</section>
+<section id="presentació" class="slide level2">
+<h2>Presentació</h2>
+<div class="center">
+<p><span class="alert"><strong>Benvinguts a Sistemes Operatius</strong></span></p>
+</div>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="dt">char</span> text<span class="op">[]</span> <span class="op">=</span> <span class="st">"Aquesta NO és una assignatura</span><span class="sc">\n</span><span class="op">\</span></span>
+<span id="cb1-2"><a></a><span class="st">      centrada en la  programació</span><span class="sc">\n</span><span class="op">\</span></span>
+<span id="cb1-3"><a></a><span class="st">      PERÒ programarem MOLT!</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb1-4"><a></a><span class="dt">ssize_t</span> bytes <span class="op">=</span> write<span class="op">(</span><span class="dv">1</span><span class="op">,</span> text<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>text<span class="op">)</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="va">text</span><span class="op">=</span><span class="st">"Aquesta assignatura NO és un MONÒLEG."</span> </span>
+<span id="cb2-2"><a></a><span class="bu">echo</span> <span class="va">$text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div style="text-align: center;">
+<p>Vull sessions interactives, participatives,… pregunteu, interrompeu-me…</p>
+</div>
+</div><div class="column" style="width:30%;">
+<p><img data-src="../figures/slides/01-introduction/os_programming.png"></p>
+</div></div>
+<aside class="notes">
+<p>Si bé aquesta assignatura no se centra exclusivament en l’aprenentatge de la programació, la pràctica de codificació serà fonamental. Un sistema operatiu és, en essència, un programa extremadament complex, i per entendre’n el funcionament, cal aprofundir en el seu codi font.</p>
+<p>Per això, la nostra eina principal serà el llenguatge de programació C, ja que és el llenguatge amb què s’han construït sistemes operatius històrics i de referència com Linux i Unix. A més, per comprendre com el codi d’alt nivell es comunica amb el maquinari, és crucial entendre com es tradueix a codi màquina; aquí és on la comprensió del llenguatge Assembler es torna imprescindible.</p>
+<p>Tot i que llenguatges més moderns com Rust o Go s’utilitzen cada vegada més en el desenvolupament de sistemes, el C continua sent el pilar sobre el qual es construeix la major part del nostre món digital.</p>
+<p>Finalment, vull que aquestes sessions siguin realment interactives i participatives. Si us plau, no dubteu a interrompre’m i a plantejar qualsevol pregunta o dubte que tingueu en el moment. La meva intenció no és fer un monòleg, sinó crear un diàleg constructiu i col·laboratiu entre tots.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="coneixement-previ-i" class="slide level2">
+<h2>Coneixement previ (I)</h2>
+<h4 id="quin-sistema-operatiu-utilitzeuconeixeu">Quin sistema operatiu utilitzeu/coneixeu?</h4>
+<div class="center-container">
+<p><img data-src="../figures/slides/01-introduction/menti1.png" style="width:40.0%"></p>
+</div>
+<aside class="notes">
+<p>Per començar, m’agradaria saber quin sistema operatiu utilitzeu o coneixeu. Això ens ajudarà a entendre el nivell de familiaritat que teniu amb diferents sistemes i ens permetrà adaptar millor el contingut del curs a les vostres necessitats. Escaneja el codi QR i introdueix les vostres respostes, podeu respondre més d’una opció si coneixeu diversos sistemes operatius.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="objectius-globals" class="slide level2">
+<h2>Objectius (Globals)</h2>
+<ol type="1">
+<li class="fragment"><strong>Entendre els Sistemes Operatius</strong>: Com estan dissenyats i quins components (o mòduls) els formen.</li>
+<li class="fragment"><strong>Coneixer els seus serveis</strong>: Quines funcions proporcionen a usuaris i aplicacions.</li>
+<li class="fragment"><strong>Aprendre a programar amb ells</strong>: Com utilitzar els serveis del sistema operatiu per crear aplicacions de manera eficient.</li>
+<li class="fragment"><strong>Avaluar críticament les seves polítiques</strong>: Analitzar com el sistema operatiu gestiona els seus recursos, com la memòria, i comparar diferents mètodes per fer-ho.</li>
+</ol>
+</section>
+<section id="objectius-específics" class="slide level2">
+<h2>Objectius (Específics)</h2>
+<ul>
+<li class="fragment">Conèixer els sistemes operatius Unix/Linux (en concret <strong>Debian</strong>).</li>
+<li class="fragment">Interioritza les bases de programació <strong>C</strong> per millora les vostres habilitats en altres llenguatges.</li>
+<li class="fragment">Desenvolupar programari a nivell de sistema en el llenguatge de programació <strong>C</strong> comprenent al mateix temps com funcionen els <strong>Sistemes Operatius</strong> basats en <strong>Unix</strong>.</li>
+</ul>
+</section>
+<section id="temari" class="slide level2">
+<h2>Temari</h2>
+<ol type="1">
+<li class="fragment">Introducció als Sistemes Operatius.</li>
+<li class="fragment">Estructura dels Sistemes Operatius.</li>
+<li class="fragment">Gestió i comunicació de processos i threads.</li>
+<li class="fragment">Sincronització i Planificador de tasques.</li>
+<li class="fragment">Interbloqueig.</li>
+<li class="fragment">Gestió de Memòria.</li>
+<li class="fragment">Scripting.</li>
+</ol>
+</section>
+<section id="metodologia" class="slide level2 smaller">
+<h2>Metodologia</h2>
+<div style="text-align: center;">
+<p>Basada en Aprenentatge <strong>SIGNIFICATIU</strong>, <strong>GUIAT</strong> i <strong>ACTIU</strong>.</p>
+</div>
+<ul>
+<li class="fragment"><strong>Sessions teòriques</strong>: S’introdueixen continguts teòrics de l’assignatura i als estudiants, i també s’hi discuteixen les implicacions pràctiques.</li>
+<li class="fragment"><strong>Sessions pràctiques</strong>: sessions autoguiades de laboratori, sessions de <em>live coding</em> o resolució de problemes.</li>
+<li class="fragment"><strong>Treball autònom</strong>: els estudiants han d’aplicar els coneixements adquirits a les sessions teòriques i pràctiques per acabar els problemes, laboratoris i projectes proposats. A més, han de realitzar les lectures dels apunts i consultar la bibliografia recomanada.</li>
+</ul>
+<div class="fragment" style="text-align: center;">
+<p>Les sessions teòriques i pràctiques estan combinades en les sessions de 3h de durada.</p>
+</div>
+<aside class="notes">
+<p>La idea és que no us dediqueu només a memoritzar conceptes, sinó que connecteu la nova informació amb el que ja sabeu. Tot i que a la pràctica fareu moltes coses per vosaltres mateixos, jo seré aquí per guiar-vos. Us donaré les eines, el suport i les indicacions necessàries per anar avançant.Volem que sigueu protagonistes del vostre procés d’aprenentatge. No us limitareu a escoltar-me, sinó que fareu coses, resoldreu problemes i creareu projectes.</p>
+<ol type="1">
+<li>Sessions teòriques: Aquí introduirem els conceptes clau i els fonaments teòrics. Però no ens quedarem només amb la teoria; també discutirem com s’apliquen aquests conceptes al món real.</li>
+<li>Sessions pràctiques: Farem sessions de laboratori on programareu, farem exercicis de live coding junts per resoldre problemes en directe i practicareu les habilitats que necessiteu.</li>
+<li>Treball autònom: La major part de l’aprenentatge real es farà fora de l’aula. Us demanaré que acabeu els laboratoris, resolgueu els exercicis pendents i treballeu en els projectes. També serà important que reviseu els apunts i, si cal, consulteu la bibliografia recomanada.</li>
+</ol>
+<p>Les sessions teòriques i pràctiques estaran combinades. La idea és que no hi hagi una desconnexió entre la teoria i la pràctica. Com tenim sessions de 3 hores, podrem dedicar una part a la teoria i l’altra a la pràctica, tot integrat en una sola experiència d’aprenentatge.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="avaluació" class="title-slide slide level1 center">
+<h1>Avaluació</h1>
+
+</section>
+<section id="criteris-davaluació" class="slide level2">
+<h2>Criteris d’Avaluació</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 40%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Acr.</th>
+<th>Activitat d’avaluació</th>
+<th>Pes</th>
+<th>Nota mínima</th>
+<th>En grup</th>
+<th>Recuperable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>E1</strong></td>
+<td><strong>1er Parcial</strong></td>
+<td><strong>35%</strong></td>
+<td><strong>NO</strong></td>
+<td><strong>NO</strong></td>
+<td><strong>SI</strong></td>
+</tr>
+<tr class="even">
+<td><strong>E2</strong></td>
+<td><strong>2on Parcial</strong></td>
+<td><strong>35%</strong></td>
+<td><strong>NO</strong></td>
+<td><strong>NO</strong></td>
+<td><strong>SI</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>P</strong></td>
+<td><strong>Pràctiques</strong></td>
+<td><strong>25%</strong></td>
+<td><strong>NO</strong></td>
+<td><strong>SI</strong> <span class="math inline">\(\leq 2\)</span></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Part</strong></td>
+<td><strong>Seguiment i Participació</strong></td>
+<td><strong>5%</strong></td>
+<td><strong>NO</strong></td>
+<td><strong>NO</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Aquesta assignatura s’avaluara de forma tradicional mitjançant dos exàmens parcials (E1 i E2) que representen el 70% de la nota final. A més, hi haurà pràctiques que contribuiran amb un 25% a la nota final, i un component de seguiment i participació que valdrà un 5%.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="exàmens" class="slide level2">
+<h2>Exàmens</h2>
+<p>Els exàmens parcials (<strong>E1 i E2</strong>) són <em>proves escrites que avaluen els coneixements <strong>teòrics</strong> i <strong>pràctics</strong></em> adquirits durant el curs.</p>
+<ul>
+<li class="fragment">Són proves individuals i presencials.</li>
+<li class="fragment">Es realitzaran en les dates establertes al calendari acadèmic.</li>
+<li class="fragment">No es permet l’ús de cap dispositiu electrònic (telèfons mòbils, ordinadors portàtils o tauletes).</li>
+<li class="fragment">Si es permet l’ús d’un resum de continguts, que ha de ser un document escrit a mà i no pot excedir una fulla DIN A4 (per davant i per darrere).</li>
+</ul>
+</section>
+<section id="recuperació" class="slide level2 smaller">
+<h2>Recuperació</h2>
+<ul>
+<li class="fragment">Els parcials són recuperables mitjançant proves escrites addicionals que es realitzaran durant la setmana de recuperació.</li>
+<li class="fragment">Si un estudiant necessita recuperar un únic parcial (<strong>E1</strong> o <strong>E2</strong>), podrà fer una prova específica per a aquest parcial. <em>La qualificació obtinguda en aquesta recuperació substituirà la nota del parcial corresponent</em>.</li>
+<li class="fragment">Si un estudiant necessita recuperar ambdós parcials, haurà de realitzar dues proves separades, una per a cada parcial (<strong>E1</strong> i <strong>E2</strong>). Les qualificacions obtingudes en cadascuna d’aquestes proves de recuperació substituiran les notes originals dels parcials respectius.</li>
+<li class="fragment">És important notar que <strong>no hi haurà un model d’examen unificat per a la recuperació</strong>; <em>cada prova de recuperació se centrarà exclusivament en els continguts del parcial al qual correspon</em>.</li>
+</ul>
+</section>
+<section id="pràctiques" class="slide level2 smaller">
+<h2>Pràctiques</h2>
+<ul>
+<li class="fragment">Les pràctiques de l’assignatura impliquen treball fora de l’aula i s’han de lliurar de forma estricta en les dates establertes.</li>
+<li class="fragment">La seva avaluació es farà mitjançant rúbriques de correcció, que estaran disponibles per als estudiants amb antelació.</li>
+<li class="fragment">El professorat pot entrevistar els estudiants per verificar l’autoria. Si es detecta que una activitat <em>no ha estat realitzada per l’estudiant</em> la seva qualificació <strong>serà 0</strong>.</li>
+<li class="fragment">Qualsevol entrega <em>fora del termini establert</em> es considerarà no vàlida i es <strong>qualificarà amb un 0</strong>.</li>
+<li class="fragment">Cadascuna pot tenir una <strong>ponderació específica</strong> indicada a la descripció de l’activitat.</li>
+<li class="fragment">Aquestes pràctiques <strong>no són recuperables</strong>.</li>
+<li class="fragment">Tot i ser activitats en grup, <em>cada estudiant pot obtenir una nota diferent</em> en funció de la seva participació i <strong>aportacions individuals al grup</strong>.</li>
+</ul>
+</section>
+<section id="seguiment-i-participació" class="slide level2 smaller">
+<h2>Seguiment i Participació</h2>
+<div title="Rúbrica d'Avaluació ">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Rúbrica d’Avaluació</strong></p>
+</div>
+<div class="callout-content">
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Punts</th>
+<th>Participació Presencial</th>
+<th>Participació en Fòrums</th>
+<th>Activitats Sessió</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>10</strong></td>
+<td>Contribucions excepcionals,enriqueix la discussió.</td>
+<td>Líder en discussions, promou debat.</td>
+<td>Qualitat excepcional, supera expectatives.</td>
+</tr>
+<tr class="even">
+<td><strong>9</strong></td>
+<td>Comentaris rellevants, mostra comprensió, escolta activament.</td>
+<td>Respostes significatives.</td>
+<td>Alta qualitat, treball precís.</td>
+</tr>
+<tr class="odd">
+<td><strong>8</strong></td>
+<td>Contribucions regulars, interactua amb companys.</td>
+<td>Publicacions rellevants, contribueix constructivament.</td>
+<td>Compleix tots requisits amb precisió.</td>
+</tr>
+<tr class="even">
+<td><strong>7</strong></td>
+<td>Participa amb una comprensió bàsica.</td>
+<td>Compleix mínims, contribucions breus.</td>
+<td>Qualitat inconsistent però acceptable.</td>
+</tr>
+<tr class="odd">
+<td><strong>5-6</strong></td>
+<td>Poca freqüència, comentaris superficials.</td>
+<td>Publicacions rares, poc profundes.</td>
+<td>Algunes activitats incompletes.</td>
+</tr>
+<tr class="even">
+<td><strong>1-4</strong></td>
+<td>Només participa si se li demana.</td>
+<td>Publicacions irrellevants.</td>
+<td>Rarament completa activitats.</td>
+</tr>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td>Evita participar, distret.</td>
+<td>Publicacions fora de tema.</td>
+<td>No lliura activitats.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align: center;">
+<p>L’assistència passiva no es puntua.</p>
+</div>
+<aside class="notes">
+<p>Aquest component d’avaluació està dissenyat per fomentar la participació activa i el compromís amb l’assignatura. La participació no es limita només a l’assistència a classe, sinó que també inclou la contribució en discussions, fòrums en línia i activitats relacionades amb les sessions. Tota participació ha de ser rellevant i constructiva per ser valorada positivament. En aquesta rúbrica, es detallen els criteris específics que s’utilitzaran per avaluar la participació dels estudiants en diferents àmbits.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bonus-1" class="slide level2 smaller">
+<h2>Bonus 1</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li class="fragment"><strong>Objectiu</strong>: Fomentar la reflexió i l’autoavaluació dels continguts treballats a classe.</li>
+<li class="fragment"><strong>Metodologia</strong>: Cada setmana, els estudiants han de fer un commit al seu repositori d’apunts amb les notes de les sessions de teoria i pràctiques.</li>
+<li class="fragment"><strong>Avaluació</strong>: Es valorarà la qualitat de les notes, la seva coherència i la seva relació amb els continguts treballats, així com les reflexions i opinions personals incloses.</li>
+<li class="fragment">Per participar cal crear un repositori a Github (públic) i fer-me arribar l’enllaç.</li>
+</ul>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:40%;">
+<h3 id="exemple-de-notes">Exemple de Notes</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="fu">## Setmana X</span></span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="fu"># Resum teòric</span></span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a><span class="fu"># Exemples pràctics</span></span>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a><span class="fu"># Dubtes i preguntes</span></span>
+<span id="cb3-8"><a></a></span>
+<span id="cb3-9"><a></a><span class="fu"># Reflexions personals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div title="No es permet cap altre forma ">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>No es permet cap altre forma</strong></p>
+</div>
+<div class="callout-content">
+<p>Les notes han de ser escrites en format Markdown i mantingudes en un repositori Git i Github.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>Aquest bonus està dissenyat per incentivar els estudiants a mantenir un registre organitzat i reflexiu dels continguts treballats a classe. En fer un commit setmanal amb les seves notes, els estudiants no només reforcen el seu aprenentatge, sinó que també desenvolupen habilitats de documentació i autoavaluació. La qualitat de les notes serà clau en l’avaluació, ja que es valorarà no només la precisió dels continguts, sinó també la capacitat de reflexionar sobre el que s’ha après i com s’ha aplicat aquest coneixement. Es tracta d’una oportinitat per als estudiants per crear el seu diari d’aprenentatge al llarg del curs. Per participar, els estudiants han de crear un repositori públic a Github i compartir l’enllaç amb el professorat.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bonus-2" class="slide level2">
+<h2>Bonus 2</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li class="fragment">Els materials són <em>Open Source</em>.</li>
+<li class="fragment">Qualsevol estudiant pot detectar errors, millorar els materials o afegir continguts nous.</li>
+<li class="fragment">S’avaluarà la quantitat i qualitat.</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<p><img data-src="../figures/slides/01-introduction/bonus2.png"></p>
+</div></div>
+<aside class="notes">
+<p>Un altre bonus que oferim és la possibilitat de contribuir als materials de l’assignatura seguint la metodologia de <em>Open Source</em>. Això significa que qualsevol estudiant pot detectar errors, suggerir millores o afegir continguts nous als materials proporcionats. Per participar, els estudiants poden fer un <em>fork</em> del repositori de l’assignatura, treballar en una branca separada i després obrir una <em>pull request</em> amb les seves propostes de canvi. La quantitat i qualitat de les contribucions seran avaluades, oferint així una oportunitat per als estudiants de participar activament en la millora dels recursos educatius.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="normativa-del-curs" class="title-slide slide level1 center">
+<h1>Normativa del curs</h1>
+
+</section>
+<section id="gestió-del-curs" class="slide level2">
+<h2>Gestió del curs</h2>
+<ul>
+<li class="fragment">Es demana que els estudiants <strong>arribin puntuals</strong> a les sessions. L’entrada tardana pot interrompre la dinàmica de la classe i el treball dels companys.</li>
+<li class="fragment">Es demana que els estudiants respectin les normes de convivència i respecte mutu durant les sessions de classe. Això inclou evitar interrupcions innecessàries, escoltar activament als companys i al professor, i mantenir un ambient de treball positiu i constructiu.</li>
+</ul>
+</section>
+<section id="comunicació-amb-el-professorat" class="slide level2">
+<h2>Comunicació amb el professorat</h2>
+<ul>
+<li class="fragment">Intenteu comunicar-vos a través del correu electrònic i no per l’eina del campus virtual per assegurar una resposta més ràpida.</li>
+<li class="fragment">Les sessions de tutoria es realitzaran de manera <em>presencial o virtual</em>, segons les necessitats dels estudiants. És important que els estudiants sol·licitin cita prèvia per a les tutories utilitzant el correu electrònic <a href="mailto:jordi.mateo@udl.cat" class="email">jordi.mateo@udl.cat</a> indicant el motiu de la consulta i la disponibilitat horària i afegint l’assumpte <strong>[SO]: Sol·licitud de Tutoria</strong>.</li>
+</ul>
+</section>
+<section id="treball-individual" class="slide level2">
+<h2>Treball individual</h2>
+<ul>
+<li class="fragment">Cada estudiant és responsable de la seva pròpia feina i de com gestiona el seu temps.</li>
+<li class="fragment">L’assistència a classe no és obligatòria.</li>
+<li class="fragment">Cada alumne ha de presentar evidències pròpies del treball realitzat, encara que es col·labori en grup.</li>
+</ul>
+</section>
+<section id="ús-de-la-iag" class="slide level2 smaller">
+<h2>Ús de la IAG</h2>
+<ul>
+<li class="fragment"><strong>Pots utilitzar eines d’IAG</strong> per <em>generar idees, entendre conceptes complexos o esbossar l’estructura inicial del teu codi o projecte</em>. No obstant això, <strong>la implementació i la versió final han de ser sempre de la teva autoria</strong>.</li>
+<li class="fragment">Està estrictament <strong>prohibit</strong> <em>presentar codi o solucions generades directament per una IAG com a treball propi (és a dir, mitjançant un simple copiar i enganxar)</em>.</li>
+<li class="fragment">Si incorpores material assistit per una IAG, <strong>has de declarar-ho explícitament</strong>. Això implica identificar clarament les seccions generades per IAG i proporcionar el prompt exacte utilitzat per crear-les.</li>
+</ul>
+<div class="fragment" style="text-align: center;">
+<p>L’incompliment d’aquestes directrius es considerarà una violació de la integritat acadèmica.</p>
+</div>
+<ul>
+<li class="fragment">Qualificació de zero en la tasca.</li>
+<li class="fragment">Conseqüències disciplinàries que estableix la Normativa de Convivència de la UdL per frau acadèmic.</li>
+</ul>
+</section>
+<section id="eines-necessàries" class="slide level2 smaller">
+<h2>Eines necessàries</h2>
+<ul>
+<li class="fragment">Ordinador portàtil amb connexió a Internet.
+<ul>
+<li class="fragment">Es recomana portar el vostre propi ordinador per cursar l’assignatura.</li>
+<li class="fragment">Si no disposeu d’ordinador, podreu utilitzar els ordinadors de la classe durant les sessions de laboratori.</li>
+</ul></li>
+<li class="fragment">Distribucions Linux (<a href="https://www.debian.org/index.ca.html">Debian</a> )
+<ul>
+<li class="fragment">És obligatori utilitzar la distribució Debian per a les pràctiques de laboratori.</li>
+</ul></li>
+<li class="fragment">Software de virtualització (VMWare)
+<ul>
+<li class="fragment">Es recomana utilitzar VMWare, però podeu optar per altres opcions de virtualització. Heu de ser capaços d’adaptar el material al vostre programari de virtualització.</li>
+</ul></li>
+</ul>
+</section>
+<section id="programari-necessari" class="slide level2 smaller">
+<h2>Programari necessari</h2>
+<h4 id="llenguatges-de-programació-i-compiladors">Llenguatges de programació i compiladors</h4>
+<ul>
+<li class="fragment">C</li>
+<li class="fragment"><a href="https://gcc.gnu.org/">GCC</a></li>
+</ul>
+<h4 class="fragment" id="eines-de-control-de-versions">Eines de control de versions</h4>
+<ul>
+<li class="fragment"><a href="https://git-scm.com/">Git</a></li>
+<li class="fragment"><a href="https://github.com/">Github</a></li>
+</ul>
+<h4 class="fragment" id="ide">IDE</h4>
+<ul>
+<li class="fragment">Visual Studio (Recomanat)</li>
+<li class="fragment">Vi, Vim, NeoVim, Emacs, CLion, Eclipse …</li>
+</ul>
+</section>
+<section id="materials-i-recursos" class="slide level2">
+<h2>Materials i Recursos</h2>
+<ul>
+<li class="fragment">Apunts de l’assignatura i materials proporcionats pel professor.</li>
+<li class="fragment">Documentació oficial de les eines i tecnologies utilitzades.</li>
+<li class="fragment">Fòrums tècnics a la xarxa com <em>Stack Overflow, Reddit</em>, etc.</li>
+<li class="fragment">Llibres de referència en Sistemes Operatius:
+<ul>
+<li class="fragment"><a href="https://www.amazon.com/Operating-System-Concepts-Abraham-Silberschatz/dp/0470128720">Operating System Concepts; Abraham Silberschatz</a></li>
+<li class="fragment"><a href="https://www.amazon.com/Modern-Operating-Systems-Andrew-Tanenbaum/dp/013359162X">Modern Operating Systems; Andrew S. Tanenbaum</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="bones-pràctiques" class="slide level2 smaller">
+<h2>Bones pràctiques</h2>
+<ul>
+<li class="fragment">DRY (Do not repeat yourself).</li>
+<li class="fragment">Codi fàcil de reutilitzar.</li>
+<li class="fragment">Testeja aviat, testeja sovint, testeja de forma automàtica.</li>
+<li class="fragment">No assumeixis res, prova-ho.</li>
+<li class="fragment">Utilitza assertions per prevenir l’impossible.</li>
+<li class="fragment">Utilitza excepcions per problemes excepcionals.</li>
+<li class="fragment">Estima l’ordre de complexitat dels teus algorismes.</li>
+<li class="fragment">Utilitza patrons de disseny.</li>
+<li class="fragment">Utilitza eines de control de versions.</li>
+</ul>
+<aside class="notes">
+<p>Durant el curs, us animaré a seguir aquestes bones pràctiques de programació per assegurar que el vostre codi sigui net, eficient i fàcil de mantenir. Aquestes pràctiques no només us ajudaran a desenvolupar millor programari, sinó que també us prepararan per treballar en equips de desenvolupament professionals on aquestes normes són estàndard. Es important que el vostre codi sigui fàcil de llegir i entendre per altres persones, inclòs el vostre jo futur!</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bibliografia-recomanada" class="slide level2 smaller">
+<h2>Bibliografia recomanada</h2>
+<h4 id="per-la-vida-no-pel-curs">(per la vida… no pel curs)</h4>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><a href="https://www.amazon.es/Pragmatic-Programmer-Journeyman-Master-ebook/dp/B003GCTQAE">The Pragmatic Programmer, Andrew Hunt David Thomas</a></p>
+<div class="center">
+<p><img data-src="https://images-na.ssl-images-amazon.com/images/I/41uPjEenkFL._SY445_SX342_QL70_ML2_.jpg" style="width:60mm"></p>
+</div>
+</div><aside class="notes">
+<p>Us aconsello molt aquests dos llibres. Són llibres que no només us ajudaran en aquest curs, sinó que també us seran útils al llarg de tota la vostra carrera com a desenvolupadors de programari. Aquests llibres ofereixen consells pràctics i principis fonamentals que us ajudaran a escriure codi utiltizant bones pràctiques. Són dos llibres que tot programador hauria de llegir almenys un cop a la vida.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside><div class="column" style="width:50%;">
+<p><a href="https://www.amazon.es/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM">Clean Code, (A Handbook of Agile Software Craftsmanship),Robert C. Martin</a></p>
+<div class="center">
+<p><img data-src="https://images-na.ssl-images-amazon.com/images/I/41SH-SvWPxL._SX342_SY445_QL70_ML2_.jpg" style="width:60mm"></p>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="introducció-a-la-temàtica" class="title-slide slide level1 center">
+<h1>Introducció a la temàtica</h1>
+
+</section>
+<section id="societat-actual" class="slide level2 smaller">
+<h2>Societat actual</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<h4 id="què-tenen-en-comú">Què tenen en comú?</h4>
+<ul>
+<li class="fragment">Cotxe</li>
+<li class="fragment">Rellotge</li>
+<li class="fragment">Portàtil</li>
+<li class="fragment">Rentadora</li>
+<li class="fragment">Nevera</li>
+<li class="fragment">Televisió</li>
+<li class="fragment">…</li>
+</ul>
+<h4 class="fragment" id="vivim-en-un-gran-sistema-parallel-i-distribuït">Vivim en un gran sistema paral·lel i distribuït!</h4>
+</div><div class="column" style="width:70%;">
+<div class="center">
+<p><img data-src="../figures/slides/01-introduction/iot-context.jpg" style="width:90.0%"></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Per començar, m’agradaria que reflexionéssiu sobre què tenen en comú tots aquests dispositius que fem servir en el nostre dia a dia. Des de cotxes fins a rellotges, portàtils, tauletes, rentadores, neveres i televisors, tots aquests aparells semblen molt diferents entre si. Però si mirem més a fons, veurem que tots compartixen dos característiques fonamentals: tots són dispositius electrònics que interactuen amb nosaltres i tots estan connectats a internet. Aquesta connexió a internet és el que els permet comunicar-se entre si i amb nosaltres. Això ens porta a la següent reflexió: vivim en un món on tot està interconnectat, podem dir que vivim en un món distribuït on tots aquests dispositius treballen junts per fer-nos la vida més fàcil i eficient.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="món-connectat" class="slide level2 smaller">
+<h2>Món connectat</h2>
+<div style="text-align: center;">
+<p>Avui en dia tothom parla de <strong>IoT</strong>, <strong>BigData</strong>, <strong>Cloud</strong>, <strong>AI</strong>, <strong>Blockchain</strong>, <strong>Metavers</strong></p>
+</div>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment">Microprocessador a tot arreu.</li>
+<li class="fragment">Xarxes i Connectivitat.</li>
+<li class="fragment">Serveis escalables, confiables i segurs.</li>
+<li class="fragment">Gran volum de dades, Sensor i Digitalització.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://d3i71xaburhd42.cloudfront.net/65ec75e721634b392d23364f8d67a68aedc1c189/15-Figure9-1.png"></p>
+<figcaption>Casa connectada (Font: Extret de <a href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.semanticscholar.org%2Fpaper%2FPotentials%252C-trends%252C-and-prospects-in-edge-Fog%252C-and-Bilal-Khalid%2F65ec75e721634b392d23364f8d67a68aedc1c189%2Ffigure%2F12&amp;psig=AOvVaw1BjiOrDFoVjQMPpgDItKZ3&amp;ust=1631713120802000&amp;source=images&amp;cd=vfe&amp;ved=0CAsQjRxqFwoTCIjDvp7L_vICFQAAAAAdAAAAABAJ">SemanticScholar</a>)</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="fragment" style="text-align: center;">
+<p><strong>La barrera que separa el món físic i el món virtual cada cop es mes estreta.</strong></p>
+</div>
+<aside class="notes">
+<p>En la societat actual es parla constatant de noves tecnologies disruptives com <strong>IoT</strong>, <strong>BigData</strong>, <strong>Cloud</strong>, <strong>AI</strong>, <strong>Blockchain</strong>, <strong>Metavers</strong>,… Per tant, com a societat tenim la capacitat d’interactuar amb el nostre entorn i ambient. Això implica que tenim microprocessadors a tot arreu, disposem de xarxes i connectivitat que ens permeten estar sempre connectats, podem accedir a serveis escalables, confiables i segurs, i gestionem un gran volum de dades gràcies a la digitalització i els sensors.</p>
+<p>Ara, pensem un moment en el nostre dia a dia: - Quants teniu un cotxe? Quants processadors creieu que té un cotxe? - Més de 50! - Qui utilitza un smartphone? Quants processadors/cores té el vostre smartphone? - El meu un Poco X4 GT té un MediaTek Dimensity 8100 amb 8 nuclis.</p>
+<p>La capacitat de computació està present a tot arreu, i la majoria dels dispositius que utilitzem diàriament estan equipats amb microprocessadors que funcionen de manera paral·lela i interactuen entre ells. Per tant, el món físic i el món virtual estan cada cop més interconnectats, i la barrera que els separa es fa cada cop més estreta.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="què-tenen-en-comú-1" class="slide level2 smaller">
+<h2>Què tenen en comú?</h2>
+<div style="text-align: center;">
+<p>Una <strong>interfície</strong> (<em>Sistema Operatiu</em>) capaç <strong>d’integrar una gran diversitat de maquinari i programari</strong> i <strong>comunicar-se a través de la xarxa</strong>.</p>
+</div>
+<div class="center-container">
+<p><img data-src="../figures/slides/01-introduction/so_intro.png"></p>
+</div>
+<aside class="notes">
+<p>Però, <strong>que tenen en comú aquests progressos tecnològics?</strong> Requereixen un cervell que permeti a tots els diferents aparells i màquines interactua amb nosaltres, tant per generar, processar o guardar. Tots els dispositius i servidors requereixen un sistema operatiu que permeti maquinari i programari comunicar-se.</p>
+<p>En aquest curs tractarem els cervells d’aquests sistemes i analitzarem de quines estructures podem dotar aquests sistemes perquè funcionin correctament i permeti que maquinari tan heterogeni sigui capaç de fer funcionar infinitat de programes i serveis per gestionar eficientment les dades i la informació del nostre entorn.</p>
+<p>Per tant, a la pregunta inicial què tenen en comú? podem afirmar:</p>
+<ul>
+<li>Tenen en comú que tots són sistemes informàtics.</li>
+<li>Tots tenen un sistema operatiu.</li>
+<li>Tots es communiquen per internet amb altres sistemes.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="llei-de-bell" class="slide level2">
+<h2>Llei de Bell</h2>
+<div class="center-container">
+<p><img data-src="../figures/slides/01-introduction/bell.png"></p>
+</div>
+<aside class="notes">
+<p>Es pot observar com la mida i les classes de computadors han evolucionat cada 10 anys. Venim de la dècada dels anys 60 i 70, on es van desenvolupar els primers microprocessadors i la informàtica personal estava en les seves primeres etapes. En aquesta època, es feien servir pocs processadors que eren compartits per moltes persones. Els avanços en la capacitat de processament eren més lents, i la tecnologia era més limitada. Ara, en l’actualitat, cada persona fa servir molts processadors de manera habitual. Això es deu a l’augment de la potència de processament dels dispositius que utilitzem, com els telèfons intel·ligents i les tauletes, així com als ordinadors personals i altres tecnologies. Venim de pocs processadors fets servir per a moltes persones (anys 60-70) i ara cada persona fa servir molts processadors. Com ha canviat la tendència… on ens portarà el futur?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="llei-de-moore" class="slide level2">
+<h2>Llei de Moore</h2>
+<div class="center-container">
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/9/90/Ley_de_Moore.png"></p>
+</div>
+<aside class="notes">
+<p>Us recordeu la llei de Moore? Aquesta llei, formulada per Gordon Moore el 1965, predia que el nombre de transistors en un microprocessador es duplicaria aproximadament cada dos anys, cosa que implicava un augment exponencial de la potència de càlcul dels ordinadors. Aquesta predicció s’ha mantingut sorprenentment precisa durant dècades, impulsant avanços tecnològics i transformant la manera com vivim i treballem. No obstant això, a mesura que ens acostem als límits físics de la miniaturització dels transistors, hi ha un debat continu sobre si aquesta tendència continuarà en el futur o si necessitarem noves tecnologies per mantenir el ritme d’innovació.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="què-és-un-sistema-informàtic" class="slide level2 smaller">
+<h2>Què és un sistema informàtic?</h2>
+<p>Un <strong>sistema informàtic</strong> és la interconnexió d’elements de maquinari per exemple <em>d’1 o més CPU, memòria i components E/S</em> … Amb la finalitat d’executar programes i accions (en sèrie o de forma concurrent) per <em>1 o múltiples usuaris</em>.</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="../figures/slides/01-introduction/parallel.png" style="width:70.0%"></p>
+</div><div class="column" style="width:70%;">
+<p><img data-src="../figures/slides/01-introduction/sistema-informatic.png"></p>
+</div></div>
+<aside class="notes">
+<p>Si us recordeu d’Estructura de Computadors, un sistema informàtic és la interconnexió d’elements de maquinari com ara una o més CPU, memòria i components d’entrada/sortida. Tenim els registres, la memòria cau, la memòria principal, els dispositius d’entrada/sortida i els canals de comunicació que permeten que tots aquests components treballin junts per executar programes i accions.</p>
+<p>Com heu vist el mon real actua com un gran sistema paral·lel. Per tant, tots els sistemes de temps real son inherentment concurrents i lògicament els nostres sisteme informàtics també han de poder actuar en paral·lel. En la figura, podeu observar com una tasca es descomposa en diferents parts per poder aprofitar els diferents processadors i nuclis de cada processador.L’execució <strong>concurrent</strong> recull un conjunt de tècniques informàtiques usades per representar i gestionar el paral·lelisme i les eines de sincronització i comunicació entre programes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gestió-dun-sistema-informàtic-i" class="slide level2 smaller">
+<h2>Gestió d’un sistema informàtic (I)</h2>
+<div style="text-align: center;">
+<p>Imagineu que sou un sistema informàtic i us envien l’ordre de llegir un fitxer</p>
+</div>
+<ul>
+<li class="fragment"><strong>Quin és el procediment per fer aquesta acció?</strong>
+<ul>
+<li class="fragment">Engegar motor del disc.</li>
+<li class="fragment">Buscar posició al disc a llegir (pista, cara, sector).</li>
+<li class="fragment">Llegir.</li>
+<li class="fragment">Apagar el motor.</li>
+</ul></li>
+<li class="fragment"><strong>Quantes vegades com a usuaris d’un sistema informàtic llegiu un fitxer?</strong></li>
+</ul>
+<div class="fragment" style="text-align: center;">
+<p>Moltes vegades…!</p>
+</div>
+<aside class="notes">
+<p>Com a usuaris d’un sistema informàtic llegim fitxers moltes vegades al dia. Per exemple, quan obrim un document de text, una imatge, un vídeo o qualsevol altre tipus d’arxiu, el sistema operatiu ha de llegir aquest fitxer des del disc dur o una altra unitat d’emmagatzematge. Però, us heu preguntat alguna vegada quin és el procediment que segueix el sistema informàtic per llegir aquest fitxer? Hauriam d’engegar el motor del disc, buscar la posició correcta al disc on es troba el fitxer, llegir les dades i finalment apagar el motor. <em>Té sentit que un usuari cada cop que llegeix un fitxer hagi de tenir en compte aquest procediment i realitzar-lo de forma rutinària?</em> Necessitem un programari que ens permeti efectuar accions rutinàries de forma automàtica i transparent a l’usuari. Si no els sistemes informàtics no serien usables.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="complexitat-sistemes-informàtics-i" class="slide level2 smaller">
+<h2>Complexitat sistemes informàtics (I)</h2>
+<div class="center">
+<p>Cada peça de hardware és diferent. <span class="math inline">\(\Rightarrow\)</span> La complexitat per gestionar els recursos és molt elevada.</p>
+</div>
+<ul>
+<li class="fragment">Arquitectures diferents de processadors i també de generacions (<em>x86, ARM, RISC-V, MIPS, PowerPC,…</em>).</li>
+<li class="fragment">Diferents tipus de memòries (<em>RAM DDR3, DDR4, DDR5, NAND,…</em>).</li>
+<li class="fragment">Diferents tipus de discs (<em>HDD, SSD, NVM…</em>).</li>
+<li class="fragment">Diferents dispositius entrada/sortida.</li>
+<li class="fragment">Diferents entorns de xarxa.</li>
+</ul>
+<div class="fragment" style="text-align: center;">
+<p><strong>… entre moltes altres …</strong></p>
+</div>
+<aside class="notes">
+<p>Us imagineu haver d’escriure software per cada permutació d’elements diferents del sistema informàtic? Això seria un desastre… Quantes permutacions de diferents components podem tenir avui en dia? OMG! Necessitem alguna cosa que ens permeti superar aquest obstacle de forma intel·ligent i ens permeti desenvolupar software de forma independent al hardware.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="complexitat-sistemes-informàtics-iii" class="slide level2 smaller">
+<h2>Complexitat sistemes informàtics (III)</h2>
+<p>Tots els programes necessiten accedir a tot el hardware?</p>
+<div class="fragment" style="text-align: center;">
+<p>Per suposat que no! Això podria causar problemes de seguretat com:</p>
+<ul>
+<li class="fragment"><strong>Pèrdua de confidencialitat</strong>: Accés no autoritzat a dades sensibles.</li>
+<li class="fragment"><strong>Accés a informació restringida</strong>: Usuaris no autoritzats podrien veure dades privades.</li>
+<li class="fragment"><strong>Denegació de serveis</strong>: Un programa podria bloquejar l’accés a recursos per a altres programes.</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Què pot passar si un programa pot accedir a tota la RAM?</p>
+</div>
+<ul>
+<li class="fragment">Un programa de l’usuari Jordi amb accés a tota la RAM podria veure les dades del programa de l’usuari Pere.</li>
+<li class="fragment">Si el programa falla, podria afectar tot el sistema i requerir un reinici.</li>
+</ul>
+<aside class="notes">
+<p>No, clar que no! <strong>Seguretat</strong>: - Si un programa controla tot el sistema, els altres no poden accedir-hi (Denegació de serveis). - Diferents usuaris poden tenir diferents dades; si un programa pot accedir a tot, podria veure informació restringida. - No necessitem accés a tot el hardware per realitzar les nostres tasques. - Un usuari malintencionat podria danyar el sistema amb un procés defectuós.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="complexitat-sistemes-informàtics-iv" class="slide level2">
+<h2>Complexitat sistemes informàtics (IV)</h2>
+<p>Si un sistema informàtic no està ben dissenyat, un programa mal escrit pot fer fallar tot el sistema, per exemple:</p>
+<h4 id="bucle-infinit">Bucle infinit</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb4-2"><a></a>    <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb4-3"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="fork-bomb">Fork bomb</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb5-2"><a></a>    <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb5-3"><a></a>    fork<span class="op">();</span></span>
+<span id="cb5-4"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<p>Un programa o procés pot fer fallar tot el sistema si no està ben dissenyat. Per tant, és important tenir en compte aquelles situacions per evitar-les. En el primer exemple, tenim un bucle infinit. Aquesta situació en els sistemes linux actuals no és un problema, ja que el sistema operatiu pot gestionar aquest tipus de situacions. No obstant això, en sistemes més antics, aquest tipus de bucles podrien fer que el sistema no respongués. En el segon exemple, tenim un bucle infinit i una crida a la funció fork(). Aquesta funció crea un nou procés que és una còpia exacta del procés pare. Això podria fer que el sistema es saturés amb molts processos i no pogués respondre. Aquesta situació podria requerir un reinici del sistema per recuperar-lo i es un problema en els sistemes actuals. Fixeu-vos com un simple programa pot fer fallar tot el sistema.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="què-és-un-sistema-operatiu" class="slide level2 smaller">
+<h2>Què és un sistema operatiu?</h2>
+<p>Un <strong>sistema operatiu (SO)</strong> és una capa de software que permet la comunicació i la gestió del maquinari habilitant als usuaris l’execució de programes. El SO actua d’<strong>intermediari (interfície)</strong> entre els <strong>usuaris i el maquinari</strong>.</p>
+
+<img data-src="../figures/slides/01-introduction/os-diagram.png" class="r-stretch"><aside class="notes">
+<p>Un <strong>sistema operatiu (SO)</strong> és una capa de software que permet la comunicació i la gestió del maquinari habilitant als usuaris l’execució de programes. El SO actua d’<strong>intermediari (interfície)</strong> entre els <strong>usuaris i el maquinari</strong>.</p>
+<p>Per tant, és un programa que controla el maquinari i permet als usuaris interactuar amb ell. Aquesta interacció pot ser a través d’una interfície gràfica d’usuari (GUI) o una interfície de línia de comandes (CLI). També, gestiona els recursos del sistema, com la memòria, el disc dur i els dispositius d’entrada/sortida. A més, el SO proporciona funcionalitats com la gestió de fitxers, la seguretat i la xarxa.</p>
+<p>Podem dir que el SO és el cervell del sistema informàtic,ja que controla tots els components i permet als usuaris interactuar amb ells. Sense un SO, els usuaris no podrien utilitzar el maquinari del sistema de manera eficient i segura.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="què-volen-els-programadors" class="slide level2">
+<h2>Què volen els programadors?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="una-plataforma">Una plataforma…</h4>
+<ul>
+<li class="fragment">per executar aplicacions.</li>
+<li class="fragment">transparent per evitar la complexitat del hardware.</li>
+<li class="fragment">eficient per utilitzar els recursos de forma òptima.</li>
+<li class="fragment">portable per utilitzar-ho indepedentment del hardware.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="../figures/slides/01-introduction/esquema1.png"></p>
+</div></div>
+<aside class="notes">
+<p>Des del punt de vista dels programadors, el que volen és una plataforma per executar les seves aplicacions. Aquesta plataforma ha de ser transparent per evitar la complexitat del hardware, eficient per utilitzar els recursos de forma òptima i portable per utilitzar-ho indepedentment del hardware.El kernel és la capa intermèdia que connecta el programari de l’usuari amb el maquinari físic de l’ordinador. A la imatge es pot veure com el kernel actua com un pont entre l’aplicació i el maquinari. Quan un programador escriu una aplicació, no necessita preocupar-se per com funciona el maquinari a nivell de circuits. En canvi, pot utilitzar les funcions proporcionades pel kernel per interactuar amb el maquinari de manera més senzilla i eficient. Els usuaris finals també es beneficien d’aquesta abstracció, ja que poden utilitzar aplicacions sense necessitat de conèixer els detalls tècnics del maquinari. El kernel permet que el mateix codi pugui funcionar en diferents ordinadors amb maquinari diferent. Un programador pot escriure una aplicació (com un navegador web) una sola vegada, i el kernel s’encarregarà de traduir les seves instruccions per al maquinari específic de cada màquina. També gestiona de manera eficient els recursos del sistema, com el temps de processador, l’ús de la memòria o l’accés al disc.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="què-ofereix-el-sistema-operatiu" class="slide level2 smaller">
+<h2>Què ofereix el sistema operatiu?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="serveis">Serveis</h4>
+<ul>
+<li class="fragment">Controlar/Gestionar usuaris i aplicacions.</li>
+<li class="fragment">Gestionar la Memòria.</li>
+<li class="fragment">Sistema de fitxers.</li>
+<li class="fragment">Planificadors.</li>
+<li class="fragment">Eines de xarxa.</li>
+</ul>
+<div class="fragment">
+<h4 id="garanties">Garanties</h4>
+<ul>
+<li class="fragment">Seguretat.</li>
+<li class="fragment">Transparència.</li>
+<li class="fragment">Eficiència.</li>
+<li class="fragment">Portabilitat.</li>
+<li class="fragment">Estabilitat al llarg del temps.</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="../figures/slides/01-introduction/esquema2.png"></p>
+</div></div>
+<aside class="notes">
+<p>Observeu que el kernel ens ofereix una interfície d’usuari amb serveis com el sistema de fitxers, la gestió de la memòria, la planificació de processos i les eines de xarxa. I per sota d’aquestes capes, tenim els drivers que ens permeten interactuar amb el maquinari físic de l’ordinador.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="com-sorganitza-el-sistema-operatiu" class="slide level2">
+<h2>Com s’organitza el sistema operatiu?</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="center">
+<p><img data-src="../figures/slides/01-introduction/os-vm.png"></p>
+</div>
+</div><div class="column" style="width:60%;">
+<h4 id="maquina-virtual">Maquina virtual</h4>
+<p>És la <em>visió</em> que té l’<strong>usuari</strong> del <strong>sistema operatiu</strong> durant una <em>sessió de treball</em>.</p>
+<div class="fragment">
+<h4 id="dualitat">Dualitat</h4>
+<p>El <strong>sistema operatiu</strong> divideix el programari que té tots els privilegis(<strong>kernel</strong>) del programari que no pot accedir a tots els recursos (<strong>programes, llibreries, intèrpret de comandes,…</strong>).</p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Aquest concepte descriu la visió que tenim nosaltres, els usuaris, del sistema. Quan treballem amb un ordinador, veiem una interfície amigable: icones, finestres, aplicacions. Aquesta és la màquina virtual que el sistema operatiu ens crea. És una capa abstracta que simplifica les tasques complexes del maquinari i ens permet centrar-nos en el nostre treball. Penseu-hi com una il·lusió: l’OS ens amaga la complexitat del maquinari i ens mostra una versió simplificada, fàcil de gestionar.</p>
+<p>Sota aquesta interfície amigable hi ha un principi de seguretat fonamental. El sistema operatiu divideix el programari en dos grans grups per qüestions de seguretat i estabilitat. El nucli del sistema operatiu, amb accés total al maquinari, i és responsable de la gestió de recursos. Penseu-hi com el <strong>cervell</strong> de l’ordinador, que pren totes les decisions importants. La resta de programari, com les aplicacions que utilitzem diàriament, té accés limitat als recursos del sistema. Durant una sessió de treball, el sistema operatiu canvia entre aquests dos modes segons sigui necessari.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="què-és-una-màquina-virtual" class="slide level2">
+<h2>Què és una Màquina Virtual?</h2>
+<p>La <strong>virtualització</strong> presentar una visió abstracta dels recursos del sistema. Diversos processos <strong>creuen</strong> (tenen l’il·lusió) de disposar sempre d’un conjunt de recursos (màquinaria).</p>
+<ul>
+<li class="fragment"><strong>Simplicitat</strong> Il·lusió de propietat de recursos</li>
+<li class="fragment"><strong>Aïllament</strong> Els bugs es donen en un entorn virtual i no físic.</li>
+<li class="fragment"><strong>Protecció</strong> Els processos no es poden fer mal entre ells.</li>
+<li class="fragment"><strong>Portabilitat</strong> Podem executar a totes les plataformes.</li>
+</ul>
+<aside class="notes">
+<p>Imagineu-vos que organitzem una LAN-party amb assistents, però només hi ha 1 pizza per alimentar-los. Com podem mostrar a cada un el seu propi tros de pizza i mantenir-los compromesos amb el nostre esdeveniment. Fàcil, creem 1 pizza virtual basada en la pizza real i donem a cada encarregat un tros de pizza virtual. Però, aquí ve un problema si tots els assistents mengen la pizza alhora, no funcionarà, alguns participants notarien el truc. Tanmateix, si programem els esdeveniments perquè molts participants s’ocupin de les activitats i no mengin la pizza, els organitzadors poden intercanviar en temps real la pizza real i la virtual a les taules on els participants descansen, perquè són els únics candidats a menjar i descobrir el truc, així que Si mengen, la pizza ha de ser real.Java té un sandbox que permet utilitzar el Java independentment d’on executem.VirtualBox i VMWare ens permeten executar sistemes operatius dins de sistemes operatius. Tenim un sistema operatiu amfitrió (màquina física) i un o més sistemes operatius virtuals (hostes).També és possible virtualitzar sobre el hardware sense la necessitat d’un sistema operatiu (amfitrió).També tenim virtualització per contenidors (Docker).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="models-de-virtualització-dalt-nivell" class="slide level2">
+<h2>Models de Virtualització d’alt nivell</h2>
+
+<img data-src="../figures/slides/01-introduction/virtualitzacio.png" style="display: block; margin-left: auto; margin-right: auto;" class="r-stretch"><aside class="notes">
+<ul>
+<li><strong>Virtualització Nativa</strong>: Hipervisor s’executa directament sobre el maquinari físic sense cap sistema operatiu intermedi. Exemples d’aquesta tecnologia inclouen VMware ESXi o Microsoft Hyper-V. Això ofereix un rendiment molt elevat, ja que no hi ha cap capa addicional entre el maquinari i l’hipervisor, ideal per a entorns de producció.</li>
+<li><strong>Virtualització Allotjada</strong>: Hipervisor s’executa sobre un sistema operatiu ja existent. Per exemple, en KVM, s’utilitza Linux com a sistema operatiu base, i sobre aquest es creen les màquines virtuals.</li>
+<li><strong>Paravirtualització</strong>: El sistema operatiu convidat sap que està sent virtualitzat i coopera amb l’hipervisor per millorar el rendiment. Un exemple destacat és Xen, que és molt utilitzat en entorns cloud per la seva eficiència.</li>
+<li><strong>Virtualització Assistida per Hardware</strong>: Aquest model aprofita les capacitats del processador per accelerar el procés de virtualització. Processadors moderns com els d’Intel (VT-x) o AMD (AMD-V) ofereixen suport per a aquest tipus de virtualització (VMware o Hyper-V).</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="què-és-la-memòria-virtual" class="slide level2">
+<h2>Què és la Memòria Virtual?</h2>
+<ul>
+<li class="fragment">La <em>memòria virtual</em> permet que cada procés tingui la <strong>il·lusió</strong> que té accés exclusiu a l’espai complet d’adreces de memòria del processador.</li>
+<li class="fragment">En realitat els processos utilitzen <strong>diferents regions de la memòria</strong> de l’ordinador, amb algunes regions traslladades al <em>disc</em> si no hi ha prou memòria per a tothom.</li>
+</ul>
+<div class="fragment" style="text-align: center;">
+<p>La unitat de <strong>gestió de memòria (MMU)</strong> d’un processador, que <strong>tradueix</strong> les <em>adreces virtuals</em> utilitzades pel programa en <em>adreces físiques</em> que representen ubicacions de memòria reals.</p>
+</div>
+<aside class="notes">
+<p>Un exemple de virtualització és la memòria virtual. La memòria virtual és una tècnica que permet als sistemes operatius utilitzar la memòria de manera més eficient i segura. Aquesta tècnica crea una il·lusió per als processos que els fa creure que tenen accés exclusiu a l’espai complet d’adreces de memòria del processador. En realitat, els processos utilitzen diferents regions de la memòria de l’ordinador, amb algunes regions traslladades al disc si no hi ha prou memòria per a tothom. Aquesta tècnica permet que els processos s’executin de manera aïllada, evitant que un procés pugui accedir a la memòria d’un altre procés. Això és important per garantir la seguretat i la estabilitat del sistema. La unitat de gestió de memòria (MMU) d’un processador és la responsable de traduir les adreces virtuals utilitzades pel programa en adreces físiques que representen ubicacions de memòria reals. Aquesta traducció es fa mitjançant taules de pàgines que mapejen les adreces virtuals a les adreces físiques. Aquest procés l’estudiarem més endavant en detall.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="quins-són-els-rols-so-i" class="slide level2">
+<h2>Quins són els rols SO? (I)</h2>
+<h4 id="illusionista">Il·lusionista</h4>
+<p>Ofereix una <strong>interfície simple</strong> i fàcil d’utilitzar per als recursos físics d’una màquina o sistema, <strong>ocultant la complexitat tècnica</strong>.</p>
+<div class="fragment" title="Exemple">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple</strong></p>
+</div>
+<div class="callout-content">
+<p>Permet als usuaris utilitzar una impressora (<em>hardware</em>) sense conèixer els detalls tècnics d’aquesta impresora, com la interfície de comunicació, els controladors o els protocols de comunicació, disposem d’una funció (<strong>imprimir</strong>) que ens permet enviar un document a la impressora.</p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>El sistema operatiu actua com un il·lusionista que ens ofereix una interfície simple i fàcil d’utilitzar per als recursos físics d’una màquina o sistema, ocultant la complexitat tècnica. Per exemple, quan utilitzem una impressora, no necessitem conèixer els detalls tècnics d’aquesta impressora, com la interfície de comunicació, els controladors o els protocols de comunicació. En canvi, podem utilitzar una funció simple com “imprimir” que ens permet enviar un document a la impressora sense preocupar-nos pels detalls tècnics. Això fa que l’ús de la tecnologia sigui més accessible i fàcil per als usuaris.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="quins-són-els-rols-so-ii" class="slide level2">
+<h2>Quins són els rols SO? (II)</h2>
+<h4 id="illusionista-1">Il·lusionista</h4>
+<p>Proporciona una abstracció que permet a una aplicació tenir ús exclusiu dels recursos quan sigui necessari, sense interferències d’altres aplicacions.</p>
+<div class="fragment" title="Exemple">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple</strong></p>
+</div>
+<div class="callout-content">
+<p>Permet utilitzar un programa de videoconferència que utilitza la càmera i el micròfon i ens garantitza que cap altre programa pugui utiltizar-los al mateix temps.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quins-són-els-rols-so-iii" class="slide level2">
+<h2>Quins són els rols SO? (III)</h2>
+<h4 id="illusionista-2">Il·lusionista</h4>
+<p>Oferir una il·lusió d’infinitat per als recursos de maquinari, assegurant que les aplicacions puguin continuar funcionant sense problemes.</p>
+<div class="fragment" title="Exemple">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment">Permet a un usuari tenir múltiples aplicacions obertes alhora, tot i que només una estigui en primer pla.<br>
+</li>
+<li class="fragment">Crea una il·lusió on cada procés creu que és propietari dels recursos hardware.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quins-són-els-rols-so-v" class="slide level2">
+<h2>Quins són els rols SO? (V)</h2>
+<h4 id="àrbitre">Àrbitre</h4>
+<p>Responsable de distribuir els recursos disponibles entre usuaris i aplicacions de manera eficient i justa.</p>
+<div class="fragment" title="Exemple">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple</strong></p>
+</div>
+<div class="callout-content">
+<p>Un sistema amb múltiples usuaris, el temps de processador s’ha de repartir de manera equitativa entre tots els usuaris que executen aplicacions.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quins-són-els-rols-so-vi" class="slide level2">
+<h2>Quins són els rols SO? (VI)</h2>
+<h4 id="àrbitre-1">Àrbitre</h4>
+<p>Garanteix la segregació i la protecció d’usuaris i aplicacions.</p>
+<div class="fragment" title="Exemple">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple</strong></p>
+</div>
+<div class="callout-content">
+<p>Impedint que una aplicació bloquegi o afecti el funcionament d’altres aplicacions.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quins-són-els-rols-so-vii" class="slide level2">
+<h2>Quins són els rols SO? (VII)</h2>
+<h4 id="pega">Pega</h4>
+<p>Proporciona un conjunt de serveis i funcionalitats comunes que poden ser compartits i reutilitzats per diverses parts d’un sistema.</p>
+<ul>
+<li class="fragment"><strong>Compartició</strong>: Simplifica <span class="math inline">\(\Rightarrow\)</span> s’assumeixen sempre les mateixes primitives bàsiques.</li>
+<li class="fragment"><strong>Reutilització</strong>: Evita torna a implementar funcionalitats comunes. Permet evolucionar de forma independent els components.</li>
+</ul>
+</section>
+<section id="el-sistema-de-fitxers" class="slide level2">
+<h2>El Sistema de Fitxers</h2>
+<p>Un exemple de la funció de pega del sistema operatiu és el <strong>sistema de fitxers</strong>:</p>
+<ul>
+<li class="fragment">Proporciona una <strong>interfície estàndard</strong> per a la creació, lectura, escriptura i eliminació de fitxers de format transparent <em>(read, write, open, close, …)</em></li>
+<li class="fragment">Ens permet implementar <strong>libc</strong> que proporciona funcions d’entrada/sortida d’alt nivell (<em>fopen, fread, fwrite, fclose, …</em>)</li>
+</ul>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-i" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (I)</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb6-2"><a></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> </span>
+<span id="cb6-5"><a></a>    <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span></span>
+<span id="cb6-6"><a></a><span class="op">{</span></span>
+<span id="cb6-7"><a></a>  <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb6-8"><a></a>  <span class="op">{</span></span>
+<span id="cb6-9"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> argv<span class="op">[</span><span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb6-10"><a></a>  <span class="op">}</span></span>
+<span id="cb6-11"><a></a>  <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb6-12"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:55%;">
+<h3 id="prog-h"><code>./prog H</code></h3>
+<div class="fragment">
+<p>H <br> H <br> …</p>
+</div>
+<div class="fragment">
+<h3 id="prog-h-.prog-o"><code>./prog H &amp; ./prog O</code></h3>
+<p>???</p>
+</div>
+</div></div>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-ii" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (II)</h2>
+
+<img data-src="../figures/slides/01-introduction/prog_A_B_Memory.png" class="r-stretch"><aside class="notes">
+<p>En primer lloc, el programa c s’ha de compilar amb un compilador i enllaçar amb les llibreries del sistema que ens proporciona el sistema operatiu.</p>
+<p>Un cop tenim un executable, si l’executem el sistema operatiu crearà una estructura anomenada procés on es guardarà un identificador, un espai de memòria,… aquesta estructura és una de les abstraccions essencials per la funció d’il·lusionisme.</p>
+<p>Fixeu-vos que el mateix programa pot ser executat dos cops i el sistema operatiu generarà 2 processos diferents. Amb identificadors diferents i espai de memoria diferent.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-iii" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (III)</h2>
+
+<img data-src="../figures/slides/01-introduction/prog_A_executing.png" class="r-stretch"><aside class="notes">
+<p>Per tant, el sistema operatiu utilitzant el planificador assignarà el processador (assumimim que només tenim 1 core) a 1 procés durant un temps determinat i anirà intercanviant (canvi de context) aquest procés cada X temps, d’aquesta manera cada procés creu tenir tots els recursos per ells (il·lusió).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-iv" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (IV)</h2>
+
+<img data-src="../figures/slides/01-introduction/prog_B_executing.png" class="r-stretch"><aside class="notes">
+<p>Per fer-ho, el sistema operatiu guardà una foto de l’estat actual del procés a memòria i la recuperarà més endavant quan li torni a donar dret d’execució.</p>
+<p>Noteu també que s’ha creat en mèmoria una subregió independent per cada procés. Quan un procés intenta accedir una zona de memòria forà de la seva subregió o inexistent es dona el famós SEGMENTATION FAULT.</p>
+<p>Com en l’últim exemple on el procés intenta accedir a una zona de memòria que no li pertany. Això és una de les funcions de protecció que ens ofereix el sistema operatiu. Al llarg del curs veurem amb més detall com funcionen tots aquests mecanismes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-v" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (V)</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb7-2"><a></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> </span>
+<span id="cb7-5"><a></a>    <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span></span>
+<span id="cb7-6"><a></a><span class="op">{</span></span>
+<span id="cb7-7"><a></a>  <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb7-8"><a></a>  <span class="op">{</span></span>
+<span id="cb7-9"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> argv<span class="op">[</span><span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb7-10"><a></a>  <span class="op">}</span></span>
+<span id="cb7-11"><a></a>  <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb7-12"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:55%;">
+<p>Depenen de la prioritat dels procesesos <strong>A</strong> o <strong>B</strong> poden tenir més temps de <em>CPU</em> que l’altre i sortir els missatges de forma desordenada.</p>
+<h3 id="prog-h-.prog-o-1">./prog H &amp; ./prog O</h3>
+<div class="columns">
+<div class="column" style="width:15%;">
+
+</div><div class="column" style="width:20%;">
+<p>H <br> H <br> H <br> …</p>
+</div><div class="column" style="width:20%;">
+<p>H <br> O <br> H <br> …</p>
+</div><div class="column" style="width:20%;">
+<p>O <br> O <br> H <br> …</p>
+</div><div class="column" style="width:15%;">
+
+</div></div>
+</div></div>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-vi" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (VI)</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb8-2"><a></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> </span>
+<span id="cb8-5"><a></a>    <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span></span>
+<span id="cb8-6"><a></a><span class="op">{</span></span>
+<span id="cb8-7"><a></a>  <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb8-8"><a></a>  <span class="op">{</span></span>
+<span id="cb8-9"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> argv<span class="op">[</span><span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb8-10"><a></a>  <span class="op">}</span></span>
+<span id="cb8-11"><a></a>  <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb8-12"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:55%;">
+<h3 id="prog-.prog-o"><code>./prog &amp; ; ./prog O</code></h3>
+<p>?????</p>
+</div></div>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-vii" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (VII)</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb9-2"><a></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> </span>
+<span id="cb9-5"><a></a><span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span></span>
+<span id="cb9-6"><a></a><span class="op">{</span></span>
+<span id="cb9-7"><a></a>  <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb9-8"><a></a>  <span class="op">{</span></span>
+<span id="cb9-9"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> argv<span class="op">[</span><span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb9-10"><a></a>  <span class="op">}</span></span>
+<span id="cb9-11"><a></a>  <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb9-12"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<h3 id="prog-.prog-o-1">./prog &amp; ; ./prog O</h3>
+<p>Segmentation Fault <br> O <br> O <br> …</p>
+</div></div>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-viii" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (VIII)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb10-2"><a></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb10-3"><a></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb10-4"><a></a></span>
+<span id="cb10-5"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span></span>
+<span id="cb10-6"><a></a><span class="op">{</span></span>
+<span id="cb10-7"><a></a>  <span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb10-8"><a></a>  <span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb10-9"><a></a>  <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-10"><a></a>    <span class="op">*</span>p <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb10-11"><a></a>    printf<span class="op">(</span><span class="st">"(</span><span class="sc">%d</span><span class="st">) p: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">(),</span> <span class="op">*</span>p<span class="op">);</span></span>
+<span id="cb10-12"><a></a>    i<span class="op">++;</span></span>
+<span id="cb10-13"><a></a>  <span class="op">}</span></span>
+<span id="cb10-14"><a></a>  free<span class="op">(</span>p<span class="op">);</span></span>
+<span id="cb10-15"><a></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-16"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<h4 id="prog1"><code>./prog1</code></h4>
+<div class="fragment">
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 0x5570014a02a0</span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 1</span>
+<span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 2</span>
+<span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 3</span>
+<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<h4 id="prog1-.prog1"><code>./prog1 &amp; ./prog1</code></h4>
+<p>????</p>
+</div>
+</div></div>
+</section>
+<section id="anàlisi-què-fa-aquest-programa-ix" class="slide level2">
+<h2>Anàlisi: Què fa aquest programa? (IX)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb12-2"><a></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb12-3"><a></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb12-4"><a></a></span>
+<span id="cb12-5"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span></span>
+<span id="cb12-6"><a></a><span class="op">{</span></span>
+<span id="cb12-7"><a></a>  <span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb12-8"><a></a>  <span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb12-9"><a></a>  <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-10"><a></a>    <span class="op">*</span>p <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb12-11"><a></a>    printf<span class="op">(</span><span class="st">"(</span><span class="sc">%d</span><span class="st">) p: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">(),</span> <span class="op">*</span>p<span class="op">);</span></span>
+<span id="cb12-12"><a></a>    i<span class="op">++;</span></span>
+<span id="cb12-13"><a></a>  <span class="op">}</span></span>
+<span id="cb12-14"><a></a>  free<span class="op">(</span>p<span class="op">);</span></span>
+<span id="cb12-15"><a></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-16"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<h4 id="prog1-.prog1-1">./prog1 &amp; ./prog1</h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 0x5570014a02a0</span>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">612</span><span class="kw">)</span> <span class="ex">p:</span> 0x5570014a02a0</span>
+<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 1</span>
+<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">612</span><span class="kw">)</span> <span class="ex">p:</span> 1</span>
+<span id="cb13-5"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">611</span><span class="kw">)</span> <span class="ex">p:</span> 2</span>
+<span id="cb13-6"><a aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">612</span><span class="kw">)</span> <span class="ex">p:</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment" title="Explicació">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Explicació</strong></p>
+</div>
+<div class="callout-content">
+<p>Les <strong>adreçes virtuals</strong> protegeixen els processosos entre ells i permeten que tots dos processos puguin fer servir la mateixa adreça sense afectar-se.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="reptes-en-el-disseny-dels-so-i" class="slide level2">
+<h2>Reptes en el disseny dels SO (I)</h2>
+<ul>
+<li class="fragment">Complexitat de la <strong>programació distribuïda</strong> (<em>concurrent</em> i <em>paral·lela</em>).</li>
+<li class="fragment">Complexitat pel <strong>context</strong> (<em>mòbil, IoT, servidors, centres de dades</em>, …).</li>
+<li class="fragment">Complexitat per la gran varietat d’elements de maquinari (<strong>heterogeneïtat</strong>).</li>
+<li class="fragment">Complexitat en la <strong>portabilitat</strong> i la <strong>compatibilitat</strong>.</li>
+<li class="fragment">Equilibri entre <strong>funcionalitat</strong> i <strong>rendiment</strong>.</li>
+<li class="fragment">Equilibri entre <strong>rendiment</strong> i <strong>ús d’energia</strong>.</li>
+</ul>
+</section>
+<section id="reptes-en-el-disseny-dels-so-ii" class="slide level2">
+<h2>Reptes en el disseny dels SO (II)</h2>
+<ul>
+<li class="fragment"><strong>Maximitzar la fiabilitat</strong>: Els sistemes han de fer el que estan dissenyats per fer en tots els casos, fins i tot en cas d’errors inesperats.</li>
+<li class="fragment"><strong>Maximitzar la disponibilitat</strong>: Els sistemes han d’estar disponibles per a l’ús quan els usuaris ho necessiten, minimitzant el temps d’aturada i reparació causat per fallades.</li>
+<li class="fragment"><strong>Seguretat</strong>: Els sistemes han de protegir-se contra accions malicioses i accidents involuntaris.</li>
+</ul>
+</section>
+<section id="exemples-de-disseny-so-i" class="slide level2">
+<h2>Exemples de Disseny SO (I)</h2>
+<h4 id="vehicle">Vehicle</h4>
+<div class="fragment">
+<p>Un <strong>vehicle autònom</strong> ha de ser <strong>segur</strong> per als <em>passatgers</em> i per a la <em>gent que hi ha al seu voltant</em>. Ha de garantir que el <em>vehicle</em> no es pugui <strong>controlar de forma remota</strong> per un atacant. També ha de ser <strong>tolerant a fallades</strong> i <strong>recuperar-se d’errors</strong> sense posar en perill la seguretat dels <em>passatgers</em>.</p>
+</div>
+</section>
+<section id="reptes-en-el-disseny-dels-so-iii" class="slide level2">
+<h2>Reptes en el disseny dels so (III)</h2>
+<ul>
+<li class="fragment"><strong>Escalables</strong>: Els sistemes han de funcionar bé quan s’afegeixen recursos (usuaris, processos, …) o quan es redueixen.</li>
+<li class="fragment"><strong>Mantenibles</strong>: Els sistemes han de ser fàcils de mantenir i evolucionar al llarg del temps.</li>
+</ul>
+</section>
+<section id="exemples-de-disseny-so-i-1" class="slide level2">
+<h2>Exemples de Disseny SO (I)</h2>
+<h4 id="telèfon-mòbil">Telèfon mòbil</h4>
+<ul>
+<li class="fragment"><strong>Escalable</strong> perquè el nombre d’usuaris pot augmentar molt ràpidament.</li>
+<li class="fragment"><strong>Mantenible</strong> perquè els usuaris esperen actualitzacions periòdiques del <strong>sistema operatiu</strong>.</li>
+<li class="fragment">A més a més, aquestes <em>actualitzacions</em> s’han de poder <em>instal·lar</em> de forma <em>transparent i sense afectar el funcionament del telèfon</em>.</li>
+</ul>
+</section>
+<section id="per-què-estudiar-so-i" class="slide level2">
+<h2>Per què estudiar SO? (I)</h2>
+<ul>
+<li class="fragment">Són la base dels sistemes informàtics. (IoT, Servidors, Mòbils, PC, …).</li>
+<li class="fragment">Ens permeten entendre com funciona <em>realment</em> un sistema informàtic.</li>
+<li class="fragment">Els conceptes són aplicables a altres sistemes i problemes quotidians (<strong>planificació de tasques</strong>).</li>
+<li class="fragment">Optimitzar el rendiment de les aplicacions.</li>
+<li class="fragment">Compendre les vulnerabilitats, proteccions i mitigacions de riscos de seguretat.</li>
+</ul>
+</section>
+<section id="per-què-estudiar-so-ii" class="slide level2">
+<h2>Per què estudiar SO? (II)</h2>
+
+<img data-src="../figures/slides/01-introduction/evolution.png" style="display: block; margin-left: auto; margin-right: auto;" class="r-stretch"><div style="text-align: center;">
+<p>La comprensió en les decisions de disseny dels sistemes operatius i el raonament sobre els pros/contra us permetrà rescatar idees obsoletes que poden ser útils en el futur dels nous sistemes informàtics.</p>
+</div>
+<aside class="notes">
+<p>En particular, sovint passa que un canvi en la tecnologia fa que alguns idea obsoleta i ràpidament desapareix. No obstant això, un altre canvi tecnològic podria tornar-lo a reviure. Això és especialment cert quan el canvi té a veure amb el rendiment relatiu de les diferents parts del sistema. Per exemple, quan les CPUs es van fer molt més ràpides que les Memòries les caches van gaunyar molta importancia, però que passa si en un futur les memòries són molt més ràpides que les CPUs? En aquest cas, les caches ja no serien necessàries. En biologia, l’extinció és per sempre, però en informàtica, de vegades només és per uns quants anys.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li class="fragment">Els <strong>sistemes operatius</strong> estan presents en tots els dispositius que fem servir.</li>
+<li class="fragment">El <em>disseny</em> es <strong>complex</strong> i requereix integrar dispositius diferents (<em>forma,espai,temps</em>).</li>
+<li class="fragment">Ens proporciones una il·lusió d’una màquina virtual infinita.</li>
+<li class="fragment">És <em>il·lusionista</em>, <em>árbrit</em> i proporciona un conjunt de serveis comuns per permetre la interacció entre programari i maquinari.</li>
+<li class="fragment">Té cura del <strong>rendiment, seguretat, portabilitat i fiabilitat</strong>.</li>
+</ul>
+</section>
+<section id="això-és-tot-per-avui" class="slide level2">
+<h2>Això és tot per avui</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h4 id="preguntes">Preguntes?</h4>
+<p><br></p>
+<h4 id="take-home-message">TAKE HOME MESSAGE</h4>
+<p>Els <strong>sistemes operatius</strong> ajuden als programadors a desenvolupar programari robust de forma independent del maquinari.</p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="https://static.posters.cz/image/750/posters/looney-tunes-thats-all-folks-i295.jpg"></p>
+</div></div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../figures/corporative/institute.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Unitat 1 · Sistemes Operatius (SO) <a href="../index.html">🏠</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/os-gei-udl-2526-105012\.github\.io\/course\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
