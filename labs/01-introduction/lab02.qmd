@@ -81,8 +81,3 @@ Per comprovar que tot funciona correctament, podeu obrir una terminal integrada 
 
 ![](../../figures/labs/01-introduction/lab01/vscode/terminal-linux.png)
 
-## Exercicis
-
-1. Creeu carpetes i fitxers a la màquina virtual utilitzant la terminal integrada de VSCode.
-2. Editeu fitxers utilitzant l'editor de VSCode.
-3. Podeu pujar i baixar fitxers entre la màquina local i la màquina virtual utilitzant drag and drop.

@@ -49,6 +49,13 @@ website:
                 text: Laboratori 1 · Instal·lació i configuració d'un entorn Linux
               - href: ./labs/01-introduction/lab02.qmd
                 text: Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode
+              - href: ./labs/01-introduction/lab03.qmd
+                text: Laboratori 3 · Hola món en C a Debian
+              - href: ./labs/01-introduction/lab04.qmd
+                text: Laboratori 4 · Configurant Git a la màquina virtual
+              - href: ./labs/01-introduction/lab05.qmd
+                text: Laboratori 5 · Calculadora col·laborativa amb C
+
 
   
 format:
