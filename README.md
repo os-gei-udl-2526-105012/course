@@ -4,7 +4,7 @@ This repository contains all the course materials, including lecture slides, lab
 
 ## Contributing
 
-We welcome contributions to improve the course! If you find an error or have an idea for a new section, please submit a pull request. Your contributions will help make these materials better for the entire community.
+We welcome contributions to improve the course! If you find an error or have an idea for a new section, please submit a pull request. Your contributions will help make these materials better for the entire community. See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions on how to contribute.
 
 ## License
 
