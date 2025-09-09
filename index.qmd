@@ -1,0 +1,22 @@
+---
+title: "SO 105012: Sistemes Operatius"
+format:
+    html:
+        toc: false
+---
+
+Benvinguts al curs de Sistemes Operatius (SO) del Grau d'Enginyeria Informàtica de la Universitat de Lleida (UdL). Aquest curs se centra en l'estudi dels principis fonamentals de disseny i implementació en l'enginyeria de sistemes operatius. Les classes es basen en l'estudi de sistemes operatius basats en UNIX i en tasques de recerca. Alguns dels temes tractats inclouen la gestió de processos, els mecanismes de comunicació, la planificació de tasques i la gestió de memòria. Les tasques de laboratori individuals requereixen codificar en C mitjançant crides al sistema i scripts de shell.
+
+|                         |                                                                                                  |
+|-------------------------|--------------------------------------------------------------------------------------------------|
+| **Course Title**        | Operating Systems                                                                                 |
+| **Semester**            | 1st Semester of the Bachelor's Degree in Computer Engineering                                    |
+| **Course Year**         | Second Year                                                                                       |
+| **Professor**           | [Jordi Mateo](mailto:jordi.mateo@udl.cat)                                                        |
+| **Schedule**            | [📅 ](course-information/schedule.html)                                                           |
+| **Course Guide**        | [📚](https://guiadocent.udl.cat/en/html/2025-26_105012)                                          |
+| **School**              | [![](figures/corporative/institute.png){width="200px"} ](https://www.eps.udl.cat)                   |
+| **University**          | [![](figures/corporative/university.png){width="200px"} ](https://www.udl.cat)                   | 
+| **Department**          | [![](figures/corporative/department.png){width="200px"} ](https://deidd.udl.cat/)              |
+
+![](figures/humor/os_humor.png){width="400px" style="display: block; margin-left: auto; margin-right: auto;"}

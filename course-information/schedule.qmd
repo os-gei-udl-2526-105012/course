@@ -1,0 +1,17 @@
+---
+title: "Sistemes Operatius"
+tbl-colwidths: [5,5,5,30,5,5,5,5,5,30]
+format:
+    html:
+        toc: false
+---
+
+## Planificació
+
+A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.
+
+::: column-screen-inset-right
+| Setmana | Tipus              | Data       | Tema                                                     | Diapositives | Apunts | Laboratori | Altres | Tasques | Lliuraments  |                                                                                                                                       |
+|:----:|:------------------:|:----------:|:---------------------------------------------------------|:--:|:--:|:--:|:--:|:--:|:----------------------------------------------------------------------------------------------------------------------------------------:|
+| 1    | Teoria             |09/09/25    | **Unitat 01**: Introducció   | [📖](../slides/01-introduction.html#prepare){aria-label="Introducció"}  |    |  |  |        |                                                                                                         
+::: 

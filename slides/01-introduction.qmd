@@ -1,0 +1,1153 @@
+---
+title: "Introducció"
+subtitle: "Unitat 1 · Sistemes Operatius (SO)"
+author: "Jordi Mateo Fornés"
+logo: "/figures/corporative/institute.png"
+format: 
+  revealjs:
+    transition: fade
+    slide-number: true
+    incremental: true 
+    chalkboard: false
+    css: styles.css
+    footer: "Unitat 1 · Sistemes Operatius (SO) [🏠](/index.html)</a>"
+editor: visual
+
+execute:
+  freeze: auto
+  echo: false
+---
+
+# Presentacions
+
+## Qui soc? {.smaller}
+
+::::: columns
+::: {.column width="60%"}
+### Currículum
+
+-   Enginyer i Doctor en Informàtica per la [UdL](http://www.udl.cat/).
+
+### Docència
+
+-   Professor **agregat** a la [UdL](http://www.udl.cat/) des de 2019.
+-   Sistemes Operatius (*GTIDIC*, *GEI*).
+-   Administració de Sistemes (*GTIDIC*, *GEI*).
+-   Desenvolupament d'Aplicacions per a dispositus mòvils (*GTIDIC*).
+-   Cloud Compunting (*Master in Health Data Science*)
+-   High Performance Computing (*Màster en Enginyeria Informàtica*)
+:::
+
+::: {.column width="40%"}
+### Recerca
+
+-   Membre del grup de recerca [**Grup de computació distribuïda**](http://gcd.udl.cat) des de 2012 (Universitat de Lleida).
+-   Membre del grup de recerca [**Essence: Data Engineering & Distributed Computing Systems**](https://www.dcs.gla.ac.uk/essence/index.html) des de 2022 (Universitat de Glasgow).
+-   Computació distribuïda: *Cloud, Edge i Fog Computing*.
+-   Camps d'aplicació: *Salut electrònica i Energia*.
+:::
+:::::
+
+## Qui sou?
+
+#### Què us ha portat fins aquí?
+
+::: center-container
+![](../figures/slides/01-introduction/how_are_you.png){width="40%"}
+:::
+
+::: notes
+Per conèixer-vos una mica millor, m'agradaria que responguéssiu 4 preguntes de forma breu i concisa, que m'ajudaran a entendre les vostres motivacions i expectatives respecte a aquesta assignatura. Us deixo 5 minuts per respondre-les.
+:::
+
+# Introducció al curs
+
+## Presentació
+
+::: center
+[**Benvinguts a Sistemes Operatius**]{.alert}
+:::
+
+:::::: columns
+:::: {.column width="70%"}
+``` c
+char text[] = "Aquesta NO és una assignatura\n\
+      centrada en la  programació\n\
+      PERÒ programarem MOLT!\n";
+ssize_t bytes = write(1, text, sizeof(text) - 1);
+```
+
+------------------------------------------------------------------------
+
+``` bash
+text="Aquesta assignatura NO és un MONÒLEG." 
+echo $text
+```
+
+<br>
+
+::: {style="text-align: center;"}
+Vull sessions interactives, participatives,... pregunteu, interrompeu-me...
+:::
+::::
+
+::: {.column width="30%"}
+![](../figures/slides/01-introduction/os_programming.png)
+:::
+::::::
+
+::: notes
+Si bé aquesta assignatura no se centra exclusivament en l'aprenentatge de la programació, la pràctica de codificació serà fonamental. Un sistema operatiu és, en essència, un programa extremadament complex, i per entendre'n el funcionament, cal aprofundir en el seu codi font.
+
+Per això, la nostra eina principal serà el llenguatge de programació C, ja que és el llenguatge amb què s'han construït sistemes operatius històrics i de referència com Linux i Unix. A més, per comprendre com el codi d'alt nivell es comunica amb el maquinari, és crucial entendre com es tradueix a codi màquina; aquí és on la comprensió del llenguatge Assembler es torna imprescindible.
+
+Tot i que llenguatges més moderns com Rust o Go s'utilitzen cada vegada més en el desenvolupament de sistemes, el C continua sent el pilar sobre el qual es construeix la major part del nostre món digital.
+
+Finalment, vull que aquestes sessions siguin realment interactives i participatives. Si us plau, no dubteu a interrompre'm i a plantejar qualsevol pregunta o dubte que tingueu en el moment. La meva intenció no és fer un monòleg, sinó crear un diàleg constructiu i col·laboratiu entre tots.
+:::
+
+## Coneixement previ (I)
+
+#### Quin sistema operatiu utilitzeu/coneixeu?
+
+::: center-container
+![](../figures/slides/01-introduction/menti1.png){width="40%"}
+:::
+
+::: notes
+Per començar, m'agradaria saber quin sistema operatiu utilitzeu o coneixeu. Això ens ajudarà a entendre el nivell de familiaritat que teniu amb diferents sistemes i ens permetrà adaptar millor el contingut del curs a les vostres necessitats. Escaneja el codi QR i introdueix les vostres respostes, podeu respondre més d'una opció si coneixeu diversos sistemes operatius.
+:::
+
+## Objectius (Globals)
+
+1.  **Entendre els Sistemes Operatius**: Com estan dissenyats i quins components (o mòduls) els formen.
+2.  **Coneixer els seus serveis**: Quines funcions proporcionen a usuaris i aplicacions.
+3.  **Aprendre a programar amb ells**: Com utilitzar els serveis del sistema operatiu per crear aplicacions de manera eficient.
+4.  **Avaluar críticament les seves polítiques**: Analitzar com el sistema operatiu gestiona els seus recursos, com la memòria, i comparar diferents mètodes per fer-ho.
+
+## Objectius (Específics)
+
+-   Conèixer els sistemes operatius Unix/Linux (en concret **Debian**).
+-   Interioritza les bases de programació **C** per millora les vostres habilitats en altres llenguatges.
+-   Desenvolupar programari a nivell de sistema en el llenguatge de programació **C** comprenent al mateix temps com funcionen els **Sistemes Operatius** basats en **Unix**.
+
+## Temari
+
+1.  Introducció als Sistemes Operatius.
+2.  Estructura dels Sistemes Operatius.
+3.  Gestió i comunicació de processos i threads.
+4.  Sincronització i Planificador de tasques.
+5.  Interbloqueig.
+6.  Gestió de Memòria.
+7.  Scripting.
+
+## Metodologia {.smaller}
+
+::: {style="text-align: center;"}
+Basada en \blueArrow Aprenentatge **SIGNIFICATIU**, **GUIAT** i **ACTIU**.
+:::
+
+-   **Sessions teòriques**: S’introdueixen continguts teòrics de l’assignatura i als estudiants, i també s’hi discuteixen les implicacions pràctiques.
+-   **Sessions pràctiques**: sessions autoguiades de laboratori, sessions de *live coding* o resolució de problemes.
+-   **Treball autònom**: els estudiants han d'aplicar els coneixements adquirits a les sessions teòriques i pràctiques per acabar els problemes, laboratoris i projectes proposats. A més, han de realitzar les lectures dels apunts i consultar la bibliografia recomanada.
+
+::: {.fragment style="text-align: center;"}
+Les sessions teòriques i pràctiques estan combinades en les sessions de 3h de durada.
+:::
+
+::: notes
+La idea és que no us dediqueu només a memoritzar conceptes, sinó que connecteu la nova informació amb el que ja sabeu. Tot i que a la pràctica fareu moltes coses per vosaltres mateixos, jo seré aquí per guiar-vos. Us donaré les eines, el suport i les indicacions necessàries per anar avançant.Volem que sigueu protagonistes del vostre procés d'aprenentatge. No us limitareu a escoltar-me, sinó que fareu coses, resoldreu problemes i creareu projectes.
+
+1.  Sessions teòriques: Aquí introduirem els conceptes clau i els fonaments teòrics. Però no ens quedarem només amb la teoria; també discutirem com s'apliquen aquests conceptes al món real.
+2.  Sessions pràctiques: Farem sessions de laboratori on programareu, farem exercicis de live coding junts per resoldre problemes en directe i practicareu les habilitats que necessiteu.
+3.  Treball autònom: La major part de l'aprenentatge real es farà fora de l'aula. Us demanaré que acabeu els laboratoris, resolgueu els exercicis pendents i treballeu en els projectes. També serà important que reviseu els apunts i, si cal, consulteu la bibliografia recomanada.
+
+Les sessions teòriques i pràctiques estaran combinades. La idea és que no hi hagi una desconnexió entre la teoria i la pràctica. Com tenim sessions de 3 hores, podrem dedicar una part a la teoria i l'altra a la pràctica, tot integrat en una sola experiència d'aprenentatge.
+:::
+
+# Avaluació
+
+## Criteris d'Avaluació
+
+| Acr. | Activitat d'avaluació | Pes | Nota mínima | En grup | Recuperable |
+|---------|-------------------------------|---------|---------|---------|---------|
+| **E1** | **1er Parcial** | **35%** | **NO** | **NO** | **SI** |
+| **E2** | **2on Parcial** | **35%** | **NO** | **NO** | **SI** |
+| **P** | **Pràctiques** | **25%** | **NO** | **SI** $\leq 2$ | **NO** |
+| **Part** | **Seguiment i Participació** | **5%** | **NO** | **NO** | **NO** |
+
+::: notes
+Aquesta assignatura s'avaluara de forma tradicional mitjançant dos exàmens parcials (E1 i E2) que representen el 70% de la nota final. A més, hi haurà pràctiques que contribuiran amb un 25% a la nota final, i un component de seguiment i participació que valdrà un 5%.
+:::
+
+## Exàmens
+
+Els exàmens parcials (**E1 i E2**) són *proves escrites que avaluen els coneixements **teòrics** i **pràctics*** adquirits durant el curs.
+
+-   Són proves individuals i presencials.
+-   Es realitzaran en les dates establertes al calendari acadèmic.
+-   No es permet l'ús de cap dispositiu electrònic (telèfons mòbils, ordinadors portàtils o tauletes).
+-   Si es permet l'ús d'un resum de continguts, que ha de ser un document escrit a mà i no pot excedir una fulla DIN A4 (per davant i per darrere).
+
+## Recuperació {.smaller}
+
+-   Els parcials són recuperables mitjançant proves escrites addicionals que es realitzaran durant la setmana de recuperació.
+-   Si un estudiant necessita recuperar un únic parcial (**E1** o **E2**), podrà fer una prova específica per a aquest parcial. *La qualificació obtinguda en aquesta recuperació substituirà la nota del parcial corresponent*.
+-   Si un estudiant necessita recuperar ambdós parcials, haurà de realitzar dues proves separades, una per a cada parcial (**E1** i **E2**). Les qualificacions obtingudes en cadascuna d'aquestes proves de recuperació substituiran les notes originals dels parcials respectius.
+-   És important notar que **no hi haurà un model d'examen unificat per a la recuperació**; *cada prova de recuperació se centrarà exclusivament en els continguts del parcial al qual correspon*.
+
+## Pràctiques {.smaller}
+
+-   Les pràctiques de l'assignatura impliquen treball fora de l'aula i s'han de lliurar de forma estricta en les dates establertes.
+-   La seva avaluació es farà mitjançant rúbriques de correcció, que estaran disponibles per als estudiants amb antelació.
+-   El professorat pot entrevistar els estudiants per verificar l'autoria. Si es detecta que una activitat *no ha estat realitzada per l'estudiant* la seva qualificació **serà 0**.
+-   Qualsevol entrega *fora del termini establert* es considerarà no vàlida i es **qualificarà amb un 0**.
+-   Cadascuna pot tenir una **ponderació específica** indicada a la descripció de l'activitat.
+-   Aquestes pràctiques **no són recuperables**.
+-   Tot i ser activitats en grup, *cada estudiant pot obtenir una nota diferent* en funció de la seva participació i **aportacions individuals al grup**.
+
+## Seguiment i Participació {.smaller}
+
+::: {.callout-warning title="Rúbrica d'Avaluació "}
+| Punts | Participació Presencial | Participació en Fòrums | Activitats Sessió |
+|---------------|-------------------|-------------------|-------------------|
+| **10** | Contribucions excepcionals,enriqueix la discussió. | Líder en discussions, promou debat. | Qualitat excepcional, supera expectatives. |
+| **9** | Comentaris rellevants, mostra comprensió, escolta activament. | Respostes significatives. | Alta qualitat, treball precís. |
+| **8** | Contribucions regulars, interactua amb companys. | Publicacions rellevants, contribueix constructivament. | Compleix tots requisits amb precisió. |
+| **7** | Participa amb una comprensió bàsica. | Compleix mínims, contribucions breus. | Qualitat inconsistent però acceptable. |
+| **5-6** | Poca freqüència, comentaris superficials. | Publicacions rares, poc profundes. | Algunes activitats incompletes. |
+| **1-4** | Només participa si se li demana. | Publicacions irrellevants. | Rarament completa activitats. |
+| **0** | Evita participar, distret. | Publicacions fora de tema. | No lliura activitats. |
+:::
+
+::: {style="text-align: center;"}
+L'assistència passiva no es puntua.
+:::
+
+::: notes
+Aquest component d'avaluació està dissenyat per fomentar la participació activa i el compromís amb l'assignatura. La participació no es limita només a l'assistència a classe, sinó que també inclou la contribució en discussions, fòrums en línia i activitats relacionades amb les sessions. Tota participació ha de ser rellevant i constructiva per ser valorada positivament. En aquesta rúbrica, es detallen els criteris específics que s'utilitzaran per avaluar la participació dels estudiants en diferents àmbits.
+:::
+
+## Bonus 1 {.smaller}
+
+::::::: columns
+::: {.column width="55%"}
+-   **Objectiu**: Fomentar la reflexió i l'autoavaluació dels continguts treballats a classe.
+-   **Metodologia**: Cada setmana, els estudiants han de fer un commit al seu repositori d'apunts amb les notes de les sessions de teoria i pràctiques.
+-   **Avaluació**: Es valorarà la qualitat de les notes, la seva coherència i la seva relació amb els continguts treballats, així com les reflexions i opinions personals incloses.
+-   Per participar cal crear un repositori a Github (públic) i fer-me arribar l'enllaç.
+:::
+
+::: {.column width="5%"}
+:::
+
+:::: {.column width="40%"}
+### Exemple de Notes
+
+``` markdown
+## Setmana X
+
+# Resum teòric
+
+# Exemples pràctics
+
+# Dubtes i preguntes
+
+# Reflexions personals
+```
+
+::: {.callout-warning title="No es permet cap altre forma "}
+Les notes han de ser escrites en format Markdown i mantingudes en un repositori Git i Github.
+:::
+::::
+:::::::
+
+::: notes
+Aquest bonus està dissenyat per incentivar els estudiants a mantenir un registre organitzat i reflexiu dels continguts treballats a classe. En fer un commit setmanal amb les seves notes, els estudiants no només reforcen el seu aprenentatge, sinó que també desenvolupen habilitats de documentació i autoavaluació. La qualitat de les notes serà clau en l'avaluació, ja que es valorarà no només la precisió dels continguts, sinó també la capacitat de reflexionar sobre el que s'ha après i com s'ha aplicat aquest coneixement. Es tracta d'una oportinitat per als estudiants per crear el seu diari d'aprenentatge al llarg del curs. Per participar, els estudiants han de crear un repositori públic a Github i compartir l'enllaç amb el professorat.
+:::
+
+## Bonus 2
+
+::::: columns
+::: {.column width="40%"}
+-   Els materials són *Open Source*.
+-   Qualsevol estudiant pot detectar errors, millorar els materials o afegir continguts nous.
+-   S'avaluarà la quantitat i qualitat.
+:::
+
+::: {.column width="60%"}
+![](../figures/slides/01-introduction/bonus2.png)
+:::
+:::::
+
+::: notes
+Un altre bonus que oferim és la possibilitat de contribuir als materials de l'assignatura seguint la metodologia de *Open Source*. Això significa que qualsevol estudiant pot detectar errors, suggerir millores o afegir continguts nous als materials proporcionats. Per participar, els estudiants poden fer un *fork* del repositori de l'assignatura, treballar en una branca separada i després obrir una *pull request* amb les seves propostes de canvi. La quantitat i qualitat de les contribucions seran avaluades, oferint així una oportunitat per als estudiants de participar activament en la millora dels recursos educatius.
+:::
+
+# Normativa del curs
+
+## Gestió del curs
+
+-   Es demana que els estudiants **arribin puntuals** a les sessions. L'entrada tardana pot interrompre la dinàmica de la classe i el treball dels companys.
+-   Es demana que els estudiants respectin les normes de convivència i respecte mutu durant les sessions de classe. Això inclou evitar interrupcions innecessàries, escoltar activament als companys i al professor, i mantenir un ambient de treball positiu i constructiu.
+
+## Comunicació amb el professorat
+
+-   Intenteu comunicar-vos a través del correu electrònic i no per l'eina del campus virtual per assegurar una resposta més ràpida.
+-   Les sessions de tutoria es realitzaran de manera *presencial o virtual*, segons les necessitats dels estudiants. És important que els estudiants sol·licitin cita prèvia per a les tutories utilitzant el correu electrònic [jordi.mateo\@udl.cat](mailto:jordi.mateo@udl.cat){.email} indicant el motiu de la consulta i la disponibilitat horària i afegint l'assumpte **\[SO\]: Sol·licitud de Tutoria**.
+
+## Treball individual
+
+-   Cada estudiant és responsable de la seva pròpia feina i de com gestiona el seu temps.
+-   L'assistència a classe no és obligatòria.
+-   Cada alumne ha de presentar evidències pròpies del treball realitzat, encara que es col·labori en grup.
+
+## Ús de la IAG {.smaller}
+
+-   **Pots utilitzar eines d'IAG** per *generar idees, entendre conceptes complexos o esbossar l'estructura inicial del teu codi o projecte*. No obstant això, **la implementació i la versió final han de ser sempre de la teva autoria**.
+-   Està estrictament **prohibit** *presentar codi o solucions generades directament per una IAG com a treball propi (és a dir, mitjançant un simple copiar i enganxar)*.
+-   Si incorpores material assistit per una IAG, **has de declarar-ho explícitament**. Això implica identificar clarament les seccions generades per IAG i proporcionar el prompt exacte utilitzat per crear-les.
+
+::: {.fragment style="text-align: center;"}
+L'incompliment d'aquestes directrius es considerarà una violació de la integritat acadèmica.
+:::
+
+-   Qualificació de zero en la tasca.
+-   Conseqüències disciplinàries que estableix la Normativa de Convivència de la UdL per frau acadèmic.
+
+## Eines necessàries {.smaller}
+
+-   Ordinador portàtil amb connexió a Internet.
+    -   Es recomana portar el vostre propi ordinador per cursar l’assignatura.
+    -   Si no disposeu d’ordinador, podreu utilitzar els ordinadors de la classe durant les sessions de laboratori.
+-   Distribucions Linux ([Debian](https://www.debian.org/index.ca.html) )
+    -   És obligatori utilitzar la distribució Debian per a les pràctiques de laboratori.
+-   Software de virtualització (VMWare)
+    -   Es recomana utilitzar VMWare, però podeu optar per altres opcions de virtualització. Heu de ser capaços d’adaptar el material al vostre programari de virtualització.
+
+## Programari necessari {.smaller}
+
+#### Llenguatges de programació i compiladors
+
+-   C
+-   [GCC](https://gcc.gnu.org/)
+
+#### Eines de control de versions {.fragment}
+
+-   [Git](https://git-scm.com/)
+-   [Github](https://github.com/)
+
+#### IDE {.fragment}
+
+-   Visual Studio (Recomanat)
+-   Vi, Vim, NeoVim, Emacs, CLion, Eclipse ...
+
+## Materials i Recursos
+
+-   Apunts de l'assignatura i materials proporcionats pel professor.
+-   Documentació oficial de les eines i tecnologies utilitzades.
+-   Fòrums tècnics a la xarxa com *Stack Overflow, Reddit*, etc.
+-   Llibres de referència en Sistemes Operatius:
+    -   [Operating System Concepts; Abraham Silberschatz](https://www.amazon.com/Operating-System-Concepts-Abraham-Silberschatz/dp/0470128720)
+    -   [Modern Operating Systems; Andrew S. Tanenbaum](https://www.amazon.com/Modern-Operating-Systems-Andrew-Tanenbaum/dp/013359162X)
+
+## Bones pràctiques {.smaller}
+
+-   DRY (Do not repeat yourself).
+-   Codi fàcil de reutilitzar.
+-   Testeja aviat, testeja sovint, testeja de forma automàtica.
+-   No assumeixis res, prova-ho.
+-   Utilitza assertions per prevenir l'impossible.
+-   Utilitza excepcions per problemes excepcionals.
+-   Estima l'ordre de complexitat dels teus algorismes.
+-   Utilitza patrons de disseny.
+-   Utilitza eines de control de versions.
+
+::: notes
+Durant el curs, us animaré a seguir aquestes bones pràctiques de programació per assegurar que el vostre codi sigui net, eficient i fàcil de mantenir. Aquestes pràctiques no només us ajudaran a desenvolupar millor programari, sinó que també us prepararan per treballar en equips de desenvolupament professionals on aquestes normes són estàndard. Es important que el vostre codi sigui fàcil de llegir i entendre per altres persones, inclòs el vostre jo futur!
+:::
+
+## Bibliografia recomanada {.smaller}
+
+#### (per la vida... no pel curs)
+
+:::::::: columns
+:::: {.column width="50%"}
+[The Pragmatic Programmer, Andrew Hunt David Thomas](https://www.amazon.es/Pragmatic-Programmer-Journeyman-Master-ebook/dp/B003GCTQAE)
+
+::: center
+![](https://images-na.ssl-images-amazon.com/images/I/41uPjEenkFL._SY445_SX342_QL70_ML2_.jpg){width="60mm"}
+:::
+::::
+
+::: notes
+Us aconsello molt aquests dos llibres. Són llibres que no només us ajudaran en aquest curs, sinó que també us seran útils al llarg de tota la vostra carrera com a desenvolupadors de programari. Aquests llibres ofereixen consells pràctics i principis fonamentals que us ajudaran a escriure codi utiltizant bones pràctiques. Són dos llibres que tot programador hauria de llegir almenys un cop a la vida.
+:::
+
+:::: {.column width="50%"}
+[Clean Code, (A Handbook of Agile Software Craftsmanship),Robert C. Martin](https://www.amazon.es/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM)
+
+::: center
+![](https://images-na.ssl-images-amazon.com/images/I/41SH-SvWPxL._SX342_SY445_QL70_ML2_.jpg){width="60mm"}
+:::
+::::
+::::::::
+
+# Introducció a la temàtica
+
+## Societat actual {.smaller}
+
+:::::: columns
+::: {.column width="30%"}
+#### Què tenen en comú?
+
+-   Cotxe
+-   Rellotge
+-   Portàtil
+-   Rentadora
+-   Nevera
+-   Televisió
+-   ...
+
+#### Vivim en un gran sistema paral·lel i distribuït! {.fragment}
+:::
+
+:::: {.column width="70%"}
+::: center
+![](../figures/slides/01-introduction/iot-context.jpg){width="90%"}
+:::
+::::
+::::::
+
+::: notes
+Per començar, m'agradaria que reflexionéssiu sobre què tenen en comú tots aquests dispositius que fem servir en el nostre dia a dia. Des de cotxes fins a rellotges, portàtils, tauletes, rentadores, neveres i televisors, tots aquests aparells semblen molt diferents entre si. Però si mirem més a fons, veurem que tots compartixen dos característiques fonamentals: tots són dispositius electrònics que interactuen amb nosaltres i tots estan connectats a internet. Aquesta connexió a internet és el que els permet comunicar-se entre si i amb nosaltres. Això ens porta a la següent reflexió: vivim en un món on tot està interconnectat, podem dir que vivim en un món distribuït on tots aquests dispositius treballen junts per fer-nos la vida més fàcil i eficient.
+:::
+
+## Món connectat {.smaller}
+
+::: {style="text-align: center;"}
+Avui en dia tothom parla de **IoT**, **BigData**, **Cloud**, **AI**, **Blockchain**, **Metavers**
+:::
+
+::::: columns
+::: {.column width="45%"}
+-   Microprocessador a tot arreu.
+-   Xarxes i Connectivitat.
+-   Serveis escalables, confiables i segurs.
+-   Gran volum de dades, Sensor i Digitalització.
+:::
+
+::: {.column width="45%"}
+![Casa connectada (Font: Extret de [SemanticScholar](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.semanticscholar.org%2Fpaper%2FPotentials%252C-trends%252C-and-prospects-in-edge-Fog%252C-and-Bilal-Khalid%2F65ec75e721634b392d23364f8d67a68aedc1c189%2Ffigure%2F12&psig=AOvVaw1BjiOrDFoVjQMPpgDItKZ3&ust=1631713120802000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIjDvp7L_vICFQAAAAAdAAAAABAJ))](https://d3i71xaburhd42.cloudfront.net/65ec75e721634b392d23364f8d67a68aedc1c189/15-Figure9-1.png)
+:::
+:::::
+
+::: {.fragment style="text-align: center;"}
+**La barrera que separa el món físic i el món virtual cada cop es mes estreta.**
+:::
+
+::: notes
+En la societat actual es parla constatant de noves tecnologies disruptives com **IoT**, **BigData**, **Cloud**, **AI**, **Blockchain**, **Metavers**,... Per tant, com a societat tenim la capacitat d'interactuar amb el nostre entorn i ambient. Això implica que tenim microprocessadors a tot arreu, disposem de xarxes i connectivitat que ens permeten estar sempre connectats, podem accedir a serveis escalables, confiables i segurs, i gestionem un gran volum de dades gràcies a la digitalització i els sensors.
+
+Ara, pensem un moment en el nostre dia a dia: - Quants teniu un cotxe? Quants processadors creieu que té un cotxe? - Més de 50! - Qui utilitza un smartphone? Quants processadors/cores té el vostre smartphone? - El meu un Poco X4 GT té un MediaTek Dimensity 8100 amb 8 nuclis.
+
+La capacitat de computació està present a tot arreu, i la majoria dels dispositius que utilitzem diàriament estan equipats amb microprocessadors que funcionen de manera paral·lela i interactuen entre ells. Per tant, el món físic i el món virtual estan cada cop més interconnectats, i la barrera que els separa es fa cada cop més estreta.
+:::
+
+## Què tenen en comú? {.smaller}
+
+::: {style="text-align: center;"}
+Una **interfície** (*Sistema Operatiu*) capaç **d'integrar una gran diversitat de maquinari i programari** i **comunicar-se a través de la xarxa**.
+:::
+
+::: center-container
+![](../figures/slides/01-introduction/so_intro.png)
+:::
+
+::: notes
+Però, **que tenen en comú aquests progressos tecnològics?** Requereixen un cervell que permeti a tots els diferents aparells i màquines interactua amb nosaltres, tant per generar, processar o guardar. Tots els dispositius i servidors requereixen un sistema operatiu que permeti maquinari i programari comunicar-se.
+
+En aquest curs tractarem els cervells d'aquests sistemes i analitzarem de quines estructures podem dotar aquests sistemes perquè funcionin correctament i permeti que maquinari tan heterogeni sigui capaç de fer funcionar infinitat de programes i serveis \blueArrow per gestionar eficientment les dades i la informació del nostre entorn.
+
+Per tant, a la pregunta inicial què tenen en comú? podem afirmar:
+
+-   Tenen en comú que tots són sistemes informàtics.
+-   Tots tenen un sistema operatiu.
+-   Tots es communiquen per internet amb altres sistemes.
+:::
+
+## Llei de Bell
+
+::: center-container
+![](../figures/slides/01-introduction/bell.png)
+:::
+
+::: notes
+Es pot observar com la mida i les classes de computadors han evolucionat cada 10 anys. Venim de la dècada dels anys 60 i 70, on es van desenvolupar els primers microprocessadors i la informàtica personal estava en les seves primeres etapes. En aquesta època, es feien servir pocs processadors que eren compartits per moltes persones. Els avanços en la capacitat de processament eren més lents, i la tecnologia era més limitada. Ara, en l'actualitat, cada persona fa servir molts processadors de manera habitual. Això es deu a l'augment de la potència de processament dels dispositius que utilitzem, com els telèfons intel·ligents i les tauletes, així com als ordinadors personals i altres tecnologies. Venim de pocs processadors fets servir per a moltes persones (anys 60-70) i ara cada persona fa servir molts processadors. Com ha canviat la tendència... on ens portarà el futur?
+:::
+
+## Llei de Moore
+
+::: center-container
+![](https://upload.wikimedia.org/wikipedia/commons/9/90/Ley_de_Moore.png)
+:::
+
+::: notes
+Us recordeu la llei de Moore? Aquesta llei, formulada per Gordon Moore el 1965, predia que el nombre de transistors en un microprocessador es duplicaria aproximadament cada dos anys, cosa que implicava un augment exponencial de la potència de càlcul dels ordinadors. Aquesta predicció s'ha mantingut sorprenentment precisa durant dècades, impulsant avanços tecnològics i transformant la manera com vivim i treballem. No obstant això, a mesura que ens acostem als límits físics de la miniaturització dels transistors, hi ha un debat continu sobre si aquesta tendència continuarà en el futur o si necessitarem noves tecnologies per mantenir el ritme d'innovació.
+:::
+
+## Què és un sistema informàtic? {.smaller}
+
+Un **sistema informàtic** és la interconnexió d'elements de maquinari per exemple *d'1 o més CPU, memòria i components E/S* ... Amb la finalitat d'executar programes i accions (en sèrie o de forma concurrent) per *1 o múltiples usuaris*.
+
+::::: columns
+::: {.column width="30%"}
+![](../figures/slides/01-introduction/parallel.png){width="70%"}
+:::
+
+::: {.column width="70%"}
+![](../figures/slides/01-introduction/sistema-informatic.png)
+:::
+:::::
+
+::: notes
+Si us recordeu d'Estructura de Computadors, un sistema informàtic és la interconnexió d'elements de maquinari com ara una o més CPU, memòria i components d'entrada/sortida. Tenim els registres, la memòria cau, la memòria principal, els dispositius d'entrada/sortida i els canals de comunicació que permeten que tots aquests components treballin junts per executar programes i accions.
+
+Com heu vist el mon real actua com un gran sistema paral·lel. Per tant, tots els sistemes de temps real son inherentment concurrents i lògicament els nostres sisteme informàtics també han de poder actuar en paral·lel. En la figura, podeu observar com una tasca es descomposa en diferents parts per poder aprofitar els diferents processadors i nuclis de cada processador.L'execució **concurrent** recull un conjunt de tècniques informàtiques usades per representar i gestionar el paral·lelisme i les eines de sincronització i comunicació entre programes.
+:::
+
+## Gestió d'un sistema informàtic (I) {.smaller}
+
+::: {style="text-align: center;"}
+Imagineu que sou un sistema informàtic i us envien l'ordre de llegir un fitxer
+:::
+
+-   **Quin és el procediment per fer aquesta acció?**
+    -   Engegar motor del disc.
+    -   Buscar posició al disc a llegir (pista, cara, sector).
+    -   Llegir.
+    -   Apagar el motor.
+-   **Quantes vegades com a usuaris d'un sistema informàtic llegiu un fitxer?**
+
+::: {.fragment style="text-align: center;"}
+Moltes vegades...!
+:::
+
+::: notes
+Com a usuaris d'un sistema informàtic llegim fitxers moltes vegades al dia. Per exemple, quan obrim un document de text, una imatge, un vídeo o qualsevol altre tipus d'arxiu, el sistema operatiu ha de llegir aquest fitxer des del disc dur o una altra unitat d'emmagatzematge. Però, us heu preguntat alguna vegada quin és el procediment que segueix el sistema informàtic per llegir aquest fitxer? Hauriam d'engegar el motor del disc, buscar la posició correcta al disc on es troba el fitxer, llegir les dades i finalment apagar el motor. *Té sentit que un usuari cada cop que llegeix un fitxer hagi de tenir en compte aquest procediment i realitzar-lo de forma rutinària?* Necessitem un programari que ens permeti efectuar accions rutinàries de forma automàtica i transparent a l'usuari. Si no els sistemes informàtics no serien usables.
+:::
+
+## Complexitat sistemes informàtics (I) {.smaller}
+
+::: center
+Cada peça de hardware és diferent. $\Rightarrow$ La complexitat per gestionar els recursos és molt elevada.
+:::
+
+-   Arquitectures diferents de processadors i també de generacions (*x86, ARM, RISC-V, MIPS, PowerPC,...*).
+-   Diferents tipus de memòries (*RAM DDR3, DDR4, DDR5, NAND,...*).
+-   Diferents tipus de discs (*HDD, SSD, NVM...*).
+-   Diferents dispositius entrada/sortida.
+-   Diferents entorns de xarxa.
+
+::: {.fragment style="text-align: center;"}
+**... entre moltes altres ...**
+:::
+
+::: notes
+Us imagineu haver d'escriure software per cada permutació d'elements diferents del sistema informàtic? Això seria un desastre... Quantes permutacions de diferents components podem tenir avui en dia? OMG! Necessitem alguna cosa que ens permeti superar aquest obstacle de forma intel·ligent i ens permeti desenvolupar software de forma independent al hardware.
+:::
+
+## Complexitat sistemes informàtics (III) {.smaller}
+
+Tots els programes necessiten accedir a tot el hardware?
+
+::: {.fragment style="text-align: center;"}
+Per suposat que no! Això podria causar problemes de seguretat com:
+
+-   **Pèrdua de confidencialitat**: Accés no autoritzat a dades sensibles.
+-   **Accés a informació restringida**: Usuaris no autoritzats podrien veure dades privades.
+-   **Denegació de serveis**: Un programa podria bloquejar l'accés a recursos per a altres programes.
+:::
+
+::: fragment
+Què pot passar si un programa pot accedir a tota la RAM?
+:::
+
+-   Un programa de l'usuari Jordi amb accés a tota la RAM podria veure les dades del programa de l'usuari Pere.
+-   Si el programa falla, podria afectar tot el sistema i requerir un reinici.
+
+::: notes
+No, clar que no! **Seguretat**: - Si un programa controla tot el sistema, els altres no poden accedir-hi (Denegació de serveis). - Diferents usuaris poden tenir diferents dades; si un programa pot accedir a tot, podria veure informació restringida. - No necessitem accés a tot el hardware per realitzar les nostres tasques. - Un usuari malintencionat podria danyar el sistema amb un procés defectuós.
+:::
+
+## Complexitat sistemes informàtics (IV)
+
+Si un sistema informàtic no està ben dissenyat, un programa mal escrit pot fer fallar tot el sistema, per exemple:
+
+#### Bucle infinit
+
+``` c
+int main(){
+    while(1);
+}
+```
+
+#### Fork bomb
+
+``` c
+int main(){
+    while(1);
+    fork();
+}
+```
+
+::: notes
+Un programa o procés pot fer fallar tot el sistema si no està ben dissenyat. Per tant, és important tenir en compte aquelles situacions per evitar-les. En el primer exemple, tenim un bucle infinit. Aquesta situació en els sistemes linux actuals no és un problema, ja que el sistema operatiu pot gestionar aquest tipus de situacions. No obstant això, en sistemes més antics, aquest tipus de bucles podrien fer que el sistema no respongués. En el segon exemple, tenim un bucle infinit i una crida a la funció fork(). Aquesta funció crea un nou procés que és una còpia exacta del procés pare. Això podria fer que el sistema es saturés amb molts processos i no pogués respondre. Aquesta situació podria requerir un reinici del sistema per recuperar-lo i es un problema en els sistemes actuals. Fixeu-vos com un simple programa pot fer fallar tot el sistema.
+:::
+
+## Què és un sistema operatiu? {.smaller}
+
+Un **sistema operatiu (SO)** és una capa de software que permet la comunicació i la gestió del maquinari habilitant als usuaris l’execució de programes. El SO actua d’**intermediari (interfície)** entre els **usuaris i el maquinari**.
+
+![](../figures/slides/01-introduction/os-diagram.png)
+
+::: notes
+Un **sistema operatiu (SO)** és una capa de software que permet la comunicació i la gestió del maquinari habilitant als usuaris l’execució de programes. El SO actua d’**intermediari (interfície)** entre els **usuaris i el maquinari**.
+
+Per tant, és un programa que controla el maquinari i permet als usuaris interactuar amb ell. Aquesta interacció pot ser a través d’una interfície gràfica d’usuari (GUI) o una interfície de línia de comandes (CLI). També, gestiona els recursos del sistema, com la memòria, el disc dur i els dispositius d’entrada/sortida. A més, el SO proporciona funcionalitats com la gestió de fitxers, la seguretat i la xarxa.
+
+Podem dir que el SO és el cervell del sistema informàtic,ja que controla tots els components i permet als usuaris interactuar amb ells. Sense un SO, els usuaris no podrien utilitzar el maquinari del sistema de manera eficient i segura.
+:::
+
+## Què volen els programadors?
+
+::::: columns
+::: {.column width="50%"}
+#### Una plataforma...
+
+-   per executar aplicacions.
+-   transparent per evitar la complexitat del hardware.
+-   eficient per utilitzar els recursos de forma òptima.
+-   portable per utilitzar-ho indepedentment del hardware.
+:::
+
+::: {.column width="50%"}
+![](../figures/slides/01-introduction/esquema1.png)
+:::
+:::::
+
+::: notes
+Des del punt de vista dels programadors, el que volen és una plataforma per executar les seves aplicacions. Aquesta plataforma ha de ser transparent per evitar la complexitat del hardware, eficient per utilitzar els recursos de forma òptima i portable per utilitzar-ho indepedentment del hardware.El kernel és la capa intermèdia que connecta el programari de l'usuari amb el maquinari físic de l'ordinador. A la imatge es pot veure com el kernel actua com un pont entre l'aplicació i el maquinari. Quan un programador escriu una aplicació, no necessita preocupar-se per com funciona el maquinari a nivell de circuits. En canvi, pot utilitzar les funcions proporcionades pel kernel per interactuar amb el maquinari de manera més senzilla i eficient. Els usuaris finals també es beneficien d'aquesta abstracció, ja que poden utilitzar aplicacions sense necessitat de conèixer els detalls tècnics del maquinari. El kernel permet que el mateix codi pugui funcionar en diferents ordinadors amb maquinari diferent. Un programador pot escriure una aplicació (com un navegador web) una sola vegada, i el kernel s'encarregarà de traduir les seves instruccions per al maquinari específic de cada màquina. També gestiona de manera eficient els recursos del sistema, com el temps de processador, l'ús de la memòria o l'accés al disc.
+:::
+
+## Què ofereix el sistema operatiu? {.smaller}
+
+:::::: columns
+:::: {.column width="50%"}
+#### Serveis
+
+-   Controlar/Gestionar usuaris i aplicacions.
+-   Gestionar la Memòria.
+-   Sistema de fitxers.
+-   Planificadors.
+-   Eines de xarxa.
+
+::: fragment
+#### Garanties
+
+-   Seguretat.
+-   Transparència.
+-   Eficiència.
+-   Portabilitat.
+-   Estabilitat al llarg del temps.
+:::
+::::
+
+::: {.column width="50%"}
+![](../figures/slides/01-introduction/esquema2.png)
+:::
+::::::
+
+::: notes
+Observeu que el kernel ens ofereix una interfície d'usuari amb serveis com el sistema de fitxers, la gestió de la memòria, la planificació de processos i les eines de xarxa. I per sota d'aquestes capes, tenim els drivers que ens permeten interactuar amb el maquinari físic de l'ordinador.
+:::
+
+## Com s'organitza el sistema operatiu?
+
+::::::: columns
+:::: {.column width="40%"}
+::: center
+![](../figures/slides/01-introduction/os-vm.png)
+:::
+::::
+
+:::: {.column width="60%"}
+#### Maquina virtual
+
+És la *visió* que té l'**usuari** del **sistema operatiu** durant una *sessió de treball*.
+
+::: fragment
+#### Dualitat
+
+El **sistema operatiu** divideix el programari que té tots els privilegis(**kernel**) del programari que no pot accedir a tots els recursos (**programes, llibreries, intèrpret de comandes,...**).
+:::
+::::
+:::::::
+
+::: notes
+Aquest concepte descriu la visió que tenim nosaltres, els usuaris, del sistema. Quan treballem amb un ordinador, veiem una interfície amigable: icones, finestres, aplicacions. Aquesta és la màquina virtual que el sistema operatiu ens crea. És una capa abstracta que simplifica les tasques complexes del maquinari i ens permet centrar-nos en el nostre treball. Penseu-hi com una il·lusió: l'OS ens amaga la complexitat del maquinari i ens mostra una versió simplificada, fàcil de gestionar.
+
+Sota aquesta interfície amigable hi ha un principi de seguretat fonamental. El sistema operatiu divideix el programari en dos grans grups per qüestions de seguretat i estabilitat. El nucli del sistema operatiu, amb accés total al maquinari, i és responsable de la gestió de recursos. Penseu-hi com el **cervell** de l'ordinador, que pren totes les decisions importants. La resta de programari, com les aplicacions que utilitzem diàriament, té accés limitat als recursos del sistema. Durant una sessió de treball, el sistema operatiu canvia entre aquests dos modes segons sigui necessari.
+:::
+
+## Què és una Màquina Virtual?
+
+La **virtualització** presentar una visió abstracta dels recursos del sistema. Diversos processos **creuen** (tenen l'il·lusió) de disposar sempre d'un conjunt de recursos (màquinaria).
+
+-   **Simplicitat** \blueArrow Il·lusió de propietat de recursos
+-   **Aïllament** \blueArrow Els bugs es donen en un entorn virtual i no físic.
+-   **Protecció** \blueArrow Els processos no es poden fer mal entre ells.
+-   **Portabilitat** \blueArrow Podem executar a totes les plataformes.
+
+::: notes
+Imagineu-vos que organitzem una LAN-party amb assistents, però només hi ha 1 pizza per alimentar-los. Com podem mostrar a cada un el seu propi tros de pizza i mantenir-los compromesos amb el nostre esdeveniment. Fàcil, creem 1 pizza virtual basada en la pizza real i donem a cada encarregat un tros de pizza virtual. Però, aquí ve un problema si tots els assistents mengen la pizza alhora, no funcionarà, alguns participants notarien el truc. Tanmateix, si programem els esdeveniments perquè molts participants s’ocupin de les activitats i no mengin la pizza, els organitzadors poden intercanviar en temps real la pizza real i la virtual a les taules on els participants descansen, perquè són els únics candidats a menjar i descobrir el truc, així que Si mengen, la pizza ha de ser real.Java té un sandbox que permet utilitzar el Java independentment d'on executem.VirtualBox i VMWare ens permeten executar sistemes operatius dins de sistemes operatius. Tenim un sistema operatiu amfitrió (màquina física) i un o més sistemes operatius virtuals (hostes).També és possible virtualitzar sobre el hardware sense la necessitat d'un sistema operatiu (amfitrió).També tenim virtualització per contenidors (Docker).
+:::
+
+## Models de Virtualització d'alt nivell
+
+![](../figures/slides/01-introduction/virtualitzacio.png){style="display: block; margin-left: auto; margin-right: auto;"}
+
+::: notes
+-   **Virtualització Nativa**: Hipervisor s'executa directament sobre el maquinari físic sense cap sistema operatiu intermedi. Exemples d'aquesta tecnologia inclouen VMware ESXi o Microsoft Hyper-V. Això ofereix un rendiment molt elevat, ja que no hi ha cap capa addicional entre el maquinari i l'hipervisor, ideal per a entorns de producció.
+-   **Virtualització Allotjada**: Hipervisor s'executa sobre un sistema operatiu ja existent. Per exemple, en KVM, s'utilitza Linux com a sistema operatiu base, i sobre aquest es creen les màquines virtuals.
+-   **Paravirtualització**: El sistema operatiu convidat sap que està sent virtualitzat i coopera amb l'hipervisor per millorar el rendiment. Un exemple destacat és Xen, que és molt utilitzat en entorns cloud per la seva eficiència.
+-   **Virtualització Assistida per Hardware**: Aquest model aprofita les capacitats del processador per accelerar el procés de virtualització. Processadors moderns com els d'Intel (VT-x) o AMD (AMD-V) ofereixen suport per a aquest tipus de virtualització (VMware o Hyper-V).
+:::
+
+## Què és la Memòria Virtual?
+
+-   La *memòria virtual* permet que cada procés tingui la **il·lusió** que té accés exclusiu a l'espai complet d'adreces de memòria del processador.
+-   En realitat els processos utilitzen **diferents regions de la memòria** de l'ordinador, amb algunes regions traslladades al *disc* si no hi ha prou memòria per a tothom.
+
+::: {.fragment style="text-align: center;"}
+La unitat de **gestió de memòria (MMU)** d'un processador, que **tradueix** les *adreces virtuals* utilitzades pel programa en *adreces físiques* que representen ubicacions de memòria reals.
+:::
+
+::: notes
+Un exemple de virtualització és la memòria virtual. La memòria virtual és una tècnica que permet als sistemes operatius utilitzar la memòria de manera més eficient i segura. Aquesta tècnica crea una il·lusió per als processos que els fa creure que tenen accés exclusiu a l'espai complet d'adreces de memòria del processador. En realitat, els processos utilitzen diferents regions de la memòria de l'ordinador, amb algunes regions traslladades al disc si no hi ha prou memòria per a tothom. Aquesta tècnica permet que els processos s'executin de manera aïllada, evitant que un procés pugui accedir a la memòria d'un altre procés. Això és important per garantir la seguretat i la estabilitat del sistema. La unitat de gestió de memòria (MMU) d'un processador és la responsable de traduir les adreces virtuals utilitzades pel programa en adreces físiques que representen ubicacions de memòria reals. Aquesta traducció es fa mitjançant taules de pàgines que mapejen les adreces virtuals a les adreces físiques. Aquest procés l'estudiarem més endavant en detall.
+:::
+
+## Quins són els rols SO? (I)
+
+#### Il·lusionista
+
+Ofereix una **interfície simple** i fàcil d'utilitzar per als recursos físics d'una màquina o sistema, **ocultant la complexitat tècnica**.
+
+::: {.fragment .callout-note title="Exemple"}
+Permet als usuaris utilitzar una impressora (*hardware*) sense conèixer els detalls tècnics d'aquesta impresora, com la interfície de comunicació, els controladors o els protocols de comunicació, disposem d'una funció (**imprimir**) que ens permet enviar un document a la impressora.
+:::
+
+::: notes
+El sistema operatiu actua com un il·lusionista que ens ofereix una interfície simple i fàcil d'utilitzar per als recursos físics d'una màquina o sistema, ocultant la complexitat tècnica. Per exemple, quan utilitzem una impressora, no necessitem conèixer els detalls tècnics d'aquesta impressora, com la interfície de comunicació, els controladors o els protocols de comunicació. En canvi, podem utilitzar una funció simple com "imprimir" que ens permet enviar un document a la impressora sense preocupar-nos pels detalls tècnics. Això fa que l'ús de la tecnologia sigui més accessible i fàcil per als usuaris.
+:::
+
+## Quins són els rols SO? (II)
+
+#### Il·lusionista
+
+Proporciona una abstracció que permet a una aplicació tenir ús exclusiu dels recursos quan sigui necessari, sense interferències d'altres aplicacions.
+
+::: {.fragment .callout-note title="Exemple"}
+Permet utilitzar un programa de videoconferència que utilitza la càmera i el micròfon i ens garantitza que cap altre programa pugui utiltizar-los al mateix temps.
+:::
+
+## Quins són els rols SO? (III)
+
+#### Il·lusionista
+
+Oferir una il·lusió d'infinitat per als recursos de maquinari, assegurant que les aplicacions puguin continuar funcionant sense problemes.
+
+::: {.fragment .callout-note title="Exemple"}
+-   Permet a un usuari tenir múltiples aplicacions obertes alhora, tot i que només una estigui en primer pla.\
+-   Crea una il·lusió on cada procés creu que és propietari dels recursos hardware.
+:::
+
+## Quins són els rols SO? (V)
+
+#### Àrbitre
+
+Responsable de distribuir els recursos disponibles entre usuaris i aplicacions de manera eficient i justa.
+
+::: {.fragment .callout-note title="Exemple"}
+Un sistema amb múltiples usuaris, el temps de processador s'ha de repartir de manera equitativa entre tots els usuaris que executen aplicacions.
+:::
+
+## Quins són els rols SO? (VI)
+
+#### Àrbitre
+
+Garanteix la segregació i la protecció d'usuaris i aplicacions.
+
+::: {.fragment .callout-note title="Exemple"}
+Impedint que una aplicació bloquegi o afecti el funcionament d'altres aplicacions.
+:::
+
+## Quins són els rols SO? (VII)
+
+#### Pega
+
+Proporciona un conjunt de serveis i funcionalitats comunes que poden ser compartits i reutilitzats per diverses parts d'un sistema.
+
+-   **Compartició**: Simplifica $\Rightarrow$ s'assumeixen sempre les mateixes primitives bàsiques.
+-   **Reutilització**: Evita torna a implementar funcionalitats comunes. Permet evolucionar de forma independent els components.
+
+## El Sistema de Fitxers
+
+Un exemple de la funció de pega del sistema operatiu és el **sistema de fitxers**:
+
+-   Proporciona una **interfície estàndard** per a la creació, lectura, escriptura i eliminació de fitxers de format transparent *(read, write, open, close, ...)*
+-   Ens permet implementar **libc** que proporciona funcions d'entrada/sortida d'alt nivell (*fopen, fread, fwrite, fclose, ...*)
+
+## Anàlisi: Què fa aquest programa? (I)
+
+<br>
+
+::::::: columns
+::: {.column width="45%"}
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, 
+    char *argv[])
+{
+  while(1)
+  {
+    printf("%s\n", argv[1]);
+  }
+  return 0
+}
+```
+:::
+
+::::: {.column width="55%"}
+### `./prog H`
+
+::: fragment
+H <br> H <br> ...
+:::
+
+::: fragment
+### `./prog H & ./prog O`
+
+???
+:::
+:::::
+:::::::
+
+::: notes
+:::
+
+## Anàlisi: Què fa aquest programa? (II)
+
+![](../figures/slides/01-introduction/prog_A_B_Memory.png)
+
+::: notes
+En primer lloc, el programa c s'ha de compilar amb un compilador i enllaçar amb les llibreries del sistema que ens proporciona el sistema operatiu.
+
+Un cop tenim un executable, si l'executem el sistema operatiu crearà una estructura anomenada procés on es guardarà un identificador, un espai de memòria,... aquesta estructura és una de les abstraccions essencials per la funció d'il·lusionisme.
+
+Fixeu-vos que el mateix programa pot ser executat dos cops i el sistema operatiu generarà 2 processos diferents. Amb identificadors diferents i espai de memoria diferent.
+:::
+
+## Anàlisi: Què fa aquest programa? (III)
+
+![](../figures/slides/01-introduction/prog_A_executing.png)
+
+::: notes
+Per tant, el sistema operatiu utilitzant el planificador assignarà el processador (assumimim que només tenim 1 core) a 1 procés durant un temps determinat i anirà intercanviant (canvi de context) aquest procés cada X temps, d'aquesta manera cada procés creu tenir tots els recursos per ells (il·lusió).
+:::
+
+## Anàlisi: Què fa aquest programa? (IV)
+
+![](../figures/slides/01-introduction/prog_B_executing.png)
+
+::: notes
+Per fer-ho, el sistema operatiu guardà una foto de l'estat actual del procés a memòria i la recuperarà més endavant quan li torni a donar dret d'execució.
+
+Noteu també que s'ha creat en mèmoria una subregió independent per cada procés. Quan un procés intenta accedir una zona de memòria forà de la seva subregió o inexistent es dona el famós SEGMENTATION FAULT.
+
+Com en l'últim exemple on el procés intenta accedir a una zona de memòria que no li pertany. Això és una de les funcions de protecció que ens ofereix el sistema operatiu. Al llarg del curs veurem amb més detall com funcionen tots aquests mecanismes.
+:::
+
+## Anàlisi: Què fa aquest programa? (V)
+
+::::::::::: columns
+::: {.column width="45%"}
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, 
+    char *argv[])
+{
+  while(1)
+  {
+    printf("%s\n", argv[1]);
+  }
+  return 0
+}
+```
+:::
+
+::::::::: {.column width="55%"}
+Depenen de la prioritat dels procesesos **A** o **B** poden tenir més temps de *CPU* que l'altre i sortir els missatges de forma desordenada.
+
+### ./prog H & ./prog O
+
+:::::::: columns
+::: {.column width="15%"}
+:::
+
+::: {.column width="20%"}
+H <br> H <br> H <br> ...
+:::
+
+::: {.column width="20%"}
+H <br> O <br> H <br> ...
+:::
+
+::: {.column width="20%"}
+O <br> O <br> H <br> ...
+:::
+
+::: {.column width="15%"}
+:::
+::::::::
+:::::::::
+:::::::::::
+
+## Anàlisi: Què fa aquest programa? (VI)
+
+::::: columns
+::: {.column width="45%"}
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, 
+    char *argv[])
+{
+  while(1)
+  {
+    printf("%s\n", argv[1]);
+  }
+  return 0
+}
+```
+:::
+
+::: {.column width="55%"}
+### `./prog & ; ./prog O`
+
+?????
+:::
+:::::
+
+## Anàlisi: Què fa aquest programa? (VII)
+
+::::: columns
+::: {.column width="45%"}
+\onslide<1->
+
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, 
+char *argv[])
+{
+  while(1)
+  {
+    printf("%s\n", argv[1]);
+  }
+  return 0
+}
+```
+:::
+
+::: {.column width="50%"}
+### ./prog & ; ./prog O
+
+Segmentation Fault <br> O <br> O <br> ...
+:::
+:::::
+
+## Anàlisi: Què fa aquest programa? (VIII)
+
+::::::: columns
+::: {.column width="60%"}
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+  int *p = malloc(sizeof(int));
+  int i = 1;
+  while (1) {
+    *p = i;
+    printf("(%d) p: %d\n", getpid(), *p);
+    i++;
+  }
+  free(p);
+  return 0;
+}
+```
+:::
+
+::::: {.column width="40%"}
+#### `./prog1`
+
+::: fragment
+``` {.bash code-line-numbers="false"}
+(611) p: 0x5570014a02a0
+(611) p: 1
+(611) p: 2
+(611) p: 3
+(611) p: 4
+```
+:::
+
+::: fragment
+#### `./prog1 & ./prog1`
+
+????
+:::
+:::::
+:::::::
+
+## Anàlisi: Què fa aquest programa? (IX)
+
+:::::: columns
+::: {.column width="60%"}
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+  int *p = malloc(sizeof(int));
+  int i = 1;
+  while (1) {
+    *p = i;
+    printf("(%d) p: %d\n", getpid(), *p);
+    i++;
+  }
+  free(p);
+  return 0;
+}
+```
+:::
+
+:::: {.column width="40%"}
+#### ./prog1 & ./prog1
+
+``` {.bash code-line-numbers="false"}
+(611) p: 0x5570014a02a0
+(612) p: 0x5570014a02a0
+(611) p: 1
+(612) p: 1
+(611) p: 2
+(612) p: 2
+```
+
+::: {.fragment .callout-note title="Explicació"}
+Les **adreçes virtuals** protegeixen els processosos entre ells i permeten que tots dos processos puguin fer servir la mateixa adreça sense afectar-se.
+:::
+::::
+::::::
+
+## Reptes en el disseny dels SO (I)
+
+-   Complexitat de la **programació distribuïda** (*concurrent* i *paral·lela*).
+-   Complexitat pel **context** (*mòbil, IoT, servidors, centres de dades*, ...).
+-   Complexitat per la gran varietat d'elements de maquinari (**heterogeneïtat**).
+-   Complexitat en la **portabilitat** i la **compatibilitat**.
+-   Equilibri entre **funcionalitat** i **rendiment**.
+-   Equilibri entre **rendiment** i **ús d'energia**.
+
+## Reptes en el disseny dels SO (II)
+
+-   **Maximitzar la fiabilitat**: Els sistemes han de fer el que estan dissenyats per fer en tots els casos, fins i tot en cas d'errors inesperats.
+-   **Maximitzar la disponibilitat**: Els sistemes han d'estar disponibles per a l'ús quan els usuaris ho necessiten, minimitzant el temps d'aturada i reparació causat per fallades.
+-   **Seguretat**: Els sistemes han de protegir-se contra accions malicioses i accidents involuntaris.
+
+## Exemples de Disseny SO (I)
+
+#### Vehicle
+
+::: fragment
+Un **vehicle autònom** ha de ser **segur** per als *passatgers* i per a la *gent que hi ha al seu voltant*. Ha de garantir que el *vehicle* no es pugui **controlar de forma remota** per un atacant. També ha de ser **tolerant a fallades** i **recuperar-se d'errors** sense posar en perill la seguretat dels *passatgers*.
+:::
+
+## Reptes en el disseny dels so (III)
+
+-   **Escalables**: Els sistemes han de funcionar bé quan s'afegeixen recursos (usuaris, processos, ...) o quan es redueixen.
+-   **Mantenibles**: Els sistemes han de ser fàcils de mantenir i evolucionar al llarg del temps.
+
+## Exemples de Disseny SO (I)
+
+#### Telèfon mòbil
+
+-   **Escalable** perquè el nombre d'usuaris pot augmentar molt ràpidament.
+-   **Mantenible** perquè els usuaris esperen actualitzacions periòdiques del **sistema operatiu**.
+-   A més a més, aquestes *actualitzacions* s'han de poder *instal·lar* de forma *transparent i sense afectar el funcionament del telèfon*.
+
+## Per què estudiar SO? (I)
+
+-   Són la base dels sistemes informàtics. (IoT, Servidors, Mòbils, PC, ...).
+-   Ens permeten entendre com funciona *realment* un sistema informàtic.
+-   Els conceptes són aplicables a altres sistemes i problemes quotidians (**planificació de tasques**).
+-   Optimitzar el rendiment de les aplicacions.
+-   Compendre les vulnerabilitats, proteccions i mitigacions de riscos de seguretat.
+
+## Per què estudiar SO? (II)
+
+![](../figures/slides/01-introduction/evolution.png){style="display: block; margin-left: auto; margin-right: auto;"}
+
+::: {style="text-align: center;"}
+La comprensió en les decisions de disseny dels sistemes operatius i el raonament sobre els pros/contra us permetrà rescatar idees obsoletes que poden ser útils en el futur dels nous sistemes informàtics.
+:::
+
+::: notes
+En particular, sovint passa que un canvi en la tecnologia fa que alguns idea obsoleta i ràpidament desapareix. No obstant això, un altre canvi tecnològic podria tornar-lo a reviure. Això és especialment cert quan el canvi té a veure amb el rendiment relatiu de les diferents parts del sistema. Per exemple, quan les CPUs es van fer molt més ràpides que les Memòries les caches van gaunyar molta importancia, però que passa si en un futur les memòries són molt més ràpides que les CPUs? En aquest cas, les caches ja no serien necessàries. En biologia, l'extinció és per sempre, però en informàtica, de vegades només és per uns quants anys.
+:::
+
+## Conclusions
+
+-   Els **sistemes operatius** estan presents en tots els dispositius que fem servir.
+-   El *disseny* es **complex** i requereix integrar dispositius diferents (*forma,espai,temps*).
+-   Ens proporciones una il·lusió d'una màquina virtual infinita.
+-   És *il·lusionista*, *árbrit* i proporciona un conjunt de serveis comuns per permetre la interacció entre programari i maquinari.
+-   Té cura del **rendiment, seguretat, portabilitat i fiabilitat**.
+
+## Això és tot per avui
+
+::::: columns
+::: {.column width="60%"}
+#### Preguntes?
+
+<br>
+
+#### TAKE HOME MESSAGE
+
+Els **sistemes operatius** ajuden als programadors a desenvolupar programari robust de forma independent del maquinari.
+:::
+
+::: {.column width="40%"}
+![](https://static.posters.cz/image/750/posters/looney-tunes-thats-all-folks-i295.jpg)
+:::
+:::::

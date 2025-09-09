@@ -1,0 +1,48 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "SO - Fall 2025"
+  description: "Course materials for SO - Fall 2025"
+  site-url: "https://os-gei-udl-2526-105012.github.io/course/"
+  repo-url: https://github.com/os-gei-udl-2526-105012/course
+
+  sidebar:
+    logo: /figures/logo.png
+    logo-width: 75px
+    logo-height: 75px
+    logo-alt: "SO Logo"
+    pinned: true
+    tools:
+    - icon: house
+      href: "index.html"
+      text: "Home"
+    - icon: github
+      href: "https://github.com/os-gei-udl-2526-105012/course"
+      text: "GitHub organization"
+    - icon: person-fill
+      text: "Sakai"
+      href: "https://cv.udl.cat/"
+
+    style: "docked"
+    search: false
+    collapse-level: 1
+    contents:
+      - section: Informació del curs
+        contents:
+          - href: ./course-information/schedule.html
+            text: Planificació
+      - section: Diapositives
+        contents:
+          - href: ./slides/01-introduction.qmd
+            text: Unitat 01 ·Introducció als sistemes operatius
+
+  
+format:
+  html:
+    toc: true
+    theme: 
+      - cosmo
+      - brand
+
