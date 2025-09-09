@@ -41,6 +41,14 @@ website:
         contents:
           - href: ./notes/01-introduction.qmd
             text: Unitat 01 ·Introducció als sistemes operatius
+      - section: Laboratoris
+        contents:
+          - section: Unitat 01
+            contents:
+              - href: ./labs/01-introduction/lab01.qmd
+                text: Laboratori 1 · Instal·lació i configuració d'un entorn Linux
+              - href: ./labs/01-introduction/lab02.qmd
+                text: Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode
 
   
 format:
