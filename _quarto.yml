@@ -37,6 +37,10 @@ website:
         contents:
           - href: ./slides/01-introduction.qmd
             text: Unitat 01 ·Introducció als sistemes operatius
+      - section: Apunts
+        contents:
+          - href: ./notes/01-introduction.qmd
+            text: Unitat 01 ·Introducció als sistemes operatius
 
   
 format:

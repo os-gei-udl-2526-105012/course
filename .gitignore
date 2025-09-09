@@ -1,3 +1,5 @@
 /.quarto/
 docs
 .DS_Store
+
+**/*.quarto_ipynb
