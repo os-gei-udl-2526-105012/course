@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jordi Mateo Fornés">
+
+<title>Introducció – SO - Fall 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-273eb6687cef1fb3adf60661816a0809.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/01-introduction.html">Apunts</a></li><li class="breadcrumb-item"><a href="../notes/01-introduction.html">Unitat 01 ·Introducció als sistemes operatius</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../figures/logo.png" alt="SO Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
+    <a href="https://github.com/os-gei-udl-2526-105012/course" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://cv.udl.cat/" title="Sakai" class="quarto-navigation-tool px-1" aria-label="Sakai"><i class="bi bi-person-fill"></i></a>
+</div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Informació del curs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href=".././course-information/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planificació</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Diapositives</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unitat 01 ·Introducció als sistemes operatius</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apunts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/01-introduction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Unitat 01 ·Introducció als sistemes operatius</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducció-als-sistemes-informàtics" id="toc-introducció-als-sistemes-informàtics" class="nav-link active" data-scroll-target="#introducció-als-sistemes-informàtics">Introducció als Sistemes Informàtics</a>
+  <ul class="collapse">
+  <li><a href="#sistema-operatiu-intermediari" id="toc-sistema-operatiu-intermediari" class="nav-link" data-scroll-target="#sistema-operatiu-intermediari">Sistema Operatiu: Intermediari</a></li>
+  <li><a href="#sistemes-parallels-i-la-multitasca" id="toc-sistemes-parallels-i-la-multitasca" class="nav-link" data-scroll-target="#sistemes-parallels-i-la-multitasca">Sistemes Paral·lels i la Multitasca</a></li>
+  <li><a href="#sistemes-heterogenis" id="toc-sistemes-heterogenis" class="nav-link" data-scroll-target="#sistemes-heterogenis">Sistemes Heterogenis</a></li>
+  </ul></li>
+  <li><a href="#sistema-operatiu-conceptes-bàsics" id="toc-sistema-operatiu-conceptes-bàsics" class="nav-link" data-scroll-target="#sistema-operatiu-conceptes-bàsics">Sistema Operatiu: Conceptes bàsics</a>
+  <ul class="collapse">
+  <li><a href="#definició-formal-dun-sistema-operatiu" id="toc-definició-formal-dun-sistema-operatiu" class="nav-link" data-scroll-target="#definició-formal-dun-sistema-operatiu">Definició formal d’un sistema operatiu</a></li>
+  <li><a href="#funcions-dun-sistema-operatiu" id="toc-funcions-dun-sistema-operatiu" class="nav-link" data-scroll-target="#funcions-dun-sistema-operatiu">Funcions d’un sistema operatiu</a></li>
+  <li><a href="#tipus-de-sistemes-operatius" id="toc-tipus-de-sistemes-operatius" class="nav-link" data-scroll-target="#tipus-de-sistemes-operatius">Tipus de sistemes operatius</a></li>
+  </ul></li>
+  <li><a href="#nivells-en-un-sistema-informàtic" id="toc-nivells-en-un-sistema-informàtic" class="nav-link" data-scroll-target="#nivells-en-un-sistema-informàtic">Nivells en un Sistema Informàtic</a>
+  <ul class="collapse">
+  <li><a href="#funció-del-mode-usuari-i-el-mode-sistema" id="toc-funció-del-mode-usuari-i-el-mode-sistema" class="nav-link" data-scroll-target="#funció-del-mode-usuari-i-el-mode-sistema">Funció del Mode Usuari i el Mode Sistema</a></li>
+  <li><a href="#components-del-sistema-operatiu" id="toc-components-del-sistema-operatiu" class="nav-link" data-scroll-target="#components-del-sistema-operatiu">Components del Sistema Operatiu</a></li>
+  <li><a href="#components-en-lespai-dusuari" id="toc-components-en-lespai-dusuari" class="nav-link" data-scroll-target="#components-en-lespai-dusuari">Components en l’Espai d’Usuari</a></li>
+  </ul></li>
+  <li><a href="#funcions-dun-sistema-operatiu-1" id="toc-funcions-dun-sistema-operatiu-1" class="nav-link" data-scroll-target="#funcions-dun-sistema-operatiu-1">Funcions d’un Sistema Operatiu</a>
+  <ul class="collapse">
+  <li><a href="#illusionisme" id="toc-illusionisme" class="nav-link" data-scroll-target="#illusionisme">1. Il·lusionisme</a></li>
+  <li><a href="#arbitratge" id="toc-arbitratge" class="nav-link" data-scroll-target="#arbitratge">2. Arbitratge</a></li>
+  </ul></li>
+  <li><a href="#mètriques-davaluació-dels-sistemes-operatius" id="toc-mètriques-davaluació-dels-sistemes-operatius" class="nav-link" data-scroll-target="#mètriques-davaluació-dels-sistemes-operatius">Mètriques d’avaluació dels Sistemes Operatius</a></li>
+  <li><a href="#disseny-de-sistemes-operatius" id="toc-disseny-de-sistemes-operatius" class="nav-link" data-scroll-target="#disseny-de-sistemes-operatius">Disseny de Sistemes Operatius</a>
+  <ul class="collapse">
+  <li><a href="#cas-pràctic-vehicle-autònom" id="toc-cas-pràctic-vehicle-autònom" class="nav-link" data-scroll-target="#cas-pràctic-vehicle-autònom">Cas pràctic: Vehicle autònom</a></li>
+  <li><a href="#cas-pràctic-sistema-operatiu-dun-telèfon-mòbil" id="toc-cas-pràctic-sistema-operatiu-dun-telèfon-mòbil" class="nav-link" data-scroll-target="#cas-pràctic-sistema-operatiu-dun-telèfon-mòbil">Cas pràctic: Sistema operatiu d’un telèfon mòbil</a></li>
+  </ul></li>
+  <li><a href="#referències" id="toc-referències" class="nav-link" data-scroll-target="#referències">Referències</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/01-introduction.html">Apunts</a></li><li class="breadcrumb-item"><a href="../notes/01-introduction.html">Unitat 01 ·Introducció als sistemes operatius</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Introducció</h1>
+<p class="subtitle lead">Unitat 1 · Sistemes Operatius (SO)</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jordi Mateo Fornés </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducció-als-sistemes-informàtics" class="level2">
+<h2 class="anchored" data-anchor-id="introducció-als-sistemes-informàtics">Introducció als Sistemes Informàtics</h2>
+<p>Un <strong>sistema informàtic</strong> és la interconnexió d’elements de <em>hardware</em>, <em>software</em> i <em>usuaris</em> que treballen conjuntament per aconseguir un objectiu comú.</p>
+<ul>
+<li><p>Els components <strong>hardware</strong> són els dispositius físics del sistema, com el processador, la memòria, el disc dur, el teclat, el ratolí, la impressora, etc.</p></li>
+<li><p>Els components <strong>software</strong> són els programes que s’executen en el sistema, com el sistema operatiu, els programes d’aplicació, els controladors de dispositius, etc.</p></li>
+</ul>
+<p>A continuació es mostra un esquema simplificat d’un sistema informàtic.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/slides/01-introduction/sistema-informatic.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Sistema Informàtic (Hardware)</figcaption>
+</figure>
+</div>
+<p>En la figura, es representen els components hardware d’un sistema informàtic, com la <em>CPU, la memòria, el disc dur, el teclat, el ratolí o la xarxa</em>. Aquests components interactuen amb el programari, com el sistema operatiu, les aplicacions o els controladors de dispositius, per proporcionar funcionalitats als usuaris. La <strong>CPU</strong>, per exemple, processa les instruccions, mentre que la <strong>memòria</strong> guarda la informació temporalment, i els <strong>dispositius d’entrada/sortida</strong> (com el teclat o el ratolí) permeten la interacció amb els usuaris.</p>
+<section id="sistema-operatiu-intermediari" class="level3">
+<h3 class="anchored" data-anchor-id="sistema-operatiu-intermediari">Sistema Operatiu: Intermediari</h3>
+<p>El <strong>sistema operatiu</strong> actua com a mediador entre el hardware i el software, gestionant els recursos i proporcionant una interfície perquè les aplicacions puguin comunicar-se amb els components físics. Això permet que els usuaris i els desenvolupadors no hagin de preocupar-se per les particularitats del hardware, ja que el sistema operatiu s’encarrega d’abstreure’n la complexitat.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/slides/01-introduction/os-diagram.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Sistema Operatiu (Software)</figcaption>
+</figure>
+</div>
+<p>En la figura, es mostra com el sistema operatiu actua com a intermediari entre els components hardware i software d’un sistema informàtic.</p>
+</section>
+<section id="sistemes-parallels-i-la-multitasca" class="level3">
+<h3 class="anchored" data-anchor-id="sistemes-parallels-i-la-multitasca">Sistemes Paral·lels i la Multitasca</h3>
+<p>El món es comporta com un gran sistema paral·lel, on molts processos i activitats es duen a terme simultàniament. Per tant, els nostres sistemes informàtics també han de poder actuar en paral·lel per ser eficients i competents. No ens serveix un sistema que només pugui fer una cosa alhora.</p>
+<p>En informàtica, aquest comportament s’aconsegueix gràcies a la <strong>multitasca</strong>, que permet que un sistema informàtic executi múltiples processos alhora, optimitzant els recursos disponibles. Això és especialment important en entorns moderns, on un únic ordinador pot executar diverses aplicacions i serveis al mateix temps.</p>
+</section>
+<section id="sistemes-heterogenis" class="level3">
+<h3 class="anchored" data-anchor-id="sistemes-heterogenis">Sistemes Heterogenis</h3>
+<p>Els sistemes informàtics moderns són <strong>heterogenis</strong> i es componen d’una àmplia gamma de components de hardware i software, cada un amb les seves pròpies característiques. Per exemple:</p>
+<ul>
+<li><p><strong>Arquitectures de CPU</strong>: Inclouen processadors de fabricants com Intel, AMD i ARM, amb diferències significatives en els conjunts d’instruccions, mecanismes de seguretat i vulnerabilitats específiques. També s’han de considerar arquitectures especialitzades com RISC-V i altres dissenys emergents.</p></li>
+<li><p><strong>Memòria</strong>: Com RAM (memòria d’accés aleatori) de diferents tipus DDR (DDR3, DDR4, DDR5), ROM (memòria només de lectura), memòria cache (L1, L2, L3) i memòries persistents com la memòria flash. Cada tipus de memòria presenta diferents velocitats, capacitat i latència, i s’ha de gestionar de manera eficient per optimitzar el rendiment del sistema.</p></li>
+<li><p><strong>Discs durs</strong>: Inclouen HDD (discos durs tradicionals), SSD (unitats d’estat sòlid), NVMe (Non-Volatile Memory Express) i dispositius de memòria externa com USB i targetes de memòria. En un sistema es podem trobar diferents tipus de discos durs, cadascun amb característiques específiques en termes de velocitat, capacitat i durabilitat. A més, si un disc falla, s’ha de poder migrar les dades a un altre disc sense perdre la informació.</p></li>
+<li><p><strong>Dispositius d’entrada/sortida</strong>: Com teclats, ratolins, pantalles, impressores, escàners, càmeres, micròfons, altaveus, etc. Cada dispositiu d’entrada/sortida té les seves pròpies interfícies i controladors, i s’ha de poder gestionar de manera eficient per garantir una interacció fluida amb l’usuari.</p></li>
+<li><p><strong>Xarxes</strong>: Inclouen adaptadors Ethernet, targetes Wi-Fi, routers, commutadors, servidors, dispositius IoT (Internet of Things) i altres components de xarxa.</p></li>
+<li><p><strong>Sensors i dispositius integrats</strong>: Com sensors de temperatura, humitat, acceleròmetres, giroscopis, GPS, etc. Aquests dispositius poden ser utilitzats per recopilar dades ambientals, geolocalització, moviment i altres dades que poden ser crítiques per a la seguretat i el funcionament del sistema.</p></li>
+<li><p><strong>Firmware</strong>: Com BIOS/UEFI, microcontroladors i altres sistemes de baix nivell. El firmware és el software integrat en components de hardware que controla les funcions més bàsiques del sistema, com l’arrencada, la configuració i la gestió de dispositius. Les vulnerabilitats en el firmware poden ser crítiques, ja que poden permetre als atacants accedir a les funcions més profundes del sistema.</p></li>
+</ul>
+<section id="reflexions" class="level4">
+<h4 class="anchored" data-anchor-id="reflexions">Reflexions</h4>
+<ol type="1">
+<li><strong>Imagineu que un programador hagués de conèixer en detall el funcionament de tots aquests components hardware per escriure un programa.</strong>
+<ul>
+<li>Seria pràcticament impossible escriure programes eficients sense l’ajuda d’una capa que abstrau la complexitat del maquinari, com fa el sistema operatiu.</li>
+</ul></li>
+<li><strong>Imagineu que un programador hagués de desenvolupar un programa diferent per a cada combinació de components hardware.</strong>
+<ul>
+<li>Abans dels sistemes operatius moderns, això era una realitat. Ara, gràcies a l’abstracció que proporciona el sistema operatiu, els desenvolupadors poden escriure programes que funcionen en múltiples dispositius sense haver de preocupar-se per les diferències del hardware.</li>
+</ul></li>
+</ol>
+<p>Per tant, un <strong>sistema informàtic</strong> és un sistema complex format per components heterogenis i interconnectats, que funcionen en paral·lel i de forma coordinada. On el <strong>sistema operatiu</strong> actua com a cervell i permet als usuaris i desenvolupadors interactuar amb el sistema de manera eficient i intuïtiva.</p>
+</section>
+</section>
+</section>
+<section id="sistema-operatiu-conceptes-bàsics" class="level2">
+<h2 class="anchored" data-anchor-id="sistema-operatiu-conceptes-bàsics">Sistema Operatiu: Conceptes bàsics</h2>
+<p>Un <strong>sistema operatiu</strong> és un programa que actua com a intermediari entre l’usuari i el sistema informàtic. El seu objectiu principal és proporcionar als usuaris una interfície simple, neta i coherent del sistema, i gestionar tots els recursos del mateix.</p>
+<p>Gràcies al sistema operatiu, els programadors poden escriure programes que s’executin en qualsevol sistema informàtic, independentment dels seus components hardware, i sense necessitat de conèixer-ne els detalls tècnics.</p>
+<section id="definició-formal-dun-sistema-operatiu" class="level3">
+<h3 class="anchored" data-anchor-id="definició-formal-dun-sistema-operatiu">Definició formal d’un sistema operatiu</h3>
+<ul>
+<li><p>Un programa encarregat de l’assignació dels recursos d’un sistema informàtic, així com del control i supervisió de l’execució correcta de les diferents aplicacions i programes.</p></li>
+<li><p>Un programa que controla tots els recursos del sistema, proporcionant la base sobre la qual es poden escriure i executar altres programes.</p></li>
+</ul>
+</section>
+<section id="funcions-dun-sistema-operatiu" class="level3">
+<h3 class="anchored" data-anchor-id="funcions-dun-sistema-operatiu">Funcions d’un sistema operatiu</h3>
+<p>El sistema operatiu compleix quatre funcions essencials que podem destacar:</p>
+<ol type="1">
+<li><p><strong>Proporcionar una interfície d’usuari</strong>: El sistema operatiu ofereix una interfície que permet als usuaris interactuar amb el sistema informàtic de manera intuïtiva i eficient. Aquesta interfície pot ser gràfica (GUI) o de línia de comandes (CLI).</p></li>
+<li><p><strong>Proporcionar una plataforma d’execució</strong>: El sistema operatiu actua com a plataforma per a l’execució de programes i aplicacions. Proporciona un entorn d’execució segur i aïllat per a les aplicacions.</p></li>
+<li><p><strong>Gestionar els recursos del sistema</strong>: El sistema operatiu gestiona els recursos del sistema, com la memòria, la CPU, el disc dur, la xarxa, etc. Això inclou la planificació de processos, la gestió de la memòria, la gestió de l’emmagatzematge i la gestió de la xarxa.</p></li>
+<li><p><strong>Proporcionar portabilitat</strong>: El sistema operatiu permet que els programes s’executin en diferents sistemes informàtics sense necessitat de modificacions. Això permet als programadors escriure programes una sola vegada i executar-los en múltiples plataformes.</p></li>
+</ol>
+</section>
+<section id="tipus-de-sistemes-operatius" class="level3">
+<h3 class="anchored" data-anchor-id="tipus-de-sistemes-operatius">Tipus de sistemes operatius</h3>
+<ol type="1">
+<li><p><strong>Pròposit general</strong>: Windows, Linux, MacOS.</p>
+<ul>
+<li>Multitasca, multiusuari, multiprocessador.</li>
+<li>Exemples: Windows 11, Ubuntu, MacOS Catalina.</li>
+</ul></li>
+<li><p><strong>Servidors</strong>: Unix, Linux.</p>
+<ul>
+<li>Optimitzats per a Alt Rendiment: Dissenyats per gestionar grans volums de dades i usuaris simultanis.</li>
+<li>Dedicats a tasques específiques com ara servidors web, servidors de correu, servidors de bases de dades, etc.</li>
+<li>Exemples: Debian, AlmaLinux, FreeBSD.</li>
+</ul></li>
+<li><p><strong>Dispositius mòbils</strong>: iOS, Android.</p>
+<ul>
+<li>Optimitzats per a Dispositius Táctils: Interfícies i funcionalitats adaptades per a l’ús mòbil.</li>
+</ul></li>
+<li><p><strong>Sistemes encastats</strong>: RTOS (Real-Time Operating System).</p>
+<ul>
+<li>Optimitzats per a sistemes encastats i temps real.</li>
+<li>Exemples: FreeRTOS, VxWorks, QNX.</li>
+</ul></li>
+<li><p><strong>Sistemes Especifics</strong>: Sistemes operatius optimitzats per a tasques específiques, com ara sistemes de control de trànsit, sistemes de navegació, sistemes de televisió digital, etc.</p></li>
+<li><p><strong>Unikernels</strong>: Sistemes operatius optimitzats per a aplicacions específiques.</p>
+<ul>
+<li>Exemples: MirageOS, OSv, ClickOS.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="nivells-en-un-sistema-informàtic" class="level2">
+<h2 class="anchored" data-anchor-id="nivells-en-un-sistema-informàtic">Nivells en un Sistema Informàtic</h2>
+<p>La figura següent mostra les diferents <strong>capes d’un sistema informàtic</strong>. Aquestes capes es divideixen en dos grans grups:</p>
+<ul>
+<li><p>En groc es representen els <strong>recursos físics</strong> (hardware), que inclouen components com la CPU, la memòria i els dispositius d’entrada/sortida.</p></li>
+<li><p>En blau es representen els <strong>components software</strong>, amb especial atenció al sistema operatiu, que s’executa tant en <strong>mode usuari</strong> (verd) com en <strong>mode sistema</strong> (vermell), també conegut com a <strong>mode kernel</strong>.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/slides/01-introduction/esquema2.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Sistema Operatiu</figcaption>
+</figure>
+</div>
+<section id="funció-del-mode-usuari-i-el-mode-sistema" class="level3">
+<h3 class="anchored" data-anchor-id="funció-del-mode-usuari-i-el-mode-sistema">Funció del Mode Usuari i el Mode Sistema</h3>
+<p>Els programes d’aplicació (com el client de correu, el navegador web o el reproductor musical) s’executen en <strong>mode usuari</strong>, que és un entorn restringit on les aplicacions no poden accedir directament al maquinari ni a altres parts crítiques del sistema. Per garantir la seguretat i estabilitat del sistema, les aplicacions han de fer <strong>crides al sistema</strong> per accedir a funcionalitats gestionades pel sistema operatiu, com la gestió de fitxers o la comunicació per xarxa.</p>
+<p>El <strong>mode sistema</strong> (o <strong>mode kernel</strong>) és on s’executen les parts més crítiques del sistema operatiu, com la gestió de recursos, els controladors de dispositius i altres serveis fonamentals. Aquest mode té accés complet al maquinari, i és aquí on es prenen decisions importants sobre l’ús de recursos, l’assignació de memòria i la planificació de processos.</p>
+</section>
+<section id="components-del-sistema-operatiu" class="level3">
+<h3 class="anchored" data-anchor-id="components-del-sistema-operatiu">Components del Sistema Operatiu</h3>
+<p>El sistema operatiu es divideix en diverses capes, cadascuna responsable de funcions específiques.</p>
+<ol type="1">
+<li><p>L’<strong>interfície d’usuari</strong> del sistema operatiu inclou serveis que poden ser utilitzats pels programes d’aplicació. Aquests serveis faciliten la interacció entre el programari d’usuari i el maquinari del sistema. Alguns exemples d’aquests serveis són:</p>
+<ul>
+<li><p><strong>Sistema de fitxers</strong>: Permet als programes crear, llegir, escriure i esborrar fitxers d’una manera organitzada. Per exemple, un programa de processament de textos que guarda un document al disc dur interactua amb el sistema de fitxers per dur a terme aquesta operació.</p></li>
+<li><p><strong>Planificació de processos</strong>: El sistema operatiu decideix quin procés s’executa en cada moment. Per exemple, en un entorn multitarea, el sistema operatiu distribueix el temps de CPU entre múltiples programes en execució com un navegador web i un editor de text, assegurant que cap d’ells bloquegi els altres.</p></li>
+<li><p><strong>Memòria virtual</strong>: Aquesta funció permet que els programes utilitzin més memòria del que hi ha físicament disponible. Per exemple, si un programa necessita més memòria del que la RAM pot oferir, el sistema operatiu utilitza part del disc dur com a memòria virtual per simular un espai de memòria més gran.</p></li>
+<li><p><strong>Protocol TCP/IP</strong>: Proporciona serveis de comunicació en xarxa, permetent que els programes es comuniquin a través d’internet. Per exemple, un navegador utilitza aquest servei per enviar i rebre dades d’un servidor web.</p></li>
+</ul></li>
+<li><p><strong>Capa d’abstracció de maquinari</strong>: Proporciona una <strong>interfície</strong> que amaga la complexitat del maquinari amb l’objectiu de facilitar el desenvolupament d’aplicacions.</p>
+<blockquote class="blockquote">
+<p>Per exemple, un programador no necessita saber com funciona un disc dur específic; el sistema operatiu ofereix una interfície que permet als programes accedir al disc d’una manera consistent, independentment del model o fabricant del dispositiu.</p>
+</blockquote></li>
+</ol>
+</section>
+<section id="components-en-lespai-dusuari" class="level3">
+<h3 class="anchored" data-anchor-id="components-en-lespai-dusuari">Components en l’Espai d’Usuari</h3>
+<p>En l’<strong>espai d’usuari</strong>, també hi trobem diversos elements importants que faciliten la interacció amb el sistema operatiu:</p>
+<ol type="1">
+<li><p>Les <strong>llibreries del sistema</strong> són col·leccions de funcions que permeten als programes accedir als serveis del sistema operatiu. Quan un programa necessita realitzar una operació privilegiada, com accedir a un fitxer o comunicar-se amb la xarxa, utilitza aquestes llibreries per fer una <strong>crida al sistema</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Exemple</strong>: Si un programa vol llegir un fitxer, pot utilitzar funcions de la llibreria <code>stdio.h</code> per fer-ho. Aquesta llibreria amaga els detalls tècnics i ens permet interactuar amb el maquinari de manera més senzilla. En aquest cas, <code>fopen()</code> és una funció de la llibreria <code>stdio.h</code> que obre un fitxer per a lectura o escriptura.</p>
+</blockquote></li>
+<li><p>Els <strong>programes d’usuari</strong> són els programes que els usuaris executen directament, com navegadors web, editors de text o jocs. Aquests programes fan ús dels serveis del sistema operatiu mitjançant les llibreries del sistema i poden interactuar amb l’usuari o altres programes.</p>
+<blockquote class="blockquote">
+<p><strong>Exemple</strong>: Un editor de text com VS Code interactua amb el sistema operatiu per obrir fitxers, mostrar contingut a la pantalla i rebre entrades de l’usuari (com tecles o clics de ratolí).</p>
+</blockquote></li>
+<li><p>El <strong>shell</strong> és un programa especial que permet als usuaris interactuar directament amb el sistema operatiu a través d’una <strong>interfície de línia de comandes</strong> (CLI). El shell interpreta les ordres de l’usuari i les tradueix en crides al sistema operatiu per dur a terme accions com llistats de directoris, copiar fitxers o executar programes.</p>
+<blockquote class="blockquote">
+<p><strong>Exemple</strong>: Quan un usuari introdueix l’ordre <code>ls</code> en un terminal Unix, el shell tradueix aquesta ordre en una crida al sistema que llista els fitxers d’un directori.</p>
+</blockquote></li>
+</ol>
+<p>Per tant el sistema operatiu ens ofereix de forma <strong>transparent, usable, portable i efiicient</strong> una sèrie de serveis que ens permeten interactuar amb el sistema informàtic:</p>
+<ol type="1">
+<li>Control d’usuaris i aplicacions.</li>
+<li>Gestió d’usuaris i aplicacions.</li>
+<li>Gestió de la memòria.</li>
+<li>Sistema de fitxers.</li>
+<li>Planificadors.</li>
+<li>Eines de xarxa.</li>
+<li>…</li>
+</ol>
+</section>
+</section>
+<section id="funcions-dun-sistema-operatiu-1" class="level2">
+<h2 class="anchored" data-anchor-id="funcions-dun-sistema-operatiu-1">Funcions d’un Sistema Operatiu</h2>
+<p>El sistema operatiu actua com a <strong>àrbitre</strong> entre els diferents programes i usuaris que competeixen pels recursos del sistema i com a <strong>il·lusionista</strong> que proporciona una abstracció dels recursos físics per simular recursos il·limitats això s’aconsegueix gràcies a la <strong>virtualització</strong>.</p>
+<p>La <strong>virtualització</strong> és una tecnologia que permet crear una <strong>versió virtual</strong> d’un recurs físic o lògic, com una màquina virtual, un sistema de fitxers o una xarxa. Molts autors defineixen un Sistema Operatiu com una <strong>màquina virtual</strong> que proporciona una interfície d’abstracció del maquinari real.</p>
+<section id="illusionisme" class="level3">
+<h3 class="anchored" data-anchor-id="illusionisme">1. Il·lusionisme</h3>
+<p>El sistema operatiu proporciona una <strong>abstracció dels recursos físics</strong>. Aquesta capa d’abstracció permet als usuaris i desenvolupadors treballar amb conceptes lògics en lloc de utilitzar directament els recursos físics del sistema.</p>
+<ol type="a">
+<li><p><strong>Interfície per als recursos físics</strong>: El sistema operatiu crea una interfície uniforme per als recursos físics, com el disc dur, la memòria i els dispositius d’entrada/sortida. A través d’aquesta interfície, els usuaris i aplicacions poden interactuar amb els recursos del sistema sense necessitat de conèixer el funcionament intern del maquinari.</p>
+<blockquote class="blockquote">
+<p><strong>Per exemple</strong>: Quan un usuari treballa amb un fitxer, no pensa en blocs de dades en un disc dur. El sistema operatiu tradueix les operacions de fitxers (com crear, llegir o escriure) en operacions de blocs de disc. Això fa que la gestió d’arxius sigui molt més intuïtiva per a l’usuari. En el codi següent, es mostra com un programa pot obrir un fitxer, escriure-hi dades i tancar-lo sense haver de preocupar-se dels detalls de com s’emmagatzemen les dades al disc dur. Utilitza funcions de la llibreria <code>stdio.h</code> que proporcionen una interfície <code>FILE</code> i funcions com <code>fopen()</code>, <code>fprintf()</code> i <code>fclose()</code> per interactuar amb el fitxer.</p>
+</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Crear i obrir un fitxer per escriptura</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">FILE</span> <span class="op">*</span>file <span class="op">=</span> fopen<span class="op">(</span><span class="st">"example.txt"</span><span class="op">,</span> <span class="st">"w"</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>file <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        perror<span class="op">(</span><span class="st">"Error obrint el fitxer"</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Escriure dades al fitxer</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    fprintf<span class="op">(</span>file<span class="op">,</span> <span class="st">"Hola, món!</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Tancar el fitxer</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    fclose<span class="op">(</span>file<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Reobrir el fitxer per lectura</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    file <span class="op">=</span> fopen<span class="op">(</span><span class="st">"example.txt"</span><span class="op">,</span> <span class="st">"r"</span><span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>file <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        perror<span class="op">(</span><span class="st">"Error obrint el fitxer"</span><span class="op">);</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Llegir i imprimir dades del fitxer</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> buffer<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>fgets<span class="op">(</span>buffer<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>buffer<span class="op">),</span> file<span class="op">)</span> <span class="op">!=</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span> buffer<span class="op">);</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Tancar el fitxer</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    fclose<span class="op">(</span>file<span class="op">);</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Multiplexació de recursos (temps i espai)</strong>: El sistema operatiu gestiona els recursos del sistema a través de la <strong>multiplexació</strong>, una tècnica que permet compartir un mateix recurs entre múltiples usuaris o processos de manera simultània o intercalada.</p>
+<ol type="1">
+<li><strong>Multiplexació en el temps</strong>: En un sistema monoprocessador, el sistema operatiu (SO) divideix el temps de CPU entre diversos processos. Això es fa mitjançant la tècnica de <strong>canvi de context</strong>, que permet al processador alternar ràpidament entre diferents tasques, creant la il·lusió que totes s’estan executant simultàniament.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Exemple</strong>: En un sistema amb múltiples aplicacions obertes (com un navegador web i un editor de text), el sistema operatiu gestiona el temps de CPU assignant petites fraccions de temps a cada aplicació. Aquest procés és tan ràpid que sembla que totes les aplicacions s’executin al mateix temps.</p>
+</blockquote>
+<p>Un exemple pràctic senzill de multiplexació en el temps es pot veure en un sistema operatiu que alterna l’execució de dos processos senzills (A i B). Per simular-ho en un sistema Unix/Linux, es pot utilitzar el següent codi que imprimeix informació sobre el procés actual i fa una pausa abans de continuar en un bucle infinit.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Process </span><span class="sc">%d</span><span class="st"> is running</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">());</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        sleep<span class="op">(</span><span class="dv">1</span><span class="op">);</span> <span class="co">// Simula una pausa abans de continuar</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Per compilar i executar aquest codi, seguiu aquests passos:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vi process.c <span class="co"># Copieu el codi anterior en un fitxer process.c</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gcc process.c <span class="at">-o</span> process</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si executeu aquest codi, veureu com el procés imprimeix informació sobre el seu PID (identificador de procés) i es pausa durant un segon abans de continuar.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si executeu aquest codi dues vegades en el mateix terminal, obtindreu una sortida com la següent:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process <span class="kw">&amp;</span> <span class="ex">./process</span> <span class="kw">&amp;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[1]</span> 1234</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[2]</span> 1235</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1235 is running</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1235 is running</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En aquest cas, el sistema operatiu alterna l’execució entre els dos processos, permetent que s’executin simultàniament. Aquesta tècnica de** multiplexació en el temps** permet que múltiples processos comparteixin el temps de CPU disponible.</p>
+<p>Les figures següents mostren com el sistema operatiu alterna l’execució entre dos processos (A i B) mitjançant la tècnica de <strong>multiplexació en el temps</strong>.</p>
+<ol type="1">
+<li><strong>Creació de dos processos (A i B) </strong>: El sistema operatiu crea dos processos (A i B) i els carrega a la memòria.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/slides/01-introduction/prog_A_B_Memory.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Creació de processos</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>El planificador del sistema elegeix un dels processos (A) per a l’execució i carrega les seves dades a la CPU.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/slides/01-introduction/prog_A_executing.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Execució de processos</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>El procés A s’executa durant un temps determinat (1 segon) i després es posa en estat d’espera. El planificador elegirà ara el procés B per a l’execució.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/slides/01-introduction/prog_B_executing.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Execució de processos</figcaption>
+</figure>
+</div>
+<p><strong>Observació</strong>: Si elimineu la crida <code>sleep(1)</code> del codi, els processos s’executaran tan ràpidament que no podreu veure la sortida clara. Això és degut a la velocitat d’execució i la rapidesa amb què el sistema operatiu alterna entre els processos. A més, no es pot assegurar que el sistema operatiu alterni entre els processos en un ordre específic; això depèn de la <em>planificació del sistema operatiu</em>. És possible que un procés s’executi més vegades que l’altre, depenent de la càrrega del sistema i d’altres factors. Aquest fenomen es coneix com <strong>indeterminisme</strong>.</p>
+<p>Per tant, el sistema operatiu alterna utiltizant la tècnica de <strong>canvi de context</strong> per permetre que els dos processos s’executin simultàniament. Els dos processos creuen que tenen accés exclusiu a la CPU, però en realitat comparteixen el temps de CPU disponible.</p>
+<ol start="2" type="1">
+<li><strong>Multiplexació en l’espai</strong>: El sistema operatiu (SO) divideix l’espai de memòria entre els diferents processos que s’executen. Cada procés té assignada una part de la memòria física, però utilitza una <strong>memòria virtual</strong> que li dóna la il·lusió de tenir més memòria disponible. Això permet a cada aplicació creure que té accés exclusiu a la memòria, mentre que el SO gestiona l’accés real.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Exemple</strong>: En un sistema amb 4 GB de RAM, el sistema operatiu pot utilitzar la tècnica de <strong>paginació</strong> per permetre que múltiples programes ocupin més espai del que hi ha disponible físicament, desplaçant parts no utilitzades a un fitxer de paginació en el disc dur.</p>
+</blockquote>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>ptr <span class="op">=</span> malloc<span class="op">(</span><span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span> <span class="co">// Simula una gran quantitat de memòria</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ptr <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        perror<span class="op">(</span><span class="st">"No hi ha prou memòria"</span><span class="op">);</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Memòria assignada</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>ptr<span class="op">);</span> <span class="co">// Alliberar la memòria</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En aquest codi, es reserva una gran quantitat de memòria (1 GB) mitjançant la funció <code>malloc()</code>. Encara que el sistema només disposi de 4 GB de RAM, el sistema operatiu pot gestionar la memòria virtual per permetre que aquesta operació s’executi sense problemes. Quan la memòria ja no es necessita, es pot alliberar amb la funció <code>free()</code>. Aquesta tècnica permet als programes utilitzar més memòria del que hi ha físicament disponible, millorant l’eficiència del sistema.</p>
+<p>Un altre exemple que il·lustra la multiplexació en l’espai és el següent codi que mostra com dos processos poden compartir la mateixa adreça de memòria:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;assert.h&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    assert<span class="op">(</span>p <span class="op">!=</span> NULL<span class="op">);</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"(</span><span class="sc">%d</span><span class="st">) address pointed to by p: </span><span class="sc">%p\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">(),</span> p<span class="op">);</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>p <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>p <span class="op">=</span> <span class="op">*</span>p <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"(</span><span class="sc">%d</span><span class="st">) p: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">(),</span> <span class="op">*</span>p<span class="op">);</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aquest codi crea un procés que reserva memòria per a una variable <code>p</code> i incrementa el seu valor de manera indefinida.</p>
+<p>Si compiles i executes aquest codi, podràs veure com cada procés imprimeix la mateixa adreça de memòria, però amb valors que augmenten de manera independent:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gcc memory.c <span class="at">-o</span> memory</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./memory</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">address</span> pointed to by p: 0x7f8b1c000010</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 1</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 2</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 3</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si executes aquest codi dues vegades en el mateix terminal:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./memory <span class="kw">&amp;</span> <span class="ex">./memory</span> <span class="kw">&amp;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[1]</span> 1234</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[2]</span> 1235</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">address</span> pointed to by p: 0x7f8b1c000010</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1235</span><span class="kw">)</span> <span class="ex">address</span> pointed to by p: 0x7f8b1c000010</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 1</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1235</span><span class="kw">)</span> <span class="ex">p:</span> 1</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 2</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1235</span><span class="kw">)</span> <span class="ex">p:</span> 2</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 3</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1235</span><span class="kw">)</span> <span class="ex">p:</span> 3</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En aquest cas, els dos processos comparteixen la mateixa adreça de memòria, però cada un té la il·lusió que té accés exclusiu a la memòria. Aquesta tècnica de <strong>multiplexació en l’espai</strong> permet als processos utilitzar la memòria de manera eficient, sense interferir entre ells.</p></li>
+<li><p><strong>Optimització del rendiment del hardware</strong>: Els sistemes operatius poden optimitzar l’ús dels recursos hardware per maximitzar el rendiment. Això inclou tasques com la gestió intel·ligent de la memòria, la planificació de l’ús de la CPU o la distribució de la càrrega en entorns de múltiples processadors.</p>
+<blockquote class="blockquote">
+<p><strong>Exemple</strong>: Els sistemes <strong>MacOS</strong> són altament optimitzats per funcionar amb components de hardware específics dels Macs, aconseguint un rendiment més eficient que sistemes com <strong>Windows</strong>, que han de suportar una gran varietat de configuracions de hardware.</p>
+</blockquote></li>
+</ol>
+</section>
+<section id="arbitratge" class="level3">
+<h3 class="anchored" data-anchor-id="arbitratge">2. Arbitratge</h3>
+<p>El sistema operatiu actua com un àrbitre entre els diferents processos que competeixen pels recursos del sistema. Aquest <strong>arbitratge</strong> assegura que els recursos s’utilitzin de manera justa i eficient, evitant conflictes i millorant el rendiment general.</p>
+<ol type="a">
+<li><p><strong>Gestió de recursos</strong>: El SO decideix com distribuir els recursos limitats (com la CPU, la memòria o dispositius d’E/S) entre els diferents programes que s’executen. Això inclou la <strong>planificació de processos</strong>, la gestió de la <strong>memòria</strong> i el control de l’accés als dispositius de hardware.</p>
+<blockquote class="blockquote">
+<p><strong>Exemple</strong>: Quan diversos processos volen accedir a la impressora simultàniament, el sistema operatiu gestiona una cua d’impressió, decidint quin procés pot utilitzar la impressora i en quin ordre, assegurant que els processos s’executen en funció de la seva prioritat o temps d’espera.</p>
+</blockquote></li>
+<li><p><strong>Evitació de conflictes i bloquejos</strong>: Un altre aspecte important de l’arbitratge és evitar els <strong>bloquejos</strong> (deadlocks), que ocorren quan dos o més processos es queden esperant indefinidament que un recurs es faci disponible. El sistema operatiu utilitza tècniques com la <strong>prevenció de bloquejos</strong> o la <strong>detenció de bloquejos</strong> per gestionar aquests conflictes.</p>
+<p><strong>Exemple</strong>: Considerem un escenari on dos processos, A i B, necessiten accedir a dos recursos compartits, X i Y, per completar les seves operacions. Suposem que el recurs X és una impressora i el recurs Y és una memòria USB. El procés A necessita imprimir un document i després guardar-lo a la memòria USB, mentre que el procés B necessita guardar un document a la memòria USB i després imprimir-lo.</p>
+<p>Si el procés A adquireix primer la impressora (recurs X) i després intenta accedir a la memòria USB (recurs Y), i al mateix temps el procés B adquireix primer la memòria USB (recurs Y) i després intenta accedir a la impressora (recurs X), es produeix una situació de bloqueig coneguda com a “deadlock”. En aquest cas, el procés A espera indefinidament per accedir al recurs Y que el procés B ja ha bloquejat, mentre que el procés B espera indefinidament per accedir al recurs X que el procés A ja ha bloquejat. Com a resultat, ambdós processos es bloquegen mútuament i cap d’ells no pot completar la seva tasca. El SO ha de detectar aquesta situació i prendre mesures per evitar-la. Una solució, seria elimanar el procés B, esperar la finalització de A i tornar a executar B.</p></li>
+</ol>
+</section>
+</section>
+<section id="mètriques-davaluació-dels-sistemes-operatius" class="level2">
+<h2 class="anchored" data-anchor-id="mètriques-davaluació-dels-sistemes-operatius">Mètriques d’avaluació dels Sistemes Operatius</h2>
+<p>Els sistemes operatius són complexos i han de satisfer una sèrie de requisits en funció de les seves finalitats i entorns d’ús. Com satisfer tots aquests requisits és una tasca difícil, es fan servir una sèrie de mètriques per avaluar el rendiment i la qualitat dels sistemes operatius en funció de diferents mètriques.</p>
+<ol type="1">
+<li><p><strong>Overhead</strong>: Quantitat de recursos addicionals que un sistema operatiu utilitza per gestionar els recursos del sistema. Aquest overhead pot afectar el rendiment general del sistema, ja que els recursos que s’utilitzen pel sistema operatiu no estan disponibles per a les aplicacions.</p></li>
+<li><p><strong>Fairness</strong>: Capacitat del sistema operatiu de distribuir els recursos de manera justa entre els diferents processos. Un sistema operatiu just assegura que tots els processos tinguin accés als recursos del sistema de manera equitativa, sense privilegiar uns processos sobre altres.</p></li>
+<li><p><strong>Temps de resposta</strong>: Temps que triga un sistema en respondre a una sol·licitud de l’usuari. Un sistema operatiu eficient ha de ser capaç de respondre ràpidament a les sol·licituds dels usuaris, minimitzant el temps de resposta i millorant la interactivitat del sistema.</p></li>
+<li><p><strong>Throughput</strong>: Quantitat de treball que un sistema pot realitzar en una unitat de temps. Un sistema operatiu amb un alt throughput és capaç de processar un gran nombre de tasques simultàniament, millorant l’eficiència del sistema i reduint els temps d’espera dels usuaris.</p></li>
+<li><p><strong>Fiabilitat</strong>: Capacitat de mantenir-se operatiu durant llargs períodes de temps sense fallar. Un sistema fiable ha de ser capaç de recuperar-se de fallades inesperades i mantenir la integritat dels recursos del sistema.</p></li>
+<li><p><strong>Disponibilitat</strong>: Capacitat de mantenir-se operatiu i accessible per als usuaris en tot moment. Un sistema altament disponible ha de ser capaç de gestionar càrregues de treball variables i mantenir la seva funcionalitat en situacions de sobrecàrrega o fallades.</p></li>
+<li><p><strong>Predictibilitat</strong>: Capacitat de mantenir un comportament consistent i previsible en diferents situacions. Un sistema previsible ha de ser capaç de respondre de manera coherent a les sol·licituds dels usuaris i mantenir un rendiment estable en tot moment.</p></li>
+<li><p><strong>Integritat</strong>: Capacitat de protegir els recursos del sistema contra atacs i amenaces externes. Un sistema amb una bona integritat ha de ser capaç de mantenir la confidencialitat, la integritat i la disponibilitat dels recursos del sistema en tot moment.</p></li>
+<li><p><strong>Privacitat</strong>: Capacitat de protegir les dades dels usuaris i garantir la confidencialitat de la informació personal. Un sistema amb una bona privacitat ha de ser capaç de protegir les dades dels usuaris contra l’ús no autoritzat i garantir la seguretat de la informació.</p></li>
+<li><p><strong>Seguretat</strong>: Capacitat de protegir els recursos del sistema contra atacs i vulnerabilitats. Un sistema segur ha de ser capaç de detectar i respondre a amenaces de seguretat, com ara virus, malware o atacs cibernètics, i mantenir la integritat del sistema en tot moment.</p></li>
+<li><p><strong>Escalabilitat</strong>: Capacitat de créixer i adaptar-se a les necessitats dels usuaris. Un sistema escalable ha de ser capaç de gestionar càrregues de treball variables i augmentar la seva capacitat de processament i emmagatzematge segons sigui necessari.</p></li>
+<li><p><strong>Portabilitat</strong>: Capacitat de ser executat en diferents plataformes i arquitectures de maquinari. Un sistema portàtil ha de ser capaç de funcionar en una àmplia varietat de dispositius i entorns sense necessitat de modificacions.</p></li>
+</ol>
+</section>
+<section id="disseny-de-sistemes-operatius" class="level2">
+<h2 class="anchored" data-anchor-id="disseny-de-sistemes-operatius">Disseny de Sistemes Operatius</h2>
+<p>El disseny d’un sistema operatiu (SO) és una tasca complexa que requereix la creació d’una sistema robust, segur i eficient per gestionar el maquinari i proporcionar serveis als usuaris i aplicacions. Els dissenyadors de sistemes operatius han de tenir en compte una varietat de factors per assegurar que el sistema compleixi amb els requisits de rendiment, seguretat i funcionalitat ,maximitzant o minimizant les mètriques d’avaluació discutides anteriorment.</p>
+<ol type="1">
+<li><p><strong>Complexitat de la Programació Distribuïda</strong>: Els sistemes operatius han de gestionar entorns distribuïts. Això implica coordinar múltiples nodes, mantenir la coherència de dades i gestionar les comunicacions en xarxa. Aquesta complexitat es veu amplificada en sistemes com el núvol (cloud computing).</p></li>
+<li><p><strong>Complexitat de la Programació Concorrent</strong>: Els sistemes operatius han de gestionar múltiples processos i fils d’execució de manera eficient. Això implica la gestió de la sincronització, la comunicació i la compartició de recursos entre els processos.</p></li>
+<li><p><strong>Complexitat pel Context (Mòbil, IoT, Servidors)</strong>: Els SO per a dispositius mòbils, Internet de les Coses (IoT) i servidors tenen requisits específics que influeixen en el seu disseny. Per exemple, iOS i Android han de ser àgils i adaptatius per a diverses condicions d’ús (interficies tàctils, usuaris en constant moviment), mentre que sistemes com Linux per a servidors han de gestionar càrregues elevades i proporcionar alta disponibilitat.</p></li>
+<li><p><strong>Complexitat per la Heterogeneïtat del Hardware</strong>: La diversitat en els components de maquinari presenta reptes significatius en la compatibilitat i el rendiment. Els dissenyadors han de desenvolupar sistemes operatius que puguin adaptar-se a diverses arquitectures de maquinari, cosa que pot requerir solucions innovadores per garantir un rendiment òptim. Avui en dia, tenim processadors de diferents fabricants (Intel, AMD, ARM), xarxes de comunicació diverses (Ethernet, Wi-Fi, 5G) i dispositius d’emmagatzematge amb tecnologies variades (SSD, HDD, cintes magnètiques). Els SO han de ser capaços de gestionar aquesta diversitat de manera eficient.</p></li>
+<li><p><strong>Portabilitat</strong>: La capacitat d’un SO per ser executat en diferents plataformes de maquinari és essencial. Un exemple de portabilitat és Java, amb la seva màquina virtual (JVM) que permet executar aplicacions en diverses plataformes sense necessitat de recompilació. Els contenidors Docker són un altre exemple de portabilitat, ja que permeten als desenvolupadors executar aplicacions en entorns aïllats sense dependències de la plataforma.</p></li>
+<li><p><strong>Seguretat</strong>: Els dissenyadors han de tenir en compte les vulnerabilitats de seguretat, com ara atacs de dia zero, malware i vulnerabilitats de xarxa. Sistemes com SELinux i AppArmor ofereixen funcions de seguretat avançades per protegir els sistemes contra amenaces. Per exemple, al 2024, va sorgir una vulnerabilitat que afectava gairebé a tots els sistemes linux. Aquesta vulnerabilitat es coneix com en xz-utils identificada com CVE-2024-3094. Podeu trobar més informació sobre aquesta vulnerabilitat a <a href="https://pentest-tools.com/blog/xz-utils-backdoor-cve-2024-3094">CVE-2024-3094</a>. Aquesta vulnerabilitat permetia que un atacant executés codi maliciós amb privilegis elevats mitjançant un fitxer especialment manipulat que explota una debilitat en el procés de descompressió de fitxers.</p></li>
+<li><p><strong>Eficiència</strong>: Els SO han de ser eficients en l’ús dels recursos del sistema, com la CPU, la memòria i el disc dur. Això implica optimitzar els algorismes i les estructures de dades per garantir un rendiment òptim.</p></li>
+<li><p><strong>Escalabilitat</strong>: Els SO han de ser capaços de créixer amb les necessitats del sistema, ja sigui en termes de càrrega de treball, nombre d’usuaris o mida de la xarxa. Això implica dissenyar sistemes que puguin adaptar-se a canvis en les condicions del sistema i mantenir un rendiment estable en tot moment.</p></li>
+<li><p><strong>Mantenibilitat</strong>: Els SO han de ser fàcils de mantenir i actualitzar per garantir un funcionament continu i sense interrupcions. Això implica dissenyar sistemes amb una arquitectura clara i modular que permeti fer canvis i millores sense afectar la funcionalitat existent.</p></li>
+<li><p><strong>Compatibilitat</strong>: Els SO han de ser compatibles amb una àmplia gamma de programari i dispositius per garantir una transició suau entre versions i maximitzar l’ús de programari existent. Això implica dissenyar sistemes que puguin interactuar amb una varietat de dispositius i aplicacions sense problemes.</p></li>
+<li><p><strong>Usabilitat</strong>: Els SO han de ser fàcils d’utilitzar i entendre per als usuaris, amb una interfície clara i intuïtiva que faciliti la interacció amb el sistema. Això implica dissenyar sistemes amb una interfície d’usuari coherent i funcionalitats accessibles per a tots els usuaris.</p></li>
+<li><p><strong>Adaptabilitat</strong>: Els SO han de ser capaços d’adaptar-se a canvis en l’entorn del sistema, com ara actualitzacions de programari, canvis en la càrrega de treball o noves tecnologies. Això implica dissenyar sistemes que puguin evolucionar amb el temps i mantenir la seva funcionalitat en situacions canviants.</p></li>
+<li><p><strong>Tolerància a Fallades</strong>: Els SO han de ser tolerants a fallades per garantir la integritat del sistema en cas de problemes. Això implica dissenyar sistemes que puguin recuperar-se de fallades inesperades i mantenir la seva operació en situacions advers</p></li>
+<li><p><strong>Transparència</strong>: Els SO han de ser transparents per als usuaris i desenvolupadors, amb una interfície clara i consistent que permeti interactuar amb el sistema de manera senzilla. Això implica dissenyar sistemes amb una interfície d’usuari coherent i funcionalitats accessibles per a tots els usuaris.</p></li>
+</ol>
+<section id="cas-pràctic-vehicle-autònom" class="level3">
+<h3 class="anchored" data-anchor-id="cas-pràctic-vehicle-autònom">Cas pràctic: Vehicle autònom</h3>
+<p>Imaginem que estem dissenyant un sistema operatiu per a un vehicle autònom. Quins serien els requisits clau que hauríem de tenir en compte en el disseny del sistema operatiu?</p>
+<ul>
+<li><strong>Seguretat</strong>: La seguretat és una prioritat en un vehicle autònom, ja que ha de garantir que el vehicle no pugui ser controlat remotament per un atacant malintencionat. Això implica implementar mesures de seguretat com xifrat de comunicacions, autenticació robusta i protecció contra vulnerabilitats conegudes. A més, s’han de protegir les dades sensibles, com les dades de localització i informació personal dels passatgers.</li>
+<li><strong>Tolerància a fallades</strong>: El sistema ha de ser tolerant a fallades, amb mecanismes per detectar, aïllar i recuperar-se de errors. Això implica utilitzar tècniques com la redundància de components i sistemes, així com implementar mecanismes de recuperació i reconfiguració automàtica en cas de fallades. La capacitat de recuperació ha de permetre al vehicle continuar funcionant amb seguretat fins i tot en cas de fallades parcials. Els accidents no poden ser una opció.</li>
+<li><strong>Gestió de recursos</strong>: El sistema ha de gestionar eficientment els recursos del vehicle, com la CPU, la memòria i els sensors. Ha de prioritzar les tasques crítiques per a la conducció segura, com la detecció de obstacles i la presa de decisions en temps real, mentre optimitza altres processos per a un rendiment global equilibrat.</li>
+<li><strong>Adaptabilitat</strong>: Ha de ser capaç d’adaptar-se a canvis en les condicions de la carretera, com variacions en el clima, el trànsit i l’estat de les carreteres. Això requereix una infraestructura flexible i adaptable que pugui ajustar les estratègies de conducció i la gestió dels recursos en resposta a les condicions dinàmiques.</li>
+</ul>
+</section>
+<section id="cas-pràctic-sistema-operatiu-dun-telèfon-mòbil" class="level3">
+<h3 class="anchored" data-anchor-id="cas-pràctic-sistema-operatiu-dun-telèfon-mòbil">Cas pràctic: Sistema operatiu d’un telèfon mòbil</h3>
+<p>Ara, considerem el sistema operatiu d’un telèfon mòbil:</p>
+<ul>
+<li><p><strong>Usabilitat</strong>: La interfície ha de ser fàcil d’utilitzar i intuitiva per als usuaris, amb funcionalitats accessibles i una navegació clara. Ha de permetre als usuaris interactuar amb el dispositiu de manera eficaç i senzilla, amb opcions de personalització i configuració per adaptar-se a les preferències de l’usuari.</p></li>
+<li><p><strong>Compatibilitat</strong>: Ha de ser compatible amb una àmplia gamma d’aplicacions i serveis, assegurant-se que les aplicacions funcionin correctament en diferents models de dispositius i versions del sistema operatiu. Això implica la gestió de la compatibilitat amb hardware divers i la integració amb serveis de tercers.</p></li>
+<li><p><strong>Seguretat de dades</strong>: El sistema operatiu ha de protegir la privacitat i la confidencialitat de les dades dels usuaris. Això implica implementar mesures de seguretat com xifrat de dades emmagatzemades i en trànsit, control d’accessos a aplicacions, i actualitzacions de seguretat regulars per abordar vulnerabilitats noves.</p></li>
+<li><p><strong>Eficiencia energètica</strong>: Ha de ser eficient en l’ús de la bateria, optimitzant els processos i serveis per maximitzar l’autonomia. Això pot incloure tècniques com la gestió intel·ligent del consum energètic, l’optimització del rendiment dels processadors i la gestió efectiva de les aplicacions en segon pla.</p></li>
+<li><p><strong>Rendiment</strong>: Ha de proporcionar un rendiment fluït i ràpid, amb temps de resposta mínims per a les accions dels usuaris. Això implica una gestió eficient dels recursos del sistema, incloent la CPU, la memòria RAM i l’emmagatzatge, així com l’optimització de les operacions d’entrada/sortida.</p></li>
+<li><p><strong>Mobilitat</strong>: Ha de ser dissenyat per a la mobilitat, amb funcionalitats com la connexió sense fils, la geolocalització i la integració amb serveis de xarxa mòbil. Això implica la gestió de la connectivitat, la gestió de la xarxa i la integració amb serveis de localització per proporcionar una experiència mòbil completa.</p></li>
+</ul>
+</section>
+</section>
+<section id="referències" class="level2">
+<h2 class="anchored" data-anchor-id="referències">Referències</h2>
+<ul>
+<li><p>Modern Operating Systems, Andrew S. Tanenbaum, Herbert Bos, Pearson, 2014.</p></li>
+<li><p>Operating System Concepts, Abraham Silberschatz, Peter B. Galvin, Greg Gagne, Wiley, 2018.</p></li>
+<li><p>Operating Systems: Three Easy Pieces, Remzi H. Arpaci-Dusseau, Andrea C. Arpaci-Dusseau, Arpaci-Dusseau Books, 2014.</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/os-gei-udl-2526-105012\.github\.io\/course\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
