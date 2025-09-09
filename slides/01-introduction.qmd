@@ -995,6 +995,7 @@ Segmentation Fault <br> O <br> O <br> ...
 int main(int argc, char *argv[])
 {
   int *p = malloc(sizeof(int));
+  printf("p: %p\n", p);
   int i = 1;
   while (1) {
     *p = i;
@@ -1040,6 +1041,7 @@ int main(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
   int *p = malloc(sizeof(int));
+  printf("p: %p\n", p);
   int i = 1;
   while (1) {
     *p = i;
@@ -1050,6 +1052,10 @@ int main(int argc, char *argv[])
   return 0;
 }
 ```
+:::
+
+::: notes
+Aquest programa crea un procés que reserva memòria dinàmica per a un enter i imprimeix l'adreça de memòria i el valor de l'enter en un bucle infinit. Si executem aquest programa dues vegades en paral·lel, cada procés tindrà la seva pròpia còpia de la variable `p` i, per tant, les adreces de memòria seran diferents. Això és gràcies a la memòria virtual que ens proporciona el sistema operatiu, que aïlla els processos entre si i els permet utilitzar les mateixes adreces de memòria sense interferir-se. El `%p` en la funció `printf` s'utilitza per imprimir l'adreça de memòria en format hexadecimal veure més informació sobre els especificadors de format en C a [printf](https://en.cppreference.com/w/cpp/io/c/fprintf).
 :::
 
 :::: {.column width="40%"}
@@ -1069,6 +1075,7 @@ Les **adreçes virtuals** protegeixen els processosos entre ells i permeten que 
 :::
 ::::
 ::::::
+
 
 ## Reptes en el disseny dels SO (I)
 
