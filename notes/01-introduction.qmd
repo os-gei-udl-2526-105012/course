@@ -3,6 +3,7 @@ title: "Introducció"
 subtitle: "Unitat 1 · Sistemes Operatius (SO)"
 author: "Jordi Mateo Fornés"
 logo: "/figures/corporative/institute.png"
+lang: "ca"
 
 execute:
   freeze: auto
