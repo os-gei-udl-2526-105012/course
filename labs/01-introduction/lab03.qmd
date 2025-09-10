@@ -30,27 +30,27 @@ Anem a crear un programa senzill en C, compilar-lo i executar-lo. Aquest program
 
 1. Fer click al boto **Obre la Carpeta**.
 
-    ![Obre Carpeta](./figures/vscode/open-folder.png)
+    ![Obre Carpeta](../../figures/labs/01-introduction/lab01/vscode/open-folder.png)
 
 2. Selecciona la carpeta de l'usuari. (*/home/jordi*). Això obrirà la carpeta de l'usuari a la barra lateral esquerra de VSCode.
 
-    ![Selecciona Carpeta](./figures/vscode/select-folder.png)
+    ![Selecciona Carpeta](../../figures/labs/01-introduction/lab01/vscode/select-folder.png)
 
    - Confirmeu que confieu en l'origen de la carpeta seleccionada.
 
-    ![Confia en la carpeta](./figures/vscode/trust-folder.png)
+    ![Confia en la carpeta](../../figures/labs/01-introduction/lab01/vscode/trust-folder.png)
 
    - Com a resultat, la carpeta de l'usuari s'obrirà a la barra lateral esquerra de VSCode.
 
-    ![Carpeta de l'usuari](./figures/vscode/user-folder.png)
+    ![Carpeta de l'usuari](../../figures/labs/01-introduction/lab01/vscode/user-folder.png)
 
 3. Crea un directori utilitzant el gestor de fitxers de VSCode. Per exemple, crea un directori anomenat `hello` a la carpeta de l'usuari.
 
-    ![Crea directori](./figures/vscode/create-dir.png)
+    ![Crea directori](../../figures/labs/01-introduction/lab01/vscode/create-dir.png)
 
 4. Crear un nou fitxer anomenat `hola.c` dins del directori `hello`.
 
-    ![Crea fitxer](./figures/vscode/create-file.png)
+    ![Crea fitxer](../../figures/labs/01-introduction/lab01/vscode/create-file.png)
 
 5. Utilitza l'editor de text de VSCode per escriure el següent codi en C al fitxer creat.
 
@@ -63,7 +63,7 @@ Anem a crear un programa senzill en C, compilar-lo i executar-lo. Aquest program
     }
     ```
 
-    ![Escriu codi](./figures/vscode/write-code.png)
+    ![Escriu codi](../../figures/labs/01-introduction/lab01/vscode/write-code.png)
 
     Podeu seleccionar instal·lar l'extensió C/C++ per a VSCode tal com us recomana l'editor.
 
@@ -75,7 +75,7 @@ Anem a crear un programa senzill en C, compilar-lo i executar-lo. Aquest program
 
 6. Si no teniu oberta la terminal, podeu obrir-ne una des de VSCode. Feu clic a **Terminal** i seleccioneu **Nova Terminal**.
 
-    ![Terminal oberta](./figures/vscode/terminal.png)
+    ![Terminal oberta](../../figures/labs/01-introduction/lab01/vscode/terminal.png)
 
     Ara podeu compilar el programa des de la terminal de VSCode.
 
@@ -97,4 +97,4 @@ Anem a crear un programa senzill en C, compilar-lo i executar-lo. Aquest program
     ./hola
     ```
 
-![Resum de comandes](./figures/vscode/commands.png)
+![Resum de comandes](../../figures/labs/01-introduction/lab01/vscode/commands.png)
