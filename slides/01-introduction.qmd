@@ -170,7 +170,7 @@ Les sessions teòriques i pràctiques estaran combinades. La idea és que no hi 
 ## Criteris d'Avaluació
 
 | Acr. | Activitat d'avaluació | Pes | Nota mínima | En grup | Recuperable |
-|---------|-------------------------------|---------|---------|---------|---------|
+|-----------|---------------------|-----------|-----------|-----------|-----------|
 | **E1** | **1er Parcial** | **35%** | **NO** | **NO** | **SI** |
 | **E2** | **2on Parcial** | **35%** | **NO** | **NO** | **SI** |
 | **P** | **Pràctiques** | **25%** | **NO** | **SI** $\leq 2$ | **NO** |
@@ -210,7 +210,7 @@ Els exàmens parcials (**E1 i E2**) són *proves escrites que avaluen els coneix
 
 ::: {.callout-warning title="Rúbrica d'Avaluació "}
 | Punts | Participació Presencial | Participació en Fòrums | Activitats Sessió |
-|---------------|-------------------|-------------------|-------------------|
+|------------------|------------------|------------------|------------------|
 | **10** | Contribucions excepcionals,enriqueix la discussió. | Líder en discussions, promou debat. | Qualitat excepcional, supera expectatives. |
 | **9** | Comentaris rellevants, mostra comprensió, escolta activament. | Respostes significatives. | Alta qualitat, treball precís. |
 | **8** | Contribucions regulars, interactua amb companys. | Publicacions rellevants, contribueix constructivament. | Compleix tots requisits amb precisió. |
@@ -1031,7 +1031,7 @@ int main(int argc, char *argv[])
 
 ## Anàlisi: Què fa aquest programa? (IX)
 
-:::::: columns
+::::::: columns
 ::: {.column width="60%"}
 ``` c
 #include <stdio.h>
@@ -1074,8 +1074,7 @@ Aquest programa crea un procés que reserva memòria dinàmica per a un enter i 
 Les **adreçes virtuals** protegeixen els processosos entre ells i permeten que tots dos processos puguin fer servir la mateixa adreça sense afectar-se.
 :::
 ::::
-::::::
-
+:::::::
 
 ## Reptes en el disseny dels SO (I)
 
