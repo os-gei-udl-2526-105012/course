@@ -50,11 +50,14 @@ Assegura't de substituir `TOKEN` pel token d'accés personal que has generat a G
 3. Verifica que el token s'hagi configurat correctament executant:
 
     ```sh
-    gitconfig --global --get github.token
+    git config --global --get github.token
     ```
 
 Si tot ha anat bé, veuràs el token que has configurat a la sortida d'aquesta comanda.
 
+::: {.callout-warning title="**Nota:**"}
+Github ja no permet l'ús de contrasenyes per a operacions Git que requereixen autenticació. En lloc d'això, has de fer servir un token d'accés personal (PAT) per autenticar-te quan fas operacions com `git push` o `git pull` en repositoris remots. Per tant, és important que utilitzis el token d'accés personal que has generat en lloc de la teva contrasenya habitual quan se't demani autenticació des d'una línia de comandes o des d'un IDE com VSCode.
+:::
 
 ## Tasques
 
@@ -232,6 +235,12 @@ Si hi ha conflictes, caldrà resoldre'ls abans de fer el `commit`.
     ![](../../figures/labs/01-introduction/lab05/conflict-resolve.png)
 - Repetiu el mateix procediment per tots els conflictes que apareguin.
 - Un cop resolts els conflictes, feu un `commit` amb el missatge `@feat: Merge branch feature-resta`.
+:::
+
+--- 
+
+:::{.callout-tip title="**Nota:**"}
+En aquest punt, cada membre de l'equip haurà de tenir implementades les seves tasques (**resta, multiplicació, divisió, potència i arrels quadrades**), per poder després ajuntar-les a la branca `main`. Es important editar els fitxers `calc.c` i `calc.h` i també el fitxer `main.c` per a cridar les funcions correctament.
 :::
 
 ### Ajuntar les tasques
