@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-273eb6687cef1fb3adf60661816a0809.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,7 +128,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../figures/logo.png" alt="SO Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
@@ -505,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Per exemple</strong>: Quan un usuari treballa amb un fitxer, no pensa en blocs de dades en un disc dur. El sistema operatiu tradueix les operacions de fitxers (com crear, llegir o escriure) en operacions de blocs de disc. Això fa que la gestió d’arxius sigui molt més intuïtiva per a l’usuari. En el codi següent, es mostra com un programa pot obrir un fitxer, escriure-hi dades i tancar-lo sense haver de preocupar-se dels detalls de com s’emmagatzemen les dades al disc dur. Utilitza funcions de la llibreria <code>stdio.h</code> que proporcionen una interfície <code>FILE</code> i funcions com <code>fopen()</code>, <code>fprintf()</code> i <code>fclose()</code> per interactuar amb el fitxer.</p>
 </blockquote>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Crear i obrir un fitxer per escriptura</span></span>
@@ -537,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Tancar el fitxer</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    fclose<span class="op">(</span>file<span class="op">);</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Multiplexació de recursos (temps i espai)</strong>: El sistema operatiu gestiona els recursos del sistema a través de la <strong>multiplexació</strong>, una tècnica que permet compartir un mateix recurs entre múltiples usuaris o processos de manera simultània o intercalada.</p>
 <ol type="1">
 <li><strong>Multiplexació en el temps</strong>: En un sistema monoprocessador, el sistema operatiu (SO) divideix el temps de CPU entre diversos processos. Això es fa mitjançant la tècnica de <strong>canvi de context</strong>, que permet al processador alternar ràpidament entre diferents tasques, creant la il·lusió que totes s’estan executant simultàniament.</li>
@@ -546,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Exemple</strong>: En un sistema amb múltiples aplicacions obertes (com un navegador web i un editor de text), el sistema operatiu gestiona el temps de CPU assignant petites fraccions de temps a cada aplicació. Aquest procés és tan ràpid que sembla que totes les aplicacions s’executin al mateix temps.</p>
 </blockquote>
 <p>Un exemple pràctic senzill de multiplexació en el temps es pot veure en un sistema operatiu que alterna l’execució de dos processos senzills (A i B). Per simular-ho en un sistema Unix/Linux, es pot utilitzar el següent codi que imprimeix informació sobre el procés actual i fa una pausa abans de continuar en un bucle infinit.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
@@ -555,26 +557,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        sleep<span class="op">(</span><span class="dv">1</span><span class="op">);</span> <span class="co">// Simula una pausa abans de continuar</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Per compilar i executar aquest codi, seguiu aquests passos:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vi process.c <span class="co"># Copieu el codi anterior en un fitxer process.c</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vi process.c <span class="co"># Copieu el codi anterior en un fitxer process.c</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gcc process.c <span class="at">-o</span> process</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Si executeu aquest codi, veureu com el procés imprimeix informació sobre el seu PID (identificador de procés) i es pausa durant un segon abans de continuar.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Si executeu aquest codi dues vegades en el mateix terminal, obtindreu una sortida com la següent:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process <span class="kw">&amp;</span> <span class="ex">./process</span> <span class="kw">&amp;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./process <span class="kw">&amp;</span> <span class="ex">./process</span> <span class="kw">&amp;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[1]</span> 1234</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[2]</span> 1235</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1235 is running</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1234 is running</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 1235 is running</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>En aquest cas, el sistema operatiu alterna l’execució entre els dos processos, permetent que s’executin simultàniament. Aquesta tècnica de** multiplexació en el temps** permet que múltiples processos comparteixin el temps de CPU disponible.</p>
 <p>Les figures següents mostren com el sistema operatiu alterna l’execució entre dos processos (A i B) mitjançant la tècnica de <strong>multiplexació en el temps</strong>.</p>
 <ol type="1">
@@ -612,7 +614,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Exemple</strong>: En un sistema amb 4 GB de RAM, el sistema operatiu pot utilitzar la tècnica de <strong>paginació</strong> per permetre que múltiples programes ocupin més espai del que hi ha disponible físicament, desplaçant parts no utilitzades a un fitxer de paginació en el disc dur.</p>
 </blockquote>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
@@ -624,10 +626,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Memòria assignada</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>ptr<span class="op">);</span> <span class="co">// Alliberar la memòria</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>En aquest codi, es reserva una gran quantitat de memòria (1 GB) mitjançant la funció <code>malloc()</code>. Encara que el sistema només disposi de 4 GB de RAM, el sistema operatiu pot gestionar la memòria virtual per permetre que aquesta operació s’executi sense problemes. Quan la memòria ja no es necessita, es pot alliberar amb la funció <code>free()</code>. Aquesta tècnica permet als programes utilitzar més memòria del que hi ha físicament disponible, millorant l’eficiència del sistema.</p>
 <p>Un altre exemple que il·lustra la multiplexació en l’espai és el següent codi que mostra com dos processos poden compartir la mateixa adreça de memòria:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;assert.h&gt;</span></span>
@@ -642,18 +644,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"(</span><span class="sc">%d</span><span class="st">) p: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">(),</span> <span class="op">*</span>p<span class="op">);</span> </span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Aquest codi crea un procés que reserva memòria per a una variable <code>p</code> i incrementa el seu valor de manera indefinida.</p>
 <p>Si compiles i executes aquest codi, podràs veure com cada procés imprimeix la mateixa adreça de memòria, però amb valors que augmenten de manera independent:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gcc memory.c <span class="at">-o</span> memory</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gcc memory.c <span class="at">-o</span> memory</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./memory</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">address</span> pointed to by p: 0x7f8b1c000010</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 1</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 2</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 3</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Si executes aquest codi dues vegades en el mateix terminal:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./memory <span class="kw">&amp;</span> <span class="ex">./memory</span> <span class="kw">&amp;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./memory <span class="kw">&amp;</span> <span class="ex">./memory</span> <span class="kw">&amp;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[1]</span> 1234</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[2]</span> 1235</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">address</span> pointed to by p: 0x7f8b1c000010</span>
@@ -664,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1235</span><span class="kw">)</span> <span class="ex">p:</span> 2</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1234</span><span class="kw">)</span> <span class="ex">p:</span> 3</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1235</span><span class="kw">)</span> <span class="ex">p:</span> 3</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>En aquest cas, els dos processos comparteixen la mateixa adreça de memòria, però cada un té la il·lusió que té accés exclusiu a la memòria. Aquesta tècnica de <strong>multiplexació en l’espai</strong> permet als processos utilitzar la memòria de manera eficient, sense interferir entre ells.</p></li>
 <li><p><strong>Optimització del rendiment del hardware</strong>: Els sistemes operatius poden optimitzar l’ús dels recursos hardware per maximitzar el rendiment. Això inclou tasques com la gestió intel·ligent de la memòria, la planificació de l’ús de la CPU o la distribució de la càrrega en entorns de múltiples processadors.</p>
 <blockquote class="blockquote">
@@ -809,13 +811,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

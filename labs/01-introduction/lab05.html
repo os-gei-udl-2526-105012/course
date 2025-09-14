@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,14 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-273eb6687cef1fb3adf60661816a0809.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -126,7 +127,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="../../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
@@ -321,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Per exemple:</strong>
+<span class="screen-reader-only">Nota</span><strong>Per exemple:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -343,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Per exemple:</strong>
+<span class="screen-reader-only">Nota</span><strong>Per exemple:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -356,14 +358,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Inicia una sessió a la terminal de la màquina virtual com a usuari normal.</p></li>
 <li><p>Configura Git per utilitzar el token de GitHub executant la següent comanda:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> github.token TOKEN</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> github.token TOKEN</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled" title="**Important:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Important:</strong>
+<span class="screen-reader-only">Consell</span><strong>Important:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -371,9 +373,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div></li>
 <li><p>Verifica que el token s’hagi configurat correctament executant:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gitconfig</span> <span class="at">--global</span> <span class="at">--get</span> github.token</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--get</span> github.token</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 <p>Si tot ha anat bé, veuràs el token que has configurat a la sortida d’aquesta comanda.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="**Nota:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Alerta</span><strong>Nota:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Github ja no permet l’ús de contrasenyes per a operacions Git que requereixen autenticació. En lloc d’això, has de fer servir un token d’accés personal (PAT) per autenticar-te quan fas operacions com <code>git push</code> o <code>git pull</code> en repositoris remots. Per tant, és important que utilitzis el token d’accés personal que has generat en lloc de la teva contrasenya habitual quan se’t demani autenticació des d’una línia de comandes o des d’un IDE com VSCode.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="tasques" class="level2">
@@ -454,11 +469,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="treball-individual" class="level3">
 <h3 class="anchored" data-anchor-id="treball-individual">Treball individual</h3>
 <p>Instal·la el paquet build-essential, que inclou les eines i llibreries necessàries per compilar i construir programes en C. Aquest paquet inclou el compilador GCC, que és comunament utilitzat per programar en C.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install build-essential <span class="at">-y</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install build-essential <span class="at">-y</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li><p>Cada membre de l’equip haurà de clonar el repositori al seu ordinador i crear una branca <code>develop</code> per les seves tasques.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone URL_DEL_REPOSITORI</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> NOM_DEL_REPOSITORI</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone URL_DEL_REPOSITORI</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> NOM_DEL_REPOSITORI</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -479,7 +494,7 @@ Nota
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Recomanació:</strong>
+<span class="screen-reader-only">Consell</span><strong>Recomanació:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -490,22 +505,22 @@ Nota
 </div>
 <ol start="2" type="1">
 <li><p>Per cada tasca assignada, el membre haurà de crear una branca amb el nom de la tasca. Per exemple, si la tasca és implementar la funció de suma, la branca es podria anomenar <code>feature-suma</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature-suma</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature-suma</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Observeu que VSCode us mostra la branca actual a la part inferior esquerra.</p></li>
 </ol>
 <p><img src="../../figures/labs/01-introduction/lab05/branch.png" class="img-fluid"></p>
 <ol start="3" type="1">
 <li><p>El codi de la funció suma podria ser:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// calc.c</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// calc.c</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> suma<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// calc.h</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> suma<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">);</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// calc.h</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> suma<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">);</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Reviseu el fitxer <code>src/main.c</code> per a cridar la funció <code>suma</code>correctament de la llibreria <code>calc</code>.</p></li>
 <li><p>Compileu el codi i comproveu que funciona correctament.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./bin/calc</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./bin/calc</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 <p><img src="../../figures/labs/01-introduction/lab05/run.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="**Nota:**">
@@ -514,7 +529,7 @@ Nota
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Nota:</strong>
+<span class="screen-reader-only">Consell</span><strong>Nota:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -529,8 +544,8 @@ Nota
 <p><img src="../../figures/labs/01-introduction/lab05/commit-vscode.png" class="img-fluid"></p>
 <ul>
 <li><p>Amb la terminal.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add src/calc.c src/calc.h src/main.c</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"@feat: Implementació de la funció de suma"</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add src/calc.c src/calc.h src/main.c</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"@feat: Implementació de la funció de suma"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab05/commit.png" class="img-fluid"></p></li>
 </ul></li>
 </ol>
@@ -562,8 +577,8 @@ Consell
 </div>
 </div>
 <p>Repeteix els passos 2 i 3 per a cada tasca assignada. Sempre creant la branca des de <code>main</code>. Per tornar a la branca <code>main</code>, feu <code>git checkout main</code>. O bé, click a la branca a la part inferior esquerra de VSCode i seleccioneu <code>main</code>. Un cop finalitzades les seves tasques ajuntarem totes les branques a la nostra branca local <code>main</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> main</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge feature-suma </span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> main</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge feature-suma </span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab05/merge.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-warning callout-titled" title="**Important:**">
 <div class="callout-header d-flex align-content-center">
@@ -571,7 +586,7 @@ Consell
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Important:</strong>
+<span class="screen-reader-only">Alerta</span><strong>Important:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -586,6 +601,20 @@ Consell
 </ul>
 </div>
 </div>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled" title="**Nota:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span><strong>Nota:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En aquest punt, cada membre de l’equip haurà de tenir implementades les seves tasques (<strong>resta, multiplicació, divisió, potència i arrels quadrades</strong>), per poder després ajuntar-les a la branca <code>main</code>. Es important editar els fitxers <code>calc.c</code> i <code>calc.h</code> i també el fitxer <code>main.c</code> per a cridar les funcions correctament.</p>
+</div>
+</div>
 </section>
 <section id="ajuntar-les-tasques" class="level3">
 <h3 class="anchored" data-anchor-id="ajuntar-les-tasques">Ajuntar les tasques</h3>
@@ -596,16 +625,16 @@ Consell
 <li>Crea a GitHub una branca remota anomenada <code>develop-&lt;nom-usuari&gt;</code> i la vincularem amb la branca <code>main</code> local. <img src="../../figures/labs/01-introduction/lab05/branch-remote-develop.png" class="img-fluid" alt="Branca develop"></li>
 </ul>
 <p>Primer, caldrà actualitzar les branques remotes del repositori.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab05/fetch.png" class="img-fluid"></p>
 <p>Un cop actualitzades les branques remotes, caldrà fer un <code>push</code> de la branca <code>main</code> a la branca <code>develop-&lt;nom-usuari&gt;</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main:develop-<span class="op">&lt;</span>nom-usuari<span class="op">&gt;</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main:develop-<span class="op">&lt;</span>nom-usuari<span class="op">&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Un cop pujades totes les tasques al repositori remot, el líder actualitzarà les branques remotes de tots els membres de l’equip.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Fara un <code>merge</code> de totes les tasques a la seva branca <code>main</code>.</p></li>
 <li><p>Finalment, testeu que el codi funciona correctament.</p></li>
 <li><p>Un cop testejat, caldrà pujar la branca <code>main</code> al repositori remot.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
 <section id="documentació" class="level3">
@@ -676,13 +705,14 @@ Consell
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

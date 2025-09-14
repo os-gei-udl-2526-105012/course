@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,14 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-273eb6687cef1fb3adf60661816a0809.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -126,7 +127,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="../../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
@@ -305,37 +307,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Connecteu VSCode a la màquina virtual mitjançant SSH (vegeu <a href="./lab02.html">Laboratori 2</a>).</p></li>
 <li><p>Inicia la sessió de l’usuari <strong>root</strong> amb la comanda:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>El guionet <code>-</code> és important perquè carregui correctament les variables d’entorn de l’usuari <strong>root</strong>.</p></li>
 <li><p>Com a usuari <strong>root</strong>. Instal·la el programari <strong>git</strong> amb la comanda:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install git <span class="at">-y</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install git <span class="at">-y</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Un cop finalitzi la instal·lació, comproveu la versió de <strong>git</strong> amb la comanda:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Sortiu de la sessió de l’usuari <strong>root</strong> amb la comanda:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
 <section id="configuració-de-git" class="level2">
 <h2 class="anchored" data-anchor-id="configuració-de-git">Configuració de Git</h2>
 <p>Per començar a treballar amb Git, primer cal configurar el nostre usuari i correu electrònic. Aquesta informació s’utilitzarà per identificar els commits que fem al repositori. Per configurar el nostre usuari i correu electrònic, executem les següents comandes:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"JordiMateo"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"jordi.mateo@udl.cat"</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"JordiMateo"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"jordi.mateo@udl.cat"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="replicació-de-lexemple" class="level2">
 <h2 class="anchored" data-anchor-id="replicació-de-lexemple">Replicació de l’exemple</h2>
 <ol type="1">
 <li><p>Crearem un repositori nou anomenat <strong>projecte-final</strong>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> projecte-final</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> projecte-final</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Accedim al directori del projecte:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> projecte-final</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> projecte-final</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>o bé podeu fer click a <em>Obre la carpeta</em> a VSCode i seleccionar el directori <strong>projecte-final</strong>.</p>
 <p><img src="../../figures/labs/01-introduction/lab04/open-folder.png" class="img-fluid"></p></li>
 <li><p>Crearem els 3 fitxers (treball.txt, figura1.png, figura2.png) i els afegirem al directori de treball:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Aquest és el fitxer de treball."</span> <span class="op">&gt;</span> treball.txt</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> figura1.png figura2.png</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Aquest és el fitxer de treball."</span> <span class="op">&gt;</span> treball.txt</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> figura1.png figura2.png</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04/create-files.png" class="img-fluid"></p></li>
 <li><p>Ara inicialitzarem el repositori Git:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 <p>o bé, podeu fer click a la icona de Git a la barra lateral esquerra de VSCode i fer click a <strong>Inicia el repositori Git</strong>.</p>
 <p><img src="../../figures/labs/01-introduction/lab04/init-repo.png" class="img-fluid"></p>
@@ -361,7 +363,7 @@ Nota
 <p><img src="../../figures/labs/01-introduction/lab04/files-staged.png" class="img-fluid"></p>
 <ol start="5" type="1">
 <li><p>Ara farem el primer commit amb el missatge “Primer commit: Afegits els fitxers inicials”. Podeu fer-ho des de la línia de comandes:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Primer commit: Afegits els fitxers inicials"</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Primer commit: Afegits els fitxers inicials"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>o bé, podeu fer click a la icona de Git a la barra lateral esquerra de VSCode, escriure el missatge del commit i fer click a la icona de check (✓) per confirmar els canvis.</p>
 <p><img src="../../figures/labs/01-introduction/lab04/first-commit.png" class="img-fluid"></p></li>
 </ol>
@@ -381,16 +383,16 @@ Nota
 </div>
 <ol start="6" type="1">
 <li><p>Farem un canvi al fitxer <strong>treball.txt</strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Afegit la introducció."</span> <span class="op">&gt;&gt;</span> treball.txt</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Afegit la introducció."</span> <span class="op">&gt;&gt;</span> treball.txt</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04/modify-file.png" class="img-fluid"></p>
 <p>Com el document treball.txt ja està a la caixa d’espera, només cal que fem un nou commit:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">"Segon commit: Afegida la introducció al fitxer de treball"</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">"Segon commit: Afegida la introducció al fitxer de treball"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04/second-commit.png" class="img-fluid"></p></li>
 <li><p>Ara podem veure l’historial dels commits fets fins ara:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04/git-log.png" class="img-fluid"></p></li>
 <li><p>Podem tornar a una versió anterior si cal. Per exemple, per tornar al primer commit:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout HEAD~1</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout HEAD~1</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>o bé, utilitzant VSCODE i fent click a la icona de Git a la barra lateral esquerra, després a la pestanya d’Historial (History) i fent click dret al commit on volem tornar i seleccionant l’opció <strong>Checkout</strong>.</p>
 <p><img src="../../figures/labs/01-introduction/lab04/checkout.png" class="img-fluid"></p></li>
 </ol>
@@ -409,7 +411,7 @@ Nota
 </div>
 <ol start="9" type="1">
 <li><p>Per tornar a la versió més recent, fem:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04/checkout-main.png" class="img-fluid"></p></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -427,24 +429,24 @@ Nota
 </div>
 <ol start="10" type="1">
 <li><p>Ara podem crear una branca nova per treballar en una nova funcionalitat:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> metodologia</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> metodologia</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>o bé, utilitzant VSCODE i fent click a la icona de Git a la barra lateral esquerra, després a la part inferior esquerra on apareix el nom de la branca actual (main) i fent click a <strong>Create new branch</strong>.</p>
 <p><img src="../../figures/labs/01-introduction/lab04/create-branch.png" class="img-fluid"></p></li>
 <li><p>Farem un canvi al fitxer <strong>treball.txt</strong> a la branca <strong>metodologia</strong>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Afegida la secció de metodologia."</span> <span class="op">&gt;&gt;</span> treball.txt</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Afegida la secció de metodologia."</span> <span class="op">&gt;&gt;</span> treball.txt</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04//modify-file-branch.png" class="img-fluid"></p>
 <p>Fem un commit amb aquest canvi:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Afegida la secció de metodologia al fitxer de treball"</span></span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Afegida la secció de metodologia al fitxer de treball"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Podem veure les branques existents:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04/list-branches.png" class="img-fluid"></p></li>
 <li><p>Per tornar a la branca principal:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Per anar a la branca <strong>metodologia</strong>:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout metodologia</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout metodologia</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>També podem fusionar la branca <strong>metodologia</strong> a la branca <strong>main</strong>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge metodologia</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge metodologia</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../../figures/labs/01-introduction/lab04/merge-branch.png" class="img-fluid"></p></li>
 </ol>
 <p>Amb això hem explorat les funcionalitats bàsiques de Git. Podeu continuar experimentant amb més canvis, branques i commits per familiaritzar-vos amb el flux de treball de Git.</p>
@@ -508,13 +510,14 @@ Nota
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
