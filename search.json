@@ -877,6 +877,101 @@
     "text": "Benvinguts al curs de Sistemes Operatius (SO) del Grau d’Enginyeria Informàtica de la Universitat de Lleida (UdL). Aquest curs se centra en l’estudi dels principis fonamentals de disseny i implementació en l’enginyeria de sistemes operatius. Les classes es basen en l’estudi de sistemes operatius basats en UNIX i en tasques de recerca. Alguns dels temes tractats inclouen la gestió de processos, els mecanismes de comunicació, la planificació de tasques i la gestió de memòria. Les tasques de laboratori individuals requereixen codificar en C mitjançant crides al sistema i scripts de shell.\n\n\n\nCourse Title\nOperating Systems\n\n\nSemester\n1st Semester of the Bachelor’s Degree in Computer Engineering\n\n\nCourse Year\nSecond Year\n\n\nProfessor\nJordi Mateo\n\n\nSchedule\n📅\n\n\nCourse Guide\n📚\n\n\nSchool\n\n\n\nUniversity\n\n\n\nDepartment"
   },
   {
+    "objectID": "course-information/schedule.html",
+    "href": "course-information/schedule.html",
+    "title": "Sistemes Operatius",
+    "section": "",
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n\n\n\n👩🏻‍💻"
+  },
+  {
+    "objectID": "course-information/schedule.html#planificació",
+    "href": "course-information/schedule.html#planificació",
+    "title": "Sistemes Operatius",
+    "section": "",
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n\n\n\n👩🏻‍💻"
+  },
+  {
+    "objectID": "CONTRIBUTING.html",
+    "href": "CONTRIBUTING.html",
+    "title": "Contribueix",
+    "section": "",
+    "text": "Aquest material és de codi obert i podeu col·laborar-hi, complementar-lo o corregir-lo mitjançant pull requests al repositori.\n\n\n\nFork el repositori: Fes clic al botó Fork a la part superior dreta de la pàgina. Això crearà una còpia del repositori al teu compte de GitHub. Veure imatge:\n\n\n\n\nClona el repositori a la teva màquina: Utilitza Git per clonar el repositori que has clonat a la teva màquina.\nCrea una branca (branch) nova: Abans de fer canvis, crea una branca nova on faràs les teves modificacions. Això ajuda a mantenir les coses ordenades. Utilitza la comanda següent:\n\ngit checkout -b nom_de_la_branca\n\nFes els canvis: Realitza les modificacions necessàries en els fitxers del projecte.\nAfegeix i commiteja els canvis: Utilitza els següents comandos per afegir els canvis i fer un commit.\nPuja els canvis al teu repositori a GitHub amb la comanda següent:\n\ngit push origin nom_de_la_branca\n\nCrea una PR: Vés al teu repositori a GitHub i selecciona la branca on has fet els canvis. Apareixerà un missatge destacat dient que has fet una nova branca. Fes clic a “Compare & pull request” per començar la PR.\n\nTambé, pots anar a la nova branca fent click al menu desplegable i seleccionant la branca que has creat 1 i fent click al botó New pull request 2. Veure imatge:\n\n\nProporciona una descripció detallada dels canvis que has fet. A més, pots afegir captures de pantalla o informació addicional per ajudar els revisors a entendre els teus canvis. Fes clic a New pull request i beuras una pantalla com la següent:\n\n\n1 Indica el meu repositori (on vols enviar les modificacions) i 2 indica el teu fork (on has fet les modificacions). Assegura’t de seleccionar la branca amb les modificacions 3. Finalment, fes clic a Create pull request 4.\n\nEnvia la PR: Un cop hagis omplert tota la informació, fes clic al botó “Create pull request” per enviar la PR al projecte original.\n\n\n\n\nPer editar el material:\n\nAl teu ordinador, necessitareu instal·lar Quarto.\nDirectament al navegador, podeu editar els fitxers .qmd fent clic al botó de llapis que apareix a la part superior dreta de cada fitxer. Això crearà una nova branca amb els teus canvis i et permetrà fer una PR directament des del navegador.\n\n\n\nAbans de començar, assegura’t que tens Quarto instal·lat al teu ordinador. Obra un terminal o un IDE com VSCode i navega fins a la carpeta on tens el projecte.\nPer veure una previsualització local del lloc web:\nquarto preview\nAixò obrirà una previsualització local al teu navegador. La previsualització s’actualitza automàticament quan deses els canvis.\n\n\n\nEs pot integrar amb Visual Studio Code (VSCode) per a una millor experiència d’edició. Si no tens VSCode, pots descarregar-lo des de https://code.visualstudio.com/.\n\nQuarto: Edició en mode visual: Permet editar els fitxers .qmd en un mode visual que facilita l’ús de les funcions de Quarto.\nQuarto: Previsualització: Obre una previsualització del fitxer .qmd actual.\nQuarto: Edició en mode font: Torna a l’edició en mode text pla."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#instruccions-per-contribuïr",
+    "href": "CONTRIBUTING.html#instruccions-per-contribuïr",
+    "title": "Contribueix",
+    "section": "",
+    "text": "Fork el repositori: Fes clic al botó Fork a la part superior dreta de la pàgina. Això crearà una còpia del repositori al teu compte de GitHub. Veure imatge:\n\n\n\n\nClona el repositori a la teva màquina: Utilitza Git per clonar el repositori que has clonat a la teva màquina.\nCrea una branca (branch) nova: Abans de fer canvis, crea una branca nova on faràs les teves modificacions. Això ajuda a mantenir les coses ordenades. Utilitza la comanda següent:\n\ngit checkout -b nom_de_la_branca\n\nFes els canvis: Realitza les modificacions necessàries en els fitxers del projecte.\nAfegeix i commiteja els canvis: Utilitza els següents comandos per afegir els canvis i fer un commit.\nPuja els canvis al teu repositori a GitHub amb la comanda següent:\n\ngit push origin nom_de_la_branca\n\nCrea una PR: Vés al teu repositori a GitHub i selecciona la branca on has fet els canvis. Apareixerà un missatge destacat dient que has fet una nova branca. Fes clic a “Compare & pull request” per començar la PR.\n\nTambé, pots anar a la nova branca fent click al menu desplegable i seleccionant la branca que has creat 1 i fent click al botó New pull request 2. Veure imatge:\n\n\nProporciona una descripció detallada dels canvis que has fet. A més, pots afegir captures de pantalla o informació addicional per ajudar els revisors a entendre els teus canvis. Fes clic a New pull request i beuras una pantalla com la següent:\n\n\n1 Indica el meu repositori (on vols enviar les modificacions) i 2 indica el teu fork (on has fet les modificacions). Assegura’t de seleccionar la branca amb les modificacions 3. Finalment, fes clic a Create pull request 4.\n\nEnvia la PR: Un cop hagis omplert tota la informació, fes clic al botó “Create pull request” per enviar la PR al projecte original."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#edició-del-material",
+    "href": "CONTRIBUTING.html#edició-del-material",
+    "title": "Contribueix",
+    "section": "",
+    "text": "Per editar el material:\n\nAl teu ordinador, necessitareu instal·lar Quarto.\nDirectament al navegador, podeu editar els fitxers .qmd fent clic al botó de llapis que apareix a la part superior dreta de cada fitxer. Això crearà una nova branca amb els teus canvis i et permetrà fer una PR directament des del navegador.\n\n\n\nAbans de començar, assegura’t que tens Quarto instal·lat al teu ordinador. Obra un terminal o un IDE com VSCode i navega fins a la carpeta on tens el projecte.\nPer veure una previsualització local del lloc web:\nquarto preview\nAixò obrirà una previsualització local al teu navegador. La previsualització s’actualitza automàticament quan deses els canvis.\n\n\n\nEs pot integrar amb Visual Studio Code (VSCode) per a una millor experiència d’edició. Si no tens VSCode, pots descarregar-lo des de https://code.visualstudio.com/.\n\nQuarto: Edició en mode visual: Permet editar els fitxers .qmd en un mode visual que facilita l’ús de les funcions de Quarto.\nQuarto: Previsualització: Obre una previsualització del fitxer .qmd actual.\nQuarto: Edició en mode font: Torna a l’edició en mode text pla."
+  },
+  {
+    "objectID": "activities/unit00/01-debianbin.html",
+    "href": "activities/unit00/01-debianbin.html",
+    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
+    "section": "",
+    "text": "Aprendre a utilitzar crides a sistema per obtenir informació de l’usuari, gestionar fitxers i directoris.\nPracticar la manipulació de cadenes en C per construir rutes de fitxers.\nDesenvolupar habilitats en la creació de programes en C que interactuen amb el sistema operatiu.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 01",
+      "RMSF · Implementant una paperera de reciclatge a Linux"
+    ]
+  },
+  {
+    "objectID": "activities/unit00/01-debianbin.html#objectius",
+    "href": "activities/unit00/01-debianbin.html#objectius",
+    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
+    "section": "",
+    "text": "Aprendre a utilitzar crides a sistema per obtenir informació de l’usuari, gestionar fitxers i directoris.\nPracticar la manipulació de cadenes en C per construir rutes de fitxers.\nDesenvolupar habilitats en la creació de programes en C que interactuen amb el sistema operatiu.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 01",
+      "RMSF · Implementant una paperera de reciclatge a Linux"
+    ]
+  },
+  {
+    "objectID": "activities/unit00/01-debianbin.html#introducció",
+    "href": "activities/unit00/01-debianbin.html#introducció",
+    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
+    "section": "Introducció",
+    "text": "Introducció\nAls sistemes operatius basats en el nucli de Linux, no hi ha una paperera de reciclatge per defecte. Aquesta funcionalitat, habitual en altres sistemes, no està integrada nativament en l’estructura de fitxers de Linux. L’objectiu d’aquest laboratori és implementar una paperera de reciclatge per a Linux i crear una eina que permeti utilitzar-la (rmsf).\nman rmsf",
+    "crumbs": [
+      "Activitats",
+      "Unitat 01",
+      "RMSF · Implementant una paperera de reciclatge a Linux"
+    ]
+  },
+  {
+    "objectID": "activities/unit00/01-debianbin.html#rmsf1---manual-de-lusuari",
+    "href": "activities/unit00/01-debianbin.html#rmsf1---manual-de-lusuari",
+    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
+    "section": "rmsf(1) - Manual de l’usuari",
+    "text": "rmsf(1) - Manual de l’usuari\n\nNOM\nrmsf - Eliminació segura de fitxers i carpetes\n\n\nSÍNTESI\nrmsf file …\n\n\nDESCRIPCIÓ\nL’eina rmsf mou els fitxers i carpetes especificats a la línia de comandes al directori .trash/, situat al directori personal de l’usuari. Aquest procés no suposa l’eliminació definitiva dels fitxers. El programa crea el directori .trash si no existeix. Si els fitxers no tenen permisos d’escriptura i el dispositiu d’entrada estàndard és un terminal, l’usuari rebrà una sol·licitud de confirmació (mostrada a la sortida d’error estàndard).\n\n\nESTAT DE SORTIDA\nrmsf retorna un codi d’èxit 0 en cas d’èxit i &gt;0 si es produeix algun error.\n\n\nEXEMPLES\nEls següents exemples mostren l’ús comú:\n\nrmsf file1\nrmsf file1 dir\nrmsf file1 dir/file2 b\nrmsf file1 dir/subdir/file2",
+    "crumbs": [
+      "Activitats",
+      "Unitat 01",
+      "RMSF · Implementant una paperera de reciclatge a Linux"
+    ]
+  },
+  {
+    "objectID": "activities/unit00/01-debianbin.html#tasques",
+    "href": "activities/unit00/01-debianbin.html#tasques",
+    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
+    "section": "Tasques",
+    "text": "Tasques\n\nObtenint informació de l’usuari\nEl primer pas per implementar rmsf és obtenir informació sobre l’usuari que executa el programa. En particular, necessitem saber quin és el seu directori home per poder crear la paperera allà. Necessitem consultar dues crides a sistema per aconseguir-ho: getuid() i getpwuid().\n\n\n\n\n\n\nConsell\n\n\n\nAquestes crides a sistema es defineixen als fitxers d’encapçalament &lt;unistd.h&gt; i &lt;pwd.h&gt;, respectivament i es poden consultar a la pàgina del manual: man 2 getuid i man 3 getpwuid.\n\n\nConstrueix el programa whoami.c que imprimeix el nom de l’usuari actual.\n\n\nComprovant si un directori existeix\nAbans de moure res, hem de saber si la paperera ($HOME/.trash) existeix. Per això, utilitzarem la crida a sistema stat(), que ens permet obtenir informació sobre un fitxer o directori. Per veure com funciona, consulta la pàgina del manual: man 2 stat.\nConstrueix el programa mystat.c que comprova si un directori existeix amb stat().\nConstrueix també una versió alternativa mystat2.c que utilitzi opendir() per comprovar l’existència del directori. Consulta la pàgina del manual: man 3 opendir.\n\n\n\n\n\n\nConsellSeccions del manual\n\n\n\nLa diferencia entre la secció 2 i la 3 del manual és que la primera fa referència a crides a sistema (sistema operatiu) i la segona a funcions de la biblioteca estàndard de C.\n\n\n\n\nConcatenant rutes\nPer construir la ruta completa de la paperera ($HOME/.trash), necessitem concatenar cadenes. Una cadena fixa (“.trash”) amb la cadena que representa el directori home de l’usuari. La biblioteca estàndard de C proporciona diverses funcions per treballar amb cadenes, com strcat(), strcpy(), i sprintf().\nCrear un petit programa que concateni el home de l’usuari amb la cadena “.trash”. Peer fer-ho, utilitzarem memòria dinàmica amb malloc() per reservar l’espai necessari per a la cadena resultant i free() per alliberar-la després d’usar-la.\n\n\nCreant directoris\nPer poder veure la informació de la crida a sistema mkdir() fem man 2 mkdir.\nImplementa el programa mkd.c que donat un directori comprovi si existeix i si no el crei amb tots els permisos per l’usuari i sense permisos pel grup i altres.\n\n\nMovent fitxers i directoris\nPer moure fitxers, utilitzarem la crida a sistema rename(), que permet canviar el nom o la ubicació d’un fitxer o directori. Consulta la pàgina del manual: man 2 rename.\nImplementa el programa mymv.c que mogui un fitxer a la paperera. Pode assumir que la paperera ja existeix.\n\n\nImplementant rmsf\nAmb totes les peces anteriors, ja podem muntar rmsf. Implementa el programa rmsf.c.\n\n\nExercicis Opcionals\n\nFeu servir aquest enllaç per crear un repositori privat a la organització del curs a GitHub: https://classroom.github.com/a/fQB99psI\nPuja el codi rmsf.c al repositori.\nImplementa un Makefile per compilar i executar el programa.\nActualitzeu el programa utilitzant la llibreria getopt per poder passar opcions com:\n\n-h per mostrar l’ajuda.\n-v per mostrar la versió.\n-d per enviar a la paperera de reciclatge fitxers i directoris.\n-r per recuperar fitxers i directoris de la paperera de reciclatge a la seva ubicació original.\n-t per mostrar la ubicació de la paperera de reciclatge.\n\nAfegiu una opció per preguntar a l’usuari si vol enviar a la paperera cada fitxer o directori. I en cas afirmatiu, enviar-lo. En cas negatiu, no fer res. Aquesta opció pot estar activada per defecte i es pot desactivar amb l’opció -y.\nInvestiga com crear una realsease a GitHub i crea una release amb el teu codi anomenada v1.0.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 01",
+      "RMSF · Implementant una paperera de reciclatge a Linux"
+    ]
+  },
+  {
     "objectID": "notes/01-introduction.html",
     "href": "notes/01-introduction.html",
     "title": "Introducció",
@@ -963,101 +1058,6 @@
       "Apunts",
       "Unitat 01 ·Introducció als sistemes operatius"
     ]
-  },
-  {
-    "objectID": "activities/unit00/01-debianbin.html",
-    "href": "activities/unit00/01-debianbin.html",
-    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
-    "section": "",
-    "text": "Aprendre a utilitzar crides a sistema per obtenir informació de l’usuari, gestionar fitxers i directoris.\nPracticar la manipulació de cadenes en C per construir rutes de fitxers.\nDesenvolupar habilitats en la creació de programes en C que interactuen amb el sistema operatiu.",
-    "crumbs": [
-      "Activitats",
-      "Unitat 01",
-      "RMSF · Implementant una paperera de reciclatge a Linux"
-    ]
-  },
-  {
-    "objectID": "activities/unit00/01-debianbin.html#objectius",
-    "href": "activities/unit00/01-debianbin.html#objectius",
-    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
-    "section": "",
-    "text": "Aprendre a utilitzar crides a sistema per obtenir informació de l’usuari, gestionar fitxers i directoris.\nPracticar la manipulació de cadenes en C per construir rutes de fitxers.\nDesenvolupar habilitats en la creació de programes en C que interactuen amb el sistema operatiu.",
-    "crumbs": [
-      "Activitats",
-      "Unitat 01",
-      "RMSF · Implementant una paperera de reciclatge a Linux"
-    ]
-  },
-  {
-    "objectID": "activities/unit00/01-debianbin.html#introducció",
-    "href": "activities/unit00/01-debianbin.html#introducció",
-    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
-    "section": "Introducció",
-    "text": "Introducció\nAls sistemes operatius basats en el nucli de Linux, no hi ha una paperera de reciclatge per defecte. Aquesta funcionalitat, habitual en altres sistemes, no està integrada nativament en l’estructura de fitxers de Linux. L’objectiu d’aquest laboratori és implementar una paperera de reciclatge per a Linux i crear una eina que permeti utilitzar-la (rmsf).\nman rmsf",
-    "crumbs": [
-      "Activitats",
-      "Unitat 01",
-      "RMSF · Implementant una paperera de reciclatge a Linux"
-    ]
-  },
-  {
-    "objectID": "activities/unit00/01-debianbin.html#rmsf1---manual-de-lusuari",
-    "href": "activities/unit00/01-debianbin.html#rmsf1---manual-de-lusuari",
-    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
-    "section": "rmsf(1) - Manual de l’usuari",
-    "text": "rmsf(1) - Manual de l’usuari\n\nNOM\nrmsf - Eliminació segura de fitxers i carpetes\n\n\nSÍNTESI\nrmsf file …\n\n\nDESCRIPCIÓ\nL’eina rmsf mou els fitxers i carpetes especificats a la línia de comandes al directori .trash/, situat al directori personal de l’usuari. Aquest procés no suposa l’eliminació definitiva dels fitxers. El programa crea el directori .trash si no existeix. Si els fitxers no tenen permisos d’escriptura i el dispositiu d’entrada estàndard és un terminal, l’usuari rebrà una sol·licitud de confirmació (mostrada a la sortida d’error estàndard).\n\n\nESTAT DE SORTIDA\nrmsf retorna un codi d’èxit 0 en cas d’èxit i &gt;0 si es produeix algun error.\n\n\nEXEMPLES\nEls següents exemples mostren l’ús comú:\n\nrmsf file1\nrmsf file1 dir\nrmsf file1 dir/file2 b\nrmsf file1 dir/subdir/file2",
-    "crumbs": [
-      "Activitats",
-      "Unitat 01",
-      "RMSF · Implementant una paperera de reciclatge a Linux"
-    ]
-  },
-  {
-    "objectID": "activities/unit00/01-debianbin.html#tasques",
-    "href": "activities/unit00/01-debianbin.html#tasques",
-    "title": "RMSF · Implementant una paperera de reciclatge a Linux",
-    "section": "Tasques",
-    "text": "Tasques\n\nObtenint informació de l’usuari\nEl primer pas per implementar rmsf és obtenir informació sobre l’usuari que executa el programa. En particular, necessitem saber quin és el seu directori home per poder crear la paperera allà. Necessitem consultar dues crides a sistema per aconseguir-ho: getuid() i getpwuid().\n\n\n\n\n\n\nConsell\n\n\n\nAquestes crides a sistema es defineixen als fitxers d’encapçalament &lt;unistd.h&gt; i &lt;pwd.h&gt;, respectivament i es poden consultar a la pàgina del manual: man 2 getuid i man 3 getpwuid.\n\n\nConstrueix el programa whoami.c que imprimeix el nom de l’usuari actual.\n\n\nComprovant si un directori existeix\nAbans de moure res, hem de saber si la paperera ($HOME/.trash) existeix. Per això, utilitzarem la crida a sistema stat(), que ens permet obtenir informació sobre un fitxer o directori. Per veure com funciona, consulta la pàgina del manual: man 2 stat.\nConstrueix el programa mystat.c que comprova si un directori existeix amb stat().\nConstrueix també una versió alternativa mystat2.c que utilitzi opendir() per comprovar l’existència del directori. Consulta la pàgina del manual: man 3 opendir.\n\n\n\n\n\n\nConsellSeccions del manual\n\n\n\nLa diferencia entre la secció 2 i la 3 del manual és que la primera fa referència a crides a sistema (sistema operatiu) i la segona a funcions de la biblioteca estàndard de C.\n\n\n\n\nConcatenant rutes\nPer construir la ruta completa de la paperera ($HOME/.trash), necessitem concatenar cadenes. Una cadena fixa (“.trash”) amb la cadena que representa el directori home de l’usuari. La biblioteca estàndard de C proporciona diverses funcions per treballar amb cadenes, com strcat(), strcpy(), i sprintf().\nCrear un petit programa que concateni el home de l’usuari amb la cadena “.trash”. Peer fer-ho, utilitzarem memòria dinàmica amb malloc() per reservar l’espai necessari per a la cadena resultant i free() per alliberar-la després d’usar-la.\n\n\nCreant directoris\nPer poder veure la informació de la crida a sistema mkdir() fem man 2 mkdir.\nImplementa el programa mkd.c que donat un directori comprovi si existeix i si no el crei amb tots els permisos per l’usuari i sense permisos pel grup i altres.\n\n\nMovent fitxers i directoris\nPer moure fitxers, utilitzarem la crida a sistema rename(), que permet canviar el nom o la ubicació d’un fitxer o directori. Consulta la pàgina del manual: man 2 rename.\nImplementa el programa mymv.c que mogui un fitxer a la paperera. Pode assumir que la paperera ja existeix.\n\n\nImplementant rmsf\nAmb totes les peces anteriors, ja podem muntar rmsf. Implementa el programa rmsf.c.\n\n\nExercicis Opcionals\n\nFeu servir aquest enllaç per crear un repositori privat a la organització del curs a GitHub: https://classroom.github.com/a/fQB99psI\nPuja el codi rmsf.c al repositori.\nImplementa un Makefile per compilar i executar el programa.\nActualitzeu el programa utilitzant la llibreria getopt per poder passar opcions com:\n\n-h per mostrar l’ajuda.\n-v per mostrar la versió.\n-d per enviar a la paperera de reciclatge fitxers i directoris.\n-r per recuperar fitxers i directoris de la paperera de reciclatge a la seva ubicació original.\n-t per mostrar la ubicació de la paperera de reciclatge.\n\nAfegiu una opció per preguntar a l’usuari si vol enviar a la paperera cada fitxer o directori. I en cas afirmatiu, enviar-lo. En cas negatiu, no fer res. Aquesta opció pot estar activada per defecte i es pot desactivar amb l’opció -y.\nInvestiga com crear una realsease a GitHub i crea una release amb el teu codi anomenada v1.0.",
-    "crumbs": [
-      "Activitats",
-      "Unitat 01",
-      "RMSF · Implementant una paperera de reciclatge a Linux"
-    ]
-  },
-  {
-    "objectID": "CONTRIBUTING.html",
-    "href": "CONTRIBUTING.html",
-    "title": "Contribueix",
-    "section": "",
-    "text": "Aquest material és de codi obert i podeu col·laborar-hi, complementar-lo o corregir-lo mitjançant pull requests al repositori.\n\n\n\nFork el repositori: Fes clic al botó Fork a la part superior dreta de la pàgina. Això crearà una còpia del repositori al teu compte de GitHub. Veure imatge:\n\n\n\n\nClona el repositori a la teva màquina: Utilitza Git per clonar el repositori que has clonat a la teva màquina.\nCrea una branca (branch) nova: Abans de fer canvis, crea una branca nova on faràs les teves modificacions. Això ajuda a mantenir les coses ordenades. Utilitza la comanda següent:\n\ngit checkout -b nom_de_la_branca\n\nFes els canvis: Realitza les modificacions necessàries en els fitxers del projecte.\nAfegeix i commiteja els canvis: Utilitza els següents comandos per afegir els canvis i fer un commit.\nPuja els canvis al teu repositori a GitHub amb la comanda següent:\n\ngit push origin nom_de_la_branca\n\nCrea una PR: Vés al teu repositori a GitHub i selecciona la branca on has fet els canvis. Apareixerà un missatge destacat dient que has fet una nova branca. Fes clic a “Compare & pull request” per començar la PR.\n\nTambé, pots anar a la nova branca fent click al menu desplegable i seleccionant la branca que has creat 1 i fent click al botó New pull request 2. Veure imatge:\n\n\nProporciona una descripció detallada dels canvis que has fet. A més, pots afegir captures de pantalla o informació addicional per ajudar els revisors a entendre els teus canvis. Fes clic a New pull request i beuras una pantalla com la següent:\n\n\n1 Indica el meu repositori (on vols enviar les modificacions) i 2 indica el teu fork (on has fet les modificacions). Assegura’t de seleccionar la branca amb les modificacions 3. Finalment, fes clic a Create pull request 4.\n\nEnvia la PR: Un cop hagis omplert tota la informació, fes clic al botó “Create pull request” per enviar la PR al projecte original.\n\n\n\n\nPer editar el material:\n\nAl teu ordinador, necessitareu instal·lar Quarto.\nDirectament al navegador, podeu editar els fitxers .qmd fent clic al botó de llapis que apareix a la part superior dreta de cada fitxer. Això crearà una nova branca amb els teus canvis i et permetrà fer una PR directament des del navegador.\n\n\n\nAbans de començar, assegura’t que tens Quarto instal·lat al teu ordinador. Obra un terminal o un IDE com VSCode i navega fins a la carpeta on tens el projecte.\nPer veure una previsualització local del lloc web:\nquarto preview\nAixò obrirà una previsualització local al teu navegador. La previsualització s’actualitza automàticament quan deses els canvis.\n\n\n\nEs pot integrar amb Visual Studio Code (VSCode) per a una millor experiència d’edició. Si no tens VSCode, pots descarregar-lo des de https://code.visualstudio.com/.\n\nQuarto: Edició en mode visual: Permet editar els fitxers .qmd en un mode visual que facilita l’ús de les funcions de Quarto.\nQuarto: Previsualització: Obre una previsualització del fitxer .qmd actual.\nQuarto: Edició en mode font: Torna a l’edició en mode text pla."
-  },
-  {
-    "objectID": "CONTRIBUTING.html#instruccions-per-contribuïr",
-    "href": "CONTRIBUTING.html#instruccions-per-contribuïr",
-    "title": "Contribueix",
-    "section": "",
-    "text": "Fork el repositori: Fes clic al botó Fork a la part superior dreta de la pàgina. Això crearà una còpia del repositori al teu compte de GitHub. Veure imatge:\n\n\n\n\nClona el repositori a la teva màquina: Utilitza Git per clonar el repositori que has clonat a la teva màquina.\nCrea una branca (branch) nova: Abans de fer canvis, crea una branca nova on faràs les teves modificacions. Això ajuda a mantenir les coses ordenades. Utilitza la comanda següent:\n\ngit checkout -b nom_de_la_branca\n\nFes els canvis: Realitza les modificacions necessàries en els fitxers del projecte.\nAfegeix i commiteja els canvis: Utilitza els següents comandos per afegir els canvis i fer un commit.\nPuja els canvis al teu repositori a GitHub amb la comanda següent:\n\ngit push origin nom_de_la_branca\n\nCrea una PR: Vés al teu repositori a GitHub i selecciona la branca on has fet els canvis. Apareixerà un missatge destacat dient que has fet una nova branca. Fes clic a “Compare & pull request” per començar la PR.\n\nTambé, pots anar a la nova branca fent click al menu desplegable i seleccionant la branca que has creat 1 i fent click al botó New pull request 2. Veure imatge:\n\n\nProporciona una descripció detallada dels canvis que has fet. A més, pots afegir captures de pantalla o informació addicional per ajudar els revisors a entendre els teus canvis. Fes clic a New pull request i beuras una pantalla com la següent:\n\n\n1 Indica el meu repositori (on vols enviar les modificacions) i 2 indica el teu fork (on has fet les modificacions). Assegura’t de seleccionar la branca amb les modificacions 3. Finalment, fes clic a Create pull request 4.\n\nEnvia la PR: Un cop hagis omplert tota la informació, fes clic al botó “Create pull request” per enviar la PR al projecte original."
-  },
-  {
-    "objectID": "CONTRIBUTING.html#edició-del-material",
-    "href": "CONTRIBUTING.html#edició-del-material",
-    "title": "Contribueix",
-    "section": "",
-    "text": "Per editar el material:\n\nAl teu ordinador, necessitareu instal·lar Quarto.\nDirectament al navegador, podeu editar els fitxers .qmd fent clic al botó de llapis que apareix a la part superior dreta de cada fitxer. Això crearà una nova branca amb els teus canvis i et permetrà fer una PR directament des del navegador.\n\n\n\nAbans de començar, assegura’t que tens Quarto instal·lat al teu ordinador. Obra un terminal o un IDE com VSCode i navega fins a la carpeta on tens el projecte.\nPer veure una previsualització local del lloc web:\nquarto preview\nAixò obrirà una previsualització local al teu navegador. La previsualització s’actualitza automàticament quan deses els canvis.\n\n\n\nEs pot integrar amb Visual Studio Code (VSCode) per a una millor experiència d’edició. Si no tens VSCode, pots descarregar-lo des de https://code.visualstudio.com/.\n\nQuarto: Edició en mode visual: Permet editar els fitxers .qmd en un mode visual que facilita l’ús de les funcions de Quarto.\nQuarto: Previsualització: Obre una previsualització del fitxer .qmd actual.\nQuarto: Edició en mode font: Torna a l’edició en mode text pla."
-  },
-  {
-    "objectID": "course-information/schedule.html",
-    "href": "course-information/schedule.html",
-    "title": "Sistemes Operatius",
-    "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n\n\n\n👩🏻‍💻"
-  },
-  {
-    "objectID": "course-information/schedule.html#planificació",
-    "href": "course-information/schedule.html#planificació",
-    "title": "Sistemes Operatius",
-    "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n\n\n\n👩🏻‍💻"
   },
   {
     "objectID": "labs/01-lab-introduction.html#esquema-sense-virtualització",
