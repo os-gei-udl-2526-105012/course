@@ -1,0 +1,113 @@
+---
+title: RMSF · Implementant una paperera de reciclatge a Linux
+description: Activitat guiada per implementar una paperera de reciclatge a Linux
+lang: ca
+---
+
+## Objectius
+
+- Aprendre a utilitzar crides a sistema per obtenir informació de l'usuari, gestionar fitxers i directoris.
+- Practicar la manipulació de cadenes en C per construir rutes de fitxers.
+- Desenvolupar habilitats en la creació de programes en C que interactuen amb el sistema operatiu.
+
+## Introducció
+
+Als sistemes operatius basats en el nucli de Linux, no hi ha una paperera de reciclatge per defecte. Aquesta funcionalitat, habitual en altres sistemes, no està integrada nativament en l'estructura de fitxers de Linux. L'objectiu d'aquest laboratori és implementar una paperera de reciclatge per a Linux i crear una eina que permeti utilitzar-la (**rmsf**).
+
+```sh
+man rmsf
+```
+
+## rmsf(1) - Manual de l'usuari
+
+### NOM
+
+**rmsf** - Eliminació segura de fitxers i carpetes
+
+### SÍNTESI
+
+rmsf file ...
+
+### DESCRIPCIÓ
+
+L'eina **rmsf** mou els fitxers i carpetes especificats a la línia de comandes al directori `.trash/`, situat al directori personal de l'usuari. Aquest procés no suposa l'eliminació definitiva dels fitxers. El programa crea el directori `.trash` si no existeix. Si els fitxers no tenen permisos d'escriptura i el dispositiu d'entrada estàndard és un terminal, l'usuari rebrà una sol·licitud de confirmació (mostrada a la sortida d'error estàndard).
+
+### ESTAT DE SORTIDA
+
+**rmsf** retorna un codi d'èxit *0* en cas d'èxit i *>0* si es produeix algun error.
+
+### EXEMPLES
+
+Els següents exemples mostren l'ús comú:
+
+- `rmsf file1`
+- `rmsf file1 dir`
+- `rmsf file1 dir/file2 b`
+- `rmsf file1 dir/subdir/file2`
+
+## Tasques
+
+### Obtenint informació de l'usuari
+
+El primer pas per implementar **rmsf** és obtenir informació sobre l'usuari que executa el programa. En particular, necessitem saber quin és el seu directori home per poder crear la paperera allà. Necessitem consultar dues crides a sistema per aconseguir-ho: `getuid()` i `getpwuid()`.
+
+:::{.callout-tip}
+Aquestes crides a sistema es defineixen als fitxers d'encapçalament `<unistd.h>` i `<pwd.h>`, respectivament i es poden consultar a la pàgina del manual: `man 2 getuid` i `man 3 getpwuid`.
+:::
+
+Construeix el programa `whoami.c` que imprimeix el nom de l'usuari actual.
+
+### Comprovant si un directori existeix
+
+Abans de moure res, hem de saber si la paperera (`$HOME/.trash`) existeix. Per això, utilitzarem la crida a sistema `stat()`, que ens permet obtenir informació sobre un fitxer o directori. Per veure com funciona, consulta la pàgina del manual: `man 2 stat`.
+
+Construeix el programa `mystat.c` que comprova si un directori existeix amb `stat()`. 
+
+Construeix també una versió alternativa `mystat2.c` que utilitzi `opendir()` per comprovar l'existència del directori. Consulta la pàgina del manual: `man 3 opendir`.
+
+
+:::{.callout-tip title="Seccions del manual"}
+La diferencia entre la secció 2 i la 3 del manual és que la primera fa referència a crides a sistema (sistema operatiu) i la segona a funcions de la biblioteca estàndard de C.
+:::
+
+### Concatenant rutes
+
+Per construir la ruta completa de la paperera (`$HOME/.trash`), necessitem concatenar cadenes. Una cadena fixa (".trash") amb la cadena que representa el directori home de l'usuari. La biblioteca estàndard de C proporciona diverses funcions per treballar amb cadenes, com `strcat()`, `strcpy()`, i `sprintf()`. 
+
+Crear un petit programa que concateni el home de l'usuari amb la cadena ".trash". Peer fer-ho, utilitzarem memòria dinàmica amb `malloc()` per reservar l'espai necessari per a la cadena resultant i `free()` per alliberar-la després d'usar-la.
+
+### Creant directoris
+
+Per poder veure la informació de la crida a sistema `mkdir()` fem `man 2 mkdir`. 
+
+Implementa el programa `mkd.c` que donat un directori comprovi si existeix i si no el crei amb tots els permisos per l'usuari i sense permisos pel grup i altres.
+
+### Movent fitxers i directoris
+
+Per moure fitxers, utilitzarem la crida a sistema `rename()`, que permet canviar el nom o la ubicació d'un fitxer o directori. Consulta la pàgina del manual: `man 2 rename`.
+
+Implementa el programa `mymv.c` que mogui un fitxer a la paperera. Pode assumir que la paperera ja existeix. 
+
+### Implementant rmsf
+
+Amb totes les peces anteriors, ja podem muntar **rmsf**. Implementa el programa `rmsf.c`.
+
+### Exercicis Opcionals
+
+1. Feu servir aquest enllaç per crear un repositori privat a la organització del curs a GitHub: [https://classroom.github.com/a/fQB99psI](https://classroom.github.com/a/fQB99psI) 
+2. Puja el codi `rmsf.c` al repositori.
+3. Implementa un Makefile per compilar i executar el programa.
+4. Actualitzeu el programa utilitzant la llibreria `getopt` per poder passar opcions com:
+    - `-h` per mostrar l'ajuda.
+    - `-v` per mostrar la versió.
+    - `-d` per enviar a la paperera de reciclatge fitxers i directoris.
+    - `-r` per recuperar fitxers i directoris de la paperera de reciclatge a la seva ubicació original.
+    - `-t` per mostrar la ubicació de la paperera de reciclatge.
+5. Afegiu una opció per preguntar a l'usuari si vol enviar a la paperera cada fitxer o directori. I en cas afirmatiu, enviar-lo. En cas negatiu, no fer res. Aquesta opció pot estar activada per defecte i es pot desactivar amb l'opció `-y`.
+6. Investiga com crear una realsease a GitHub i crea una release amb el teu codi anomenada `v1.0`.
+
+
+
+
+
+
