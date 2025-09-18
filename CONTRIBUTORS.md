@@ -1,3 +1,4 @@
+- **Laia Croce**: [LaiaCroce] (https://github.com/LaiaCroce)
 - **David Rivas**: [drr11](https://github.com/Drr-UDL)
 - **Ibai Soler**: [ibsorn](https://github.com/ibsorn)
 - **Jordi Armenteras Negredo** : [Shattenente](https://github.com/Schattenente)
@@ -9,4 +10,3 @@
 - **Eric Buenavida Crespo**: [EricBuenavidaUdL](https://github.com/EricBuenavidaUdL)
 - **Ikram Maaroufi**: [Ikram692](https://github.com/ikram692)
 - **Alejandro Matas**: [TheAleMax13](https://github.com/TheAleMax13)
-
