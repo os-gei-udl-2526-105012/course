@@ -1,3 +1,4 @@
+- **Jonay Criado Castellano**: [JonayCC](https://github.com/JonayCC)
 - **Oriol Lladó**: [orillad](https://github.com/orillad)
 - **Laia Croce**: [LaiaCroce](https://github.com/LaiaCroce)
 - **David Rivas**: [drr11](https://github.com/Drr-UDL)
