@@ -1,1 +1,6 @@
 - **Enric Alguacil Lapina** [enricalguacil](https://github.com/enricalguacil)
+- **Biel Riba** [bielrb06](https://github.com/bielrb06)
+- **Eric Buenavida Crespo**: [EricBuenavidaUdL](https://github.com/EricBuenavidaUdL)
+- **Ikram Maaroufi**: [Ikram692](https://github.com/ikram692)
+- **Alejandro Matas**: [TheAleMax13](https://github.com/TheAleMax13)
+
