@@ -1,3 +1,4 @@
+- **Héctor Morales Viñolo**: [RecklessCat55](https://github.com/RecklessCat55)
 - **Pau Ribalta**: [PauRibalta](https://github.com/PauRibalta)
 - **Jonay Criado Castellano**: [JonayCC](https://github.com/JonayCC)
 - **Oriol Lladó**: [orillad](https://github.com/orillad)
@@ -13,4 +14,3 @@
 - **Eric Buenavida Crespo**: [EricBuenavidaUdL](https://github.com/EricBuenavidaUdL)
 - **Ikram Maaroufi**: [Ikram692](https://github.com/ikram692)
 - **Alejandro Matas**: [TheAleMax13](https://github.com/TheAleMax13)
-
