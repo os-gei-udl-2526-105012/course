@@ -1,3 +1,4 @@
+- **David Rivas**: [drr11](https://github.com/Drr-UDL)
 - **Ibai Soler**: [ibsorn](https://github.com/ibsorn)
 - **Jordi Armenteras Negredo** : [Shattenente](https://github.com/Schattenente)
 - **Albert Mas Ramon** : [irAlbertZ1](https://github.com/irAlbertZ1)
