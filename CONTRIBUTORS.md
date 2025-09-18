@@ -1,3 +1,4 @@
+- **Marc Nicolás**: [mnsanch](https://github.com/mnsanch)
 - **Oriol Escolà Serra**: [oriolescserr](https://github.com/oriolescserr) 
 - **Abderrahman Albaitar**: [AbderrahmanAlbaitar](https://github.com/AbderrahmanAlbaitar)
 - **Enric Tomàs**: [etj2](https://github.com/etj2)
