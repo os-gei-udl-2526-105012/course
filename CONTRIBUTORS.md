@@ -1,3 +1,4 @@
+- **Oriol Escolà Serra**: [oriolescserr](https://github.com/oriolescserr) 
 - **Abderrahman Albaitar**: [AbderrahmanAlbaitar](https://github.com/AbderrahmanAlbaitar)
 - **Enric Tomàs**: [etj2](https://github.com/etj2)
 - **Héctor Morales Viñolo**: [RecklessCat55](https://github.com/RecklessCat55)
