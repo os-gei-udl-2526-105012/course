@@ -1,3 +1,4 @@
+- **Ibai Soler**: [ibsorn](https://github.com/ibsorn)
 - **Jordi Armenteras Negredo** : [Shattenente](https://github.com/Schattenente)
 - **Albert Mas Ramon** : [irAlbertZ1](https://github.com/irAlbertZ1)
 - **Nassreddine El Baghdadi**: [Nasser-maker-del](https://github.com/Nasser-maker-del)
