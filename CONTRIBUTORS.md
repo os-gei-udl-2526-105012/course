@@ -1,3 +1,4 @@
+- **Eric Pérez Llerena**: [epl1185](https://github.com/epl1185).
 - **Marc Nicolás**: [mnsanch](https://github.com/mnsanch)
 - **Oriol Escolà Serra**: [oriolescserr](https://github.com/oriolescserr) 
 - **Abderrahman Albaitar**: [AbderrahmanAlbaitar](https://github.com/AbderrahmanAlbaitar)
