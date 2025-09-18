@@ -1,4 +1,5 @@
-- **Laia Croce**: [LaiaCroce] (https://github.com/LaiaCroce)
+- **Oriol Lladó**: [orillad](https://github.com/orillad)
+- **Laia Croce**: [LaiaCroce](https://github.com/LaiaCroce)
 - **David Rivas**: [drr11](https://github.com/Drr-UDL)
 - **Ibai Soler**: [ibsorn](https://github.com/ibsorn)
 - **Jordi Armenteras Negredo** : [Shattenente](https://github.com/Schattenente)
