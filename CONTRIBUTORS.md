@@ -1,3 +1,4 @@
+- **Kenny Henares**: [kennyhenares7-ui] (https://github.com/kennyhenares7-ui)
 - **Enric Alguacil Lapina** [enricalguacil](https://github.com/enricalguacil)
 - **Biel Riba** [bielrb06](https://github.com/bielrb06)
 - **Eric Buenavida Crespo**: [EricBuenavidaUdL](https://github.com/EricBuenavidaUdL)
