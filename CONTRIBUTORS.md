@@ -1,1 +1,3 @@
-- Eric Buenavida Crespo: EricBuenavidaUdL
+- **Eric Buenavida Crespo**: [EricBuenavidaUdL](https://github.com/EricBuenavidaUdL)
+- **Ikram Maaroufi**: [Ikram692](https://github.com/ikram692)
+- **Alejandro Matas**: [TheAleMax13](https://github.com/TheAleMax13)
