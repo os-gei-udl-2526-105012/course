@@ -65,6 +65,8 @@ website:
             contents:
               - href: ./activities/unit00/01-debianbin.qmd
                 text: RMSF · Implementant una paperera de reciclatge a Linux
+              - href: ./activities/unit00/02-ex01-c.qmd
+                text: Exercicis amb C - Pokemon· 
 
 
   

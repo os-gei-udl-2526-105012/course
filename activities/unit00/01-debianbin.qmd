@@ -94,17 +94,16 @@ Amb totes les peces anteriors, ja podem muntar **rmsf**. Implementa el programa 
 
 ### Exercicis Opcionals
 
-1. Feu servir aquest enllaç per crear un repositori privat a la organització del curs a GitHub: [https://classroom.github.com/a/fQB99psI](https://classroom.github.com/a/fQB99psI) 
-2. Puja el codi `rmsf.c` al repositori.
-3. Implementa un Makefile per compilar i executar el programa.
-4. Actualitzeu el programa utilitzant la llibreria `getopt` per poder passar opcions com:
+1. Puja el codi `rmsf.c` al repositori.
+2. Implementa un Makefile per compilar i executar el programa.
+3. Actualitzeu el programa utilitzant la llibreria `getopt` per poder passar opcions com:
     - `-h` per mostrar l'ajuda.
     - `-v` per mostrar la versió.
     - `-d` per enviar a la paperera de reciclatge fitxers i directoris.
     - `-r` per recuperar fitxers i directoris de la paperera de reciclatge a la seva ubicació original.
     - `-t` per mostrar la ubicació de la paperera de reciclatge.
-5. Afegiu una opció per preguntar a l'usuari si vol enviar a la paperera cada fitxer o directori. I en cas afirmatiu, enviar-lo. En cas negatiu, no fer res. Aquesta opció pot estar activada per defecte i es pot desactivar amb l'opció `-y`.
-6. Investiga com crear una realsease a GitHub i crea una release amb el teu codi anomenada `v1.0`.
+4. Afegiu una opció per preguntar a l'usuari si vol enviar a la paperera cada fitxer o directori. I en cas afirmatiu, enviar-lo. En cas negatiu, no fer res. Aquesta opció pot estar activada per defecte i es pot desactivar amb l'opció `-y`.
+5. Investiga com crear una realsease a GitHub i crea una release amb el teu codi anomenada `v1.0`.
 
 
 
