@@ -1,5 +1,5 @@
 ---
-title: "Laboratori 1: Punters, Stack i Heap en C"
+title: "Laboratori 6: Punters, Stack i Heap en C"
 lang: "ca"
 ---
 
