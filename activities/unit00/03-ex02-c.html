@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Activitat guiada per implementar una paperera de reciclatge a Linux">
+<meta name="description" content="Recull de preguntes d’examens i exercicis pràctics per a practicar amb C">
 
-<title>RMSF · Implementant una paperera de reciclatge a Linux – SO - Fall 2025</title>
+<title>Exercicis amb C - Apuntadors i structs – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit00/01-debianbin.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../activities/unit00/01-debianbin.html">RMSF · Implementant una paperera de reciclatge a Linux</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit00/01-debianbin.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../activities/unit00/03-ex02-c.html">Exercicis amb C</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -286,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RMSF · Implementant una paperera de reciclatge a Linux</span></a>
   </div>
 </li>
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exercicis amb C</span></a>
   </div>
 </li>
@@ -311,45 +311,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">En aquesta pàgina</h2>
-   
-  <ul>
-  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
-  <li><a href="#introducció" id="toc-introducció" class="nav-link" data-scroll-target="#introducció">Introducció</a></li>
-  <li><a href="#rmsf1---manual-de-lusuari" id="toc-rmsf1---manual-de-lusuari" class="nav-link" data-scroll-target="#rmsf1---manual-de-lusuari">rmsf(1) - Manual de l’usuari</a>
-  <ul class="collapse">
-  <li><a href="#nom" id="toc-nom" class="nav-link" data-scroll-target="#nom">NOM</a></li>
-  <li><a href="#síntesi" id="toc-síntesi" class="nav-link" data-scroll-target="#síntesi">SÍNTESI</a></li>
-  <li><a href="#descripció" id="toc-descripció" class="nav-link" data-scroll-target="#descripció">DESCRIPCIÓ</a></li>
-  <li><a href="#estat-de-sortida" id="toc-estat-de-sortida" class="nav-link" data-scroll-target="#estat-de-sortida">ESTAT DE SORTIDA</a></li>
-  <li><a href="#exemples" id="toc-exemples" class="nav-link" data-scroll-target="#exemples">EXEMPLES</a></li>
-  </ul></li>
-  <li><a href="#tasques" id="toc-tasques" class="nav-link" data-scroll-target="#tasques">Tasques</a>
-  <ul class="collapse">
-  <li><a href="#obtenint-informació-de-lusuari" id="toc-obtenint-informació-de-lusuari" class="nav-link" data-scroll-target="#obtenint-informació-de-lusuari">Obtenint informació de l’usuari</a></li>
-  <li><a href="#comprovant-si-un-directori-existeix" id="toc-comprovant-si-un-directori-existeix" class="nav-link" data-scroll-target="#comprovant-si-un-directori-existeix">Comprovant si un directori existeix</a></li>
-  <li><a href="#concatenant-rutes" id="toc-concatenant-rutes" class="nav-link" data-scroll-target="#concatenant-rutes">Concatenant rutes</a></li>
-  <li><a href="#creant-directoris" id="toc-creant-directoris" class="nav-link" data-scroll-target="#creant-directoris">Creant directoris</a></li>
-  <li><a href="#movent-fitxers-i-directoris" id="toc-movent-fitxers-i-directoris" class="nav-link" data-scroll-target="#movent-fitxers-i-directoris">Movent fitxers i directoris</a></li>
-  <li><a href="#implementant-rmsf" id="toc-implementant-rmsf" class="nav-link" data-scroll-target="#implementant-rmsf">Implementant rmsf</a></li>
-  <li><a href="#exercicis-opcionals" id="toc-exercicis-opcionals" class="nav-link" data-scroll-target="#exercicis-opcionals">Exercicis Opcionals</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit00/01-debianbin.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../activities/unit00/01-debianbin.html">RMSF · Implementant una paperera de reciclatge a Linux</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit00/01-debianbin.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../activities/unit00/03-ex02-c.html">Exercicis amb C</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">RMSF · Implementant una paperera de reciclatge a Linux</h1>
+<h1 class="title">Exercicis amb C - Apuntadors i structs</h1>
 </div>
 
 <div>
   <div class="description">
-    Activitat guiada per implementar una paperera de reciclatge a Linux
+    Recull de preguntes d’examens i exercicis pràctics per a practicar amb C
   </div>
 </div>
 
@@ -366,126 +341,166 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objectius" class="level2">
-<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
-<ul>
-<li>Aprendre a utilitzar crides a sistema per obtenir informació de l’usuari, gestionar fitxers i directoris.</li>
-<li>Practicar la manipulació de cadenes en C per construir rutes de fitxers.</li>
-<li>Desenvolupar habilitats en la creació de programes en C que interactuen amb el sistema operatiu.</li>
-</ul>
-</section>
-<section id="introducció" class="level2">
-<h2 class="anchored" data-anchor-id="introducció">Introducció</h2>
-<p>Als sistemes operatius basats en el nucli de Linux, no hi ha una paperera de reciclatge per defecte. Aquesta funcionalitat, habitual en altres sistemes, no està integrada nativament en l’estructura de fitxers de Linux. L’objectiu d’aquest laboratori és implementar una paperera de reciclatge per a Linux i crear una eina que permeti utilitzar-la (<strong>rmsf</strong>).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> rmsf</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="rmsf1---manual-de-lusuari" class="level2">
-<h2 class="anchored" data-anchor-id="rmsf1---manual-de-lusuari">rmsf(1) - Manual de l’usuari</h2>
-<section id="nom" class="level3">
-<h3 class="anchored" data-anchor-id="nom">NOM</h3>
-<p><strong>rmsf</strong> - Eliminació segura de fitxers i carpetes</p>
-</section>
-<section id="síntesi" class="level3">
-<h3 class="anchored" data-anchor-id="síntesi">SÍNTESI</h3>
-<p>rmsf file …</p>
-</section>
-<section id="descripció" class="level3">
-<h3 class="anchored" data-anchor-id="descripció">DESCRIPCIÓ</h3>
-<p>L’eina <strong>rmsf</strong> mou els fitxers i carpetes especificats a la línia de comandes al directori <code>.trash/</code>, situat al directori personal de l’usuari. Aquest procés no suposa l’eliminació definitiva dels fitxers. El programa crea el directori <code>.trash</code> si no existeix. Si els fitxers no tenen permisos d’escriptura i el dispositiu d’entrada estàndard és un terminal, l’usuari rebrà una sol·licitud de confirmació (mostrada a la sortida d’error estàndard).</p>
-</section>
-<section id="estat-de-sortida" class="level3">
-<h3 class="anchored" data-anchor-id="estat-de-sortida">ESTAT DE SORTIDA</h3>
-<p><strong>rmsf</strong> retorna un codi d’èxit <em>0</em> en cas d’èxit i <em>&gt;0</em> si es produeix algun error.</p>
-</section>
-<section id="exemples" class="level3">
-<h3 class="anchored" data-anchor-id="exemples">EXEMPLES</h3>
-<p>Els següents exemples mostren l’ús comú:</p>
-<ul>
-<li><code>rmsf file1</code></li>
-<li><code>rmsf file1 dir</code></li>
-<li><code>rmsf file1 dir/file2 b</code></li>
-<li><code>rmsf file1 dir/subdir/file2</code></li>
-</ul>
-</section>
-</section>
-<section id="tasques" class="level2">
-<h2 class="anchored" data-anchor-id="tasques">Tasques</h2>
-<section id="obtenint-informació-de-lusuari" class="level3">
-<h3 class="anchored" data-anchor-id="obtenint-informació-de-lusuari">Obtenint informació de l’usuari</h3>
-<p>El primer pas per implementar <strong>rmsf</strong> és obtenir informació sobre l’usuari que executa el programa. En particular, necessitem saber quin és el seu directori home per poder crear la paperera allà. Necessitem consultar dues crides a sistema per aconseguir-ho: <code>getuid()</code> i <code>getpwuid()</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Consell
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Aquestes crides a sistema es defineixen als fitxers d’encapçalament <code>&lt;unistd.h&gt;</code> i <code>&lt;pwd.h&gt;</code>, respectivament i es poden consultar a la pàgina del manual: <code>man 2 getuid</code> i <code>man 3 getpwuid</code>.</p>
-</div>
-</div>
-<p>Construeix el programa <code>whoami.c</code> que imprimeix el nom de l’usuari actual.</p>
-</section>
-<section id="comprovant-si-un-directori-existeix" class="level3">
-<h3 class="anchored" data-anchor-id="comprovant-si-un-directori-existeix">Comprovant si un directori existeix</h3>
-<p>Abans de moure res, hem de saber si la paperera (<code>$HOME/.trash</code>) existeix. Per això, utilitzarem la crida a sistema <code>stat()</code>, que ens permet obtenir informació sobre un fitxer o directori. Per veure com funciona, consulta la pàgina del manual: <code>man 2 stat</code>.</p>
-<p>Construeix el programa <code>mystat.c</code> que comprova si un directori existeix amb <code>stat()</code>.</p>
-<p>Construeix també una versió alternativa <code>mystat2.c</code> que utilitzi <code>opendir()</code> per comprovar l’existència del directori. Consulta la pàgina del manual: <code>man 3 opendir</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Seccions del manual">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Consell</span>Seccions del manual
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La diferencia entre la secció 2 i la 3 del manual és que la primera fa referència a crides a sistema (sistema operatiu) i la segona a funcions de la biblioteca estàndard de C.</p>
-</div>
-</div>
-</section>
-<section id="concatenant-rutes" class="level3">
-<h3 class="anchored" data-anchor-id="concatenant-rutes">Concatenant rutes</h3>
-<p>Per construir la ruta completa de la paperera (<code>$HOME/.trash</code>), necessitem concatenar cadenes. Una cadena fixa (“.trash”) amb la cadena que representa el directori home de l’usuari. La biblioteca estàndard de C proporciona diverses funcions per treballar amb cadenes, com <code>strcat()</code>, <code>strcpy()</code>, i <code>sprintf()</code>.</p>
-<p>Crear un petit programa que concateni el home de l’usuari amb la cadena “.trash”. Peer fer-ho, utilitzarem memòria dinàmica amb <code>malloc()</code> per reservar l’espai necessari per a la cadena resultant i <code>free()</code> per alliberar-la després d’usar-la.</p>
-</section>
-<section id="creant-directoris" class="level3">
-<h3 class="anchored" data-anchor-id="creant-directoris">Creant directoris</h3>
-<p>Per poder veure la informació de la crida a sistema <code>mkdir()</code> fem <code>man 2 mkdir</code>.</p>
-<p>Implementa el programa <code>mkd.c</code> que donat un directori comprovi si existeix i si no el crei amb tots els permisos per l’usuari i sense permisos pel grup i altres.</p>
-</section>
-<section id="movent-fitxers-i-directoris" class="level3">
-<h3 class="anchored" data-anchor-id="movent-fitxers-i-directoris">Movent fitxers i directoris</h3>
-<p>Per moure fitxers, utilitzarem la crida a sistema <code>rename()</code>, que permet canviar el nom o la ubicació d’un fitxer o directori. Consulta la pàgina del manual: <code>man 2 rename</code>.</p>
-<p>Implementa el programa <code>mymv.c</code> que mogui un fitxer a la paperera. Pode assumir que la paperera ja existeix.</p>
-</section>
-<section id="implementant-rmsf" class="level3">
-<h3 class="anchored" data-anchor-id="implementant-rmsf">Implementant rmsf</h3>
-<p>Amb totes les peces anteriors, ja podem muntar <strong>rmsf</strong>. Implementa el programa <code>rmsf.c</code>.</p>
-</section>
-<section id="exercicis-opcionals" class="level3">
-<h3 class="anchored" data-anchor-id="exercicis-opcionals">Exercicis Opcionals</h3>
 <ol type="1">
-<li>Puja el codi <code>rmsf.c</code> al repositori.</li>
-<li>Implementa un Makefile per compilar i executar el programa.</li>
-<li>Actualitzeu el programa utilitzant la llibreria <code>getopt</code> per poder passar opcions com:
-<ul>
-<li><code>-h</code> per mostrar l’ajuda.</li>
-<li><code>-v</code> per mostrar la versió.</li>
-<li><code>-d</code> per enviar a la paperera de reciclatge fitxers i directoris.</li>
-<li><code>-r</code> per recuperar fitxers i directoris de la paperera de reciclatge a la seva ubicació original.</li>
-<li><code>-t</code> per mostrar la ubicació de la paperera de reciclatge.</li>
-</ul></li>
-<li>Afegiu una opció per preguntar a l’usuari si vol enviar a la paperera cada fitxer o directori. I en cas afirmatiu, enviar-lo. En cas negatiu, no fer res. Aquesta opció pot estar activada per defecte i es pot desactivar amb l’opció <code>-y</code>.</li>
-<li>Investiga com crear una realsease a GitHub i crea una release amb el teu codi anomenada <code>v1.0</code>.</li>
+<li><p>Quin serà el resultat d’aquesta execució?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>p<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    p<span class="op">=&amp;</span>x<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">++;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">*</span>p<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Completa el codi següent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> str<span class="op">[]</span> <span class="op">=</span> <span class="st">"Hola"</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> str<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(*</span>s<span class="op">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%c</span><span class="st">"</span><span class="op">,</span> <span class="op">???);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Analitzeu el següent codi i mostreu el contingut de la memòria durant l’execució del programa.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> pokemon <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> id<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">char</span><span class="op">*</span> name<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> pokemon p1 <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="st">"Bulbasaur"</span><span class="op">};</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Id: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> p1<span class="op">.</span>id<span class="op">);</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Name: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> p1<span class="op">.</span>name<span class="op">);</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Analitza el codi següent i digues quin és el resultat de la seva execució.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span> s <span class="op">=</span> <span class="st">"Hola"</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span> t <span class="op">=</span> <span class="st">"Adéu"</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span> u<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> t<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> strdup<span class="op">(</span>s<span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Nota: strdup retorna un punter a una nova cadena de caràcters que és una còpia exacta de la cadena de caràcters passada com a argument.</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"s: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">);</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"t: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> t<span class="op">);</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"u: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> u<span class="op">);</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Analitza el codi següent i digues quin és el resultat de la seva execució.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span><span class="op">*</span> noms<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span><span class="op">*</span> nom <span class="op">=</span> <span class="op">(</span><span class="dt">char</span><span class="op">*)</span>malloc<span class="op">(</span><span class="dv">20</span><span class="op">*</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">char</span><span class="op">));</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++){</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Introdueix el teu nom: "</span><span class="op">);</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        scanf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span> nom<span class="op">);</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        noms<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> nom<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Noms introduïts:</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++){</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> noms<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Analitza el codi següent i digues quin és el resultat de la seva execució.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> k <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> <span class="op">&amp;</span>k<span class="op">;</span>  </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">**</span>m <span class="op">=</span> <span class="op">&amp;</span>p<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>m <span class="op">=</span> <span class="dv">6</span><span class="op">;</span>  </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> k<span class="op">);</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Completa el codi següent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> arr<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">};</span>  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ????</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Elements of the array using the pointer:</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"ptr[</span><span class="sc">%d</span><span class="st">] = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">,</span> <span class="op">(*</span>ptr<span class="op">)[</span>i<span class="op">]);</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Quin serà el resultat d’aquesta execució?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">5</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">15</span><span class="op">,</span><span class="dv">20</span><span class="op">,</span><span class="dv">25</span><span class="op">};</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">,</span>j<span class="op">,</span>m<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="op">++</span>a<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> a<span class="op">[</span><span class="dv">1</span><span class="op">]++;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> a<span class="op">[</span>i<span class="op">++];</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%d</span><span class="st">, </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> i<span class="op">,</span> j<span class="op">,</span>m<span class="op">);</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Quin serà el resultat?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> foo<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>p<span class="op">)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> j <span class="op">=</span> <span class="dv">22</span><span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> <span class="op">&amp;</span>j<span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> "</span><span class="op">,</span> <span class="op">*</span>p<span class="op">);</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i <span class="op">=</span> <span class="dv">17</span><span class="op">,</span> <span class="op">*</span>p <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    foo<span class="op">(&amp;</span>i<span class="op">);</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> "</span><span class="op">,</span> <span class="op">*</span>p<span class="op">);</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Quina serà la sortida?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> p</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">// sizeof(int) == 2 bytes? </span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">// sizeof(int) == 4 bytes? </span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> p p1<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">92</span><span class="op">},</span> </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span><span class="dv">3</span><span class="op">,</span> <span class="dv">94</span><span class="op">},</span> </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span><span class="dv">5</span><span class="op">,</span> <span class="dv">96</span><span class="op">}</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>p1<span class="op">)</span> <span class="op">/</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>x <span class="op">==</span> <span class="dv">8</span><span class="op">)</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"true</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"false</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Completa el codi següent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">(*</span>ptr<span class="op">)();</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

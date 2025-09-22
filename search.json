@@ -7,7 +7,7 @@
     "text": "Qui soc?\n\n\nCurrículum\n\nEnginyer i Doctor en Informàtica per la UdL.\n\nDocència\n\nProfessor agregat a la UdL des de 2019.\nSistemes Operatius (GTIDIC, GEI).\nAdministració de Sistemes (GTIDIC, GEI).\nDesenvolupament d’Aplicacions per a dispositus mòvils (GTIDIC).\nCloud Compunting (Master in Health Data Science)\nHigh Performance Computing (Màster en Enginyeria Informàtica)\n\n\nRecerca\n\nMembre del grup de recerca Grup de computació distribuïda des de 2012 (Universitat de Lleida).\nMembre del grup de recerca Essence: Data Engineering & Distributed Computing Systems des de 2022 (Universitat de Glasgow).\nComputació distribuïda: Cloud, Edge i Fog Computing.\nCamps d’aplicació: Salut electrònica i Energia.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -18,7 +18,7 @@
     "text": "Qui sou?\nQuè us ha portat fins aquí?\n\n\n\n\nPer conèixer-vos una mica millor, m’agradaria que responguéssiu 4 preguntes de forma breu i concisa, que m’ajudaran a entendre les vostres motivacions i expectatives respecte a aquesta assignatura. Us deixo 5 minuts per respondre-les.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -29,7 +29,7 @@
     "text": "Presentació\n\nBenvinguts a Sistemes Operatius\n\n\n\nchar text[] = \"Aquesta NO és una assignatura\\n\\\n      centrada en la  programació\\n\\\n      PERÒ programarem MOLT!\\n\";\nssize_t bytes = write(1, text, sizeof(text) - 1);\n\ntext=\"Aquesta assignatura NO és un MONÒLEG.\" \necho $text\n\n\nVull sessions interactives, participatives,… pregunteu, interrompeu-me…\n\n\n\n\n\nSi bé aquesta assignatura no se centra exclusivament en l’aprenentatge de la programació, la pràctica de codificació serà fonamental. Un sistema operatiu és, en essència, un programa extremadament complex, i per entendre’n el funcionament, cal aprofundir en el seu codi font.\nPer això, la nostra eina principal serà el llenguatge de programació C, ja que és el llenguatge amb què s’han construït sistemes operatius històrics i de referència com Linux i Unix. A més, per comprendre com el codi d’alt nivell es comunica amb el maquinari, és crucial entendre com es tradueix a codi màquina; aquí és on la comprensió del llenguatge Assembler es torna imprescindible.\nTot i que llenguatges més moderns com Rust o Go s’utilitzen cada vegada més en el desenvolupament de sistemes, el C continua sent el pilar sobre el qual es construeix la major part del nostre món digital.\nFinalment, vull que aquestes sessions siguin realment interactives i participatives. Si us plau, no dubteu a interrompre’m i a plantejar qualsevol pregunta o dubte que tingueu en el moment. La meva intenció no és fer un monòleg, sinó crear un diàleg constructiu i col·laboratiu entre tots.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -40,7 +40,7 @@
     "text": "Coneixement previ (I)\nQuin sistema operatiu utilitzeu/coneixeu?\n\n\n\n\nPer començar, m’agradaria saber quin sistema operatiu utilitzeu o coneixeu. Això ens ajudarà a entendre el nivell de familiaritat que teniu amb diferents sistemes i ens permetrà adaptar millor el contingut del curs a les vostres necessitats. Escaneja el codi QR i introdueix les vostres respostes, podeu respondre més d’una opció si coneixeu diversos sistemes operatius.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -51,7 +51,7 @@
     "text": "Objectius (Globals)\n\nEntendre els Sistemes Operatius: Com estan dissenyats i quins components (o mòduls) els formen.\nConeixer els seus serveis: Quines funcions proporcionen a usuaris i aplicacions.\nAprendre a programar amb ells: Com utilitzar els serveis del sistema operatiu per crear aplicacions de manera eficient.\nAvaluar críticament les seves polítiques: Analitzar com el sistema operatiu gestiona els seus recursos, com la memòria, i comparar diferents mètodes per fer-ho.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -62,7 +62,7 @@
     "text": "Objectius (Específics)\n\nConèixer els sistemes operatius Unix/Linux (en concret Debian).\nInterioritza les bases de programació C per millora les vostres habilitats en altres llenguatges.\nDesenvolupar programari a nivell de sistema en el llenguatge de programació C comprenent al mateix temps com funcionen els Sistemes Operatius basats en Unix.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -73,7 +73,7 @@
     "text": "Temari\n\nIntroducció als Sistemes Operatius.\nEstructura dels Sistemes Operatius.\nGestió i comunicació de processos i threads.\nSincronització i Planificador de tasques.\nInterbloqueig.\nGestió de Memòria.\nScripting.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -84,7 +84,7 @@
     "text": "Metodologia\n\nBasada en Aprenentatge SIGNIFICATIU, GUIAT i ACTIU.\n\n\nSessions teòriques: S’introdueixen continguts teòrics de l’assignatura i als estudiants, i també s’hi discuteixen les implicacions pràctiques.\nSessions pràctiques: sessions autoguiades de laboratori, sessions de live coding o resolució de problemes.\nTreball autònom: els estudiants han d’aplicar els coneixements adquirits a les sessions teòriques i pràctiques per acabar els problemes, laboratoris i projectes proposats. A més, han de realitzar les lectures dels apunts i consultar la bibliografia recomanada.\n\n\nLes sessions teòriques i pràctiques estan combinades en les sessions de 3h de durada.\n\n\nLa idea és que no us dediqueu només a memoritzar conceptes, sinó que connecteu la nova informació amb el que ja sabeu. Tot i que a la pràctica fareu moltes coses per vosaltres mateixos, jo seré aquí per guiar-vos. Us donaré les eines, el suport i les indicacions necessàries per anar avançant.Volem que sigueu protagonistes del vostre procés d’aprenentatge. No us limitareu a escoltar-me, sinó que fareu coses, resoldreu problemes i creareu projectes.\n\nSessions teòriques: Aquí introduirem els conceptes clau i els fonaments teòrics. Però no ens quedarem només amb la teoria; també discutirem com s’apliquen aquests conceptes al món real.\nSessions pràctiques: Farem sessions de laboratori on programareu, farem exercicis de live coding junts per resoldre problemes en directe i practicareu les habilitats que necessiteu.\nTreball autònom: La major part de l’aprenentatge real es farà fora de l’aula. Us demanaré que acabeu els laboratoris, resolgueu els exercicis pendents i treballeu en els projectes. També serà important que reviseu els apunts i, si cal, consulteu la bibliografia recomanada.\n\nLes sessions teòriques i pràctiques estaran combinades. La idea és que no hi hagi una desconnexió entre la teoria i la pràctica. Com tenim sessions de 3 hores, podrem dedicar una part a la teoria i l’altra a la pràctica, tot integrat en una sola experiència d’aprenentatge.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -95,7 +95,7 @@
     "text": "Criteris d’Avaluació\n\n\n\n\n\n\n\n\n\n\n\nAcr.\nActivitat d’avaluació\nPes\nNota mínima\nEn grup\nRecuperable\n\n\n\n\nE1\n1er Parcial\n35%\nNO\nNO\nSI\n\n\nE2\n2on Parcial\n35%\nNO\nNO\nSI\n\n\nP\nPràctiques\n25%\nNO\nSI \\(\\leq 2\\)\nNO\n\n\nPart\nSeguiment i Participació\n5%\nNO\nNO\nNO\n\n\n\n\nAquesta assignatura s’avaluara de forma tradicional mitjançant dos exàmens parcials (E1 i E2) que representen el 70% de la nota final. A més, hi haurà pràctiques que contribuiran amb un 25% a la nota final, i un component de seguiment i participació que valdrà un 5%.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -106,7 +106,7 @@
     "text": "Exàmens\nEls exàmens parcials (E1 i E2) són proves escrites que avaluen els coneixements teòrics i pràctics adquirits durant el curs.\n\nSón proves individuals i presencials.\nEs realitzaran en les dates establertes al calendari acadèmic.\nNo es permet l’ús de cap dispositiu electrònic (telèfons mòbils, ordinadors portàtils o tauletes).\nSi es permet l’ús d’un resum de continguts, que ha de ser un document escrit a mà i no pot excedir una fulla DIN A4 (per davant i per darrere).",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -117,7 +117,7 @@
     "text": "Recuperació\n\nEls parcials són recuperables mitjançant proves escrites addicionals que es realitzaran durant la setmana de recuperació.\nSi un estudiant necessita recuperar un únic parcial (E1 o E2), podrà fer una prova específica per a aquest parcial. La qualificació obtinguda en aquesta recuperació substituirà la nota del parcial corresponent.\nSi un estudiant necessita recuperar ambdós parcials, haurà de realitzar dues proves separades, una per a cada parcial (E1 i E2). Les qualificacions obtingudes en cadascuna d’aquestes proves de recuperació substituiran les notes originals dels parcials respectius.\nÉs important notar que no hi haurà un model d’examen unificat per a la recuperació; cada prova de recuperació se centrarà exclusivament en els continguts del parcial al qual correspon.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -128,7 +128,7 @@
     "text": "Pràctiques\n\nLes pràctiques de l’assignatura impliquen treball fora de l’aula i s’han de lliurar de forma estricta en les dates establertes.\nLa seva avaluació es farà mitjançant rúbriques de correcció, que estaran disponibles per als estudiants amb antelació.\nEl professorat pot entrevistar els estudiants per verificar l’autoria. Si es detecta que una activitat no ha estat realitzada per l’estudiant la seva qualificació serà 0.\nQualsevol entrega fora del termini establert es considerarà no vàlida i es qualificarà amb un 0.\nCadascuna pot tenir una ponderació específica indicada a la descripció de l’activitat.\nAquestes pràctiques no són recuperables.\nTot i ser activitats en grup, cada estudiant pot obtenir una nota diferent en funció de la seva participació i aportacions individuals al grup.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -139,7 +139,7 @@
     "text": "Seguiment i Participació\n\n\n\n\n\n\n\nRúbrica d’Avaluació\n\n\n\n\n\n\n\n\n\n\n\nPunts\nParticipació Presencial\nParticipació en Fòrums\nActivitats Sessió\n\n\n\n\n10\nContribucions excepcionals,enriqueix la discussió.\nLíder en discussions, promou debat.\nQualitat excepcional, supera expectatives.\n\n\n9\nComentaris rellevants, mostra comprensió, escolta activament.\nRespostes significatives.\nAlta qualitat, treball precís.\n\n\n8\nContribucions regulars, interactua amb companys.\nPublicacions rellevants, contribueix constructivament.\nCompleix tots requisits amb precisió.\n\n\n7\nParticipa amb una comprensió bàsica.\nCompleix mínims, contribucions breus.\nQualitat inconsistent però acceptable.\n\n\n5-6\nPoca freqüència, comentaris superficials.\nPublicacions rares, poc profundes.\nAlgunes activitats incompletes.\n\n\n1-4\nNomés participa si se li demana.\nPublicacions irrellevants.\nRarament completa activitats.\n\n\n0\nEvita participar, distret.\nPublicacions fora de tema.\nNo lliura activitats.\n\n\n\n\n\n\n\n\nL’assistència passiva no es puntua.\n\n\nAquest component d’avaluació està dissenyat per fomentar la participació activa i el compromís amb l’assignatura. La participació no es limita només a l’assistència a classe, sinó que també inclou la contribució en discussions, fòrums en línia i activitats relacionades amb les sessions. Tota participació ha de ser rellevant i constructiva per ser valorada positivament. En aquesta rúbrica, es detallen els criteris específics que s’utilitzaran per avaluar la participació dels estudiants en diferents àmbits.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -150,7 +150,7 @@
     "text": "Bonus 1\n\n\n\nObjectiu: Fomentar la reflexió i l’autoavaluació dels continguts treballats a classe.\nMetodologia: Cada setmana, els estudiants han de fer un commit al seu repositori d’apunts amb les notes de les sessions de teoria i pràctiques.\nAvaluació: Es valorarà la qualitat de les notes, la seva coherència i la seva relació amb els continguts treballats, així com les reflexions i opinions personals incloses.\nPer participar cal crear un repositori a Github (públic) i fer-me arribar l’enllaç.\n\n\n\n\nExemple de Notes\n## Setmana X\n\n# Resum teòric\n\n# Exemples pràctics\n\n# Dubtes i preguntes\n\n# Reflexions personals\n\n\n\n\n\n\n\nNo es permet cap altre forma\n\n\nLes notes han de ser escrites en format Markdown i mantingudes en un repositori Git i Github.\n\n\n\n\n\n\nAquest bonus està dissenyat per incentivar els estudiants a mantenir un registre organitzat i reflexiu dels continguts treballats a classe. En fer un commit setmanal amb les seves notes, els estudiants no només reforcen el seu aprenentatge, sinó que també desenvolupen habilitats de documentació i autoavaluació. La qualitat de les notes serà clau en l’avaluació, ja que es valorarà no només la precisió dels continguts, sinó també la capacitat de reflexionar sobre el que s’ha après i com s’ha aplicat aquest coneixement. Es tracta d’una oportinitat per als estudiants per crear el seu diari d’aprenentatge al llarg del curs. Per participar, els estudiants han de crear un repositori públic a Github i compartir l’enllaç amb el professorat.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -161,7 +161,7 @@
     "text": "Bonus 2\n\n\n\nEls materials són Open Source.\nQualsevol estudiant pot detectar errors, millorar els materials o afegir continguts nous.\nS’avaluarà la quantitat i qualitat.\n\n\n\n\n\nUn altre bonus que oferim és la possibilitat de contribuir als materials de l’assignatura seguint la metodologia de Open Source. Això significa que qualsevol estudiant pot detectar errors, suggerir millores o afegir continguts nous als materials proporcionats. Per participar, els estudiants poden fer un fork del repositori de l’assignatura, treballar en una branca separada i després obrir una pull request amb les seves propostes de canvi. La quantitat i qualitat de les contribucions seran avaluades, oferint així una oportunitat per als estudiants de participar activament en la millora dels recursos educatius.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -172,7 +172,7 @@
     "text": "Gestió del curs\n\nEs demana que els estudiants arribin puntuals a les sessions. L’entrada tardana pot interrompre la dinàmica de la classe i el treball dels companys.\nEs demana que els estudiants respectin les normes de convivència i respecte mutu durant les sessions de classe. Això inclou evitar interrupcions innecessàries, escoltar activament als companys i al professor, i mantenir un ambient de treball positiu i constructiu.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -183,7 +183,7 @@
     "text": "Comunicació amb el professorat\n\nIntenteu comunicar-vos a través del correu electrònic i no per l’eina del campus virtual per assegurar una resposta més ràpida.\nLes sessions de tutoria es realitzaran de manera presencial o virtual, segons les necessitats dels estudiants. És important que els estudiants sol·licitin cita prèvia per a les tutories utilitzant el correu electrònic jordi.mateo@udl.cat indicant el motiu de la consulta i la disponibilitat horària i afegint l’assumpte [SO]: Sol·licitud de Tutoria.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -194,7 +194,7 @@
     "text": "Treball individual\n\nCada estudiant és responsable de la seva pròpia feina i de com gestiona el seu temps.\nL’assistència a classe no és obligatòria.\nCada alumne ha de presentar evidències pròpies del treball realitzat, encara que es col·labori en grup.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -205,7 +205,7 @@
     "text": "Ús de la IAG\n\nPots utilitzar eines d’IAG per generar idees, entendre conceptes complexos o esbossar l’estructura inicial del teu codi o projecte. No obstant això, la implementació i la versió final han de ser sempre de la teva autoria.\nEstà estrictament prohibit presentar codi o solucions generades directament per una IAG com a treball propi (és a dir, mitjançant un simple copiar i enganxar).\nSi incorpores material assistit per una IAG, has de declarar-ho explícitament. Això implica identificar clarament les seccions generades per IAG i proporcionar el prompt exacte utilitzat per crear-les.\n\n\nL’incompliment d’aquestes directrius es considerarà una violació de la integritat acadèmica.\n\n\nQualificació de zero en la tasca.\nConseqüències disciplinàries que estableix la Normativa de Convivència de la UdL per frau acadèmic.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -216,7 +216,7 @@
     "text": "Eines necessàries\n\nOrdinador portàtil amb connexió a Internet.\n\nEs recomana portar el vostre propi ordinador per cursar l’assignatura.\nSi no disposeu d’ordinador, podreu utilitzar els ordinadors de la classe durant les sessions de laboratori.\n\nDistribucions Linux (Debian )\n\nÉs obligatori utilitzar la distribució Debian per a les pràctiques de laboratori.\n\nSoftware de virtualització (VMWare)\n\nEs recomana utilitzar VMWare, però podeu optar per altres opcions de virtualització. Heu de ser capaços d’adaptar el material al vostre programari de virtualització.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -227,7 +227,7 @@
     "text": "Programari necessari\nLlenguatges de programació i compiladors\n\nC\nGCC\n\nEines de control de versions\n\nGit\nGithub\n\nIDE\n\nVisual Studio (Recomanat)\nVi, Vim, NeoVim, Emacs, CLion, Eclipse …",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -238,7 +238,7 @@
     "text": "Materials i Recursos\n\nApunts de l’assignatura i materials proporcionats pel professor.\nDocumentació oficial de les eines i tecnologies utilitzades.\nFòrums tècnics a la xarxa com Stack Overflow, Reddit, etc.\nLlibres de referència en Sistemes Operatius:\n\nOperating System Concepts; Abraham Silberschatz\nModern Operating Systems; Andrew S. Tanenbaum",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -249,7 +249,7 @@
     "text": "Bones pràctiques\n\nDRY (Do not repeat yourself).\nCodi fàcil de reutilitzar.\nTesteja aviat, testeja sovint, testeja de forma automàtica.\nNo assumeixis res, prova-ho.\nUtilitza assertions per prevenir l’impossible.\nUtilitza excepcions per problemes excepcionals.\nEstima l’ordre de complexitat dels teus algorismes.\nUtilitza patrons de disseny.\nUtilitza eines de control de versions.\n\n\nDurant el curs, us animaré a seguir aquestes bones pràctiques de programació per assegurar que el vostre codi sigui net, eficient i fàcil de mantenir. Aquestes pràctiques no només us ajudaran a desenvolupar millor programari, sinó que també us prepararan per treballar en equips de desenvolupament professionals on aquestes normes són estàndard. Es important que el vostre codi sigui fàcil de llegir i entendre per altres persones, inclòs el vostre jo futur!",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -260,7 +260,7 @@
     "text": "Bibliografia recomanada\n(per la vida… no pel curs)\n\n\nThe Pragmatic Programmer, Andrew Hunt David Thomas\n\n\n\n\nUs aconsello molt aquests dos llibres. Són llibres que no només us ajudaran en aquest curs, sinó que també us seran útils al llarg de tota la vostra carrera com a desenvolupadors de programari. Aquests llibres ofereixen consells pràctics i principis fonamentals que us ajudaran a escriure codi utiltizant bones pràctiques. Són dos llibres que tot programador hauria de llegir almenys un cop a la vida.\n\nClean Code, (A Handbook of Agile Software Craftsmanship),Robert C. Martin",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -271,7 +271,7 @@
     "text": "Societat actual\n\n\nQuè tenen en comú?\n\nCotxe\nRellotge\nPortàtil\nRentadora\nNevera\nTelevisió\n…\n\nVivim en un gran sistema paral·lel i distribuït!\n\n\n\n\n\n\nPer començar, m’agradaria que reflexionéssiu sobre què tenen en comú tots aquests dispositius que fem servir en el nostre dia a dia. Des de cotxes fins a rellotges, portàtils, tauletes, rentadores, neveres i televisors, tots aquests aparells semblen molt diferents entre si. Però si mirem més a fons, veurem que tots compartixen dos característiques fonamentals: tots són dispositius electrònics que interactuen amb nosaltres i tots estan connectats a internet. Aquesta connexió a internet és el que els permet comunicar-se entre si i amb nosaltres. Això ens porta a la següent reflexió: vivim en un món on tot està interconnectat, podem dir que vivim en un món distribuït on tots aquests dispositius treballen junts per fer-nos la vida més fàcil i eficient.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -282,7 +282,7 @@
     "text": "Món connectat\n\nAvui en dia tothom parla de IoT, BigData, Cloud, AI, Blockchain, Metavers\n\n\n\n\nMicroprocessador a tot arreu.\nXarxes i Connectivitat.\nServeis escalables, confiables i segurs.\nGran volum de dades, Sensor i Digitalització.\n\n\n\n\n\nCasa connectada (Font: Extret de SemanticScholar)\n\n\n\n\nLa barrera que separa el món físic i el món virtual cada cop es mes estreta.\n\n\nEn la societat actual es parla constatant de noves tecnologies disruptives com IoT, BigData, Cloud, AI, Blockchain, Metavers,… Per tant, com a societat tenim la capacitat d’interactuar amb el nostre entorn i ambient. Això implica que tenim microprocessadors a tot arreu, disposem de xarxes i connectivitat que ens permeten estar sempre connectats, podem accedir a serveis escalables, confiables i segurs, i gestionem un gran volum de dades gràcies a la digitalització i els sensors.\nAra, pensem un moment en el nostre dia a dia: - Quants teniu un cotxe? Quants processadors creieu que té un cotxe? - Més de 50! - Qui utilitza un smartphone? Quants processadors/cores té el vostre smartphone? - El meu un Poco X4 GT té un MediaTek Dimensity 8100 amb 8 nuclis.\nLa capacitat de computació està present a tot arreu, i la majoria dels dispositius que utilitzem diàriament estan equipats amb microprocessadors que funcionen de manera paral·lela i interactuen entre ells. Per tant, el món físic i el món virtual estan cada cop més interconnectats, i la barrera que els separa es fa cada cop més estreta.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -293,7 +293,7 @@
     "text": "Què tenen en comú?\n\nUna interfície (Sistema Operatiu) capaç d’integrar una gran diversitat de maquinari i programari i comunicar-se a través de la xarxa.\n\n\n\n\n\nPerò, que tenen en comú aquests progressos tecnològics? Requereixen un cervell que permeti a tots els diferents aparells i màquines interactua amb nosaltres, tant per generar, processar o guardar. Tots els dispositius i servidors requereixen un sistema operatiu que permeti maquinari i programari comunicar-se.\nEn aquest curs tractarem els cervells d’aquests sistemes i analitzarem de quines estructures podem dotar aquests sistemes perquè funcionin correctament i permeti que maquinari tan heterogeni sigui capaç de fer funcionar infinitat de programes i serveis per gestionar eficientment les dades i la informació del nostre entorn.\nPer tant, a la pregunta inicial què tenen en comú? podem afirmar:\n\nTenen en comú que tots són sistemes informàtics.\nTots tenen un sistema operatiu.\nTots es communiquen per internet amb altres sistemes.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -304,7 +304,7 @@
     "text": "Llei de Bell\n\n\n\n\nEs pot observar com la mida i les classes de computadors han evolucionat cada 10 anys. Venim de la dècada dels anys 60 i 70, on es van desenvolupar els primers microprocessadors i la informàtica personal estava en les seves primeres etapes. En aquesta època, es feien servir pocs processadors que eren compartits per moltes persones. Els avanços en la capacitat de processament eren més lents, i la tecnologia era més limitada. Ara, en l’actualitat, cada persona fa servir molts processadors de manera habitual. Això es deu a l’augment de la potència de processament dels dispositius que utilitzem, com els telèfons intel·ligents i les tauletes, així com als ordinadors personals i altres tecnologies. Venim de pocs processadors fets servir per a moltes persones (anys 60-70) i ara cada persona fa servir molts processadors. Com ha canviat la tendència… on ens portarà el futur?",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -315,7 +315,7 @@
     "text": "Llei de Moore\n\n\n\n\nUs recordeu la llei de Moore? Aquesta llei, formulada per Gordon Moore el 1965, predia que el nombre de transistors en un microprocessador es duplicaria aproximadament cada dos anys, cosa que implicava un augment exponencial de la potència de càlcul dels ordinadors. Aquesta predicció s’ha mantingut sorprenentment precisa durant dècades, impulsant avanços tecnològics i transformant la manera com vivim i treballem. No obstant això, a mesura que ens acostem als límits físics de la miniaturització dels transistors, hi ha un debat continu sobre si aquesta tendència continuarà en el futur o si necessitarem noves tecnologies per mantenir el ritme d’innovació.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -326,7 +326,7 @@
     "text": "Què és un sistema informàtic?\nUn sistema informàtic és la interconnexió d’elements de maquinari per exemple d’1 o més CPU, memòria i components E/S … Amb la finalitat d’executar programes i accions (en sèrie o de forma concurrent) per 1 o múltiples usuaris.\n\n\n\n\n\n\n\nSi us recordeu d’Estructura de Computadors, un sistema informàtic és la interconnexió d’elements de maquinari com ara una o més CPU, memòria i components d’entrada/sortida. Tenim els registres, la memòria cau, la memòria principal, els dispositius d’entrada/sortida i els canals de comunicació que permeten que tots aquests components treballin junts per executar programes i accions.\nCom heu vist el mon real actua com un gran sistema paral·lel. Per tant, tots els sistemes de temps real son inherentment concurrents i lògicament els nostres sisteme informàtics també han de poder actuar en paral·lel. En la figura, podeu observar com una tasca es descomposa en diferents parts per poder aprofitar els diferents processadors i nuclis de cada processador.L’execució concurrent recull un conjunt de tècniques informàtiques usades per representar i gestionar el paral·lelisme i les eines de sincronització i comunicació entre programes.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -337,7 +337,7 @@
     "text": "Gestió d’un sistema informàtic (I)\n\nImagineu que sou un sistema informàtic i us envien l’ordre de llegir un fitxer\n\n\nQuin és el procediment per fer aquesta acció?\n\nEngegar motor del disc.\nBuscar posició al disc a llegir (pista, cara, sector).\nLlegir.\nApagar el motor.\n\nQuantes vegades com a usuaris d’un sistema informàtic llegiu un fitxer?\n\n\nMoltes vegades…!\n\n\nCom a usuaris d’un sistema informàtic llegim fitxers moltes vegades al dia. Per exemple, quan obrim un document de text, una imatge, un vídeo o qualsevol altre tipus d’arxiu, el sistema operatiu ha de llegir aquest fitxer des del disc dur o una altra unitat d’emmagatzematge. Però, us heu preguntat alguna vegada quin és el procediment que segueix el sistema informàtic per llegir aquest fitxer? Hauriam d’engegar el motor del disc, buscar la posició correcta al disc on es troba el fitxer, llegir les dades i finalment apagar el motor. Té sentit que un usuari cada cop que llegeix un fitxer hagi de tenir en compte aquest procediment i realitzar-lo de forma rutinària? Necessitem un programari que ens permeti efectuar accions rutinàries de forma automàtica i transparent a l’usuari. Si no els sistemes informàtics no serien usables.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -348,7 +348,7 @@
     "text": "Complexitat sistemes informàtics (I)\n\nCada peça de hardware és diferent. \\(\\Rightarrow\\) La complexitat per gestionar els recursos és molt elevada.\n\n\nArquitectures diferents de processadors i també de generacions (x86, ARM, RISC-V, MIPS, PowerPC,…).\nDiferents tipus de memòries (RAM DDR3, DDR4, DDR5, NAND,…).\nDiferents tipus de discs (HDD, SSD, NVM…).\nDiferents dispositius entrada/sortida.\nDiferents entorns de xarxa.\n\n\n… entre moltes altres …\n\n\nUs imagineu haver d’escriure software per cada permutació d’elements diferents del sistema informàtic? Això seria un desastre… Quantes permutacions de diferents components podem tenir avui en dia? OMG! Necessitem alguna cosa que ens permeti superar aquest obstacle de forma intel·ligent i ens permeti desenvolupar software de forma independent al hardware.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -359,7 +359,7 @@
     "text": "Complexitat sistemes informàtics (III)\nTots els programes necessiten accedir a tot el hardware?\n\nPer suposat que no! Això podria causar problemes de seguretat com:\n\nPèrdua de confidencialitat: Accés no autoritzat a dades sensibles.\nAccés a informació restringida: Usuaris no autoritzats podrien veure dades privades.\nDenegació de serveis: Un programa podria bloquejar l’accés a recursos per a altres programes.\n\n\n\nQuè pot passar si un programa pot accedir a tota la RAM?\n\n\nUn programa de l’usuari Jordi amb accés a tota la RAM podria veure les dades del programa de l’usuari Pere.\nSi el programa falla, podria afectar tot el sistema i requerir un reinici.\n\n\nNo, clar que no! Seguretat: - Si un programa controla tot el sistema, els altres no poden accedir-hi (Denegació de serveis). - Diferents usuaris poden tenir diferents dades; si un programa pot accedir a tot, podria veure informació restringida. - No necessitem accés a tot el hardware per realitzar les nostres tasques. - Un usuari malintencionat podria danyar el sistema amb un procés defectuós.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -370,7 +370,7 @@
     "text": "Complexitat sistemes informàtics (IV)\nSi un sistema informàtic no està ben dissenyat, un programa mal escrit pot fer fallar tot el sistema, per exemple:\nBucle infinit\nint main(){\n    while(1);\n}\nFork bomb\nint main(){\n    while(1);\n    fork();\n}\n\nUn programa o procés pot fer fallar tot el sistema si no està ben dissenyat. Per tant, és important tenir en compte aquelles situacions per evitar-les. En el primer exemple, tenim un bucle infinit. Aquesta situació en els sistemes linux actuals no és un problema, ja que el sistema operatiu pot gestionar aquest tipus de situacions. No obstant això, en sistemes més antics, aquest tipus de bucles podrien fer que el sistema no respongués. En el segon exemple, tenim un bucle infinit i una crida a la funció fork(). Aquesta funció crea un nou procés que és una còpia exacta del procés pare. Això podria fer que el sistema es saturés amb molts processos i no pogués respondre. Aquesta situació podria requerir un reinici del sistema per recuperar-lo i es un problema en els sistemes actuals. Fixeu-vos com un simple programa pot fer fallar tot el sistema.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -381,7 +381,7 @@
     "text": "Què és un sistema operatiu?\nUn sistema operatiu (SO) és una capa de software que permet la comunicació i la gestió del maquinari habilitant als usuaris l’execució de programes. El SO actua d’intermediari (interfície) entre els usuaris i el maquinari.\n\n\nUn sistema operatiu (SO) és una capa de software que permet la comunicació i la gestió del maquinari habilitant als usuaris l’execució de programes. El SO actua d’intermediari (interfície) entre els usuaris i el maquinari.\nPer tant, és un programa que controla el maquinari i permet als usuaris interactuar amb ell. Aquesta interacció pot ser a través d’una interfície gràfica d’usuari (GUI) o una interfície de línia de comandes (CLI). També, gestiona els recursos del sistema, com la memòria, el disc dur i els dispositius d’entrada/sortida. A més, el SO proporciona funcionalitats com la gestió de fitxers, la seguretat i la xarxa.\nPodem dir que el SO és el cervell del sistema informàtic,ja que controla tots els components i permet als usuaris interactuar amb ells. Sense un SO, els usuaris no podrien utilitzar el maquinari del sistema de manera eficient i segura.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -392,7 +392,7 @@
     "text": "Què volen els programadors?\n\n\nUna plataforma…\n\nper executar aplicacions.\ntransparent per evitar la complexitat del hardware.\neficient per utilitzar els recursos de forma òptima.\nportable per utilitzar-ho indepedentment del hardware.\n\n\n\n\n\nDes del punt de vista dels programadors, el que volen és una plataforma per executar les seves aplicacions. Aquesta plataforma ha de ser transparent per evitar la complexitat del hardware, eficient per utilitzar els recursos de forma òptima i portable per utilitzar-ho indepedentment del hardware.El kernel és la capa intermèdia que connecta el programari de l’usuari amb el maquinari físic de l’ordinador. A la imatge es pot veure com el kernel actua com un pont entre l’aplicació i el maquinari. Quan un programador escriu una aplicació, no necessita preocupar-se per com funciona el maquinari a nivell de circuits. En canvi, pot utilitzar les funcions proporcionades pel kernel per interactuar amb el maquinari de manera més senzilla i eficient. Els usuaris finals també es beneficien d’aquesta abstracció, ja que poden utilitzar aplicacions sense necessitat de conèixer els detalls tècnics del maquinari. El kernel permet que el mateix codi pugui funcionar en diferents ordinadors amb maquinari diferent. Un programador pot escriure una aplicació (com un navegador web) una sola vegada, i el kernel s’encarregarà de traduir les seves instruccions per al maquinari específic de cada màquina. També gestiona de manera eficient els recursos del sistema, com el temps de processador, l’ús de la memòria o l’accés al disc.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -403,7 +403,7 @@
     "text": "Què ofereix el sistema operatiu?\n\n\nServeis\n\nControlar/Gestionar usuaris i aplicacions.\nGestionar la Memòria.\nSistema de fitxers.\nPlanificadors.\nEines de xarxa.\n\n\nGaranties\n\nSeguretat.\nTransparència.\nEficiència.\nPortabilitat.\nEstabilitat al llarg del temps.\n\n\n\n\n\n\nObserveu que el kernel ens ofereix una interfície d’usuari amb serveis com el sistema de fitxers, la gestió de la memòria, la planificació de processos i les eines de xarxa. I per sota d’aquestes capes, tenim els drivers que ens permeten interactuar amb el maquinari físic de l’ordinador.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -414,7 +414,7 @@
     "text": "Com s’organitza el sistema operatiu?\n\n\n\n\n\n\nMaquina virtual\nÉs la visió que té l’usuari del sistema operatiu durant una sessió de treball.\n\nDualitat\nEl sistema operatiu divideix el programari que té tots els privilegis(kernel) del programari que no pot accedir a tots els recursos (programes, llibreries, intèrpret de comandes,…).\n\n\n\nAquest concepte descriu la visió que tenim nosaltres, els usuaris, del sistema. Quan treballem amb un ordinador, veiem una interfície amigable: icones, finestres, aplicacions. Aquesta és la màquina virtual que el sistema operatiu ens crea. És una capa abstracta que simplifica les tasques complexes del maquinari i ens permet centrar-nos en el nostre treball. Penseu-hi com una il·lusió: l’OS ens amaga la complexitat del maquinari i ens mostra una versió simplificada, fàcil de gestionar.\nSota aquesta interfície amigable hi ha un principi de seguretat fonamental. El sistema operatiu divideix el programari en dos grans grups per qüestions de seguretat i estabilitat. El nucli del sistema operatiu, amb accés total al maquinari, i és responsable de la gestió de recursos. Penseu-hi com el cervell de l’ordinador, que pren totes les decisions importants. La resta de programari, com les aplicacions que utilitzem diàriament, té accés limitat als recursos del sistema. Durant una sessió de treball, el sistema operatiu canvia entre aquests dos modes segons sigui necessari.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -425,7 +425,7 @@
     "text": "Què és una Màquina Virtual?\nLa virtualització presentar una visió abstracta dels recursos del sistema. Diversos processos creuen (tenen l’il·lusió) de disposar sempre d’un conjunt de recursos (màquinaria).\n\nSimplicitat Il·lusió de propietat de recursos\nAïllament Els bugs es donen en un entorn virtual i no físic.\nProtecció Els processos no es poden fer mal entre ells.\nPortabilitat Podem executar a totes les plataformes.\n\n\nImagineu-vos que organitzem una LAN-party amb assistents, però només hi ha 1 pizza per alimentar-los. Com podem mostrar a cada un el seu propi tros de pizza i mantenir-los compromesos amb el nostre esdeveniment. Fàcil, creem 1 pizza virtual basada en la pizza real i donem a cada encarregat un tros de pizza virtual. Però, aquí ve un problema si tots els assistents mengen la pizza alhora, no funcionarà, alguns participants notarien el truc. Tanmateix, si programem els esdeveniments perquè molts participants s’ocupin de les activitats i no mengin la pizza, els organitzadors poden intercanviar en temps real la pizza real i la virtual a les taules on els participants descansen, perquè són els únics candidats a menjar i descobrir el truc, així que Si mengen, la pizza ha de ser real.Java té un sandbox que permet utilitzar el Java independentment d’on executem.VirtualBox i VMWare ens permeten executar sistemes operatius dins de sistemes operatius. Tenim un sistema operatiu amfitrió (màquina física) i un o més sistemes operatius virtuals (hostes).També és possible virtualitzar sobre el hardware sense la necessitat d’un sistema operatiu (amfitrió).També tenim virtualització per contenidors (Docker).",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -436,7 +436,7 @@
     "text": "Models de Virtualització d’alt nivell\n\n\n\nVirtualització Nativa: Hipervisor s’executa directament sobre el maquinari físic sense cap sistema operatiu intermedi. Exemples d’aquesta tecnologia inclouen VMware ESXi o Microsoft Hyper-V. Això ofereix un rendiment molt elevat, ja que no hi ha cap capa addicional entre el maquinari i l’hipervisor, ideal per a entorns de producció.\nVirtualització Allotjada: Hipervisor s’executa sobre un sistema operatiu ja existent. Per exemple, en KVM, s’utilitza Linux com a sistema operatiu base, i sobre aquest es creen les màquines virtuals.\nParavirtualització: El sistema operatiu convidat sap que està sent virtualitzat i coopera amb l’hipervisor per millorar el rendiment. Un exemple destacat és Xen, que és molt utilitzat en entorns cloud per la seva eficiència.\nVirtualització Assistida per Hardware: Aquest model aprofita les capacitats del processador per accelerar el procés de virtualització. Processadors moderns com els d’Intel (VT-x) o AMD (AMD-V) ofereixen suport per a aquest tipus de virtualització (VMware o Hyper-V).",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -447,7 +447,7 @@
     "text": "Què és la Memòria Virtual?\n\nLa memòria virtual permet que cada procés tingui la il·lusió que té accés exclusiu a l’espai complet d’adreces de memòria del processador.\nEn realitat els processos utilitzen diferents regions de la memòria de l’ordinador, amb algunes regions traslladades al disc si no hi ha prou memòria per a tothom.\n\n\nLa unitat de gestió de memòria (MMU) d’un processador, que tradueix les adreces virtuals utilitzades pel programa en adreces físiques que representen ubicacions de memòria reals.\n\n\nUn exemple de virtualització és la memòria virtual. La memòria virtual és una tècnica que permet als sistemes operatius utilitzar la memòria de manera més eficient i segura. Aquesta tècnica crea una il·lusió per als processos que els fa creure que tenen accés exclusiu a l’espai complet d’adreces de memòria del processador. En realitat, els processos utilitzen diferents regions de la memòria de l’ordinador, amb algunes regions traslladades al disc si no hi ha prou memòria per a tothom. Aquesta tècnica permet que els processos s’executin de manera aïllada, evitant que un procés pugui accedir a la memòria d’un altre procés. Això és important per garantir la seguretat i la estabilitat del sistema. La unitat de gestió de memòria (MMU) d’un processador és la responsable de traduir les adreces virtuals utilitzades pel programa en adreces físiques que representen ubicacions de memòria reals. Aquesta traducció es fa mitjançant taules de pàgines que mapejen les adreces virtuals a les adreces físiques. Aquest procés l’estudiarem més endavant en detall.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -458,7 +458,7 @@
     "text": "Quins són els rols SO? (I)\nIl·lusionista\nOfereix una interfície simple i fàcil d’utilitzar per als recursos físics d’una màquina o sistema, ocultant la complexitat tècnica.\n\n\n\n\n\n\n\nExemple\n\n\nPermet als usuaris utilitzar una impressora (hardware) sense conèixer els detalls tècnics d’aquesta impresora, com la interfície de comunicació, els controladors o els protocols de comunicació, disposem d’una funció (imprimir) que ens permet enviar un document a la impressora.\n\n\n\n\n\nEl sistema operatiu actua com un il·lusionista que ens ofereix una interfície simple i fàcil d’utilitzar per als recursos físics d’una màquina o sistema, ocultant la complexitat tècnica. Per exemple, quan utilitzem una impressora, no necessitem conèixer els detalls tècnics d’aquesta impressora, com la interfície de comunicació, els controladors o els protocols de comunicació. En canvi, podem utilitzar una funció simple com “imprimir” que ens permet enviar un document a la impressora sense preocupar-nos pels detalls tècnics. Això fa que l’ús de la tecnologia sigui més accessible i fàcil per als usuaris.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -469,7 +469,7 @@
     "text": "Quins són els rols SO? (II)\nIl·lusionista\nProporciona una abstracció que permet a una aplicació tenir ús exclusiu dels recursos quan sigui necessari, sense interferències d’altres aplicacions.\n\n\n\n\n\n\n\nExemple\n\n\nPermet utilitzar un programa de videoconferència que utilitza la càmera i el micròfon i ens garantitza que cap altre programa pugui utiltizar-los al mateix temps.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -480,7 +480,7 @@
     "text": "Quins són els rols SO? (III)\nIl·lusionista\nOferir una il·lusió d’infinitat per als recursos de maquinari, assegurant que les aplicacions puguin continuar funcionant sense problemes.\n\n\n\n\n\n\n\nExemple\n\n\n\nPermet a un usuari tenir múltiples aplicacions obertes alhora, tot i que només una estigui en primer pla.\n\nCrea una il·lusió on cada procés creu que és propietari dels recursos hardware.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -491,7 +491,7 @@
     "text": "Quins són els rols SO? (V)\nÀrbitre\nResponsable de distribuir els recursos disponibles entre usuaris i aplicacions de manera eficient i justa.\n\n\n\n\n\n\n\nExemple\n\n\nUn sistema amb múltiples usuaris, el temps de processador s’ha de repartir de manera equitativa entre tots els usuaris que executen aplicacions.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -502,7 +502,7 @@
     "text": "Quins són els rols SO? (VI)\nÀrbitre\nGaranteix la segregació i la protecció d’usuaris i aplicacions.\n\n\n\n\n\n\n\nExemple\n\n\nImpedint que una aplicació bloquegi o afecti el funcionament d’altres aplicacions.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -513,7 +513,7 @@
     "text": "Quins són els rols SO? (VII)\nPega\nProporciona un conjunt de serveis i funcionalitats comunes que poden ser compartits i reutilitzats per diverses parts d’un sistema.\n\nCompartició: Simplifica \\(\\Rightarrow\\) s’assumeixen sempre les mateixes primitives bàsiques.\nReutilització: Evita torna a implementar funcionalitats comunes. Permet evolucionar de forma independent els components.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -524,7 +524,7 @@
     "text": "El Sistema de Fitxers\nUn exemple de la funció de pega del sistema operatiu és el sistema de fitxers:\n\nProporciona una interfície estàndard per a la creació, lectura, escriptura i eliminació de fitxers de format transparent (read, write, open, close, …)\nEns permet implementar libc que proporciona funcions d’entrada/sortida d’alt nivell (fopen, fread, fwrite, fclose, …)",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -535,7 +535,7 @@
     "text": "Anàlisi: Què fa aquest programa? (I)\n\n\n\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint main(int argc, \n    char *argv[])\n{\n  while(1)\n  {\n    printf(\"%s\\n\", argv[1]);\n  }\n  return 0\n}\n\n./prog H\n\nH  H  …\n\n\n./prog H & ./prog O\n???",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -546,7 +546,7 @@
     "text": "Anàlisi: Què fa aquest programa? (II)\n\n\nEn primer lloc, el programa c s’ha de compilar amb un compilador i enllaçar amb les llibreries del sistema que ens proporciona el sistema operatiu.\nUn cop tenim un executable, si l’executem el sistema operatiu crearà una estructura anomenada procés on es guardarà un identificador, un espai de memòria,… aquesta estructura és una de les abstraccions essencials per la funció d’il·lusionisme.\nFixeu-vos que el mateix programa pot ser executat dos cops i el sistema operatiu generarà 2 processos diferents. Amb identificadors diferents i espai de memoria diferent.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -557,7 +557,7 @@
     "text": "Anàlisi: Què fa aquest programa? (III)\n\n\nPer tant, el sistema operatiu utilitzant el planificador assignarà el processador (assumimim que només tenim 1 core) a 1 procés durant un temps determinat i anirà intercanviant (canvi de context) aquest procés cada X temps, d’aquesta manera cada procés creu tenir tots els recursos per ells (il·lusió).",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -568,7 +568,7 @@
     "text": "Anàlisi: Què fa aquest programa? (IV)\n\n\nPer fer-ho, el sistema operatiu guardà una foto de l’estat actual del procés a memòria i la recuperarà més endavant quan li torni a donar dret d’execució.\nNoteu també que s’ha creat en mèmoria una subregió independent per cada procés. Quan un procés intenta accedir una zona de memòria forà de la seva subregió o inexistent es dona el famós SEGMENTATION FAULT.\nCom en l’últim exemple on el procés intenta accedir a una zona de memòria que no li pertany. Això és una de les funcions de protecció que ens ofereix el sistema operatiu. Al llarg del curs veurem amb més detall com funcionen tots aquests mecanismes.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -579,7 +579,7 @@
     "text": "Anàlisi: Què fa aquest programa? (V)\n\n\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint main(int argc, \n    char *argv[])\n{\n  while(1)\n  {\n    printf(\"%s\\n\", argv[1]);\n  }\n  return 0\n}\n\nDepenen de la prioritat dels procesesos A o B poden tenir més temps de CPU que l’altre i sortir els missatges de forma desordenada.\n./prog H & ./prog O\n\n\n\n\nH  H  H  …\n\nH  O  H  …\n\nO  O  H  …",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -590,7 +590,7 @@
     "text": "Anàlisi: Què fa aquest programa? (VI)\n\n\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint main(int argc, \n    char *argv[])\n{\n  while(1)\n  {\n    printf(\"%s\\n\", argv[1]);\n  }\n  return 0\n}\n\n./prog & ; ./prog O\n?????",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -601,7 +601,7 @@
     "text": "Anàlisi: Què fa aquest programa? (VII)\n\n\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint main(int argc, \nchar *argv[])\n{\n  while(1)\n  {\n    printf(\"%s\\n\", argv[1]);\n  }\n  return 0\n}\n\n./prog & ; ./prog O\nSegmentation Fault  O  O  …",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -612,7 +612,7 @@
     "text": "Anàlisi: Què fa aquest programa? (VIII)\n\n\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n#include &lt;unistd.h&gt;\n\nint main(int argc, char *argv[])\n{\n  int *p = malloc(sizeof(int));\n  printf(\"p: %p\\n\", p);\n  int i = 1;\n  while (1) {\n    *p = i;\n    printf(\"(%d) p: %d\\n\", getpid(), *p);\n    i++;\n  }\n  free(p);\n  return 0;\n}\n\n./prog1\n\n(611) p: 0x5570014a02a0\n(611) p: 1\n(611) p: 2\n(611) p: 3\n(611) p: 4\n\n\n./prog1 & ./prog1\n????",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -623,7 +623,7 @@
     "text": "Anàlisi: Què fa aquest programa? (IX)\n\n\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n#include &lt;unistd.h&gt;\n\nint main(int argc, char *argv[])\n{\n  int *p = malloc(sizeof(int));\n  printf(\"p: %p\\n\", p);\n  int i = 1;\n  while (1) {\n    *p = i;\n    printf(\"(%d) p: %d\\n\", getpid(), *p);\n    i++;\n  }\n  free(p);\n  return 0;\n}\n\nAquest programa crea un procés que reserva memòria dinàmica per a un enter i imprimeix l’adreça de memòria i el valor de l’enter en un bucle infinit. Si executem aquest programa dues vegades en paral·lel, cada procés tindrà la seva pròpia còpia de la variable p i, per tant, les adreces de memòria seran diferents. Això és gràcies a la memòria virtual que ens proporciona el sistema operatiu, que aïlla els processos entre si i els permet utilitzar les mateixes adreces de memòria sense interferir-se. El %p en la funció printf s’utilitza per imprimir l’adreça de memòria en format hexadecimal veure més informació sobre els especificadors de format en C a printf.\n\n./prog1 & ./prog1\n(611) p: 0x5570014a02a0\n(612) p: 0x5570014a02a0\n(611) p: 1\n(612) p: 1\n(611) p: 2\n(612) p: 2\n\n\n\n\n\n\n\nExplicació\n\n\nLes adreçes virtuals protegeixen els processosos entre ells i permeten que tots dos processos puguin fer servir la mateixa adreça sense afectar-se.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -634,7 +634,7 @@
     "text": "Reptes en el disseny dels SO (I)\n\nComplexitat de la programació distribuïda (concurrent i paral·lela).\nComplexitat pel context (mòbil, IoT, servidors, centres de dades, …).\nComplexitat per la gran varietat d’elements de maquinari (heterogeneïtat).\nComplexitat en la portabilitat i la compatibilitat.\nEquilibri entre funcionalitat i rendiment.\nEquilibri entre rendiment i ús d’energia.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -645,7 +645,7 @@
     "text": "Reptes en el disseny dels SO (II)\n\nMaximitzar la fiabilitat: Els sistemes han de fer el que estan dissenyats per fer en tots els casos, fins i tot en cas d’errors inesperats.\nMaximitzar la disponibilitat: Els sistemes han d’estar disponibles per a l’ús quan els usuaris ho necessiten, minimitzant el temps d’aturada i reparació causat per fallades.\nSeguretat: Els sistemes han de protegir-se contra accions malicioses i accidents involuntaris.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -656,7 +656,7 @@
     "text": "Exemples de Disseny SO (I)\nVehicle\n\nUn vehicle autònom ha de ser segur per als passatgers i per a la gent que hi ha al seu voltant. Ha de garantir que el vehicle no es pugui controlar de forma remota per un atacant. També ha de ser tolerant a fallades i recuperar-se d’errors sense posar en perill la seguretat dels passatgers.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -667,7 +667,7 @@
     "text": "Reptes en el disseny dels so (III)\n\nEscalables: Els sistemes han de funcionar bé quan s’afegeixen recursos (usuaris, processos, …) o quan es redueixen.\nMantenibles: Els sistemes han de ser fàcils de mantenir i evolucionar al llarg del temps.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -678,7 +678,7 @@
     "text": "Exemples de Disseny SO (I)\nTelèfon mòbil\n\nEscalable perquè el nombre d’usuaris pot augmentar molt ràpidament.\nMantenible perquè els usuaris esperen actualitzacions periòdiques del sistema operatiu.\nA més a més, aquestes actualitzacions s’han de poder instal·lar de forma transparent i sense afectar el funcionament del telèfon.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -689,7 +689,7 @@
     "text": "Per què estudiar SO? (I)\n\nSón la base dels sistemes informàtics. (IoT, Servidors, Mòbils, PC, …).\nEns permeten entendre com funciona realment un sistema informàtic.\nEls conceptes són aplicables a altres sistemes i problemes quotidians (planificació de tasques).\nOptimitzar el rendiment de les aplicacions.\nCompendre les vulnerabilitats, proteccions i mitigacions de riscos de seguretat.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -700,7 +700,7 @@
     "text": "Per què estudiar SO? (II)\n\n\nLa comprensió en les decisions de disseny dels sistemes operatius i el raonament sobre els pros/contra us permetrà rescatar idees obsoletes que poden ser útils en el futur dels nous sistemes informàtics.\n\n\nEn particular, sovint passa que un canvi en la tecnologia fa que alguns idea obsoleta i ràpidament desapareix. No obstant això, un altre canvi tecnològic podria tornar-lo a reviure. Això és especialment cert quan el canvi té a veure amb el rendiment relatiu de les diferents parts del sistema. Per exemple, quan les CPUs es van fer molt més ràpides que les Memòries les caches van gaunyar molta importancia, però que passa si en un futur les memòries són molt més ràpides que les CPUs? En aquest cas, les caches ja no serien necessàries. En biologia, l’extinció és per sempre, però en informàtica, de vegades només és per uns quants anys.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -711,7 +711,7 @@
     "text": "Conclusions\n\nEls sistemes operatius estan presents en tots els dispositius que fem servir.\nEl disseny es complex i requereix integrar dispositius diferents (forma,espai,temps).\nEns proporciones una il·lusió d’una màquina virtual infinita.\nÉs il·lusionista, árbrit i proporciona un conjunt de serveis comuns per permetre la interacció entre programari i maquinari.\nTé cura del rendiment, seguretat, portabilitat i fiabilitat.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
     ]
   },
   {
@@ -722,7 +722,205 @@
     "text": "Això és tot per avui\n\n\nPreguntes?\n\nTAKE HOME MESSAGE\nEls sistemes operatius ajuden als programadors a desenvolupar programari robust de forma independent del maquinari.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció als sistemes operatius"
+      "Unitat 01 · Introducció als sistemes operatius"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#què-és-el-nucli-dun-sistema-operatiu",
+    "href": "slides/02-kernel.html#què-és-el-nucli-dun-sistema-operatiu",
+    "title": "Kernel de Linux",
+    "section": "Què és el nucli d’un sistema operatiu?",
+    "text": "Què és el nucli d’un sistema operatiu?\nEl nucli del SO és la capa més crítica i conté les rutines de gestió del sistema relacionades amb els recursos físic. Es troba sempre carregat a la Memòria.\nFuncionalitats del nucli\n\nEl nucli té la capacitat d’assignar i desassignar la CPU als usuaris i processos per evitar que acaparin el recurs de forma ininterrompuda.\nEl nucli evita que els usuaris i processos accedeixin a dades d’altres usuaris.\nEl nucli evita els usuaris modifíquin el codi i les dades del nucli.\nEl nucli evita que els usuaris realitzin E/S il·legals.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#qué-és-la-dualitat",
+    "href": "slides/02-kernel.html#qué-és-la-dualitat",
+    "title": "Kernel de Linux",
+    "section": "Qué és la dualitat?",
+    "text": "Qué és la dualitat?\n\n\nMode kernel\n\nEl codi que s’executa en aquest mode té accés a qualsevol adreça de Memòria i a tots els recursos hardware.\nSi un programa falla en aquest mode, tot el sistema quedarà aturat.\n\nMode usuari\n\nEl codi no té accés directe a Memòria ni als recursos hardware.\nSi un programa falla en aquest mode, únicament atura el programa i no el sistema.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#repte-separació-de-responsabilitats",
+    "href": "slides/02-kernel.html#repte-separació-de-responsabilitats",
+    "title": "Kernel de Linux",
+    "section": "Repte: Separació de responsabilitats",
+    "text": "Repte: Separació de responsabilitats\n\nQuina és la millor manera d’organitzar/separar totes les parts del sistema operatiu?\n\n\nCom organitzem les parts?\nDefinició de polítiques: Quines seran les accions a realitzar.\nCom cooperen les parts?\nMecanismes: Com es duran a terme aquestes accions.\n\n\nClassificació (Estructura Interna)\n\nMonolítics\nCapes\nMicro-kernel\nHíbrids\nHypervisors",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#estructura-simple",
+    "href": "slides/02-kernel.html#estructura-simple",
+    "title": "Kernel de Linux",
+    "section": "Estructura simple",
+    "text": "Estructura simple\n\n\nCaracterístiques\n\nEstructura no ben definida.\nEl SO és un conjunt de procediments que es poden cridar sense cap limitació.\nSon sistemes complexos; difícil d’implementar i de depurar.\nNo tenen mode dual.\nExemple: MS-DOS\n\n\n\n\n\n\n\nEls sistemes operatius com MS-DOS o Unix (original) no tenien estructures ben definides.\nNo hi havia cap mode d’execució de la CPU (usuari i nucli), de manera que els errors en les aplicacions podrien provocar un bloqueig de tot el sistema.\nQuan es va escriure DOS originalment, els seus desenvolupadors no tenien ni idea de quant de gran i important esdevindria. Va ser escrit per uns quants programadors en un temps relativament curt, sense el benefici de les tècniques modernes d’enginyeria de programari, i després va anar creixent amb el pas del temps fins a superar les seves expectatives originals. No divideix el sistema en subsistemes i no distingeix entre modes d’usuari i nucli, cosa que permet a tots els programes accedir directament al maquinari subjacent.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#estructura-monolítica",
+    "href": "slides/02-kernel.html#estructura-monolítica",
+    "title": "Kernel de Linux",
+    "section": "Estructura Monolítica",
+    "text": "Estructura Monolítica\n\n\nEls serveis d’usuari i serveis del kernel s’implementen sota el mateix espai d’adreces.\n\n\n\n\n\n👍 Les funcionalitats (serveis) s’invoquen amb crides al sistema.\n👍 Els controladors de dispositius es carreguen al nucli i passen a formar part del nucli.\n👎 Difícil d’entendre, modificar i mantenir.\n👎 Poc fiable (sense aïllament entre els mòduls del sistema)",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#estructura-per-capes",
+    "href": "slides/02-kernel.html#estructura-per-capes",
+    "title": "Kernel de Linux",
+    "section": "Estructura per capes",
+    "text": "Estructura per capes\n\n\n\n\n\n👍 Independència entre les capes.\n👍 Permet descriure el SO de forma clara.\n👍 Simplicitat en la construcció i depuració.\n👎 Rendiment.\n👎 És difícil definir les capes a causa de les limitacions per comunicar-se.\n\n\n\nUn exemple és UNIX, aquest sistema operatiu, creat per Dennis Ritchie i Ken Thompson als anys 70, va adoptar una arquitectura en capes més simple que Multics. Aquestes capes són: Hardware, Kernel, Shell i Aplicacions. Un exemple és: NetBSD.\nPermet que cada anell tingui un conjunt de funcions i responsabilitats clarament definides, i que cada anell pugui comunicar-se amb els anells adjaçents.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#estructura-microkernel",
+    "href": "slides/02-kernel.html#estructura-microkernel",
+    "title": "Kernel de Linux",
+    "section": "Estructura Microkernel",
+    "text": "Estructura Microkernel\n\n\n\nEls serveis d’usuari i serveis del kernel s’implementi en diferents espais d’adreces.\nComunicació entre els mòduls utilitza el pas de missatges.\n👍 El kernel té una mida més reduïda.\n👍 Portable, segur, fiable i extensible.\n👎 Reducció de la velocitat d’execució i del rendiment.\n\n\n\n\n\n\n\nEl sistema operatiu MacOS, desenvolupat per Apple, va aprofitar l’estabilitat i seguretat del nucli Mach com a base per al seu sistema operatiu. En aquest sistema, serveis com la gestió de memòria, la gestió de fitxers i la xarxa es van traslladar fora del nucli, a servidors externs, millorant la estabilitat, fiabilitat i modularitat del sistema.\nSistemes en temps real com QNX, o dispotius encastats poden utilitzar aquesta arquitectura.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#microkernel-vs-monolític",
+    "href": "slides/02-kernel.html#microkernel-vs-monolític",
+    "title": "Kernel de Linux",
+    "section": "Microkernel vs Monolític",
+    "text": "Microkernel vs Monolític\n\n\n\n\nEl microkernel és més lent però més segur i fiable que el nucli monolític. El nucli monolític és ràpid però menys segur, ja que qualsevol fallada del servei pot causar un bloqueig del sistema.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#microkernel-vs-monolític-vs-híbrids",
+    "href": "slides/02-kernel.html#microkernel-vs-monolític-vs-híbrids",
+    "title": "Kernel de Linux",
+    "section": "Microkernel vs Monolític vs Híbrids",
+    "text": "Microkernel vs Monolític vs Híbrids",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#opinió-sobre-els-híbrids",
+    "href": "slides/02-kernel.html#opinió-sobre-els-híbrids",
+    "title": "Kernel de Linux",
+    "section": "Opinió sobre els híbrids",
+    "text": "Opinió sobre els híbrids\nMolts experts en sistemes operatius consideren que el terme híbrid és un terme de màrqueting més que una categoria tècnica clara. Aquest terme s’utilitza sovint per descriure sistemes operatius que combinen elements de nuclis monolítics i microkernel, però la seva definició exacta pot variar segons l’ús i la interpretació.\n\n“As to the whole ‘hybrid kernel’ thing - it’s just marketing. It’s ‘oh, those microkernels had good PR, how can we try to get good PR for our working kernel? Oh, I know, let’s use a cool name and try to imply that it has all the PR advantages that that other system has’ - Linus Torvalds",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#kernel-modular",
+    "href": "slides/02-kernel.html#kernel-modular",
+    "title": "Kernel de Linux",
+    "section": "Kernel Modular",
+    "text": "Kernel Modular\n\nEl serveis (core) estan integrats al kernel, la resta es poden carregar i descarregar de forma dinàmica.\n\n\nNo cal reiniciar per afegir nous mòduls.\nNo cal implementar mecanismes de pas de missatges com en els microkernels.\nQualsevol mòdul pot comunicar-se amb qualsevol altre.\n\n\n\n\n\nEls sistemes operatius modulars com la majoria de sistemes operatius monolítics moderns com Linux, BSD, poden carregar (i descarregar) dinàmicament mòduls executables en temps d’execució.\nAquesta modularitat del sistema operatiu és a nivell binari (imatge) i no a nivell d’arquitectura.\nPràcticament, carregar mòduls dinàmicament és simplement una manera més flexible de manejar la imatge del sistema operatiu en temps d’execució, en lloc de reiniciar-lo amb una imatge diferent del sistema operatiu.\nEls mòduls permeten ampliar fàcilment les capacitats dels sistemes operatius segons sigui necessari.\nEls mòduls que es poden carregar dinàmicament comporten una petita sobrecàrrega en comparació amb la incorporació del mòdul a la imatge del sistema operatiu.\nTanmateix, en alguns casos, carregar mòduls dinàmicament (segons calgui) ajuda a mantenir la quantitat de codi que s’executa a l’espai del nucli al mínim; per exemple, per minimitzar la petjada del sistema operatiu per a dispositius incrustats o aquells amb recursos de maquinari limitats. És a dir, no cal que un mòdul descarregat s’emmagatzemi en memòria d’accés aleatori escàs.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#monolític-i-modular",
+    "href": "slides/02-kernel.html#monolític-i-modular",
+    "title": "Kernel de Linux",
+    "section": "Monolític i Modular",
+    "text": "Monolític i Modular\n\nEls kernels monolítics poden ser modulars.\nEls mòduls es carreguen i descarreguen dinàmicament en temps d’execució.\nEls components es poden activar o desactivar en temps de compilació.\nEl kernel s’organitza en subsistemes lògics independents.\nInterfícies estrictes però amb baix cost en rendiment: macros, funcions en línia, punters a funcions.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#exemple-linux",
+    "href": "slides/02-kernel.html#exemple-linux",
+    "title": "Kernel de Linux",
+    "section": "Exemple: Linux",
+    "text": "Exemple: Linux\n\n\n\nEl nucli Linux és un dels projectes de codi obert més grans del món, amb milers de desenvolupadors que aporten codi i milions de línies de codi canviats per a cada versió.\n\n\nArquitectura Monolítica híbrida basada en mòduls.\n\nEnllaçat dinàmic.\nMòduls apilables.\n\nDisseny orientat a objectes.\nSuport per a múltiples fils d’execució.\nSuport per processament múltiple simètric.\nAbstracció hardware.\n\n\n\n\n\n\n\nEs distribueix sota la llicència GPLv2, que simplement esmenta, requereix que qualsevol modificació del nucli feta amb el programari que s’envia al client s’hagi de posar a la seva disposició (els clients), tot i que a la pràctica la majoria de les empreses posen el codi font a disposició del públic.\nPer tal d’escalar el procés de desenvolupament, Linux utilitza un model de manteniment jeràrquic:\nLinus Torvalds és el mantenidor del nucli Linux i fa merge dels pull requests de la comunitat.\nLa comunitat té un o més mantenidors que accepten patches de desenvolupadors, mantenint el seu propi arbre git.\n\nLinux Torvalds: git\nDavid Miller (treball en xarxa): git",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#hypervisors",
+    "href": "slides/02-kernel.html#hypervisors",
+    "title": "Kernel de Linux",
+    "section": "Hypervisors",
+    "text": "Hypervisors\n\nCapa fina sobre el maquinari\nSistemes host dins màquines virtuals\nNormalment requereixen característiques de maquinari (p.e. Intel VT-x)",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#hypervisors-1",
+    "href": "slides/02-kernel.html#hypervisors-1",
+    "title": "Kernel de Linux",
+    "section": "Hypervisors",
+    "text": "Hypervisors\n\n\n\nKVM és un mòdul del kernel Linux que permet la virtualització a través d’un sistema host.\nXEN és un hypervisor de codi obert que permet la virtualització directa del maquinari.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#exokernels",
+    "href": "slides/02-kernel.html#exokernels",
+    "title": "Kernel de Linux",
+    "section": "Exokernels",
+    "text": "Exokernels\n\nCada màquina virtual disposa d’un exokernel que exporta directament els recursos físics.\n\n\nNo implementa abstraccions altes (fitxers, sockets, processos), sinó que ofereix primitives de baix nivell (p. ex. blocs de disc, pàgines de memòria, línies de CPU).\nNomés valida i arbitra l’ús dels recursos, delegant la seva gestió a biblioteques d’usuari.\nMou la multiprogramació a l’espai d’usuari, com la planificació, la gestió de memòria i la comunicació entre processos (IPC).\n🤏 Els exokernels són tan petits que poden ser incorporats dins aplicacions específiques (p. ex. control de trànsit urbà).\n✨ minimitza l’overhead i dona flexibilitat en la gestió de recursos.\n\n\n👉 No es traslladen instruccions de mode kernel a mode usuari, sinó la lògica de gestió de recursos.\n\n\nImaginem que particionem una màquina en diferents màquines virtuals amb un subconjunt de recursos. Cada màquina virtual té un exokernel que li permet accedir directament als recursos de la màquina física. La idea és reduir el overhead del sistema separant la multiprogramació de les funcions del sistema operatiu en l’espai usuari.\nEn aquest cas no estem movent instruccions de mode kernel a mode usuari, sinó que estem movent la gestió de recursos del sistema operatiu a l’espai d’usuari. De fet, els exokernels són tan petits que poden ser incrustats en aplicacions específiques. Per exemple, un exokernel podria ser incrustat en una aplicació de control de trànsit per coordinar els semàfors d’una ciutat.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#unikernels",
+    "href": "slides/02-kernel.html#unikernels",
+    "title": "Kernel de Linux",
+    "section": "Unikernels",
+    "text": "Unikernels\n\nEls unikernels empaqueten aplicació + mínim sistema operatiu en una única imatge executable sobre un hipervisor o hardware.\n\n\nNomés s’inclouen les llibreries i serveis estrictament necessaris per l’aplicació.\nExecució directa: corren sobre un hipervisor o hardware, sense cap OS d’host per sota.\nEficiència: imatges extremadament petites, ràpides d’arrencar.\nInspiració:\n\nDels contenidors, però sense dependre d’un kernel complet subjacent.\nDels exokernels, però aquí les primitives exposades no són per al maquinari, sinó per a les necessitats específiques de l’aplicació.\n\nS’utilitzen en IoT, serveis cloud lleugers, entorns on importen temps d’arrencada i seguretat.\n\n\nEl codi de l’aplicació i el kernel formen una sola unitat optimitzada.\n\n\nEls unikernels són una forma de sistema operatiu que empaqueta tot el codi necessari per a una aplicació en un sol paquet. Aquest paquet s’executa directament sobre una màquina virtual o un hipervisor, sense cap sistema operatiu subministrat. Això permet als unikernels ser molt petits i molt eficients, ja que no hi ha cap codi innecessari.\nS’inspiren en els contenidors, però en lloc d’executar-se en un sistema operatiu complet, s’executen directament sobre el hardware. Això els fa molt més petits i molt més eficients que els contenidors, ja que no hi ha cap sistema operatiu subministrat.\nS’inspiren en els exokernels, però en lloc de proporcionar un conjunt de primitives de baix nivell per accedir directament als recursos de la màquina, proporcionen un conjunt de primitives de baix nivell per accedir directament als recursos de l’aplicació.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
+    ]
+  },
+  {
+    "objectID": "slides/02-kernel.html#això-és-tot-per-avui",
+    "href": "slides/02-kernel.html#això-és-tot-per-avui",
+    "title": "Kernel de Linux",
+    "section": "Això és tot per avui",
+    "text": "Això és tot per avui\n\n\nTAKE HOME MESSAGE\n\nEls monolítics ofereixen velocitat però fragilitat.\nEls microkernels aposten per modularitat i seguretat a costa de latència.\nEls modulars permeten créixer sense reescriure tot el nucli.\nEls exokernels lliuren el control directe a l’aplicació per màxima eficiència.\nEls hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.\nEls unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Kernel de Linux"
     ]
   },
   {
@@ -881,14 +1079,14 @@
     "href": "course-information/schedule.html",
     "title": "Sistemes Operatius",
     "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻"
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n👩🏻‍💻 👩🏻‍💻"
   },
   {
     "objectID": "course-information/schedule.html#planificació",
     "href": "course-information/schedule.html#planificació",
     "title": "Sistemes Operatius",
     "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻"
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n👩🏻‍💻 👩🏻‍💻"
   },
   {
     "objectID": "CONTRIBUTING.html",
@@ -969,6 +1167,18 @@
       "Activitats",
       "Unitat 01",
       "RMSF · Implementant una paperera de reciclatge a Linux"
+    ]
+  },
+  {
+    "objectID": "activities/unit00/03-ex02-c.html",
+    "href": "activities/unit00/03-ex02-c.html",
+    "title": "Exercicis amb C - Apuntadors i structs",
+    "section": "",
+    "text": "Quin serà el resultat d’aquesta execució?\n#include&lt;stdio.h&gt;\nint main(){\n\n    int x = 5;\n    int *p;\n    p=&x;\n    x++;\n    printf(\"%d\\n\", *p);\n}\nCompleta el codi següent:\n#include &lt;stdio.h&gt;\nint main(){\n    const char *s = \"\";\n    char str[] = \"Hola\";\n    s = str;\n    while(*s)\n        printf(\"%c\", ???);\n    return 0;\n}\nAnalitzeu el següent codi i mostreu el contingut de la memòria durant l’execució del programa.\nint main(){\n\n    struct pokemon {\n        int id;\n        char* name;\n    };\n\n    struct pokemon p1 = {1, \"Bulbasaur\"};\n\n    printf(\"Id: %d\\n\", p1.id);\n    printf(\"Name: %s\\n\", p1.name);\n\n}\nAnalitza el codi següent i digues quin és el resultat de la seva execució.\nint main(){\n    char * s = \"Hola\";\n    char * t = \"Adéu\";\n    char * u;\n\n    s = t;\n    u = strdup(s);\n\n    // Nota: strdup retorna un punter a una nova cadena de caràcters que és una còpia exacta de la cadena de caràcters passada com a argument.\n\n    printf(\"s: %s\\n\", s);\n    printf(\"t: %s\\n\", t);\n    printf(\"u: %s\\n\", u);\n}\nAnalitza el codi següent i digues quin és el resultat de la seva execució.\nint main(){\n\n    int n = 3;\n    char* noms[n];\n    char* nom = (char*)malloc(20*sizeof(char));\n\n    for(int i = 0; i &lt; n; i++){\n        printf(\"Introdueix el teu nom: \");\n        scanf(\"%s\", nom);\n        noms[i] = nom;\n    }\n\n    printf(\"Noms introduïts:\\n\");\n    for(int i = 0; i &lt; n; i++){\n        printf(\"%s\\n\", noms[i]);\n    }\n\n    return 0;\n}\nAnalitza el codi següent i digues quin és el resultat de la seva execució.\n#include &lt;stdio.h&gt;\nint main()\n{\n    int k = 5;\n    int *p = &k;  \n    int **m = &p;\n    **m = 6;  \n    printf(\"%d\\n\", k);\n}\nCompleta el codi següent:\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[4] = {1, 2, 3, 4};  \n\n    // ????\n\n    printf(\"Elements of the array using the pointer:\\n\");\n    for (int i = 0; i &lt; 4; i++) {\n        printf(\"ptr[%d] = %d\\n\", i, (*ptr)[i]);\n    }\n\n    return 0;\n}\nQuin serà el resultat d’aquesta execució?\n#include &lt;stdio.h&gt;\nint main()\n{\n\n    int a[5] = {5,1,15,20,25};\n    int i,j,m;\n    i = ++a[1];\n    j = a[1]++;\n    m = a[i++];\n\n    printf(\"%d, %d, %d\", i, j,m);\n    return 0;\n}\nQuin serà el resultat?\n#include &lt;stdio.h&gt;\n\nvoid foo(int *p)\n{\n    int j = 22;\n    p = &j;\n    printf(\"%d \", *p);\n}\n\nint main()\n{\n    int i = 17, *p = &i;\n    foo(&i);\n    printf(\"%d \", *p);\n}\nQuina serà la sortida?\n#include &lt;stdio.h&gt;\nstruct p\n{\n    int x;\n    int y;\n};\n\n// sizeof(int) == 2 bytes? \n// sizeof(int) == 4 bytes? \n\nint main()\n{\n    struct p p1[] = {\n        {1, 92}, \n        {3, 94}, \n        {5, 96}\n    };\n\n    int x = (sizeof(p1) / 3);\n\n    printf(\"%ld\\n\",sizeof(int));\n\n    if (x == 8)\n        printf(\"true\\n\");\n    else\n        printf(\"false\\n\");\n}\nCompleta el codi següent:\nint main(){\nint (*ptr)();\nreturn 0;\n}",
+    "crumbs": [
+      "Activitats",
+      "Unitat 01",
+      "Exercicis amb C"
     ]
   },
   {
@@ -1475,6 +1685,54 @@
     ]
   },
   {
+    "objectID": "labs/02-c-pointers/lab01.html",
+    "href": "labs/02-c-pointers/lab01.html",
+    "title": "Laboratori 1: Punters, Stack i Heap en C",
+    "section": "",
+    "text": "Com es guarden les dades a la stack i a la heap.\nLa diferència entre una matriu estàtica i una matriu dinàmica.\nEl paper dels punters en l’assignació de memòria.\nCom explorar la memòria amb GDB.",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 01",
+      "Laboratori 6 · Punters·Heap·Stack en C"
+    ]
+  },
+  {
+    "objectID": "labs/02-c-pointers/lab01.html#objectius",
+    "href": "labs/02-c-pointers/lab01.html#objectius",
+    "title": "Laboratori 1: Punters, Stack i Heap en C",
+    "section": "",
+    "text": "Com es guarden les dades a la stack i a la heap.\nLa diferència entre una matriu estàtica i una matriu dinàmica.\nEl paper dels punters en l’assignació de memòria.\nCom explorar la memòria amb GDB.",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 01",
+      "Laboratori 6 · Punters·Heap·Stack en C"
+    ]
+  },
+  {
+    "objectID": "labs/02-c-pointers/lab01.html#codi-base-per-al-laboratori",
+    "href": "labs/02-c-pointers/lab01.html#codi-base-per-al-laboratori",
+    "title": "Laboratori 1: Punters, Stack i Heap en C",
+    "section": "Codi base per al laboratori",
+    "text": "Codi base per al laboratori\nUtilitzarem el següent codi base per al laboratori. Aquest codi crea una matriu estàtica i una dinàmica, i imprimeix els valors i les adreces de memòria corresponents.\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint main() {\n    // Matriu ESTÀTICA: a la pila (stack)\n    int m[2][3] = { {1, 2, 3}, {4, 5, 6} };\n\n    printf(\"Matriu ESTÀTICA (m):\\n\");\n    for (int i = 0; i &lt; 2; i++) {\n        for (int j = 0; j &lt; 3; j++) {\n            printf(\"m[%d][%d] = %d (adreça: %p)\\n\",\n                   i, j, m[i][j], &m[i][j]);\n        }\n    }\n\n    // Matriu DINÀMICA: a la memòria heap\n    int **matrix = malloc(2 * sizeof(int *));  // espai per 2 files\n\n    for (int i = 0; i &lt; 2; i++) {\n        matrix[i] = malloc(3 * sizeof(int));  // espai per 3 enters\n    }\n\n    // Copiem els valors de la matriu estàtica\n    for (int i = 0; i &lt; 2; i++) {\n        for (int j = 0; j &lt; 3; j++) {\n            matrix[i][j] = m[i][j];\n        }\n    }\n\n    printf(\"\\nMatriu DINÀMICA (matrix):\\n\");\n    for (int i = 0; i &lt; 2; i++) {\n        for (int j = 0; j &lt; 3; j++) {\n            printf(\"matrix[%d][%d] = %d (adreça: %p)\\n\",\n                   i, j, matrix[i][j], &matrix[i][j]);\n        }\n    }\n\n    // Alliberem la memòria del heap\n    for (int i = 0; i &lt; 2; i++) {\n        free(matrix[i]);\n    }\n    free(matrix);\n\n    return 0;\n}\nSi compileu i executeu aquest codi, veureu que les adreces de la matriu estàtica m estan a la pila (stack), mentre que les adreces de la matriu dinàmica matrix estan a la memòria heap:\ngcc -g lab01.c -o lab01\n./lab01\nMatriu ESTÀTICA (m):\nm[0][0] = 1 (adreça: 0xffffde4ce200)\nm[0][1] = 2 (adreça: 0xffffde4ce204)\nm[0][2] = 3 (adreça: 0xffffde4ce208)\nm[1][0] = 4 (adreça: 0xffffde4ce20c)\nm[1][1] = 5 (adreça: 0xffffde4ce210)\nm[1][2] = 6 (adreça: 0xffffde4ce214)\n\nMatriu DINÀMICA (matrix):\nmatrix[0][0] = 1 (adreça: 0xaaaae56f96d0)\nmatrix[0][1] = 2 (adreça: 0xaaaae56f96d4)\nmatrix[0][2] = 3 (adreça: 0xaaaae56f96d8)\nmatrix[1][0] = 4 (adreça: 0xaaaae56f96f0)\nmatrix[1][1] = 5 (adreça: 0xaaaae56f96f4)\nmatrix[1][2] = 6 (adreça: 0xaaaae56f96f8)\nSi dibuixem un mapa de la memòria d’aquest programa, molt simplificat, tindríem:\n\nOn:\n\n@m: és la base de la matriu estàtica, i com a variable local està al stack. Els seus elements també són al stack utilitzant adreces consecutives.\n@matrix: és el punter a la matriu dinàmica, i com a variable local també està al stack.\n@matrix[0], @matrix[1]: són punters que apunten a blocs de memòria al heap, on s’han assignat espai per a les files de la matriu dinàmica.\n@z: és l’adreça del punter matrix al stack.",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 01",
+      "Laboratori 6 · Punters·Heap·Stack en C"
+    ]
+  },
+  {
+    "objectID": "labs/02-c-pointers/lab01.html#tasques",
+    "href": "labs/02-c-pointers/lab01.html#tasques",
+    "title": "Laboratori 1: Punters, Stack i Heap en C",
+    "section": "Tasques",
+    "text": "Tasques\n\nCompilar i execució amb GDB\n\nCompila el codi amb les opcions de depuració: gcc -g lab01.c -o lab01.\nExecuta el programa amb GDB: gdb ./lab01.\n\n\n\n\n\n\n\nAlertaGDB no està instal·lat?\n\n\n\nAssegura’t de tenir GDB instal·lat al teu sistema. Per instal·lar-lo, pots utilitzar el gestor de paquets del teu sistema (per exemple, su -c \"apt-get install gdb -y\" a Debian).\n\n\n\n\nExploració de la memòria amb GDB\nUn cop dins GDB, utilitza els següents comandos per a explorar el programa:\n\nbreak main per posar un punt d’interrupció al principi de la funció main.\n(gdb) break main\nBreakpoint 1 at 0x860: file lab01.c, line 6.\nrun per iniciar l’execució del programa.\n(gdb) run\nStarting program: /home/jordi/c/pointers/lab01\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library \"/lib/aarch64-linux-gnu/libthread_db.so.1\".\n\nBreakpoint 1, main () at lab01.c:6\n6       int m[2][3] = { {1, 2, 3}, {4, 5, 6} };\nObserva que l’execució s’ha aturat a la línia 6, just abans de la declaració de la matriu estàtica m.\nAra posem un altre punt d’interrupció just abans del primer malloc per a la matriu dinàmica:\n(gdb) break 17\nBreakpoint 2 at 0xaaaaaaaa093c: file lab01.c, line 18.\nContinuem l’execució fins a aquest punt:\n(gdb) c\nContinuing.\nMatriu ESTÀTICA (m):\nm[0][0] = 1 (adreça: 0xfffffffff2a0)\nm[0][1] = 2 (adreça: 0xfffffffff2a4)\nm[0][2] = 3 (adreça: 0xfffffffff2a8)\nm[1][0] = 4 (adreça: 0xfffffffff2ac)\nm[1][1] = 5 (adreça: 0xfffffffff2b0)\nm[1][2] = 6 (adreça: 0xfffffffff2b4)\n\nBreakpoint 2, main () at lab01.c:17\n17      int **matrix = malloc(2 * sizeof(int *));  // espai per 2 files\nAra estem just abans de l’assignació de memòria dinàmica. Podem començar a inspeccionar la pila i la memòria heap.\n\n(gdb) info proc mappings\nprocess 1404\nMapped address spaces:\n    Start Addr           End Addr       Size     Offset  Perms  objfile\n0xaaaaaaaa0000     0xaaaaaaaa1000     0x1000        0x0  r-xp   /home/jordi/c/pointers/lab01\n0xaaaaaaabf000     0xaaaaaaac0000     0x1000     0xf000  r--p   /home/jordi/c/pointers/lab01\n0xaaaaaaac0000     0xaaaaaaac1000     0x1000    0x10000  rw-p   /home/jordi/c/pointers/lab01\n0xaaaaaaac1000     0xaaaaaaae2000    0x21000        0x0  rw-p   [heap]\n0xfffff7e00000     0xfffff7f8b000   0x18b000        0x0  r-xp   /usr/lib/aarch64-linux-gnu/libc.so.6\n0xfffff7f8b000     0xfffff7f9c000    0x11000   0x18b000  ---p   /usr/lib/aarch64-linux-gnu/libc.so.6\n0xfffff7f9c000     0xfffff7fa0000     0x4000   0x18c000  r--p   /usr/lib/aarch64-linux-gnu/libc.so.6\n0xfffff7fa0000     0xfffff7fa2000     0x2000   0x190000  rw-p   /usr/lib/aarch64-linux-gnu/libc.so.6\n0xfffff7fa2000     0xfffff7faf000     0xd000        0x0  rw-p\n0xfffff7fbe000     0xfffff7fe5000    0x27000        0x0  r-xp   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1\n0xfffff7ff7000     0xfffff7ff9000     0x2000        0x0  rw-p\n0xfffff7ff9000     0xfffff7ffb000     0x2000        0x0  r--p   [vvar]\n0xfffff7ffb000     0xfffff7ffc000     0x1000        0x0  r-xp   [vdso]\n0xfffff7ffc000     0xfffff7ffe000     0x2000    0x2e000  r--p   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1\n0xfffff7ffe000     0xfffff8000000     0x2000    0x30000  rw-p   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1\n0xfffffffdf000    0x1000000000000    0x21000        0x0  rw-p   [stack]   \n\n\n\n\n\n\nNotaMapa de memòria\n\n\n\nEn aquest cas, la memòria heap comença a l’adreça 0xaaaaaaac1000 i acaba a 0xaaaaaaae2000 amb una mida de 0x21000 bytes (135168 bytes). La pila d’execució (stack) comença a 0xfffffffdf000 i s’estén fins a 0x1000000000000.\n\n\n\nTambé podem consultar les variables locals amb info locals.\n(gdb) info locals\nm = {{1, 2, 3}, {4, 5, 6}}\nmatrix = 0xaaaaaaaa0854 &lt;main&gt;\n\n\n\n\n\n\n\nNotaObservació\n\n\n\nObserva que m esta declarada i inicialitzada, mentre que matrix apunta a una adreça de memòria. Aquesta adreça de memòria esta guardada en un altra adreça de memòria (la del punter matrix ,@z). Pots consultar aquesta adreça amb print &matrix.\n(gdb) print &matrix\n$1 = (int ***) 0xfffffffff2b8\n(gdb) print matrix\n$2 = (int **) 0xaaaaaaaa0854 &lt;main&gt;\n\n\n\nAra anem a consultar la informació sobre la variable m:\n(gdb) print &m\n$1 = (int (*)[2][3]) 0xfffffffff2a0\n(gdb) print &m[0]\n$2 = (int (*)[3]) 0xfffffffff2a0\n(gdb) print &m[1]\n$3 = (int (*)[3]) 0xfffffffff2ac\n\n\n\n\n\n\n\nNotaObservació\n\n\n\nObserva que l’adreça de m està a la pila d’execució (al voltant de 0xfffffffff2a0). I les adreces de m[0] i m[1] són consecutives (incrementen en 12 bytes, que és la mida d’una fila de 3 enters).\n\n\n\nAccedim al primer element de la matriu estàtica amb print m[0][0].\n(gdb) print &m[0][0] # Ens imprimeix l'adreça del primer element de la matriu estàtica\n$2 = (int *) 0xfffffffff2a0\n(gdb) print m[0][0] # Ens imprimeix el valor del primer element de la matriu estàtica\n$3 = 1\nAccedim al segon element de la matriu estàtica amb print m[0][1].\n(gdb) print &m[0][1] # Ens imprimeix l'adreça del segon element de la matriu estàtica\n$4 = (int *) 0xfffffffff2a4\n(gdb) print m[0][1] # Ens imprimeix el valor del segon element de la matriu estàtica\n$5 = 2\nAccedim al tercer element de la matriu estàtica amb print m[0][2].\n(gdb) print &m[0][2] # Ens imprimeix l'adreça del tercer element de la matriu estàtica\n$6 = (int *) 0xfffffffff2a8\n(gdb) print m[0][2] # Ens imprimeix el valor del tercer element de la matriu estàtica\n$7 = 3\nAccedim al primer element de la segona fila de la matriu estàtica amb print m[1][0].\n(gdb) print &m[1][0] # Ens imprimeix l'adreça del primer element de la segona fila de la matriu estàtica\n$8 = (int *) 0xfffffffff2ac\n(gdb) print m[1][0] # Ens imprimeix el valor del primer element de la segona fila de la matriu estàtica\n$9 = 4\nAccedim al segon element de la segona fila de la matriu estàtica amb print m[1][1].\n(gdb) print &m[1][1] # Ens imprimeix l'adreça del segon element de la segona fila de la matriu estàtica\n$10 = (int *) 0xfffffffff2b0\n(gdb) print m[1][1] # Ens imprimeix el valor del segon element de la segona fila de la matriu estàtica\n$11 = 5\nAccedim al tercer element de la segona fila de la matriu estàtica amb print m[1][2].\n(gdb) print &m[1][2] # Ens imprimeix l'adreça del tercer element de la segona fila de la matriu estàtica\n$12 = (int *) 0xfffffffff2b4\n(gdb) print m[1][2] # Ens imprimeix el valor del tercer element de la segona fila de la matriu estàtica\n$13 = 6\nUna forma alternativa de veure els valors i les adreces de la matriu estàtica m és utilitzant el comandament x per examinar la memòria. Aquí, x/6dw indica que volem veure 6 valors (6) en format decimal (d) i com a enters (w), començant des de l’adreça de m[0][0].\n(gdb) x/6dw &m[0][0]\n0xfffffffff2a0: 1   2   3   4\n0xfffffffff2b0: 5   6\n\n\n\n\n\n\n\nNotaAdreces consecutives\n\n\n\nObserveu que les adreces dels elements de la matriu estàtica són consecutives (incrementen en 4 bytes, que és la mida d’un enter). Podeu confirmar la mida d’un enter al gdb amb:\n(gdb) print sizeof(int)\n$14 = 4\n\n\n\nAra anem a inspeccionar la variable matrix, que és un punter a punters per a la matriu dinàmica.\n\n(gdb) print matrix\n$6 = (int **) 0xaaaaaaaa0854 &lt;main&gt;\n(gdb) print &matrix\n$7 = (int ***) 0xfffffffff2b8\n(gdb) print &matrix[0]\n$8 = (int **) 0xaaaaaaaa0854 &lt;main&gt;\n(gdb) print &matrix[1]\n$9 = (int **) 0xaaaaaaaa085c &lt;main+8&gt;\n\n\n\n\n\n\nNotaObservació\n\n\n\nObserva que l’adreça de matrix també està a la pila d’execució (al voltant de 0xaaaaaaaa0854). I les adreces de matrix[0] i matrix[1] són consecutives (incrementen en 8 bytes, que és la mida d’un punter). Podeu confirmar la mida d’un punter al gdb amb: print sizeof(int*).\n\n\n\nAnem a veure l’adreça on apunta matrix:\n(gdb) x/6x matrix\n0xaaaaaaaa0854 &lt;main&gt;:  0xa9ba7bfd  0x910003fd  0xf9000bf3  0x90000000\n0xaaaaaaaa0864 &lt;main+16&gt;:   0x912e6000  0x910083e\n\n\n\n\n\n\n\nNotaObservació\n\n\n\nEl contingut de l’adreça on apunta matrix sembla ser una adreça de memòria (però encara no hem fet el malloc, així que no és vàlida encara).\n(gdb) x/6x 0xa9ba7bfd\n0xa9ba7bfd: Cannot access memory at address 0xa9ba7bfd\n\n\n\nAra anem a afegir un altre punt d’interrupció just després del primer malloc, per veure com canvia la variable matrix després de l’assignació de memòria:\n(gdb) break 20\nBreakpoint 3 at 0xaaaaaaaa0944: file lab01.c, line 20.\nContinuem l’execució fins a aquest punt:\n(gdb) c \nContinuing.\n\nBreakpoint 3, main () at lab01.c:20\n20          matrix[i] = malloc(3 * sizeof(int));  // espai per 3 enters\nAra podem inspeccionar la variable matrix de nou:\n(gdb) print matrix\n$11 = (int **) 0xaaaaaaac16b0\n(gdb) x/20x matrix\n0xaaaaaaac16b0: 0x00000000  0x00000000  0x00000000  0x00000000\n0xaaaaaaac16c0: 0x00000000  0x00000000  0x00020941  0x00000000\n0xaaaaaaac16d0: 0x00000000  0x00000000  0x00000000  0x00000000\n0xaaaaaaac16e0: 0x00000000  0x00000000  0x00000000  0x00000000\n0xaaaaaaac16f0: 0x00000000  0x00000000  0x00000000  0x00000000\n(gdb) print &matrix[0]\n$12 = (int **) 0xaaaaaaac16b0\n(gdb) print &matrix[1]\n$13 = (int **) 0xaaaaaaac16b8\n(gdb) x/6x 0xaaaaaaac16b0\n0xaaaaaaac16b0: 0x00000000  0x00000000  0x00000000  0x00000000\n0xaaaaaaac16c0: 0x00000000  0x00000000\n(gdb) x/6x 0xaaaaaaac16b8\n0xaaaaaaac16b8: 0x00000000  0x00000000  0x00000000  0x00000000\n0xaaaaaaac16c8: 0x00020941  0x00000000\nEl malloc ha assignat memòria per a 2 punters (matrix[0] i matrix[1]), però encara no hem assignat memòria per a les files de la matriu (això ho fem en el següent bucle for).\nSi fem continue una altra vegada, s’executarà la primera iteració del bucle for que assigna memòria per a la primera fila de la matriu dinàmica.\n(gdb) x/20x matrix\n0xaaaaaaac16b0: 0xaaac16d0  0x0000aaaa  0x00000000  0x00000000\n0xaaaaaaac16c0: 0x00000000  0x00000000  0x00000021  0x00000000\n0xaaaaaaac16d0: 0x00000000  0x00000000  0x00000000  0x00000000\n0xaaaaaaac16e0: 0x00000000  0x00000000  0x00020921  0x00000000\n0xaaaaaaac16f0: 0x00000000  0x00000000  0x00000000  0x00000000\n\nAra posem un breakpoint a la línia 31 break 31 (al printf de la matriu dinàmica) i continuem l’execució: continue.\n(gdb) x/20x matrix\n0xaaaaaaac16b0: 0xaaac16d0  0x0000aaaa  0xaaac16f0  0x0000aaaa\n0xaaaaaaac16c0: 0x00000000  0x00000000  0x00000021  0x00000000\n0xaaaaaaac16d0: 0x00000001  0x00000002  0x00000003  0x00000000\n0xaaaaaaac16e0: 0x00000000  0x00000000  0x00000021  0x00000000\n0xaaaaaaac16f0: 0x00000004  0x00000005  0x00000006  0x00000000\n(gdb) print &matrix[0][0]\n$12 = (int *) 0xaaaaaaac16d0\n(gdb) print &matrix[1][0]\n$13 = (int *) 0xaaaaaaac16f0\nObservem que ara matrix[0] i matrix[1] apunten a adreces vàlides a la memòria heap (0xaaaaaaac16d0 i 0xaaaaaaac16f0 respectivament).\nAnem veure el contingut de la memòria a partir d’aquestes adreces:\n(gdb) x/6x 0xaaaaaaac16d0\n0xaaaaaaac16d0: 0x00000001  0x00000002  0x00000003  0x00000000\n0xaaaaaaac16e0: 0x00000000  0x00000000\n(gdb) x/6x 0xaaaaaaac16f0\n0xaaaaaaac16f0: 0x00000004  0x00000005  0x00000006  0x00000000\n0xaaaaaaac1700: 0x00000000  0x00000000\n(gdb) x/6dw &matrix[0][0]\n0xaaaaaaac16d0: 1   2   3   0\n0xaaaaaaac16e0: 0   0\n(gdb) x/6dw &matrix[1][0]\n0xaaaaaaac16f0: 4   5   6   0\n0xaaaaaaac1700: 0   0\nAnem a veure el contingut de la memòria a partir d’aquestes adreces:\n(gdb) print matrix[0][0]\n$14 = 1\n(gdb) print matrix[0][1]\n$15 = 2\n(gdb) print matrix[0][2]\n$16 = 3\n(gdb) print matrix[1][0]\n$17 = 4\n(gdb) print matrix[1][1]\n$18 = 5\n(gdb) print matrix[1][2]\n$19 = 6\n\nEn aquest punt, podem veure la mida actual de la memòria heap:\n\n(gdb) print mallinfo()\n$15 = {arena = 135168, ordblks = 1, smblks = 0, hblks = 0, hblkhd = 0, usmblks = 0, fsmblks = 0, uordblks = 1792,\n  fordblks = 133376, keepcost = 133376}\n\n\n\n\n\n\nNotaObservació\n\n\n\nObservem que la memòria utilitzada a la heap (uordblks) és de 1792 bytes, que correspon a les dues files de 3 enters cadascuna (2 * 3 * 4 = 24 bytes) més l’overhead del malloc.\n\n\n\nFinalment, posem un breakpoint just abans del return 0; (línia 38) i continuem l’execució fins a aquest punt:\n\n(gdb) break 38\nBreakpoint 4 at 0xaaaaaaaa0968: file lab01.c, line 38.\n(gdb) c\nContinuing.\n\nBreakpoint 4, main () at lab01.c:38\n38      return 0;\n\nAra podem inspeccionar les variables locals de nou:\n\n(gdb) info locals\nm = {{1, 2, 3}, {4, 5, 6}}\nmatrix = 0xaaaaaaac16b0\nAra bé com que hem fet els free de la memòria dinàmica, si mirem la mida de la heap veiem que ha disminuït i que tot i que les adreces matrix[0] i matrix[1] encara són les mateixes, el contingut de la memòria ja no és vàlid:\n(gdb) print mallinfo()\n(gdb) x/6x 0xaaaaaaac16d0\n0xaaaaaaac16d0: 0xaaaaaac1  0x0000000a  0xac976b95  0xe5702979\n0xaaaaaaac16e0: 0x00000000  0x00000000\n(gdb) x/6x 0xaaaaaaac16f0\n0xaaaaaaac16f0: 0x0006bc11  0x0000aaa0  0xac976b95  0xe5702979\n0xaaaaaaac1700: 0x00000000  0x00000000",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 01",
+      "Laboratori 6 · Punters·Heap·Stack en C"
+    ]
+  },
+  {
     "objectID": "slides/01-c.html#desenvolupament-en-sistemes-linuxunix",
     "href": "slides/01-c.html#desenvolupament-en-sistemes-linuxunix",
     "title": "Introducció a la programació de Sistema (I) (C)",
@@ -1482,7 +1740,7 @@
     "text": "Desenvolupament en sistemes Linux/UNIX\nEl desenvolupament de programari de sistema el realitzarem amb els llenguatge C i basa en els compiladors GNU gcc.\n#!/bin/sh\n# ./check.sh\ngcc -v\nif [ $? != 0 ]; then\n       echo \"GCC is not installed!\"\nfi\nld -v\nif [ $? != 0 ]; then\n        echo \"Please install binutils!\"\nfi\n\nFitxer: scripts/check.sh\n\n\nPer poder desenvolupar en C en un sistema Linux/UNIX necessitem tenir instal·lat el compilador GCC i les eines de binutils. Aquestes eines són necessàries per a la compilació i enllaçat dels programes. Per comprovar si tenim instal·lat aquestes eines podem executar el script anterior. Si no tenim instal·lat aquestes eines, podem instal·lar-les amb la comanda sudo apt-get install build-essential en sistemes basats en Debian o sudo dnf groupinstall \"Development Tools\" en sistemes basats en RedHat.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1493,7 +1751,7 @@
     "text": "Navegant a les entranyes del compilador GCC\n\n\n\n\n\n\n\nEls llenguatges de programació compilats són aquells que es tradueixen a codi màquina abans de l’execució. Aquest procés de traducció es realitza per un programa anomenat compilador. El compilador és un programa que tradueix el codi font d’un programa escrit en un llenguatge de programació de nivell alt a codi màquina. En el cas de C, hi ha diferents etapes codi, ensamblador i enllaçador. El compilador GCC és un compilador de codi obert que es pot utilitzar per a la compilació de programes en C, C++, Fortran, Ada, etc. Aquest compilador és molt potent i permet la compilació de programes en diferents plataformes. A més, el compilador GCC és molt flexible i permet la configuració de diferents opcions de compilació.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1504,7 +1762,7 @@
     "text": "Etapes de la compilació i l’enllaç (I)\nPreprocessador\n\nEl preprocessador processa el codi font, buscant instruccions que comencen amb un hash (#), com #include, #define, i #ifdef.\nInclou fitxers d’encapçalament (headers) i substitueix macros i definicions. També elimina els comentaris.\nGenera un fitxer de codi font amb les instruccions del preprocessador processades, preparat per a la compilació.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1515,7 +1773,7 @@
     "text": "Etapes de la compilació i l’enllaç (II)\nCompilador\n\nTraduïx el codi font al assemblador equivalent. En alguns compiladors, el codi es pot convertir directament en codi màquina en aquesta etapa.\nTraduir el codi de nivell alt a codi de nivell baix i optimitzar-lo per al maquinari subjacent.\nGenera un fitxer de codi assemblador amb l’extensió .s. Per exemple, si el fitxer de codi font és hola.c, el fitxer generat seria hola.s.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1526,7 +1784,7 @@
     "text": "Etapes de la compilació i l’enllaç (III)\nAssemblador\n\nConverteix el codi assemblador en codi objecte o codi de màquina.\nProduir codi binari que pugui ser entès per la CPU.\nGenera un fitxer de codi objecte amb l’extensió .o. Per exemple, el fitxer resultant seria hola.o.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1537,7 +1795,7 @@
     "text": "Etapes de la compilació i l’enllaç (IV)\nEnllaçador (Linker)\n\nEnllaça el codi objecte amb les biblioteques necessàries per crear l’executable final.\nOrganitzar i combinar el codi objecte i les biblioteques, resolent les referències externes.\nGenera l’executable final, que és el fitxer que podeu executar. Per exemple, hola.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1548,7 +1806,7 @@
     "text": "Exemple: Etapes\n\n\n#include &lt;stdio.h&gt;\n\n#define x 10\n#define y 5\n\nint \nmain(){\n  printf(\"El resultat de l'opearció: \n      %d + %d = %d\\n\", x,y,x+y);\n    return 0;\n}\n\nFitxer: sources/ex1.c\n\n\n\nExecutable: gcc -o ex1 ex1.c\nAssemblador: gcc -S -o ex1.s ex1.c\nCodi objecte: gcc -c -o ex1.o ex1.c\nPreprocessador: gcc -E -o ex1.i ex1.c\nDesensamblador: objdump -d ex1.o o objdump -d -M intel ex1\n\n\n\n\n\n\n\n\n\nNotes\n\n\n\n-M intel indica l’ús de la sintaxi Intel per a una millor llegibilitat.\nTots aquests fitxers generats els posarem al .gitignore.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1559,7 +1817,7 @@
     "text": "Com funciona el compilador GCC?\ngcc &lt;codi&gt; -g -c &lt;codi&gt; -o &lt;executable&gt; -I &lt;dirIncludes&gt; -L &lt;dirLibs&gt;\n\n-g: Genera informació de depuració.\n-c: Enllaça només el fitxer especificat.\n-o: Fitxer executable de sortida (per defecte a a.out).\n-I: Directoris on es cercaran els fitxers .h.\n-L: Directoris on es cercaran les biblioteques.\n-l: Biblioteques a enllaçar.\n-Wall: Mostra tots els missatges d’advertència.\n-Werror: Converteix els missatges d’advertència en errors.\n-Wextra: Mostra missatges d’advertència addicionals.\n…: Altres opcions.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1570,7 +1828,7 @@
     "text": "El nostre primer programa: Hola món\n\n\n\nPreprocessador: El fitxer stdio proporciona la definició de la funció printf.\nmain(): Funció principal i obligatòria. Aquesta no rep cap argument i retorna un enter.\nLa funció printf rep un argument del tipus char *.\nreturn 0: Indica que tot ha anat bé i acaba la funció main().\n\n\n#include &lt;stdio.h&gt;\n/* This is a comment */\nint main()\n{\n    printf(\"Hola món!\\n\");\n    return 0;\n}\n\n# Compilem hola.c\ngcc -o hola hola.c \n# Executem hola\n./hola \n\n\nLa funció printf es troba a la biblioteca estàndard de C, podem consultar man s3 printf per obtenir més informació. Aquesta funció permet mostrar text per pantalla. Els arguments que rep són una cadena de caràcters i els valors que volem mostrar. Els valors es substitueixen a la cadena de caràcters mitjançant el format %d per a enters, %f per a nombres en punt flotant, %c per a caràcters i %s per a cadenes de caràcters. Els caràcters \\n indiquen un salt de línia.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1581,7 +1839,7 @@
     "text": "El nostre primer programa amb llibreries externes\n#include &lt;math.h&gt;\n#include &lt;stdio.h&gt;\nint main (void)\n{\n  double x = 2.0;\n  double y = sqrt (x);\n  printf (\"La rai­z cuadrada de %f es %f\\n\", x, y);\n  return 0;\n}\n\nFitxer: sources/arrel.c\n\n// Complilació amb ruta global a la llibreria\ngcc -Wall SO_usingLibraries.c /usr/lib/x86_64-linux-gnu/libm.a -o calc\n// Compilació utilitzant la forma abreujada\ngcc -Wall SO_usingLibraries.c -lm -o calc\n\nPer obtenir informació sobre la funció sqrt podeu consultar la pàgina de manual amb la comanda man -s3 sqrt. Aquesta funció es troba a la biblioteca matemàtica, per això cal enllaçar-la amb el programa. Per això s’utilitza l’opció -lm. Quan compilem un programa en C, el compilador pot incorporar certes funcions de la biblioteca estàndard de forma automàtica perquè són part de les especificacions del llenguatge (com printf, scanf, etc.). No obstant això, altres funcions, com les de la biblioteca matemàtica, no es troben dins d’aquest conjunt i, per tant, cal especificar manualment que volem enllaçar-les amb el programa.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1592,7 +1850,7 @@
     "text": "Activitat: Calculadora (I)\n\n\n// calc.h\n#ifndef CALC_H\n#define CALC_H\n\ndouble suma(\n  double a, \n  double b);\n\n#ifndef CALC_H\n\n// calc.c\n#include \"calc.h\"\n\ndouble suma(\n  double a, \n  double b) \n  {\n    return a + b;\n  }\n\n#include &lt;stdio.h&gt;\n#include \"calc.h\"\n\nint main() {\n  double a = 2.0;\n  double b = 3.0;\n  suma(a, b);\n  return 0;\n}\n\n\ngcc -c calc.c -o calc.o\ngcc -c main.c -o main.o\ngcc calc.o main.o -o calc\n./calc",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1603,7 +1861,7 @@
     "text": "Activitat: Calculadora (II)\n\n\n// calc.h\n#ifndef CALC_H\n#define CALC_H\n\ndouble potencia(\n  double a, \n  double b);\n\n#ifndef CALC_H\n\n// calc.c\n#include \"calc.h\"\n#include &lt;math.h&gt;\ndouble potencia(\n  double a, \n  double b) \n  {\n    return pow(a, b);\n  }\n\n#include &lt;stdio.h&gt;\n#include \"calc.h\"\n\nint main() {\n  double a = 2.0;\n  double b = 3.0;\n  potencia(a, b);\n  return 0;\n}\n\n\ngcc -c calc.c -o calc.o\ngcc -c main.c -o main.o\ngcc calc.o main.o -o calc -lm\n./calc",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1614,7 +1872,7 @@
     "text": "Els arguments d’entrada\nLa funció main() té dos arguments que tradicionalment s’anomenen argc (Longitud del vector d’argument) i argv (Matriu de punters de caràcters).\n\n\nRetorna un enter\n\n0: En cas d’èxit.\n-1 (negatiu): en cas de fallada.\n\n\nint \nmain(int argc, \n     char *argv[]) \n{...}\n\n./a.out -o foo -vv\nargv = [ \"/path/to/a.out\", \n  \"-o\" \"foo\", \"-vv\" ];\n\n\nArgv és una representació tokenitzada.\nArgv[0] mai està buit i sempre conté la ruta completa a l’executable.\n\n\nCom ja hem vist la funció main() és la primera funció del vostre programa que s’executa quan comença a executar-se. Aquesta funció crida a **_start()**, que normalment proporciona la biblioteca de temps d’execució C, enllaçat automàticament quan es compila el programa.\nLa funció main() té dos arguments que tradicionalment s’anomenen argc (Longitud del vector d’argument) i argv (Matriu de punters de caràcters) i retorna un nombre enter amb signe. La majoria dels entorns Unix esperen que els programes tornin 0 (zero) en cas d’èxit i -1 (negatiu) en cas de fallada.\nArgv és una representació tokenitzada de la línia d’ordres que va invocar el vostre programa. Argv[0] mai està buit i sempre conté la ruta completa a l’executable.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1625,7 +1883,7 @@
     "text": "Exemple: check_args.c\n\n\n#include &lt;stdio.h&gt;\n\nint\nmain(int argc, char **argv) {\n\n  int i;\n\n  for (i=0; i&lt;argc; i++) {\n    printf(\"%s\\n\", argv[i]);\n  }\n\n  return 0;\n}\n\ngcc check_args.c -o check_args\n./check_args a.out\n./check_args *.c\n./check_args $USER $PWD $SHELL\n\n\nAquest programa ens permet observa com es capturen els arguments.\nAra executarem aquest programa amb els diferents tipus de shell que tenim instal·lades.\nPer modificar la shell: chsh -s /bin/sh jordi.\n\n\n\nFitxer: sources/check_args.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1636,7 +1894,7 @@
     "text": "Include\nEn el llenguatge de programació C, la directiva #include diu al preprocessador que insereixi el contingut d’un altre fitxer al codi font en el punt on es trobi la directiva #include.\n\n#include &lt;header_file&gt;: El preprocessador cercarà una ruta de directori predeterminada per localitzar el fitxer de capçalera. Normalment, els fitxers són: /usr/include.\n#include \"header_file\": El preprocessador buscarà el fitxer de capçalera al mateix directori que el fitxer font",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1647,7 +1905,7 @@
     "text": "Include: Header més improtants\n\n\n\n\n\n\n\nHeader\nFuncionalitat\n\n\n\n\nstdio\nSubministra entrada i sortida: funcions FILE, stdin, stdout, stderr i fprint().\n\n\nstdlib\nSubministra funcions d’utilitat: malloc(), calloc() i realloc().\n\n\nunistd\nSubministraments EXIT_FAILURE, EXIT_SUCCESS.\n\n\nerrno\nDefineix la variable errno externa i tots els valors que pot prendre.\n\n\nassert\nSubministra funcions de diagnòstic.\n\n\ntime\nSubministraments Funcions de data i hora.\n\n\nmath\nProporciona funcions de suport matemàtiques.\n\n\nstring\nProporciona funcions memcpy(), memset() i strlen().\n\n\ngetopt\nProporciona optarg, opterr i getopt() externs.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1658,7 +1916,7 @@
     "text": "Define\nLa directiva #define permet la definició de macros dins del codi font. Aquestes definicions de macro permeten declarar valors constants per utilitzar-los en tot el codi. Les definicions de macro no són variables i el programa no les pot canviar. Utilitzeu aquesta sintaxi quan creeu constants que representen nombres, cadenes o expressions.\n\n\n#definir el valor CNAME\n#definir CNAME (expressió)\n\n#define DEFAULT_PROGNAME \"myProgName\"\n#define BUFSIZE 4096\n\n\nL’expressió s’ha d’entregar entre parèntesis si conté operadors.\nNO poseu ; al final de les sentències #define.\nQuan s’anomena un #define per distingir-lo dels noms de variables i funcions, utilitzeu majúscules.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1669,7 +1927,7 @@
     "text": "External declarations\nUna declaració externa porta aquest nom a l’espai de noms de la unitat de compilació actual (també conegut com fitxer) i permet al programa accedir a aquesta variable. La paraula clau extern amplia la visibilitat de la funció a tot el programa, la funció es pot utilitzar (anomenar) a qualsevol lloc de qualsevol dels fitxers de tot el programa, sempre que aquests fitxers continguin una declaració de la funció.\nextern int errno;\n// errno s'utilitza com a canal de comunicació per la  biblioteca \n// C estàndard per comunicar el motiu de fallada d'una funció determinada.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1680,7 +1938,7 @@
     "text": "Llibreria errno\nLa variable global errno és defineix a la biblioteca errno.h.\n\nAquest valor de variable només és rellevant quan la trucada retorna un error (normalment el codi -1).\nPer més informació: $ man errno\nEs pot veure un missatge d’error descriptiu identificat per errno utilitzant la funció perror de la biblioteca &lt;stdio.h&gt;. Funció: void perror(const char*); Aquesta funció primer mostra el missatge i després l’error. #include &lt;stdio.h&gt;.\n\n\nFitxer: sources/errno_example.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1691,7 +1949,7 @@
     "text": "Activitat: echo amb c\n\n#include &lt;stdio.h&gt;\n\nint main(int argc, char *argv[]) {\n  int i;\n  if (argc &lt; 2) {\n    fprintf(stderr, \"Usage: %s &lt;string&gt;\\n\", argv[0]);\n    return -1;\n  }\n  for (i = 1; i &lt; argc; i++) {\n    printf(\"%s \", argv[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n\nFitxer: sources/echo.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1702,7 +1960,7 @@
     "text": "Activitat: cd amb c\n#include &lt;stdio.h&gt;  // Per fprintf() i perror()\n#include &lt;unistd.h&gt; // Per chdir()\n\nint main(int argc, char *argv[]) {\n    if (argc &lt; 2) {\n        fprintf(stderr, \"Usage: %s &lt;directory&gt;\\n\", argv[0]);\n        return 1;\n    }\n    if (chdir(argv[1]) == -1) {\n        perror(\"chdir\");\n        return 1;  \n    }\n    return 0;  \n}\n\nFitxer: sources/cd.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1713,7 +1971,7 @@
     "text": "Què és un Makefile?\nUn fitxer Makefile és un fitxer de text que conté un conjunt de regles utilitzades per construir un programa. Aquestes regles indiquen al sistema com compilar i enllaçar el programa.\n\nAutomatització: Simplifica el procés de compilació i enllaçat.\nEficiència: Només es compilen els fitxers modificats, no tot el projecte.\nOrganització: Organitza el codi i les dependències de manera estructurada.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1724,7 +1982,7 @@
     "text": "Organització del Makefile\ntarget: dependencies\n    command\n\ntarget: Nom de l’objectiu (executable o fitxer objecte).\ndependencies: Fitxers necessaris per a generar l’objectiu.\ncommand: Comandaments per a compilar o generar l’objectiu.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1735,7 +1993,7 @@
     "text": "Plantilla per compilar un programa\nCC = gcc\nCFLAGS = -Wall -O2\nTARGET = programa\n\nall: $(TARGET)\n\n$(TARGET): programa.c\n    $(CC) $(CFLAGS) -o $(TARGET) programa.c\n\nclean:\n    rm -f $(TARGET)\n\nLa opció -O2 és un nivell d’optimització per al compilador. Indica al compilador que optimitzi el codi generat per a un millor rendiment. Inclou un conjunt d’optimitzacions per millorar la velocitat i la grandària del codi. Tenim diferents nivells d’optimització, per exemple -O0, -O1, -O2, -O3, -Os, -Og, -Ofast.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1746,7 +2004,7 @@
     "text": "Com gestiona l’entrada i sortida el SO?\nUns dels objectius del SO és proporcionar una màquina virtual que uniformitzi la complexitat dels dispositius d’E/S, necessitem independitzar les operacions i els dispositius.\n\nDispositius reals: Existeix en el món real. Combinació de diferents elements harwdare i software.\nDispositius físics: Formats pel perifèric i pel seu hardware de control i el programari que el gestiona (drivers).\nDispositius lògics: El resultat d’un programari del sistema que crea aquest dispositiu.\n\nNull: Dispositiu d’E/S sobre el qual podem escriure tot el que vulguem i sempre és buit.\nFinestra: Dispositiu lògic d’E/S que combina 4 dispositius físics: pantalla, teclat, memòria i un apuntador (ratolí).\n\n\n\nL’espai lògic és una agrupació d’informació emmagatzemada a la memòria física utilitzant la memòria virtual. Per tant, l’espai lògic d´’un procés es pot veure com un dispositiu entrada/sortida. Us podeu imaginar aquest espai lògic com un fitxer.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1757,7 +2015,7 @@
     "text": "Esquema de dispositius",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1768,7 +2026,7 @@
     "text": "Dispositius virtuals\nUn dispositiu virtual és un dispositiu que a priori no està associat a cap dispositiu real. En temps d’execució el sistema operatiu associarà el dispositiu virtual amb el dispositiu real.\n\nAssociació implícita: El sistema i el procés que ha iniciat l’execució són els encarregats de fer l’associació. Els dispositius virtuals associats de manera implícita són els dispositius estàndard, en el cas d’Unix tenim entrada estàndard (stdin), sortida estàndard(stdout) i sortida estàndard d’errors (stderr).\nAssociació explícita: Aquesta associació es dona entre un dispositiu virtual i un dispositiu real pel mateix programa durant l’execució. Per efectuar-la el programa necessita realitzar una operació específica que donat un dispositiu real generi un dispositiu virtual associat. A partir d’aquest moment el programa realitzarà les operacions d’E/S del dispositiu mitjançant el dispositiu virtual.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1779,7 +2037,7 @@
     "text": "Operacions E/S\nEl processos utilitzen els descriptors de fitxers per accedir als dispositius un cop ja han estat oberts per llegir i escriure informació.\n\n\nOperacions\n\nllegir(dispositiu,buffer de lectura,posició)\nescriure(dispositiu,buffer escriptura,posició)\nobrir(dispositiu, operació)\ntancar(dispositiu)\nposicionar(dispositiu, posició)\n\n\nDescriptors\n\n0: Entrada estàndard (stdin)\n1: Sortida estàndard(stdout)\n2: Sortida estàndard d’errors (stderr)\n\n\n\nFixeu-vos que el fet d’utilitzar dispositius virtuals no soluciona el problema de la independència si el sistema operatiu únicament utilitza els dispositius virtuals i aquests han de conèixer les peculiaritats dels dispositius reals per poder operar-hi. Per tant, necessitem una nova capa per damunt dels drivers que uniformitzi les operacions.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1790,7 +2048,7 @@
     "text": "Descriptors de fitxer",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1801,7 +2059,7 @@
     "text": "Fitxers\n\n\n\nUn fitxer és una seqüència contigua de bytes.\nEl sistema operatiu no imposa cap format específic.\nCada byte es pot adreçar individualment.\nUn descriptor de fitxer és un nombre enter positiu específic que identifica els seus fixers oberts.\nTots els fitxers oberts per una aplicació es tanquen automàticament quan el procés acaba.\n\n\n\n\n\nValor\nSignificat\nDefecte\n\n\n\n\n0\nstdin (teclat)\nSI\n\n\n1\nstdout (pantalla)\nSI\n\n\n2\nstderr (pantalla)\nSI\n\n\n\\(3...N\\)\ndisponibles pels usuaris\nNO\n\n\n\n\nopen() : obre fitxers per llegir i/o escriure o per crear-los.\ncreat() : crea un fitxer buit.\nread() : llegeix informació d’un fitxer.\nwrite() : escriu informació en un fitxer.\nlseek() : aneu a un byte específic del fitxer.\nunlink() : elimina un fitxer.\nfcntl() : controla els atributs d’un fitxer.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1812,7 +2070,7 @@
     "text": "Obrint fitxers\nPer crear o obrir un fitxer fem anar les crides a sistema open() i creat(). Aquestes retornen la seva descripció, o retornen -1 si hi ha hagut algun error.\n\n\n#include &lt; sys/types.h&gt; \n#include &lt; sys/stat.h&gt; \n#include &lt; fcntl.h&gt; \n\nint open ( const char *path, \n  int flags [, mode_t mode ]);\nint creat (const char *path, \n  mode_t mode);\n\n\npath: cadena amb el camí relatiu o absolut al fitxer.\nflags: mètode d’obertura de fitxer:\n\nO_RDONLY - només lectura.\nO_WRONLY - només escriptura.\nO_RDWR - lectura i escriptura.\nO_CREAT - crea el fitxer si no existeix.\nO_TRUNC - si existeix, l’obre i es trunca a 0 bytes.\nO_APPEND - escriu al final del fitxer.\n\nmode: especifica els permisos si es crea un fitxer nou (0644: -rw-r–r–)\n\n\n\nPodeu consultar la pàgina de manual de les crides a sistema per obtenir més informació:\n\nman -s2 fcntl\nman -s2 stat\nman -s2 open\nman creat",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1823,7 +2081,7 @@
     "text": "Tancant fitxers\nPer tancar un fitxer utilitzarem close(). Aquesta crida a sistema desassocia el fitxer del procés. Retorna 0 si tot funciona correctament, en ca d’error -1.\n#include &lt;unistd.h&gt; \nint close(int fd);\n\nfd: Descriptor de fitxer que volem tancar.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1834,7 +2092,7 @@
     "text": "Descriptors de fitxers (I)\nint main() {\n \n int fd1, fd2, fd3;\n FILE *f;\n printf(\"STDIN_FILENO: %d\\n\", STDIN_FILENO); \n printf(\"stdout: %d\\n\", fileno(stdout)); \n printf(\"STDERR_FILENO: %d\\n\", STDERR_FILENO);\n\n printf(\"\\nOpening /dev/zero...\\n\");\n if ((fd1 = open(\"/dev/zero\", O_RDONLY)) &lt; 0) {\n  fprintf(stderr, \"Unable to open /dev/zero: %s\\n\", strerror(errno));\n } else {\n  printf(\"fd1: %d\\n\", fd1);\n }\n\nFitxer: sources/descriptors.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1845,7 +2103,7 @@
     "text": "Descriptors de fitxers (II)\n printf(\"\\nOpening /dev/zero a second time...\\n\");\n if ((fd2 = open(\"/dev/zero\", O_RDONLY)) &lt; 0) {\n  fprintf(stderr, \"Unable to open /dev/zero: %s\\n\", strerror(errno));\n  exit(EXIT_FAILURE);\n }\n printf(\"fd2: %d\\n\", fd2);\n\n printf(\"\\nNow closing fd1, but keeping fd2 open..\\n\");\n (void)close(fd1);\n\n printf(\"\\nOpening /dev/zero a third time...\\n\");\n if ((fd3 = open(\"/dev/zero\", O_RDONLY)) &lt; 0) {\n  fprintf(stderr, \"Unable to open /dev/zero: %s\\n\", strerror(errno));\n  exit(EXIT_FAILURE);\n }\n printf(\"fd3: %d\\n\", fd3);",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1856,7 +2114,7 @@
     "text": "Descriptors de fitxers (III)\n printf(\"\\nNow closing fd2 and fd3.\\n\");\n (void)close(fd2);\n (void)close(fd3);\n\n printf(\"Now opening /dev/zero as a stream.\\n\");\n if ((f = fopen(\"/dev/zero\", \"r\")) == NULL) {\n  fprintf(stderr, \"Unable to open /dev/zero: %s\\n\", strerror(errno));\n  exit(EXIT_FAILURE);\n }\n printf(\"f: %d\\n\", fileno(f));\n (void)fclose(f);\n\n return EXIT_SUCCESS;\n}",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1867,7 +2125,7 @@
     "text": "Llegint fitxers (I)\n\n\n#include &lt;unistd.h&gt; \nssize_t read\n(int fd, \n void *buf, size_t);\n\nssize_t write\n(int fd, \n void *buf, size_t);\n\nread(): Intenta llegir/escriure fins a nbytes bytes del fitxer especificat per fd i emmagatzemar-los a l’àrea de memòria que comença a buf. Paràmetres:\n\nfd: descriptor del fitxer que es llegirà/escriurà.\nnbytes: nombre de bytes a llegir/escriure.\nbuf : apunta a la memòria intermèdia on es desarà la informació de lectura/escriptura. Retorna:\n\nSi té èxit, retorna el nombre de bytes de lectura/escriptura (0 significa final del fitxer).\nSi hi ha error, retorna -1 i especifica el motiu en errno.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1878,7 +2136,7 @@
     "text": "Llegint fitxer (II)\nint main(int argc, char* argv[]) {\n  char string[11]; int b_read;\n  int file = open (\"my_file\", O_RDONLY); \n  if(file == -1) { \n    perror(\"Error while opening file\");\n    exit(1);\n  }\n  b_read = read(file, string, 10);\n  close(file);\n  string[10] = 0;\n  printf(\"%d B have been read. The obtained string is: %s\\n\", \n    b_read, string);\n  return 0;\n}\n\nFitxer: sources/llegir_fitxer.c\n\n\nPer generar un fitxer amb dades aleatòries: head -c 1024 &lt;/dev/urandom &gt; my_file.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1889,7 +2147,7 @@
     "text": "Escrivint fitxers\nint main(int argc, char* argv[]) {\n\n  const char* string = \"\\nWinter is coming\\n\\n\";\n\n  int file = open(\"new_file\", O_CREAT|O_WRONLY, 0644);\n\n  if(file == -1) { \n    perror(\"Error when opening file\");\n    exit(1);\n  }\n\n  write(file, string, strlen(string));\n  close(file);\n\n  exit(0);\n}\n\nFitxer: sources/escriure_fitxer.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1900,7 +2158,7 @@
     "text": "Llegint/Escrivint en llocs específics\n\n\n#include &lt; sys/types.h&gt; \n#include &lt; unistd.h&gt; \noff_t lseek( int fd,\n off_t offset, \n int whence)\n\n\nfd: descriptor de fitxer.\noffset: desplaçament relatiu del punter en bytes.\nwhence: directiva de desplaçament:\n\nSEEK_SET: el punter es col·loca offset bytes.\nSEEK_CUR: el punter es mou offset bytes des de la seva posició actual.\nSEEK_END: el punter es mou offset bytes des del final del fitxer.\n\nSi té èxit, retorna la posició absoluta del punter (en bytes).\nSi hi ha error, retorna -1 i especifica el motiu en errno.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1911,7 +2169,7 @@
     "text": "Llegint fitxers en llocs específics\nint main(int argc, char* argv[]) {\n  char string[11];\n  int b_read;\n\n  int file = open (\"my_file\", O_RDONLY); \n\n  lseek(file, 46, SEEK_SET);\n  b_read = read(file, string, 10); // Read 10 bytes\n  close(file);\n\n  string[10] = 0;\n  printf(\"%d B have been read. The obtained string is: %s\\n\", \n  b_read, string);\n\n  return 0;\n}\n\nFitxer: sources/llegir_fitxer2.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1922,7 +2180,7 @@
     "text": "Escrivint en llocs específics\nchar buf1[] = \"abcdefghij\";\nchar buf2[] = \"ABCDEFGHIJ\";\n\nint main() {\n  int fd;\n  if((fd = creat(\"new_file2\", 0644)) &lt; 0) {\n    perror(\"new_file2\"); exit(-1);\n  }\n\n  if(write(fd, buf1, 10) != 10)       perror(\"buf1\");    // offset == 10\n  if(lseek(fd, 4, SEEK_SET) == -1)    perror(\"lseek\");   // offset == 4\n  if(write(fd, buf2, 10) != 10)       perror(\"buf2\");    // offset == 14\n\n  return 0;\n}\n\nFitxer: sources/escriure_fitxer2.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1933,7 +2191,7 @@
     "text": "Què són els punters?\n\n\nConcepte\n\nTotes les dades (variables, constants,…) s’emmagatzemen des d’una determinada adreça de memòria i utilitzant tants bytes com sigui necessari.\nUn punter és una variable guardada en una adreça de mèmoria que conté un altra adreça de memòria.\n\n\nOperadors\n\n&: Retorna l’adreça de l’apuntador. Per exemple &x ens dóna l’adreça de la variable x.\n* Retorn el valor de la variable situada a l’adreça especificada pel seu operand (dereferencing).\n\n\n\nEl valor que retorna l’operador & depèn de la posició del seu operand i, per tant, no està sota el control del programador.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1944,7 +2202,7 @@
     "text": "Com funcionen els punters? (I)\nint main (int argc, char * argv[]){\nint s=10,n,m;\nint *ptr=&s;\n};",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1955,7 +2213,7 @@
     "text": "Com funcionen els punters? (II)\n\n\nint \nmain (int argc, \n    char * argv[]){\n    int s=10;\n    float f=10.5;\n    char a='a';\n\n    int *pt1 = &s;\n    float *pt2 = &f;\n    char *pt3= &a;\n};\n\n\n\n\nFitxer: sources/punters_diapos.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1966,7 +2224,7 @@
     "text": "Operacions amb punters (I)\n\nAssignació (=): Assigna una adreça a un punter.\nComparació (==, !=): Igualtat o desigualtat.\nInicialització (NULL): Indica que el punter no conté cap adreça.\nIncrement (++), decrement (–): Canviar un punter a l’element següent/anterior d’una sèrie (per exemple, una matriu).\nIndexat ([]): accés a l’element n d’una sèrie.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1977,7 +2235,7 @@
     "text": "Operacions amb punters (II)\nint n = 2;\nint *ptr1 = NULL;\nptr1 = &n;\n(*ptr1)++        //Modifiquem el valor de la variable a la que apunta\nptr1++           //Modifiquem l'adreça de memòria on apunta",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1988,7 +2246,7 @@
     "text": "Pas de paràmetres (valor)\n#include &lt;stdio.h&gt;\n\nint sumar_per_valor(int a, int b) {\n    a = a + b;\n    return a;\n}\n\nint main() {\n    int x = 5;int y = 3;\n    printf(\"Abans de la crida per valor: x = %d, y = %d\\n\", x, y);\n    int resultat = sumar_per_valor(x, y);\n    printf(\"Després de la crida per valor: x = %d, y = %d\\n\", x, y);\n    printf(\"Resultat de la suma: %d\\n\", resultat);\n\n    return 0;\n}\n\nFitxer: sources/pas_valor.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -1999,7 +2257,7 @@
     "text": "Pas de paràmetres (referència)\n#include &lt;stdio.h&gt;\n\nvoid sumar_per_referencia(int *a, int *b) {\n    *a = *a + *b;\n}\n\nint main() {\n    int x = 5; int y = 3;\n    printf(\"Abans de la crida per referència: x = %d, y = %d\\n\", x, y);\n    sumar_per_referencia(&x, &y);\n    printf(\"Després de la crida per referència: x = %d, y = %d\\n\", x, y);\n    return 0;\n}\n\nFitxer: sources/pas_referencia.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2010,7 +2268,7 @@
     "text": "Exemple: Ordenació d’un array\nvoid ordenar(int n, int* ptr)\n{\n    int i, j, t;\n    for (i = 0; i &lt; n; i++) {\n        for (j = i + 1; j &lt; n; j++) {\n            if (*(ptr + j) &lt; *(ptr + i)) {\n                t = *(ptr + i);\n                *(ptr + i) = *(ptr + j);\n                *(ptr + j) = t;\n            }\n        }\n    }\n}",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2021,7 +2279,7 @@
     "text": "Què és la Stack?\nÉs una estructura LIFO (Last-In,First-Out). La pila és una regió especial de memòria i la gestiona automàticament la CPU, de manera que no cal assignar ni desassignar memòria. La memòria de pila es divideix en trames successives on cada vegada que es crida una funció, s’assigna una nova trama de pila.\nCaracterístiques de la Stack\n\nOrdre seqüencial: Les variables s’empilen i desempilen en ordre seqüencial.\nGestió automàtica: No cal que el programador assigni o alliberi memòria manualment.\nLimitació de mida: La pila és limitada, i si es supera el seu límit, es produeix un desbordament de pila.\nVariables locals: Les variables de la pila només existeixen mentre la funció està en execució.\nEficient: L’accés a la memòria de la pila és molt ràpid, ja que segueix un ordre seqüencial i clar.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2032,7 +2290,7 @@
     "text": "Què és la Heap?\nLa heap és una àrea de memòria on s’assigna memòria de manera dinàmica durant el temps d’execució. Aquesta memòria es gestiona a través de funcions específiques com malloc(), calloc() i free(), i és responsabilitat del programador garantir que la memòria s’alliberi quan ja no sigui necessària.\nCaracterístiques de la Heap\n\nGestió manual: El programador ha de controlar l’assignació i alliberament de la memòria.\nFlexibilitat: És útil per a grans blocs de memòria o per a objectes que han de romandre en memòria més temps que una funció específica.\nLimitació per memòria física: La mida de la heap està limitada per la quantitat de memòria física disponible al sistema.\nCost d’execució: Les operacions amb la heap són més lentes comparades amb la pila, a causa de la gestió dinàmica i la fragmentació.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2043,7 +2301,7 @@
     "text": "Exemple: Heap vs Stack\n\n\nint main() {     \n    int y;   \n    char *str; \n    y = 4;\n    printf(\"stack memory: %d\\n\", y);\n    str = malloc(100*sizeof(char)); \n    str[0] = 'm';\n    printf(\"heap memory:%c\\n\", str[0]); \n    free(str);         \n    return 0;\n}\n\n\n\n\nFitxer: sources/zones_mem.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2054,7 +2312,7 @@
     "text": "StackOverflow\n\n\nExemple\nvoid func() {\n    int vector[1000];\n    func();\n}\n\nint main() {\n    func();\n    return 0;\n}\n\nQuè és un StackOverflow?\nUn stack overflow es produeix quan la pila del programa supera la seva capacitat màxima. Això pot passar quan es criden funcions recursives de manera infinita o quan s’assignen grans quantitats de memòria a la pila.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2065,7 +2323,7 @@
     "text": "Exemple: Ordenar amb memòria dinàmica (I)\nint main() {\n    int* nums = NULL;  \n    int n = 0, max_elements = 10, num;\n\n    nums = (int*)malloc(max_elements * sizeof(int));\n    if (nums == NULL) {\n        printf(\"Error en l'assignació de memòria.\\n\");\n        return 1;\n    }\n\n    capta_dades(n, nums);\n    ordenar(n, nums);\n    free(nums);\n    return 0;\n}\n\nFitxer: sources/pas_referencia.c",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2076,7 +2334,7 @@
     "text": "Exemple: Ordenar amb memòria dinàmica (II)\n\ncapta_dades(int n, int* nums) {\n  while (scanf(\"%d\", &num) != EOF) {\n    if (n &gt;= max_elements) {\n      max_elements *= 2;\n      int* temp = (int*)realloc(nums, max_elements * sizeof(int));\n      if (temp == NULL) {\n        printf(\"Error en l'assignació de memòria.\\n\");\n        free(nums);\n        return 1;\n      }\n      nums = temp;\n    }\n  nums[n] = num;\n  n++;\n  }\n}",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2087,7 +2345,7 @@
     "text": "Qué són els structs?\nUna estructura és un tipus de dades derivats format per membres que són tipus de dades fonamentals o derivats. Una única estructura emmagatzemaria les dades d’un objecte. Una matriu d’estructures emmagatzemaria les dades de diversos objectes.\n\n\nSenser reserva espai de Memòria\nstruct user {\nint pid;\nchar * name;\n}\n\nReservant espai de Memòria\nstruct user {\nint pid;\nchar * name;\n} user;",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2098,7 +2356,7 @@
     "text": "Qué són els Typedef?\nTypedef s’utilitza per crear sinònims per a noms de tipus de dades definits prèviament.\n\n\ntypedef int L;\nint a;\nL a;\n\ntypedef struct {\nint pid;\nchar * name;\n} User; \n\n\n\n\nUser user;\nuser.name=\"\nJordi Mateo\";\nuser.pid=5000;\n\nUser * user1;\nuser1-&gt;name=\"Jack \nsparrow\";\n*(user1).pid=5001;\nUser *user2 = &user;",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2109,7 +2367,7 @@
     "text": "Calculant la distancia entre 2 punts\ntypedef struct {\n  float x; float y;\n} point ;\n \nfloat dist( point A, point B) {\n  return(sqrt((A.x - B.x)*(A.x - B.x) + (A.y - B.y)*(A.y - B.y)));\n}\n \nint main(){\n  float d; point A, B;\n  printf(\"The coordinates of the point A are: \");\n  scanf(\"%f %f\",&A.x,&A.y);\n  printf(\"\\nThe coordinates of the point B are: \");\n  scanf(\"%f %f\",&B.x,&B.y);\n  printf(\"\\nThe distance between A and B is %f\\n\", dist(A,B));\n  exit (0);\n}",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2120,7 +2378,7 @@
     "text": "Exercicis\n\nDebianBin",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   },
   {
@@ -2131,7 +2389,7 @@
     "text": "Això és tot per avui\n\n\nPreguntes?\nTot el codi i exemples addicionals els trobareu a la carpeta 01-sources del repositori GitHub del curs.\n\nTAKE HOME MESSAGE\nEl kernel de Linux s’ha escrit en C, per tant, és important conèixer aquest llenguatge de programació si volem entendre com funciona el sistema operatiu.",
     "crumbs": [
       "Diapositives",
-      "Unitat 01 ·Introducció a la programació de Sistema (I) (C)"
+      "Unitat 01 · Introducció a la programació de Sistema (I) (C)"
     ]
   }
 ]

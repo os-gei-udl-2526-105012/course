@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
+
+  <meta name="author" content="Jordi Mateo Fornés">
+  <title>SO - Fall 2025 – Kernel de Linux</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Kernel de Linux</h1>
+  <p class="subtitle">Unitat 2 · Sistemes Operatius (SO)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Jordi Mateo Fornés 
+</div>
+</div>
+</div>
+
+</section>
+<section id="què-és-el-nucli-dun-sistema-operatiu" class="slide level2 smaller">
+<h2>Què és el nucli d’un sistema operatiu?</h2>
+<p>El nucli del <strong>SO</strong> és la capa més crítica i conté les rutines de gestió del sistema relacionades amb els recursos físic. Es troba sempre carregat a la Memòria.</p>
+<h4 id="funcionalitats-del-nucli">Funcionalitats del nucli</h4>
+<ul>
+<li class="fragment">El nucli té la capacitat d’assignar i desassignar la CPU als usuaris i processos per evitar que acaparin el recurs de forma ininterrompuda.</li>
+<li class="fragment">El nucli evita que els usuaris i processos accedeixin a dades d’altres usuaris.</li>
+<li class="fragment">El nucli evita els usuaris modifíquin el codi i les dades del nucli.</li>
+<li class="fragment">El nucli evita que els usuaris realitzin E/S il·legals.</li>
+</ul>
+</section>
+<section id="qué-és-la-dualitat" class="slide level2 smaller">
+<h2>Qué és la dualitat?</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h4 id="mode-kernel">Mode kernel</h4>
+<ul>
+<li class="fragment">El codi que s’executa en aquest mode té accés a qualsevol adreça de Memòria i a tots els recursos hardware.</li>
+<li class="fragment">Si un programa falla en aquest mode, tot el sistema quedarà aturat.</li>
+</ul>
+<h4 id="mode-usuari">Mode usuari</h4>
+<ul>
+<li class="fragment">El codi no té accés directe a Memòria ni als recursos hardware.</li>
+<li class="fragment">Si un programa falla en aquest mode, únicament atura el programa i no el sistema.</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="../figures/slides/01-introduction/esquema2.png"></p>
+</div></div>
+</section>
+<section id="repte-separació-de-responsabilitats" class="slide level2 smaller">
+<h2>Repte: Separació de responsabilitats</h2>
+<div class="center-container">
+<p>Quina és la millor manera d’organitzar/separar totes les parts del sistema operatiu?</p>
+</div>
+<ul>
+<li class="fragment">Com <strong>organitzem</strong> les parts?</li>
+<li class="fragment"><strong>Definició de polítiques</strong>: Quines seran les accions a realitzar.</li>
+<li class="fragment">Com <strong>cooperen</strong> les parts?</li>
+<li class="fragment"><strong>Mecanismes</strong>: Com es duran a terme aquestes accions.</li>
+</ul>
+<div class="fragment">
+<h4 id="classificació-estructura-interna">Classificació (Estructura Interna)</h4>
+<ol type="1">
+<li class="fragment">Monolítics</li>
+<li class="fragment">Capes</li>
+<li class="fragment">Micro-kernel</li>
+<li class="fragment">Híbrids</li>
+<li class="fragment">Hypervisors</li>
+</ol>
+</div>
+</section>
+<section id="estructura-simple" class="slide level2 smaller">
+<h2>Estructura simple</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<h3 id="característiques">Característiques</h3>
+<ul>
+<li class="fragment">Estructura no ben definida.</li>
+<li class="fragment">El <strong>SO</strong> és un conjunt de procediments que es poden cridar sense cap limitació.</li>
+<li class="fragment">Son sistemes complexos; difícil d’implementar i de depurar.</li>
+<li class="fragment">No tenen mode <strong>dual</strong>.</li>
+<li class="fragment">Exemple: MS-DOS</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="center">
+<p><img data-src="../figures/slides/02-kernel/kernel-msdos.png"></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Els sistemes operatius com MS-DOS o Unix (original) no tenien estructures ben definides.</p>
+<p>No hi havia cap mode d’execució de la CPU (usuari i nucli), de manera que els errors en les aplicacions podrien provocar un bloqueig de tot el sistema.</p>
+<p>Quan es va escriure DOS originalment, els seus desenvolupadors no tenien ni idea de quant de gran i important esdevindria. Va ser escrit per uns quants programadors en un temps relativament curt, sense el benefici de les tècniques modernes d’enginyeria de programari, i després va anar creixent amb el pas del temps fins a superar les seves expectatives originals. No divideix el sistema en subsistemes i no distingeix entre modes d’usuari i nucli, cosa que permet a tots els programes accedir directament al maquinari subjacent.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="estructura-monolítica" class="slide level2 smaller">
+<h2>Estructura Monolítica</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p>Els serveis d’usuari i serveis del kernel s’implementen sota el mateix espai d’adreces.</p>
+<div class="center">
+<p><img data-src="../figures/slides/02-kernel/kernel-monolitic.png"></p>
+</div>
+</div><div class="column" style="width:45%;">
+<ul>
+<li class="fragment">👍 Les funcionalitats (serveis) s’invoquen amb crides al sistema.</li>
+<li class="fragment">👍 Els controladors de dispositius es carreguen al nucli i passen a formar part del nucli.</li>
+<li class="fragment">👎 Difícil d’entendre, modificar i mantenir.</li>
+<li class="fragment">👎 Poc fiable (sense aïllament entre els mòduls del sistema)</li>
+</ul>
+</div></div>
+</section>
+<section id="estructura-per-capes" class="slide level2 smaller">
+<h2>Estructura per capes</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="../figures/slides/02-kernel/layered-kernel.png"></p>
+</div><div class="column" style="width:40%;">
+<ul>
+<li class="fragment">👍 Independència entre les capes.</li>
+<li class="fragment">👍 Permet descriure el <strong>SO</strong> de forma clara.</li>
+<li class="fragment">👍 Simplicitat en la construcció i depuració.</li>
+<li class="fragment">👎 Rendiment.</li>
+<li class="fragment">👎 És difícil definir les capes a causa de les limitacions per comunicar-se.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Un exemple és UNIX, aquest sistema operatiu, creat per Dennis Ritchie i Ken Thompson als anys 70, va adoptar una arquitectura en capes més simple que Multics. Aquestes capes són: Hardware, Kernel, Shell i Aplicacions. Un exemple és: NetBSD.</p>
+<p>Permet que cada anell tingui un conjunt de funcions i responsabilitats clarament definides, i que cada anell pugui comunicar-se amb els anells adjaçents.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="estructura-microkernel" class="slide level2 smaller">
+<h2>Estructura Microkernel</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment"><p>Els serveis d’usuari i serveis del kernel s’implementi en diferents espais d’adreces.</p></li>
+<li class="fragment"><p>Comunicació entre els mòduls utilitza el pas de missatges.</p></li>
+<li class="fragment"><p>👍 El kernel té una mida més reduïda.</p></li>
+<li class="fragment"><p>👍 Portable, segur, fiable i extensible.</p></li>
+<li class="fragment"><p>👎 Reducció de la velocitat d’execució i del rendiment.</p></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="center">
+<p><img data-src="../figures/slides/02-kernel/microkernel.png"></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>El sistema operatiu MacOS, desenvolupat per Apple, va aprofitar l’estabilitat i seguretat del nucli Mach com a base per al seu sistema operatiu. En aquest sistema, serveis com la gestió de memòria, la gestió de fitxers i la xarxa es van traslladar fora del nucli, a servidors externs, millorant la estabilitat, fiabilitat i modularitat del sistema.</p>
+<p>Sistemes en temps real com QNX, o dispotius encastats poden utilitzar aquesta arquitectura.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="microkernel-vs-monolític" class="slide level2">
+<h2>Microkernel vs Monolític</h2>
+<div class="center-container">
+<p><img data-src="../figures/slides/02-kernel/theory/Microkernel-Vs-Monolithic-Kernel.png" style="width:80.0%"></p>
+</div>
+<aside class="notes">
+<p>El <strong>microkernel</strong> és més <em>lent</em> però més <em>segur i fiable</em> que el nucli <strong>monolític</strong>. El nucli <strong>monolític</strong> és <em>ràpid</em> però menys <em>segur</em>, ja que qualsevol fallada del servei pot causar un bloqueig del sistema.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="microkernel-vs-monolític-vs-híbrids" class="slide level2">
+<h2>Microkernel vs Monolític vs Híbrids</h2>
+<div class="center-container">
+<p><img data-src="../figures/slides/02-kernel/theory/hibrids.png"></p>
+</div>
+</section>
+<section id="opinió-sobre-els-híbrids" class="slide level2 smaller">
+<h2>Opinió sobre els híbrids</h2>
+<p>Molts experts en sistemes operatius consideren que el terme <strong>híbrid</strong> és un terme de màrqueting més que una categoria tècnica clara. Aquest terme s’utilitza sovint per descriure sistemes operatius que combinen elements de nuclis monolítics i microkernel, però la seva definició exacta pot variar segons l’ús i la interpretació.</p>
+<blockquote>
+<p>“As to the whole ‘hybrid kernel’ thing - it’s just marketing. It’s ‘oh, those microkernels had good PR, how can we try to get good PR for our working kernel? Oh, I know, let’s use a cool name and try to imply that it has all the PR advantages that that other system has’ - Linus Torvalds</p>
+</blockquote>
+</section>
+<section id="kernel-modular" class="slide level2">
+<h2>Kernel Modular</h2>
+<div class="definition-box">
+<p>El serveis (<em>core</em>) estan integrats al kernel, la resta es poden carregar i descarregar de forma dinàmica.</p>
+</div>
+<ul>
+<li class="fragment">No cal reiniciar per afegir nous mòduls.</li>
+<li class="fragment">No cal implementar mecanismes de pas de missatges com en els microkernels.</li>
+<li class="fragment">Qualsevol mòdul pot comunicar-se amb qualsevol altre.</li>
+</ul>
+<div class="center-container">
+<p><img data-src="../figures/slides/02-kernel/modular-kernel.png" style="width:60.0%"></p>
+</div>
+<aside class="notes">
+<p>Els sistemes operatius modulars com la majoria de sistemes operatius monolítics moderns com Linux, BSD, poden carregar (i descarregar) dinàmicament mòduls executables en temps d’execució.</p>
+<p>Aquesta modularitat del sistema operatiu és a nivell binari (imatge) i no a nivell d’arquitectura.</p>
+<p>Pràcticament, carregar mòduls dinàmicament és simplement una manera més flexible de manejar la imatge del sistema operatiu en temps d’execució, en lloc de reiniciar-lo amb una imatge diferent del sistema operatiu.</p>
+<p>Els mòduls permeten ampliar fàcilment les capacitats dels sistemes operatius segons sigui necessari.</p>
+<p>Els mòduls que es poden carregar dinàmicament comporten una petita sobrecàrrega en comparació amb la incorporació del mòdul a la imatge del sistema operatiu.</p>
+<p>Tanmateix, en alguns casos, carregar mòduls dinàmicament (segons calgui) ajuda a mantenir la quantitat de codi que s’executa a l’espai del nucli al mínim; per exemple, per minimitzar la petjada del sistema operatiu per a dispositius incrustats o aquells amb recursos de maquinari limitats. És a dir, no cal que un mòdul descarregat s’emmagatzemi en memòria d’accés aleatori escàs.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="monolític-i-modular" class="slide level2">
+<h2>Monolític i Modular</h2>
+<ul>
+<li class="fragment">Els kernels monolítics poden ser modulars.</li>
+<li class="fragment">Els mòduls es carreguen i descarreguen dinàmicament en temps d’execució.</li>
+<li class="fragment">Els components es poden activar o desactivar en temps de compilació.</li>
+<li class="fragment">El kernel s’organitza en subsistemes lògics independents.</li>
+<li class="fragment">Interfícies estrictes però amb baix cost en rendiment: macros, funcions en línia, punters a funcions.</li>
+</ul>
+</section>
+<section id="exemple-linux" class="slide level2 smaller">
+<h2>Exemple: Linux</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="definition-box">
+<p>El nucli Linux és un dels projectes de codi obert més grans del món, amb milers de desenvolupadors que aporten codi i milions de línies de codi canviats per a cada versió.</p>
+</div>
+<ul>
+<li class="fragment">Arquitectura <strong>Monolítica</strong> híbrida basada en mòduls.
+<ul>
+<li class="fragment">Enllaçat dinàmic.</li>
+<li class="fragment">Mòduls apilables.</li>
+</ul></li>
+<li class="fragment">Disseny orientat a objectes.</li>
+<li class="fragment">Suport per a múltiples fils d’execució.</li>
+<li class="fragment">Suport per processament múltiple simètric.</li>
+<li class="fragment">Abstracció hardware.</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="center">
+<p><img data-src="../figures/slides/02-kernel/theory/cas-linux.png"></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Es distribueix sota la llicència GPLv2, que simplement esmenta, requereix que qualsevol modificació del nucli feta amb el programari que s’envia al client s’hagi de posar a la seva disposició (els clients), tot i que a la pràctica la majoria de les empreses posen el codi font a disposició del públic.</p>
+<p>Per tal d’escalar el procés de desenvolupament, Linux utilitza un model de manteniment jeràrquic:</p>
+<p>Linus Torvalds és el mantenidor del nucli Linux i fa merge dels <strong>pull requests</strong> de la comunitat.</p>
+<p>La comunitat té un o més mantenidors que accepten <em>patches</em> de desenvolupadors, mantenint el seu propi arbre git.</p>
+<ul>
+<li>Linux Torvalds: <a href="git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git">git</a></li>
+<li>David Miller (treball en xarxa): <a href="git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/">git</a></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="hypervisors" class="slide level2 smaller">
+<h2>Hypervisors</h2>
+<ul>
+<li class="fragment">Capa fina sobre el maquinari</li>
+<li class="fragment">Sistemes host dins màquines virtuals</li>
+<li class="fragment">Normalment requereixen característiques de maquinari (p.e. Intel VT-x)</li>
+</ul>
+<div class="center-container">
+<p><img data-src="../figures/slides/02-kernel/theory/mvs.png" style="width:60.0%"></p>
+</div>
+</section>
+<section id="hypervisors-1" class="slide level2 smaller">
+<h2>Hypervisors</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">KVM és un mòdul del kernel Linux que permet la virtualització a través d’un sistema host.</li>
+<li class="fragment">XEN és un hypervisor de codi obert que permet la virtualització directa del maquinari.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="../figures/slides/02-kernel/xen-kvm.png" style="width:80.0%"></p>
+</div></div>
+</section>
+<section id="exokernels" class="slide level2 smaller">
+<h2>Exokernels</h2>
+<div class="center-container">
+<p>Cada màquina virtual disposa d’un exokernel que exporta directament els recursos físics.</p>
+</div>
+<ul>
+<li class="fragment">No implementa abstraccions altes (fitxers, sockets, processos), sinó que ofereix primitives de baix nivell (p.&nbsp;ex. blocs de disc, pàgines de memòria, línies de CPU).</li>
+<li class="fragment">Només valida i arbitra l’ús dels recursos, delegant la seva gestió a biblioteques d’usuari.</li>
+<li class="fragment">Mou la multiprogramació a l’espai d’usuari, com la planificació, la gestió de memòria i la comunicació entre processos (IPC).</li>
+<li class="fragment">🤏 Els exokernels són tan petits que poden ser incorporats dins aplicacions específiques (p.&nbsp;ex. control de trànsit urbà).</li>
+<li class="fragment">✨ minimitza l’overhead i dona flexibilitat en la gestió de recursos.</li>
+</ul>
+<div class="center-container fragment">
+<p>👉 No es traslladen instruccions de mode kernel a mode usuari, sinó la lògica de gestió de recursos.</p>
+</div>
+<aside class="notes">
+<p>Imaginem que particionem una màquina en diferents màquines virtuals amb un subconjunt de recursos. Cada màquina virtual té un exokernel que li permet accedir directament als recursos de la màquina física. La idea és reduir el overhead del sistema separant la multiprogramació de les funcions del sistema operatiu en l’espai usuari.</p>
+<p>En aquest cas no estem movent instruccions de mode kernel a mode usuari, sinó que estem movent la gestió de recursos del sistema operatiu a l’espai d’usuari. De fet, els exokernels són tan petits que poden ser incrustats en aplicacions específiques. Per exemple, un exokernel podria ser incrustat en una aplicació de control de trànsit per coordinar els semàfors d’una ciutat.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="unikernels" class="slide level2 smaller">
+<h2>Unikernels</h2>
+<div class="center-container fragment">
+<p>Els unikernels empaqueten aplicació + mínim sistema operatiu en una única imatge executable sobre un hipervisor o hardware.</p>
+</div>
+<ul>
+<li class="fragment">Només s’inclouen les llibreries i serveis estrictament necessaris per l’aplicació.</li>
+<li class="fragment">Execució directa: corren sobre un hipervisor o hardware, sense cap OS d’host per sota.</li>
+<li class="fragment">Eficiència: imatges extremadament petites, ràpides d’arrencar.</li>
+<li class="fragment">Inspiració:
+<ul>
+<li class="fragment">Dels contenidors, però sense dependre d’un kernel complet subjacent.</li>
+<li class="fragment">Dels exokernels, però aquí les primitives exposades no són per al maquinari, sinó per a les necessitats específiques de l’aplicació.</li>
+</ul></li>
+<li class="fragment">S’utilitzen en IoT, serveis cloud lleugers, entorns on importen temps d’arrencada i seguretat.</li>
+</ul>
+<div class="center-container fragment">
+<p>El codi de l’aplicació i el kernel formen una sola unitat optimitzada.</p>
+</div>
+<aside class="notes">
+<p>Els unikernels són una forma de sistema operatiu que empaqueta tot el codi necessari per a una aplicació en un sol paquet. Aquest paquet s’executa directament sobre una màquina virtual o un hipervisor, sense cap sistema operatiu subministrat. Això permet als unikernels ser molt petits i molt eficients, ja que no hi ha cap codi innecessari.</p>
+<p>S’inspiren en els contenidors, però en lloc d’executar-se en un sistema operatiu complet, s’executen directament sobre el hardware. Això els fa molt més petits i molt més eficients que els contenidors, ja que no hi ha cap sistema operatiu subministrat.</p>
+<p>S’inspiren en els exokernels, però en lloc de proporcionar un conjunt de primitives de baix nivell per accedir directament als recursos de la màquina, proporcionen un conjunt de primitives de baix nivell per accedir directament als recursos de l’aplicació.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="això-és-tot-per-avui" class="slide level2 smaller">
+<h2>Això és tot per avui</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h4 id="take-home-message">TAKE HOME MESSAGE</h4>
+<ul>
+<li class="fragment">Els monolítics ofereixen velocitat però fragilitat.</li>
+<li class="fragment">Els microkernels aposten per modularitat i seguretat a costa de latència.</li>
+<li class="fragment">Els modulars permeten créixer sense reescriure tot el nucli.</li>
+<li class="fragment">Els exokernels lliuren el control directe a l’aplicació per màxima eficiència.</li>
+<li class="fragment">Els hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.</li>
+<li class="fragment">Els unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="https://static.posters.cz/image/750/posters/looney-tunes-thats-all-folks-i295.jpg"></p>
+</div></div>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../figures/corporative/institute.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Unitat 2 · Sistemes Operatius (SO) <a href="../index.html">🏠</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/os-gei-udl-2526-105012\.github\.io\/course\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

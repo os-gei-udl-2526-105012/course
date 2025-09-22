@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Laboratori 1: Punters, Stack i Heap en C – SO - Fall 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Cap resultat",
+    "search-matching-documents-text": "documents que coincideixen",
+    "search-copy-link-title": "Copia l'enllaç a la cerca",
+    "search-hide-matches-text": "Amaga les coincidències addicionals",
+    "search-more-match-text": "altra coincidència en aquest document",
+    "search-more-matches-text": "altres coincidències en aquest document",
+    "search-clear-button-title": "Neteja",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel·la",
+    "search-submit-button-title": "Envia",
+    "search-label": "Cerca"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/02-c-pointers/lab01.html">Laboratori 6 · Punters·Heap·Stack en C</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="../../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
+    <a href="https://github.com/os-gei-udl-2526-105012/course" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://cv.udl.cat/" title="Sakai" class="quarto-navigation-tool px-1" aria-label="Sakai"><i class="bi bi-person-fill"></i></a>
+</div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Informació del curs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../.././course-information/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planificació</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Diapositives</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unitat 01 · Introducció als sistemes operatius</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/01-c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unitat 01 · Introducció a la programació de Sistema (I) (C)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/02-kernel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unitat 02 · Kernel de Linux</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Apunts</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unitat 01 ·Introducció als sistemes operatius</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laboratoris</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unitat 01</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratori · Virtualització i Control de Versions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/01-introduction/lab03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratori 3 · Hola món en C a Debian</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/01-introduction/lab04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratori 4 · Configurant Git a la màquina virtual</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/01-introduction/lab05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratori 5 · Calculadora col·laborativa amb C</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/02-c-pointers/lab01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Laboratori 6 · Punters·Heap·Stack en C</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Activitats</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unitat 01</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RMSF · Implementant una paperera de reciclatge a Linux</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../activities/unit00/02-ex01-c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis amb C - Pokemon·</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis amb C</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
+  <li><a href="#codi-base-per-al-laboratori" id="toc-codi-base-per-al-laboratori" class="nav-link" data-scroll-target="#codi-base-per-al-laboratori">Codi base per al laboratori</a></li>
+  <li><a href="#tasques" id="toc-tasques" class="nav-link" data-scroll-target="#tasques">Tasques</a>
+  <ul class="collapse">
+  <li><a href="#compilar-i-execució-amb-gdb" id="toc-compilar-i-execució-amb-gdb" class="nav-link" data-scroll-target="#compilar-i-execució-amb-gdb">Compilar i execució amb GDB</a></li>
+  <li><a href="#exploració-de-la-memòria-amb-gdb" id="toc-exploració-de-la-memòria-amb-gdb" class="nav-link" data-scroll-target="#exploració-de-la-memòria-amb-gdb">Exploració de la memòria amb GDB</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/02-c-pointers/lab01.html">Laboratori 6 · Punters·Heap·Stack en C</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Laboratori 1: Punters, Stack i Heap en C</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objectius" class="level2">
+<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
+<ul>
+<li>Com es guarden les dades a la <strong>stack</strong> i a la <strong>heap</strong>.</li>
+<li>La diferència entre una matriu estàtica i una matriu dinàmica.</li>
+<li>El paper dels punters en l’assignació de memòria.</li>
+<li>Com explorar la memòria amb GDB.</li>
+</ul>
+</section>
+<section id="codi-base-per-al-laboratori" class="level2">
+<h2 class="anchored" data-anchor-id="codi-base-per-al-laboratori">Codi base per al laboratori</h2>
+<p>Utilitzarem el següent codi base per al laboratori. Aquest codi crea una matriu estàtica i una dinàmica, i imprimeix els valors i les adreces de memòria corresponents.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="co">// Matriu ESTÀTICA: a la pila (stack)</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="dt">int</span> m<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span> <span class="op">{</span><span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">}</span> <span class="op">};</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    printf<span class="op">(</span><span class="st">"Matriu ESTÀTICA (m):</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">2</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">3</span><span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>            printf<span class="op">(</span><span class="st">"m[</span><span class="sc">%d</span><span class="st">][</span><span class="sc">%d</span><span class="st">] = </span><span class="sc">%d</span><span class="st"> (adreça: </span><span class="sc">%p</span><span class="st">)</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>                   i<span class="op">,</span> j<span class="op">,</span> m<span class="op">[</span>i<span class="op">][</span>j<span class="op">],</span> <span class="op">&amp;</span>m<span class="op">[</span>i<span class="op">][</span>j<span class="op">]);</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>        <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="op">}</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="co">// Matriu DINÀMICA: a la memòria heap</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>    <span class="dt">int</span> <span class="op">**</span>matrix <span class="op">=</span> malloc<span class="op">(</span><span class="dv">2</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span> <span class="op">*));</span>  <span class="co">// espai per 2 files</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">2</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>        matrix<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> malloc<span class="op">(</span><span class="dv">3</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span>  <span class="co">// espai per 3 enters</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>    <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="co">// Copiem els valors de la matriu estàtica</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">2</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">3</span><span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>            matrix<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">=</span> m<span class="op">[</span>i<span class="op">][</span>j<span class="op">];</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>        <span class="op">}</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">Matriu DINÀMICA (matrix):</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">2</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">3</span><span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>            printf<span class="op">(</span><span class="st">"matrix[</span><span class="sc">%d</span><span class="st">][</span><span class="sc">%d</span><span class="st">] = </span><span class="sc">%d</span><span class="st"> (adreça: </span><span class="sc">%p</span><span class="st">)</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>                   i<span class="op">,</span> j<span class="op">,</span> matrix<span class="op">[</span>i<span class="op">][</span>j<span class="op">],</span> <span class="op">&amp;</span>matrix<span class="op">[</span>i<span class="op">][</span>j<span class="op">]);</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>        <span class="op">}</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>    <span class="op">}</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    <span class="co">// Alliberem la memòria del heap</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">2</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a>        free<span class="op">(</span>matrix<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>    <span class="op">}</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>    free<span class="op">(</span>matrix<span class="op">);</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
+<span id="cb1-44"><a href="#cb1-44"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si compileu i executeu aquest codi, veureu que les adreces de la matriu estàtica <code>m</code> estan a la pila (stack), mentre que les adreces de la matriu dinàmica <code>matrix</code> estan a la memòria heap:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-g</span> lab01.c <span class="at">-o</span> lab01</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./lab01</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Matriu</span> ESTÀTICA <span class="er">(</span><span class="ex">m</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="ex">=</span> 1 <span class="er">(</span><span class="ex">adreça:</span> 0xffffde4ce200<span class="kw">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> 2 <span class="er">(</span><span class="ex">adreça:</span> 0xffffde4ce204<span class="kw">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="ex">=</span> 3 <span class="er">(</span><span class="ex">adreça:</span> 0xffffde4ce208<span class="kw">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="ex">=</span> 4 <span class="er">(</span><span class="ex">adreça:</span> 0xffffde4ce20c<span class="kw">)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> 5 <span class="er">(</span><span class="ex">adreça:</span> 0xffffde4ce210<span class="kw">)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="ex">=</span> 6 <span class="er">(</span><span class="ex">adreça:</span> 0xffffde4ce214<span class="kw">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Matriu</span> DINÀMICA <span class="er">(</span><span class="ex">matrix</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="va">matrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="ex">=</span> 1 <span class="er">(</span><span class="ex">adreça:</span> 0xaaaae56f96d0<span class="kw">)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="va">matrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> 2 <span class="er">(</span><span class="ex">adreça:</span> 0xaaaae56f96d4<span class="kw">)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">matrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="ex">=</span> 3 <span class="er">(</span><span class="ex">adreça:</span> 0xaaaae56f96d8<span class="kw">)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="va">matrix</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="ex">=</span> 4 <span class="er">(</span><span class="ex">adreça:</span> 0xaaaae56f96f0<span class="kw">)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="va">matrix</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> 5 <span class="er">(</span><span class="ex">adreça:</span> 0xaaaae56f96f4<span class="kw">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="va">matrix</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="ex">=</span> 6 <span class="er">(</span><span class="ex">adreça:</span> 0xaaaae56f96f8<span class="kw">)</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si dibuixem un mapa de la memòria d’aquest programa, molt simplificat, tindríem:</p>
+<p><img src="../../figures/labs/02-pointers/heap-stack.png" class="img-fluid"></p>
+<p>On:</p>
+<ul>
+<li><code>@m</code>: és la base de la matriu estàtica, i com a variable local està al stack. Els seus elements també són al stack utilitzant adreces consecutives.</li>
+<li><code>@matrix</code>: és el punter a la matriu dinàmica, i com a variable local també està al stack.</li>
+<li><code>@matrix[0]</code>, <code>@matrix[1]</code>: són punters que apunten a blocs de memòria al heap, on s’han assignat espai per a les files de la matriu dinàmica.</li>
+<li><code>@z</code>: és l’adreça del punter <code>matrix</code> al stack.</li>
+</ul>
+</section>
+<section id="tasques" class="level2">
+<h2 class="anchored" data-anchor-id="tasques">Tasques</h2>
+<section id="compilar-i-execució-amb-gdb" class="level3">
+<h3 class="anchored" data-anchor-id="compilar-i-execució-amb-gdb">Compilar i execució amb GDB</h3>
+<ol type="1">
+<li>Compila el codi amb les opcions de depuració: <code>gcc -g lab01.c -o lab01</code>.</li>
+<li>Executa el programa amb GDB: <code>gdb ./lab01</code>.</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled" title="GDB no està instal·lat?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Alerta</span>GDB no està instal·lat?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Assegura’t de tenir GDB instal·lat al teu sistema. Per instal·lar-lo, pots utilitzar el gestor de paquets del teu sistema (per exemple, <code>su -c "apt-get install gdb -y"</code> a Debian).</p>
+</div>
+</div>
+</section>
+<section id="exploració-de-la-memòria-amb-gdb" class="level3">
+<h3 class="anchored" data-anchor-id="exploració-de-la-memòria-amb-gdb">Exploració de la memòria amb GDB</h3>
+<p>Un cop dins GDB, utilitza els següents comandos per a explorar el programa:</p>
+<ul>
+<li><p><code>break main</code> per posar un punt d’interrupció al principi de la funció <code>main</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="cf">break</span> <span class="ex">main</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 1 at 0x860: file lab01.c, line 6.</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>run</code> per iniciar l’execució del programa.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">run</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Starting</span> program: /home/jordi/c/pointers/lab01</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[Thread</span> debugging using libthread_db enabled]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Using</span> host libthread_db library <span class="st">"/lib/aarch64-linux-gnu/libthread_db.so.1"</span>.</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 1, main <span class="er">(</span><span class="kw">)</span> <span class="ex">at</span> lab01.c:6</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">6</span>       int m<span class="pp">[</span><span class="ss">2</span><span class="pp">][</span><span class="ss">3</span><span class="pp">]</span> = { {1, 2, 3}, {4, 5, 6} }<span class="kw">;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Observa que l’execució s’ha aturat a la línia 6, just abans de la declaració de la matriu estàtica <code>m</code>.</p></li>
+<li><p>Ara posem un altre punt d’interrupció just abans del primer <code>malloc</code> per a la matriu dinàmica:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="cf">break</span> <span class="ex">17</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 2 at 0xaaaaaaaa093c: file lab01.c, line 18.</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Continuem l’execució fins a aquest punt:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">c</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Continuing.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Matriu</span> ESTÀTICA <span class="er">(</span><span class="ex">m</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="ex">=</span> 1 <span class="er">(</span><span class="ex">adreça:</span> 0xfffffffff2a0<span class="kw">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> 2 <span class="er">(</span><span class="ex">adreça:</span> 0xfffffffff2a4<span class="kw">)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="ex">=</span> 3 <span class="er">(</span><span class="ex">adreça:</span> 0xfffffffff2a8<span class="kw">)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="ex">=</span> 4 <span class="er">(</span><span class="ex">adreça:</span> 0xfffffffff2ac<span class="kw">)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> 5 <span class="er">(</span><span class="ex">adreça:</span> 0xfffffffff2b0<span class="kw">)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="ex">=</span> 6 <span class="er">(</span><span class="ex">adreça:</span> 0xfffffffff2b4<span class="kw">)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 2, main <span class="er">(</span><span class="kw">)</span> <span class="ex">at</span> lab01.c:17</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ex">17</span>      int <span class="pp">**</span>matrix = malloc<span class="er">(</span><span class="ex">2</span> <span class="pp">*</span> sizeof<span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">));</span>  <span class="ex">//</span> espai per 2 files</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Ara estem just abans de l’assignació de memòria dinàmica. Podem començar a inspeccionar la pila i la memòria heap.</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">info</span> proc mappings</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">process</span> 1404</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Mapped</span> address spaces:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Start</span> Addr           End Addr       Size     Offset  Perms  objfile</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaaa0000</span>     0xaaaaaaaa1000     0x1000        0x0  r-xp   /home/jordi/c/pointers/lab01</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaabf000</span>     0xaaaaaaac0000     0x1000     0xf000  r--p   /home/jordi/c/pointers/lab01</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac0000</span>     0xaaaaaaac1000     0x1000    0x10000  rw-p   /home/jordi/c/pointers/lab01</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac1000</span>     0xaaaaaaae2000    0x21000        0x0  rw-p   <span class="pp">[</span><span class="ss">heap</span><span class="pp">]</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7e00000</span>     0xfffff7f8b000   0x18b000        0x0  r-xp   /usr/lib/aarch64-linux-gnu/libc.so.6</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7f8b000</span>     0xfffff7f9c000    0x11000   0x18b000  <span class="at">---p</span>   /usr/lib/aarch64-linux-gnu/libc.so.6</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7f9c000</span>     0xfffff7fa0000     0x4000   0x18c000  r--p   /usr/lib/aarch64-linux-gnu/libc.so.6</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7fa0000</span>     0xfffff7fa2000     0x2000   0x190000  rw-p   /usr/lib/aarch64-linux-gnu/libc.so.6</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7fa2000</span>     0xfffff7faf000     0xd000        0x0  rw-p</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7fbe000</span>     0xfffff7fe5000    0x27000        0x0  r-xp   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7ff7000</span>     0xfffff7ff9000     0x2000        0x0  rw-p</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7ff9000</span>     0xfffff7ffb000     0x2000        0x0  r--p   <span class="pp">[</span><span class="ss">vvar</span><span class="pp">]</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7ffb000</span>     0xfffff7ffc000     0x1000        0x0  r-xp   <span class="pp">[</span><span class="ss">vdso</span><span class="pp">]</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7ffc000</span>     0xfffff7ffe000     0x2000    0x2e000  r--p   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffff7ffe000</span>     0xfffff8000000     0x2000    0x30000  rw-p   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffffffdf000</span>    0x1000000000000    0x21000        0x0  rw-p   <span class="pp">[</span><span class="ss">stack</span><span class="pp">]</span>   </span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Mapa de memòria">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Mapa de memòria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En aquest cas, la memòria heap comença a l’adreça <code>0xaaaaaaac1000</code> i acaba a <code>0xaaaaaaae2000</code> amb una mida de <code>0x21000</code> bytes (135168 bytes). La pila d’execució (stack) comença a <code>0xfffffffdf000</code> i s’estén fins a <code>0x1000000000000</code>.</p>
+</div>
+</div>
+<ul>
+<li><p>També podem consultar les variables locals amb <code>info locals</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">info</span> locals</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">m</span> = {{1, 2, 3}, {4, 5, 6}}</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">matrix</span> = 0xaaaaaaaa0854 <span class="op">&lt;</span>main<span class="op">&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Observació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Observació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observa que <code>m</code> esta declarada i inicialitzada, mentre que <code>matrix</code> apunta a una adreça de memòria. Aquesta adreça de memòria esta guardada en un altra adreça de memòria (la del punter <code>matrix</code> ,<code>@z</code>). Pots consultar aquesta adreça amb <code>print &amp;matrix</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="ex">matrix</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">***</span><span class="kw">)</span> <span class="ex">0xfffffffff2b8</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">$2</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">**</span><span class="kw">)</span> <span class="ex">0xaaaaaaaa0854</span> <span class="op">&lt;</span>main<span class="op">&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<ul>
+<li><p>Ara anem a consultar la informació sobre la variable <code>m</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="ex">m</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span> = <span class="er">(</span><span class="ex">int</span> <span class="er">(</span><span class="ex">*</span><span class="kw">)</span><span class="ex">[2][3]</span><span class="kw">)</span> <span class="ex">0xfffffffff2a0</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="va">$2</span> = <span class="er">(</span><span class="ex">int</span> <span class="er">(</span><span class="ex">*</span><span class="kw">)</span><span class="ex">[3]</span><span class="kw">)</span> <span class="ex">0xfffffffff2a0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">]</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="va">$3</span> = <span class="er">(</span><span class="ex">int</span> <span class="er">(</span><span class="ex">*</span><span class="kw">)</span><span class="ex">[3]</span><span class="kw">)</span> <span class="ex">0xfffffffff2ac</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Observació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Observació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observa que l’adreça de <code>m</code> està a la pila d’execució (al voltant de <code>0xfffffffff2a0</code>). I les adreces de <code>m[0]</code> i <code>m[1]</code> són consecutives (incrementen en 12 bytes, que és la mida d’una fila de 3 enters).</p>
+</div>
+</div>
+<ul>
+<li><p>Accedim al primer element de la matriu estàtica amb <code>print m[0][0]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="co"># Ens imprimeix l'adreça del primer element de la matriu estàtica</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="va">$2</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xfffffffff2a0</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> m<span class="pp">[</span><span class="ss">0</span><span class="pp">][</span><span class="ss">0</span><span class="pp">]</span> <span class="co"># Ens imprimeix el valor del primer element de la matriu estàtica</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="va">$3</span> = 1</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Accedim al segon element de la matriu estàtica amb <code>print m[0][1]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="co"># Ens imprimeix l'adreça del segon element de la matriu estàtica</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">$4</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xfffffffff2a4</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> m<span class="pp">[</span><span class="ss">0</span><span class="pp">][</span><span class="ss">1</span><span class="pp">]</span> <span class="co"># Ens imprimeix el valor del segon element de la matriu estàtica</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="va">$5</span> = 2</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Accedim al tercer element de la matriu estàtica amb <code>print m[0][2]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="co"># Ens imprimeix l'adreça del tercer element de la matriu estàtica</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">$6</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xfffffffff2a8</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> m<span class="pp">[</span><span class="ss">0</span><span class="pp">][</span><span class="ss">2</span><span class="pp">]</span> <span class="co"># Ens imprimeix el valor del tercer element de la matriu estàtica</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="va">$7</span> = 3</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Accedim al primer element de la segona fila de la matriu estàtica amb <code>print m[1][0]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="co"># Ens imprimeix l'adreça del primer element de la segona fila de la matriu estàtica</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="va">$8</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xfffffffff2ac</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> m<span class="pp">[</span><span class="ss">1</span><span class="pp">][</span><span class="ss">0</span><span class="pp">]</span> <span class="co"># Ens imprimeix el valor del primer element de la segona fila de la matriu estàtica</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="va">$9</span> = 4</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Accedim al segon element de la segona fila de la matriu estàtica amb <code>print m[1][1]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="co"># Ens imprimeix l'adreça del segon element de la segona fila de la matriu estàtica</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">0</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xfffffffff2b0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> m<span class="pp">[</span><span class="ss">1</span><span class="pp">][</span><span class="ss">1</span><span class="pp">]</span> <span class="co"># Ens imprimeix el valor del segon element de la segona fila de la matriu estàtica</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">1</span> = 5</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Accedim al tercer element de la segona fila de la matriu estàtica amb <code>print m[1][2]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="co"># Ens imprimeix l'adreça del tercer element de la segona fila de la matriu estàtica</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">2</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xfffffffff2b4</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> m<span class="pp">[</span><span class="ss">1</span><span class="pp">][</span><span class="ss">2</span><span class="pp">]</span> <span class="co"># Ens imprimeix el valor del tercer element de la segona fila de la matriu estàtica</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">3</span> = 6</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Una forma alternativa de veure els valors i les adreces de la matriu estàtica <code>m</code> és utilitzant el comandament <code>x</code> per examinar la memòria. Aquí, <code>x/6dw</code> indica que volem veure 6 valors (<code>6</code>) en format decimal (<code>d</code>) i com a enters (<code>w</code>), començant des de l’adreça de <code>m[0][0]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6dw</span> <span class="kw">&amp;</span><span class="va">m</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffffffff2a0:</span> 1   2   3   4</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">0xfffffffff2b0:</span> 5   6</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Adreces consecutives">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Adreces consecutives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observeu que les adreces dels elements de la matriu estàtica són consecutives (incrementen en 4 bytes, que és la mida d’un enter). Podeu confirmar la mida d’un enter al gdb amb:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> sizeof<span class="er">(</span><span class="ex">int</span><span class="kw">)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">4</span> = 4</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<ul>
+<li>Ara anem a inspeccionar la variable <code>matrix</code>, que és un punter a punters per a la matriu dinàmica.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="va">$6</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">**</span><span class="kw">)</span> <span class="ex">0xaaaaaaaa0854</span> <span class="op">&lt;</span>main<span class="op">&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="ex">matrix</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="va">$7</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">***</span><span class="kw">)</span> <span class="ex">0xfffffffff2b8</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="va">$8</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">**</span><span class="kw">)</span> <span class="ex">0xaaaaaaaa0854</span> <span class="op">&lt;</span>main<span class="op">&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">1</span><span class="op">]</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="va">$9</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">**</span><span class="kw">)</span> <span class="ex">0xaaaaaaaa085c</span> <span class="op">&lt;</span>main+8<span class="op">&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Observació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Observació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observa que l’adreça de <code>matrix</code> també està a la pila d’execució (al voltant de <code>0xaaaaaaaa0854</code>). I les adreces de <code>matrix[0]</code> i <code>matrix[1]</code> són consecutives (incrementen en 8 bytes, que és la mida d’un punter). Podeu confirmar la mida d’un punter al gdb amb: <code>print sizeof(int*)</code>.</p>
+</div>
+</div>
+<ul>
+<li><p>Anem a veure l’adreça on apunta <code>matrix</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> matrix</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaaa0854</span> <span class="op">&lt;</span>main<span class="op">&gt;</span>:  0xa9ba7bfd  0x910003fd  0xf9000bf3  0x90000000</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaaa0864</span> <span class="op">&lt;</span>main+16<span class="op">&gt;</span>:   0x912e6000  0x910083e</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Observació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Observació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El contingut de l’adreça on apunta <code>matrix</code> sembla ser una adreça de memòria (però encara no hem fet el <code>malloc</code>, així que no és vàlida encara).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> 0xa9ba7bfd</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0xa9ba7bfd:</span> Cannot access memory at address 0xa9ba7bfd</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<ul>
+<li><p>Ara anem a afegir un altre punt d’interrupció just després del primer <code>malloc</code>, per veure com canvia la variable <code>matrix</code> després de l’assignació de memòria:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="cf">break</span> <span class="ex">20</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 3 at 0xaaaaaaaa0944: file lab01.c, line 20.</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Continuem l’execució fins a aquest punt:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">c</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Continuing.</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 3, main <span class="er">(</span><span class="kw">)</span> <span class="ex">at</span> lab01.c:20</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ex">20</span>          matrix<span class="pp">[</span><span class="ss">i</span><span class="pp">]</span> = malloc<span class="er">(</span><span class="ex">3</span> <span class="pp">*</span> sizeof<span class="er">(</span><span class="ex">int</span><span class="kw">));</span>  <span class="ex">//</span> espai per 3 enters</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Ara podem inspeccionar la variable <code>matrix</code> de nou:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">1</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">**</span><span class="kw">)</span> <span class="ex">0xaaaaaaac16b0</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/20x</span> matrix</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16b0:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16c0:</span> 0x00000000  0x00000000  0x00020941  0x00000000</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16d0:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16e0:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16f0:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">2</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">**</span><span class="kw">)</span> <span class="ex">0xaaaaaaac16b0</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">1</span><span class="op">]</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">3</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">**</span><span class="kw">)</span> <span class="ex">0xaaaaaaac16b8</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> 0xaaaaaaac16b0</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16b0:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16c0:</span> 0x00000000  0x00000000</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> 0xaaaaaaac16b8</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16b8:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16c8:</span> 0x00020941  0x00000000</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El malloc ha assignat memòria per a 2 punters (<code>matrix[0]</code> i <code>matrix[1]</code>), però encara no hem assignat memòria per a les files de la matriu (això ho fem en el següent bucle <code>for</code>).</p>
+<p>Si fem <code>continue</code> una altra vegada, s’executarà la primera iteració del bucle <code>for</code> que assigna memòria per a la primera fila de la matriu dinàmica.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/20x</span> matrix</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16b0:</span> 0xaaac16d0  0x0000aaaa  0x00000000  0x00000000</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16c0:</span> 0x00000000  0x00000000  0x00000021  0x00000000</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16d0:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16e0:</span> 0x00000000  0x00000000  0x00020921  0x00000000</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16f0:</span> 0x00000000  0x00000000  0x00000000  0x00000000</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>Ara posem un breakpoint a la línia 31 <code>break 31</code> (al <code>printf</code> de la matriu dinàmica) i continuem l’execució: <code>continue</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/20x</span> matrix</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16b0:</span> 0xaaac16d0  0x0000aaaa  0xaaac16f0  0x0000aaaa</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16c0:</span> 0x00000000  0x00000000  0x00000021  0x00000000</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16d0:</span> 0x00000001  0x00000002  0x00000003  0x00000000</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16e0:</span> 0x00000000  0x00000000  0x00000021  0x00000000</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16f0:</span> 0x00000004  0x00000005  0x00000006  0x00000000</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">2</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xaaaaaaac16d0</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">3</span> = <span class="er">(</span><span class="ex">int</span> <span class="pp">*</span><span class="kw">)</span> <span class="ex">0xaaaaaaac16f0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Observem que ara <code>matrix[0]</code> i <code>matrix[1]</code> apunten a adreces vàlides a la memòria heap (<code>0xaaaaaaac16d0</code> i <code>0xaaaaaaac16f0</code> respectivament).</p>
+<p>Anem veure el contingut de la memòria a partir d’aquestes adreces:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> 0xaaaaaaac16d0</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16d0:</span> 0x00000001  0x00000002  0x00000003  0x00000000</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16e0:</span> 0x00000000  0x00000000</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> 0xaaaaaaac16f0</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16f0:</span> 0x00000004  0x00000005  0x00000006  0x00000000</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac1700:</span> 0x00000000  0x00000000</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6dw</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16d0:</span> 1   2   3   0</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16e0:</span> 0   0</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6dw</span> <span class="kw">&amp;</span><span class="va">matrix</span><span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16f0:</span> 4   5   6   0</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac1700:</span> 0   0</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Anem a veure el contingut de la memòria a partir d’aquestes adreces:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix<span class="pp">[</span><span class="ss">0</span><span class="pp">][</span><span class="ss">0</span><span class="pp">]</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">4</span> = 1</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix<span class="pp">[</span><span class="ss">0</span><span class="pp">][</span><span class="ss">1</span><span class="pp">]</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">5</span> = 2</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix<span class="pp">[</span><span class="ss">0</span><span class="pp">][</span><span class="ss">2</span><span class="pp">]</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">6</span> = 3</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix<span class="pp">[</span><span class="ss">1</span><span class="pp">][</span><span class="ss">0</span><span class="pp">]</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">7</span> = 4</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix<span class="pp">[</span><span class="ss">1</span><span class="pp">][</span><span class="ss">1</span><span class="pp">]</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">8</span> = 5</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> matrix<span class="pp">[</span><span class="ss">1</span><span class="pp">][</span><span class="ss">2</span><span class="pp">]</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">9</span> = 6</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p>En aquest punt, podem veure la mida actual de la memòria heap:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> mallinfo<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="va">$1</span><span class="ex">5</span> = {arena = 135168, ordblks = 1, smblks = 0, hblks = 0, hblkhd = 0, usmblks = 0, fsmblks = 0, uordblks = 1792,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">fordblks</span> = 133376, keepcost = 133376}</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Observació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Observació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observem que la memòria utilitzada a la heap (<code>uordblks</code>) és de 1792 bytes, que correspon a les dues files de 3 enters cadascuna (2 * 3 * 4 = 24 bytes) més l’overhead del <code>malloc</code>.</p>
+</div>
+</div>
+<ul>
+<li>Finalment, posem un breakpoint just abans del <code>return 0;</code> (línia 38) i continuem l’execució fins a aquest punt:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="cf">break</span> <span class="ex">38</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 4 at 0xaaaaaaaa0968: file lab01.c, line 38.</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">c</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Continuing.</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Breakpoint</span> 4, main <span class="er">(</span><span class="kw">)</span> <span class="ex">at</span> lab01.c:38</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="ex">38</span>      return 0<span class="kw">;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Ara podem inspeccionar les variables locals de nou:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">info</span> locals</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">m</span> = {{1, 2, 3}, {4, 5, 6}}</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">matrix</span> = 0xaaaaaaac16b0</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ara bé com que hem fet els <code>free</code> de la memòria dinàmica, si mirem la mida de la <code>heap</code> veiem que ha disminuït i que tot i que les adreces <code>matrix[0]</code> i <code>matrix[1]</code> encara són les mateixes, el contingut de la memòria ja no és vàlid:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">print</span> mallinfo<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> 0xaaaaaaac16d0</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16d0:</span> 0xaaaaaac1  0x0000000a  0xac976b95  0xe5702979</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16e0:</span> 0x00000000  0x00000000</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">gdb</span><span class="kw">)</span> <span class="ex">x/6x</span> 0xaaaaaaac16f0</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac16f0:</span> 0x0006bc11  0x0000aaa0  0xac976b95  0xe5702979</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="ex">0xaaaaaaac1700:</span> 0x00000000  0x00000000</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiat!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiat!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/os-gei-udl-2526-105012\.github\.io\/course\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
