@@ -1,0 +1,217 @@
+# Activitats bàsiques amb C
+
+En aquest recull d'activitats resoltes a classe, es presenten una sèrie d'exercicis bàsics per a practicar els conceptes fonamentals de la programació en C.
+
+- `structs`: Estructures de dades.
+- `pointers`: Punters i adreces de memòria.
+- `arrays`: Matrius i vectors.
+
+1. Quin serà el resultat d'aquesta execució?
+
+    ```c
+    #include<stdio.h>
+    int main(){
+
+        int x = 5;
+        int *p;
+        p=&x;
+        x++;
+        printf("%d\n", *p);
+    }
+    ```
+
+
+2. Completa el codi següent:
+
+    ```c
+    #include <stdio.h>
+    int main(){
+        const char *s = "";
+        char str[] = "Hola";
+        s = str;
+        while(*s)
+            printf("%c", ???);
+        return 0;
+    }
+    ```
+
+
+3. Analitzeu el següent codi i mostreu el contingut de la memòria durant l'execució del programa.
+
+    ```c
+    int main(){
+
+        struct pokemon {
+            int id;
+            char* name;
+        };
+
+        struct pokemon p1 = {1, "Bulbasaur"};
+
+        printf("Id: %d\n", p1.id);
+        printf("Name: %s\n", p1.name);
+
+    }
+    ```
+
+4. Analitza el codi següent i digues quin és el resultat de la seva execució.
+
+    ```c
+    int main(){
+        char * s = "Hola";
+        char * t = "Adéu";
+        char * u;
+
+        s = t;
+        u = strdup(s);
+
+        // Nota: strdup retorna un punter a una nova cadena de caràcters que és una còpia exacta de la cadena de caràcters passada com a argument.
+
+        printf("s: %s\n", s);
+        printf("t: %s\n", t);
+        printf("u: %s\n", u);
+    }
+    ```
+
+5. Analitza el codi següent i digues quin és el resultat de la seva execució.
+
+    ```c
+    int main(){
+
+        int n = 3;
+        char* noms[n];
+        char* nom = (char*)malloc(20*sizeof(char));
+
+        for(int i = 0; i < n; i++){
+            printf("Introdueix el teu nom: ");
+            scanf("%s", nom);
+            noms[i] = nom;
+        }
+
+        printf("Noms introduïts:\n");
+        for(int i = 0; i < n; i++){
+            printf("%s\n", noms[i]);
+        }
+
+        return 0;
+    }
+    ```
+
+
+6. Analitza el codi següent i digues quin és el resultat de la seva execució.
+
+    ```c
+    #include <stdio.h>
+    int main()
+    {
+        int k = 5;
+        int *p = &k;  
+        int **m = &p;
+        **m = 6;  
+        printf("%d\n", k);
+    }
+    ```
+
+7. Completa el codi següent:
+
+    ```c
+    #include <stdio.h>
+    int main() {
+        int arr[4] = {1, 2, 3, 4};  
+
+        // ????
+
+        printf("Elements of the array using the pointer:\n");
+        for (int i = 0; i < 4; i++) {
+            printf("ptr[%d] = %d\n", i, (*ptr)[i]);
+        }
+
+        return 0;
+    }
+    ```
+
+8. Quin serà el resultat d'aquesta execució?
+
+    ```c
+    #include <stdio.h>
+    int main()
+    {
+
+        int a[5] = {5,1,15,20,25};
+        int i,j,m;
+        i = ++a[1];
+        j = a[1]++;
+        m = a[i++];
+
+        printf("%d, %d, %d", i, j,m);
+        return 0;
+    }
+    ```
+
+9. Quin serà el resultat?
+
+    ```c
+    #include <stdio.h>
+
+    void foo(int *p)
+    {
+        int j = 22;
+        p = &j;
+        printf("%d ", *p);
+    }
+
+    int main()
+    {
+        int i = 17, *p = &i;
+        foo(&i);
+        printf("%d ", *p);
+    }
+    ```
+
+10. Quina serà la sortida?
+
+    ```c
+    #include <stdio.h>
+    struct p
+    {
+        int x;
+        int y;
+    };
+
+    // sizeof(int) == 2 bytes? 
+    // sizeof(int) == 4 bytes? 
+
+    int main()
+    {
+        struct p p1[] = {
+            {1, 92}, 
+            {3, 94}, 
+            {5, 96}
+        };
+
+        int x = (sizeof(p1) / 3);
+
+        printf("%ld\n",sizeof(int));
+        
+        if (x == 8)
+            printf("true\n");
+        else
+            printf("false\n");
+    }
+    ```
+
+
+11. Completa el codi següent:
+
+    ```c
+    int main(){
+    int (*ptr)();
+    return 0;
+    }
+    ```
+
+
+
+
+
+

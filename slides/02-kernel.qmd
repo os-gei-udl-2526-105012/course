@@ -366,17 +366,20 @@ S'inspiren en els exokernels, però en lloc de proporcionar un conjunt de primit
 :::
 
 
-## Això és tot per avui
+## Això és tot per avui {.smaller}
 
 ::::: columns
 ::: {.column width="60%"}
-#### Preguntes?
 
-<br>
+#### TAKE HOME MESSAGE 
 
-#### TAKE HOME MESSAGE
+- Els monolítics ofereixen velocitat però fragilitat.
+- Els microkernels aposten per modularitat i seguretat a costa de latència.
+- Els modulars permeten créixer sense reescriure tot el nucli.
+- Els exokernels lliuren el control directe a l’aplicació per màxima eficiència.
+- Els hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.
+- Els unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.
 
-Els **sistemes operatius** ajuden als programadors a desenvolupar programari robust de forma independent del maquinari.
 :::
 
 ::: {.column width="40%"}

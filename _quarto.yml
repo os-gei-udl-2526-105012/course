@@ -36,9 +36,11 @@ website:
       - section: Diapositives
         contents:
           - href: ./slides/01-introduction.qmd
-            text: Unitat 01 ·Introducció als sistemes operatius
+            text: Unitat 01 · Introducció als sistemes operatius
           - href: ./slides/01-c.qmd
-            text: Unitat 01 ·Introducció a la programació de Sistema (I) (C)
+            text: Unitat 01 · Introducció a la programació de Sistema (I) (C)
+          - href: ./slides/02-kernel.qmd
+            text: Unitat 02 · Kernel de Linux
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
@@ -59,6 +61,9 @@ website:
                 text: Laboratori 4 · Configurant Git a la màquina virtual
               - href: ./labs/01-introduction/lab05.qmd
                 text: Laboratori 5 · Calculadora col·laborativa amb C
+              - href: ./labs/02-c-pointers/lab01.qmd
+                text: Laboratori 6 · Punters·Heap·Stack en C
+
       - section: Activitats
         contents:
           - section: Unitat 01
@@ -67,6 +72,8 @@ website:
                 text: RMSF · Implementant una paperera de reciclatge a Linux
               - href: ./activities/unit00/02-ex01-c.qmd
                 text: Exercicis amb C - Pokemon· 
+              - href: ./activities/unit00/03-ex02-c.qmd
+                text: Exercicis amb C
 
 
   
