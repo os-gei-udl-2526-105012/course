@@ -1,10 +1,8 @@
-# Activitats bàsiques amb C
-
-En aquest recull d'activitats resoltes a classe, es presenten una sèrie d'exercicis bàsics per a practicar els conceptes fonamentals de la programació en C.
-
-- `structs`: Estructures de dades.
-- `pointers`: Punters i adreces de memòria.
-- `arrays`: Matrius i vectors.
+---
+title: Exercicis amb C - Apuntadors i structs
+description: Recull de preguntes d'examens i exercicis pràctics per a practicar amb C
+lang: ca
+---
 
 1. Quin serà el resultat d'aquesta execució?
 
