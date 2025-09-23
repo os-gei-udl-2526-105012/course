@@ -41,6 +41,8 @@ website:
             text: Unitat 01 · Introducció a la programació de Sistema (I) (C)
           - href: ./slides/02-kernel.qmd
             text: Unitat 02 · Kernel de Linux
+          - href: ./slides/02-syscalls.qmd
+            text: Unitat 02 · Crides a sistema
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
@@ -63,6 +65,10 @@ website:
                 text: Laboratori 5 · Calculadora col·laborativa amb C
               - href: ./labs/02-c-pointers/lab01.qmd
                 text: Laboratori 6 · Punters·Heap·Stack en C
+              - href: ./labs/03-syscalls/lab01.qmd
+                text: Laboratori 7 · Espiant el Kernel
+              - href: ./labs/03-syscalls/lab02.qmd
+                text: Laboratori 8 · Anàlisi de crides a sistema
 
       - section: Activitats
         contents:
@@ -74,6 +80,10 @@ website:
                 text: Exercicis amb C - Pokemon· 
               - href: ./activities/unit00/03-ex02-c.qmd
                 text: Exercicis amb C
+          - section: Unitat 02
+            contents:
+              - href: ./activities/unit01/01-kernel.qmd
+                text: Compilant el Kernel de Linux
 
 
   
