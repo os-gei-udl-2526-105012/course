@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Activitat guiada per compilar el kernel de Linux">
 
-<title>contributing – SO - Fall 2025</title>
+<title>Compilant el Kernel de Linux – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,23 +59,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -89,17 +90,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Cap resultat",
+    "search-matching-documents-text": "documents que coincideixen",
+    "search-copy-link-title": "Copia l'enllaç a la cerca",
+    "search-hide-matches-text": "Amaga les coincidències addicionals",
+    "search-more-match-text": "altra coincidència en aquest document",
+    "search-more-matches-text": "altres coincidències en aquest document",
+    "search-clear-button-title": "Neteja",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancel·la",
+    "search-submit-button-title": "Envia",
+    "search-label": "Cerca"
   }
 }</script>
 
@@ -112,11 +113,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit01/01-kernel.html">Unitat 02</a></li><li class="breadcrumb-item"><a href="../../activities/unit01/01-kernel.html">Compilant el Kernel de Linux</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -126,12 +127,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
-    <a href="./index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
+    <a href="../../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
     <a href="https://github.com/os-gei-udl-2526-105012/course" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cv.udl.cat/" title="Sakai" class="quarto-navigation-tool px-1" aria-label="Sakai"><i class="bi bi-person-fill"></i></a>
 </div>
@@ -142,14 +143,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Informació del curs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="././course-information/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../.././course-information/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Planificació</span></a>
   </div>
 </li>
@@ -159,32 +160,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Diapositives</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 · Introducció als sistemes operatius</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/01-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/01-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 · Introducció a la programació de Sistema (I) (C)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/02-kernel.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/02-kernel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 02 · Kernel de Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/02-syscalls.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/02-syscalls.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 02 · Crides a sistema</span></a>
   </div>
 </li>
@@ -194,14 +195,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Apunts</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../notes/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 ·Introducció als sistemes operatius</span></a>
   </div>
 </li>
@@ -211,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Laboratoris</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -220,62 +221,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Unitat 01</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori · Virtualització i Control de Versions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 3 · Hola món en C a Debian</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 4 · Configurant Git a la màquina virtual</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 5 · Calculadora col·laborativa amb C</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/02-c-pointers/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/02-c-pointers/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 6 · Punters·Heap·Stack en C</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 7 · Espiant el Kernel</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 8 · Anàlisi de crides a sistema</span></a>
   </div>
 </li>
@@ -285,37 +286,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Activitats</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">Unitat 01</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RMSF · Implementant una paperera de reciclatge a Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit00/02-ex01-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit00/02-ex01-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercicis amb C - Pokemon·</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercicis amb C</span></a>
   </div>
 </li>
@@ -323,16 +324,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text">Unitat 02</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit01/01-kernel.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit01/01-kernel.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Compilant el Kernel de Linux</span></a>
   </div>
 </li>
@@ -347,88 +348,136 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">En aquesta pàgina</h2>
    
   <ul>
-  <li><a href="#contribueix" id="toc-contribueix" class="nav-link active" data-scroll-target="#contribueix">Contribueix</a>
-  <ul class="collapse">
-  <li><a href="#instruccions-per-contribuïr" id="toc-instruccions-per-contribuïr" class="nav-link" data-scroll-target="#instruccions-per-contribuïr">Instruccions per contribuïr</a></li>
-  <li><a href="#edició-del-material" id="toc-edició-del-material" class="nav-link" data-scroll-target="#edició-del-material">Edició del material</a>
-  <ul class="collapse">
-  <li><a href="#desenvolupament-local" id="toc-desenvolupament-local" class="nav-link" data-scroll-target="#desenvolupament-local">🚀 Desenvolupament local</a></li>
-  <li><a href="#vs-code-integration" id="toc-vs-code-integration" class="nav-link" data-scroll-target="#vs-code-integration">💻 VS Code Integration</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#requeriments-previs" id="toc-requeriments-previs" class="nav-link active" data-scroll-target="#requeriments-previs">Requeriments previs</a></li>
+  <li><a href="#obtenció-dun-kernel" id="toc-obtenció-dun-kernel" class="nav-link" data-scroll-target="#obtenció-dun-kernel">Obtenció d’un kernel</a></li>
+  <li><a href="#configuració-del-kernel" id="toc-configuració-del-kernel" class="nav-link" data-scroll-target="#configuració-del-kernel">Configuració del Kernel</a></li>
+  <li><a href="#edició-de-.config" id="toc-edició-de-.config" class="nav-link" data-scroll-target="#edició-de-.config">Edició de .config</a></li>
+  <li><a href="#compilació-i-installació" id="toc-compilació-i-installació" class="nav-link" data-scroll-target="#compilació-i-installació">Compilació i Instal·lació</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit01/01-kernel.html">Unitat 02</a></li><li class="breadcrumb-item"><a href="../../activities/unit01/01-kernel.html">Compilant el Kernel de Linux</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Compilant el Kernel de Linux</h1>
+</div>
+
+<div>
+  <div class="description">
+    Activitat guiada per compilar el kernel de Linux
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<section id="contribueix" class="level1">
-<h1>Contribueix</h1>
-<p>Aquest material és de codi obert i podeu col·laborar-hi, complementar-lo o corregir-lo mitjançant pull requests al repositori.</p>
-<section id="instruccions-per-contribuïr" class="level2">
-<h2 class="anchored" data-anchor-id="instruccions-per-contribuïr">Instruccions per contribuïr</h2>
-<ul>
-<li><strong>Fork el repositori</strong>: Fes clic al botó <strong>Fork</strong> a la part superior dreta de la pàgina. Això crearà una còpia del repositori al teu compte de GitHub. Veure imatge:</li>
-</ul>
-<p><img src="figures/contributing/fork.png" class="img-fluid"></p>
-<p><img src="figures/contributing/create-fork.png" class="img-fluid"></p>
-<ul>
-<li><p><strong>Clona el repositori a la teva màquina</strong>: Utilitza Git per clonar el repositori que has clonat a la teva màquina.</p></li>
-<li><p><strong>Crea una branca (branch) nova</strong>: Abans de fer canvis, crea una branca nova on faràs les teves modificacions. Això ajuda a mantenir les coses ordenades. Utilitza la comanda següent:</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> nom_de_la_branca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><p>Fes els canvis: Realitza les modificacions necessàries en els fitxers del projecte.</p></li>
-<li><p>Afegeix i commiteja els canvis: Utilitza els següents comandos per afegir els canvis i fer un commit.</p></li>
-<li><p>Puja els canvis al teu repositori a GitHub amb la comanda següent:</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin nom_de_la_branca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><strong>Crea una PR</strong>: Vés al teu repositori a GitHub i selecciona la branca on has fet els canvis. Apareixerà un missatge destacat dient que has fet una nova branca. Fes clic a “Compare &amp; pull request” per començar la PR.</li>
-</ul>
-<p>També, pots anar a la nova branca fent click al menu desplegable i seleccionant la branca que has creat <strong>1</strong> i fent click al botó <strong>New pull request</strong> <strong>2</strong>. Veure imatge:</p>
-<p><img src="figures/contributing/PR.png" class="img-fluid"></p>
-<ul>
-<li>Proporciona una descripció detallada dels canvis que has fet. A més, pots afegir captures de pantalla o informació addicional per ajudar els revisors a entendre els teus canvis. Fes clic a <strong>New pull request</strong> i beuras una pantalla com la següent:</li>
-</ul>
-<p><img src="figures/contributing/PR2.png" class="img-fluid"></p>
-<p><strong>1</strong> Indica el meu repositori (on vols enviar les modificacions) i <strong>2</strong> indica el teu fork (on has fet les modificacions). Assegura’t de seleccionar la branca amb les modificacions <strong>3</strong>. Finalment, fes clic a <strong>Create pull request</strong> <strong>4</strong>.</p>
-<ul>
-<li><strong>Envia la PR</strong>: Un cop hagis omplert tota la informació, fes clic al botó “Create pull request” per enviar la PR al projecte original.</li>
-</ul>
-</section>
-<section id="edició-del-material" class="level2">
-<h2 class="anchored" data-anchor-id="edició-del-material">Edició del material</h2>
-<p>Per editar el material:</p>
+</header>
+
+
+<p>En aquest exercici, compilarem el kernel de Linux. La compilació del kernel és un procés complex i tedios. La compilació del kernel és un procés que implica la creació d’un nou kernel personalitzat a partir dels <em>sources</em> del kernel de Linux.</p>
+<section id="requeriments-previs" class="level2">
+<h2 class="anchored" data-anchor-id="requeriments-previs">Requeriments previs</h2>
+<p>En primer lloc, accedirem a una sessió com a usuari root per poder instal·lar tots els paquets que necessitarem per realitzar el laboratori.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-</span> root</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
-<li>Al teu ordinador, necessitareu instal·lar <a href="https://quarto.org/docs/get-started/">Quarto</a>.</li>
-<li>Directament al navegador, podeu editar els fitxers <code>.qmd</code> fent clic al botó de llapis que apareix a la part superior dreta de cada fitxer. Això crearà una nova branca amb els teus canvis i et permetrà fer una PR directament des del navegador.</li>
+<li><p>Instal·la les eines essencials per a la construcció de programar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install build-essential libncurses-dev bison flex kmod bc <span class="at">-y</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Instal·la utilitats per a l’ús de l’algoritme de compressió XZ i el desenvolupament amb SSL:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install xz-utils libssl-dev  <span class="at">-y</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Manipulació de fitxers ELF:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install libelf-dev dwarves <span class="at">-y</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Instal·la les capçaleres del nucli de Linux corresponents a la versió actual del teu sistema (obtinguda amb <strong>uname -r</strong>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install linux-headers-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-r</span><span class="va">)</span> <span class="at">-y</span> </span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
-<section id="desenvolupament-local" class="level3">
-<h3 class="anchored" data-anchor-id="desenvolupament-local">🚀 Desenvolupament local</h3>
-<p>Abans de començar, assegura’t que tens <a href="https://quarto.org/docs/get-started/">Quarto</a> instal·lat al teu ordinador. Obra un terminal o un IDE com VSCode i navega fins a la carpeta on tens el projecte.</p>
-<p>Per veure una previsualització local del lloc web:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Això obrirà una previsualització local al teu navegador. La previsualització s’actualitza automàticament quan deses els canvis.</p>
+<p>Finalment tornem a una sessió d’usuari normal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Com a usuari normal, reviseu quin és la versió del kernel actual:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-r</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En el meu cas és 6.1.0-25-arm64.</p>
+<blockquote class="blockquote">
+<p><strong>Nota</strong>:</p>
+<p>Us recomano en aquest punt fer un clon de la vostra màquina virtual per si es produeix algun error durant la compilació del kernel.</p>
+</blockquote>
+<p>A més a més, a la màquina clonada, us recomano que li adjunteu un nou disc virtual de 60 GB per poder compilar el kernel i no quedar-vos sense espai en disc. Un cop adjuntat el nou disc, podeu seguir els passos següents per muntar-lo i comprovar que s’ha afegit correctament.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsblk</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sr0</span>          11:0    1 526,3M  0 rom</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">nvme0n1</span>     259:0    0    20G  0 disk</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├─nvme0n1p1</span> 259:1    0   512M  0 part /boot/efi</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├─nvme0n1p2</span> 259:2    0  18,5G  0 part /</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">└─nvme0n1p3</span> 259:3    0   976M  0 part <span class="pp">[</span><span class="ss">SWAP</span><span class="pp">]</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">nvme0n2</span>     259:4    0    60G  0 disk </span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per obtenir l’etiquesta del disc nou que heu afegit. En el meu cas és <strong>nvme0n2</strong>.</p>
+<p>Un cop tingueu l’etiqueta del disc nou, podeu formatar-lo i muntar-lo.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mkfs.ext4</span> /dev/nvme0n2</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mount</span> /dev/nvme0n2 /mnt</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quan us baixeu els <em>sources</em> del kernel, feu-ho a la carpeta <strong>/mnt</strong> que és on teniu el disc nou muntat.</p>
 </section>
-<section id="vs-code-integration" class="level3">
-<h3 class="anchored" data-anchor-id="vs-code-integration">💻 VS Code Integration</h3>
-<p>Es pot integrar amb Visual Studio Code (VSCode) per a una millor experiència d’edició. Si no tens VSCode, pots descarregar-lo des de <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>.</p>
+<section id="obtenció-dun-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="obtenció-dun-kernel">Obtenció d’un kernel</h2>
+<p>Baixeu l’última versió del nucli 6.11.1 de <a href="https://www.kernel.org/">kernel.org</a> i descomprimiu els <em>sources</em> a la vostra màquina virtual. Podeu baixar els fitxers directament a <strong>/root</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.11.1.tar.xz</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xJf</span> linux-6.11.1.tar.xz</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> linux-6.11.1/</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="configuració-del-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="configuració-del-kernel">Configuració del Kernel</h2>
+<p>La configuració del kernel és un pas crucial en el procés de compilació, ja que permet personalitzar el kernel segons les necessitats i requeriments específics del sistema en què s’implementarà. Aquesta personalització pot incloure adaptar el kernel per garantir la compatibilitat amb el maquinari disponible i afegir funcionalitats específiques que l’usuari desitja integrar. Per exemple, es pot afegir el sistema de fitxer avançats com <strong>zfs</strong> o <strong>btrfs</strong>. Un usuari avançat es pot fer un kernel a mida per optimitzar el rendiment del sistema.</p>
+<p>Ara bé, en aquest laboratori, per configurar el kernel, partirem de la configuració actual del vostre sistema :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-v</span> /boot/config-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-r</span><span class="va">)</span> .config</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A continuació, pots fer ajustos de configuració, en el nostre cas no farem cap canvi, únicament guardarem la configuració actual. Per realitzar la comanda següent heu de ser <strong>root</strong> i estar al directori on heu descomprimit els <em>sources</em> del kernel.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> menuconfig</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En aquest punt, accedirem a una interfície gràfica per configurar el kernel. Aquesta interfície ens permetrà seleccionar les opcions de configuració del kernel. Si no voleu fer cap canvi, podeu sortir de l’interfície sense guardar cap canvi. Si voleu fer canvis, podeu fer-ho i desar la configuració.</p>
+</section>
+<section id="edició-de-.config" class="level2">
+<h2 class="anchored" data-anchor-id="edició-de-.config">Edició de .config</h2>
+<p>Utilitzeu un editor de text per editar el fitxer de configuració del kernel. Cerca la configuració <code>CONFIG_SYSTEM_TRUSTED_KEYS</code> i assigna-li el valor de cadena buida. Si ja té aquest valor assignat a la cadena buida, no cal fer cap canvi.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vi</span> .config</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Premeu / i després escriviu el patró a cercar</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cerca: CONFIG_SYSTEM_TRUSTED_KEYS</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Edita: CONFIG_SYSTEM_TRUSTED_KEYS=""</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Desa i surt (wq!)</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="compilació-i-installació" class="level2">
+<h2 class="anchored" data-anchor-id="compilació-i-installació">Compilació i Instal·lació</h2>
+<p>Utilitzarem l’eina <strong>screen</strong> que ens permetrà deixar la compilació en segon pla i poder fer altres tasques. <strong>No tanqueu la màquina virtual</strong>. La shell o el visual code els podeu tancar. Deixeu el procés <strong>overnight</strong> i al matí podreu veure el resultat.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"apt install screen -y"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-S</span> compilantKernel</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Utilitzarem l’eina <strong>make</strong> per compilar el kernel. Aquesta eina ens permet compilar de forma paral·lela. El nombre de processos que es poden executar de forma paral·lela es pot especificar amb l’opció <strong>-j</strong>. En el nostre cas, utilitzarem el nombre de processadors disponibles a la nostra màquina virtual obtinguts amb <code>nproc</code>.</p>
+<blockquote class="blockquote">
+<p><strong>Nota</strong>:</p>
+<p>Abans d’executar la comanda, intenteu parar la màquina virtual i assignar-li el màxim nombre de processadors que pugueu. Això accelerarà el procés de compilació.</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span>  ARCH=x86_64 <span class="at">-j</span> <span class="kw">`</span><span class="fu">nproc</span><span class="kw">`</span> <span class="kw">&amp;&amp;</span> <span class="fu">make</span> ARCH=x86_64 modules_install <span class="at">-j</span> <span class="kw">`</span><span class="fu">nproc</span><span class="kw">`</span> <span class="kw">&amp;&amp;</span> <span class="fu">make</span> ARCH=x86_64 install <span class="at">-j</span> <span class="kw">`</span><span class="fu">nproc</span><span class="kw">`</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enter</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Això pot trigar... paciencia ^^</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Nota</strong>:</p>
+<p>Si utilitzeu una màquina física amb ARM, com un MAC M, heu de canviar l’arquitectura a <strong>arm64</strong> en l’opció <strong>ARCH</strong>.</p>
+</blockquote>
+<p>Per sortir de la sessió de screen i poder realitzar altres tasques a la màquina virtual:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Premeu Ctrl+A i després d</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li><strong>Quarto: Edició en mode visual</strong>: Permet editar els fitxers <code>.qmd</code> en un mode visual que facilita l’ús de les funcions de Quarto.</li>
-<li><strong>Quarto: Previsualització</strong>: Obre una previsualització del fitxer <code>.qmd</code> actual.</li>
-<li><strong>Quarto: Edició en mode font</strong>: Torna a l’edició en mode text pla.</li>
+<li>Per tornar a la sessió de screen:</li>
 </ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-r</span> compilantKernel</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Un cop finalitzada la compilació, actualitzarem el grub per poder seleccionar el nou kernel que hem compilat.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">reboot</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Un cop arranqui la màquina virtual, podreu seleccionar el nou kernel a les opcions avançades del grub. En aquest punt, podeu seleccionar la versió del kernel que voleu carregar.</p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -457,12 +506,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiat!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiat!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

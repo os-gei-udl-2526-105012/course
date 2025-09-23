@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.24">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>SO 105012: Sistemes Operatius – SO - Fall 2025</title>
+<title>Laboratori 8: Analitzant les crides a sistema – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2955a55f187cc65b0aa73d485281f740.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -54,34 +89,34 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Cap resultat",
+    "search-matching-documents-text": "documents que coincideixen",
+    "search-copy-link-title": "Copia l'enllaç a la cerca",
+    "search-hide-matches-text": "Amaga les coincidències addicionals",
+    "search-more-match-text": "altra coincidència en aquest document",
+    "search-more-matches-text": "altres coincidències en aquest document",
+    "search-clear-button-title": "Neteja",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancel·la",
+    "search-submit-button-title": "Envia",
+    "search-label": "Cerca"
   }
 }</script>
 
 
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">SO 105012: Sistemes Operatius</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab02.html">Laboratori 8 · Anàlisi de crides a sistema</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -91,12 +126,12 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
-    <a href="./index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
+    <a href="../../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
     <a href="https://github.com/os-gei-udl-2526-105012/course" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cv.udl.cat/" title="Sakai" class="quarto-navigation-tool px-1" aria-label="Sakai"><i class="bi bi-person-fill"></i></a>
 </div>
@@ -107,14 +142,14 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Informació del curs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="././course-information/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../.././course-information/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Planificació</span></a>
   </div>
 </li>
@@ -124,32 +159,32 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Diapositives</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 · Introducció als sistemes operatius</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/01-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/01-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 · Introducció a la programació de Sistema (I) (C)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/02-kernel.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/02-kernel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 02 · Kernel de Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/02-syscalls.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/02-syscalls.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 02 · Crides a sistema</span></a>
   </div>
 </li>
@@ -159,14 +194,14 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Apunts</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../notes/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 ·Introducció als sistemes operatius</span></a>
   </div>
 </li>
@@ -174,73 +209,73 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Laboratoris</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Unitat 01</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori · Virtualització i Control de Versions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 3 · Hola món en C a Debian</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 4 · Configurant Git a la màquina virtual</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/01-introduction/lab05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/01-introduction/lab05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 5 · Calculadora col·laborativa amb C</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/02-c-pointers/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/02-c-pointers/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 6 · Punters·Heap·Stack en C</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 7 · Espiant el Kernel</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Laboratori 8 · Anàlisi de crides a sistema</span></a>
   </div>
 </li>
@@ -252,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">Activitats</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -261,26 +296,26 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">Unitat 01</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RMSF · Implementant una paperera de reciclatge a Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit00/02-ex01-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit00/02-ex01-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercicis amb C - Pokemon·</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercicis amb C</span></a>
   </div>
 </li>
@@ -290,14 +325,14 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Unitat 02</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./activities/unit01/01-kernel.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit01/01-kernel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Compilant el Kernel de Linux</span></a>
   </div>
 </li>
@@ -310,13 +345,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
+  <li><a href="#tasca" id="toc-tasca" class="nav-link" data-scroll-target="#tasca">Tasca</a></li>
+  <li><a href="#exercicis-opcionals" id="toc-exercicis-opcionals" class="nav-link" data-scroll-target="#exercicis-opcionals">Exercicis opcionals</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab02.html">Laboratori 8 · Anàlisi de crides a sistema</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">SO 105012: Sistemes Operatius</h1>
+<h1 class="title">Laboratori 8: Analitzant les crides a sistema</h1>
 </div>
 
 
@@ -333,50 +378,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Benvinguts al curs de Sistemes Operatius (SO) del Grau d’Enginyeria Informàtica de la Universitat de Lleida (UdL). Aquest curs se centra en l’estudi dels principis fonamentals de disseny i implementació en l’enginyeria de sistemes operatius. Les classes es basen en l’estudi de sistemes operatius basats en UNIX i en tasques de recerca. Alguns dels temes tractats inclouen la gestió de processos, els mecanismes de comunicació, la planificació de tasques i la gestió de memòria. Les tasques de laboratori individuals requereixen codificar en C mitjançant crides al sistema i scripts de shell.</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><strong>Course Title</strong></td>
-<td>Operating Systems</td>
-</tr>
-<tr class="even">
-<td><strong>Semester</strong></td>
-<td>1st Semester of the Bachelor’s Degree in Computer Engineering</td>
-</tr>
-<tr class="odd">
-<td><strong>Course Year</strong></td>
-<td>Second Year</td>
-</tr>
-<tr class="even">
-<td><strong>Professor</strong></td>
-<td><a href="mailto:jordi.mateo@udl.cat">Jordi Mateo</a></td>
-</tr>
-<tr class="odd">
-<td><strong>Schedule</strong></td>
-<td><a href="course-information/schedule.html">📅</a></td>
-</tr>
-<tr class="even">
-<td><strong>Course Guide</strong></td>
-<td><a href="https://guiadocent.udl.cat/en/html/2025-26_105012">📚</a></td>
-</tr>
-<tr class="odd">
-<td><strong>School</strong></td>
-<td><a href="https://www.eps.udl.cat"><img src="figures/corporative/institute.png" class="img-fluid" width="200"></a></td>
-</tr>
-<tr class="even">
-<td><strong>University</strong></td>
-<td><a href="https://www.udl.cat"><img src="figures/corporative/university.png" class="img-fluid" width="200"></a></td>
-</tr>
-<tr class="odd">
-<td><strong>Department</strong></td>
-<td><a href="https://deidd.udl.cat/"><img src="figures/corporative/department.png" class="img-fluid" width="200"></a></td>
-</tr>
-</tbody>
-</table>
-<p><img src="figures/humor/os_humor.png" class="img-fluid" style="display: block; margin-left: auto; margin-right: auto;" width="400"></p>
+<p>Les crides a sistema són la interfície entre els programes d’usuari i el nucli del sistema operatiu. Aquestes crides són les que permeten als programes d’usuari accedir a les funcionalitats del sistema operatiu. En aquest laboratori, analitzarem la complexitat de les crides a sistema i les compararem amb les crides a procediments.</p>
+<p>Les preguntes que ens fem són:</p>
+<ul>
+<li>Quina és la diferència de temps entre una crida a sistema i una crida a procediment?</li>
+<li>Quina és la complexitat d’una crida a sistema?</li>
+<li>Per què una crida es més costosa que l’altre?</li>
+</ul>
+<section id="objectius" class="level2">
+<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
+<ul>
+<li>Comprendre el funcionament de les crides a sistema.</li>
+<li>Comparar el cost d’una crida a sistema amb el cost d’una crida a procediment.</li>
+<li>Dissenyar experiments en C.</li>
+</ul>
+</section>
+<section id="tasca" class="level2">
+<h2 class="anchored" data-anchor-id="tasca">Tasca</h2>
+<p>Per respondre a les preguntes plantejades, dissenyarem un experiment en C que ens permeti mesurar el temps que triga una crida a sistema i una crida a procediment. Aquest experiment consistirà en cridar una funció simple i una crida a sistema un nombre determinat de vegades, i mesurar el temps que triga aquestes crides. Per exemple, podem utiltizar una crida a sistema com <code>getpid()</code> i una funció simple com <code>funcio()</code> que retorna un valor constant i calcular el temps que triga aquestes crides. Com a tota experimentació, caldrà repetir l’experiment un nombre suficient de vegades per obtenir resultats significatius, per exemple, 1000000 vegades i calcular el temps mitjà de cada crida.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;time.h&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define N_ITERATIONS </span><span class="dv">1000000</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> funcio<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">20</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> timespec start<span class="op">,</span> end<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> totalTimeSysCall<span class="op">,</span> totalTimeFuncCall<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> avgTimeSysCall<span class="op">,</span> avgTimeFuncCall<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>start<span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N_ITERATIONS<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        funcio<span class="op">();</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>end<span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    totalTimeFuncCall <span class="op">=</span> <span class="op">(</span>end<span class="op">.</span>tv_nsec <span class="op">-</span> start<span class="op">.</span>tv_nsec<span class="op">);</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    avgTimeFuncCall <span class="op">=</span> totalTimeFuncCall <span class="op">/</span> N_ITERATIONS<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Temps mitjà de la funció: </span><span class="sc">%f</span><span class="st"> ns</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> avgTimeFuncCall<span class="op">);</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>start<span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N_ITERATIONS<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        getpid<span class="op">();</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>end<span class="op">);</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    totalTimeSysCall <span class="op">=</span> <span class="op">(</span>end<span class="op">.</span>tv_nsec <span class="op">-</span> start<span class="op">.</span>tv_nsec<span class="op">);</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    avgTimeSysCall <span class="op">=</span> totalTimeSysCall <span class="op">/</span> N_ITERATIONS<span class="op">;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Temps mitjà de la crida a sistema: </span><span class="sc">%f</span><span class="st"> ns</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> avgTimeSysCall<span class="op">);</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En aquest codi, s’utilitza la funció <code>clock_gettime()</code> per mesurar el temps que triga una crida a sistema i una crida a procediment. Aquesta funció ens retorna una estructura <code>timespec</code> que conté el temps en segons i nanosegons (tv_sec o tv_nsec). Per a més informació, podeu consultar el manual de linux <code>man clock_gettime</code> o <code>man timespec</code>.</p>
+<p>Per tal d’obtenir el temps transcorregut entre dues crides, es calcula la diferència entre el temps final i el temps inicial. Per tant, definim dues variables <code>start</code> i <code>end</code> de tipus <code>timespec</code> que contindran el temps abans i després de les crides. El temps total de les crides es calcula restant el temps final i el temps inicial. Finalment, es calcula el temps mitjà de les crides dividint el temps total pel nombre de crides realitzades.</p>
+<blockquote class="blockquote">
+<p><strong>Nota</strong>: En aquest exemple, he simplificat el càlcul del temps per a facilitar la comprensió i per que cada mesura no excedira el segon. Si es vol fer una mesura més universal, es recomana utilitzar la següent fórmula: <code>totalTime = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9</code>. Ja que cada segon, la variable <code>tv_sec</code> incrementa en 1 i la variable <code>tv_nsec</code> es reinicia a 0. Això permet mesurar temps superiors a 1 segon.</p>
+</blockquote>
+<hr>
+<blockquote class="blockquote">
+<p><strong>Nota</strong>: La variable <code>CLOCK_MONOTONIC</code> segons el manual de linux mesura el temps de forma monòtona, és a dir, no es veu afectada per salts discontinus en el temps del sistema.</p>
+</blockquote>
+<p>Per executar aquest experiment, compilem el codi amb la següent comanda:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> experiment.c <span class="at">-o</span> experiment <span class="at">-o0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Afegim l’opció <code>-o0</code> per desactivar l’optimització del compilador i obtenir resultats més precisos. El compilador de C, sovint optimitza el codi i això pot afectar als resultats. Per tant, desactivem l’optimització per obtenir resultats més fiables.</p>
+<p>Un cop compilat, executem el programa amb la següent comanda:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./experiment</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Temps</span> mitjà de la funció: 5.298092 ns</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Temps</span> mitjà de la crida a sistema: 142.388794 ns</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Com a resultat de l’experiment, es mostrarà el temps mitjà de la crida a sistema és molt més gran que el temps mitjà de la crida a procediment. Això és degut a la complexitat de les crides a sistema, que involucren moltes més operacions que una crida a procediment. Recordeu que les crides a sistema impliquen accedir al mode kernel, canviar de context, executar la crida a sistema i tornar al mode d’usuari, mentre que una crida a procediment és simplement una crida a una funció.</p>
+</section>
+<section id="exercicis-opcionals" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-opcionals">Exercicis opcionals</h2>
+<ol type="1">
+<li>Optimitza l’experiment per evitar repeticions de codi.</li>
+<li>Optimitza la mesura del temps per obtenir resultats més generals aplicant la fórmula recomanada.</li>
+<li>Modifica aquest experiment per comparar altres funcions i crides a sistema.</li>
+<li>Crea un makefile per compilar el codi de forma més eficient.</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -404,12 +494,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiat!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiat!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

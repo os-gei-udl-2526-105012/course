@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Laboratori 1: Instal·lació de Debian 12 – SO - Fall 2025</title>
+<title>Laboratori 7: Espiant el Kernel – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab01.html">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab01.html">Laboratori 7 · Espiant el Kernel</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</span></a>
   </div>
 </li>
@@ -234,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Laboratori 7 · Espiant el Kernel</span></a>
   </div>
 </li>
@@ -315,21 +350,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En aquesta pàgina</h2>
    
   <ul>
-  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
-  <li><a href="#installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion" id="toc-installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion" class="nav-link" data-scroll-target="#installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion">Instal·lació del Hypervisor (VMWare Workstation Pro o VMWare Fusion)</a></li>
-  <li><a href="#descarrega-de-la-imatge-iso-de-debian-12.5.0" id="toc-descarrega-de-la-imatge-iso-de-debian-12.5.0" class="nav-link" data-scroll-target="#descarrega-de-la-imatge-iso-de-debian-12.5.0">Descarrega de la imatge ISO de Debian 12.5.0</a></li>
-  <li><a href="#configuració-de-la-màquina-virtual-amb-vmware" id="toc-configuració-de-la-màquina-virtual-amb-vmware" class="nav-link" data-scroll-target="#configuració-de-la-màquina-virtual-amb-vmware">Configuració de la màquina virtual amb VMWare</a></li>
-  <li><a href="#installació-del-sistema-operatiu" id="toc-installació-del-sistema-operatiu" class="nav-link" data-scroll-target="#installació-del-sistema-operatiu">Instal·lació del sistema operatiu</a></li>
-  <li><a href="#exercicis-adicionals" id="toc-exercicis-adicionals" class="nav-link" data-scroll-target="#exercicis-adicionals">Exercicis adicionals</a></li>
+  <li><a href="#preparació" id="toc-preparació" class="nav-link active" data-scroll-target="#preparació">Preparació</a></li>
+  <li><a href="#strace" id="toc-strace" class="nav-link" data-scroll-target="#strace"><code>strace</code></a></li>
+  <li><a href="#exemple-strace-amb-un-hola-món" id="toc-exemple-strace-amb-un-hola-món" class="nav-link" data-scroll-target="#exemple-strace-amb-un-hola-món">Exemple: <code>strace</code> amb un Hola Món</a>
+  <ul class="collapse">
+  <li><a href="#analitzant-la-sortida" id="toc-analitzant-la-sortida" class="nav-link" data-scroll-target="#analitzant-la-sortida">Analitzant la sortida</a></li>
+  </ul></li>
+  <li><a href="#exercici-opcional-strace-amb-un-programa-que-obre-un-fitxer" id="toc-exercici-opcional-strace-amb-un-programa-que-obre-un-fitxer" class="nav-link" data-scroll-target="#exercici-opcional-strace-amb-un-programa-que-obre-un-fitxer">Exercici Opcional: <code>strace</code> amb un programa que obre un fitxer</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab01.html">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab01.html">Laboratori 7 · Espiant el Kernel</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Laboratori 1: Instal·lació de Debian 12</h1>
+<h1 class="title">Laboratori 7: Espiant el Kernel</h1>
 </div>
 
 
@@ -346,221 +382,148 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="objectius" class="level2">
-<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
-<ul>
-<li>Instal·lar el programari de virtualització VMWare Workstation Pro o VMWare Fusion.</li>
-<li>Instal·lar una màquina virtual basada en un sistema operatiu Linux.</li>
-</ul>
-</section>
-<section id="installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion" class="level2">
-<h2 class="anchored" data-anchor-id="installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion">Instal·lació del Hypervisor (VMWare Workstation Pro o VMWare Fusion)</h2>
-<p>Aquestes instruccions et guiaran a través del procés per crear un compte a Broadcom i descarregar una de les versions gratuïtes de VMware Workstation Pro (per a Windows) o VMware Fusion (per a macOS).</p>
+<p>En aquest laboratori us proposo utiltzar el programa <code>strace</code> per espiar el comportament del kernel. Aquesta eina ens permetrà veure les crides a sistema que es fan des d’un programa en execució. Això ens permetrà entendre com interactuen els programes amb el sistema operatiu.</p>
+<section id="preparació" class="level2">
+<h2 class="anchored" data-anchor-id="preparació">Preparació</h2>
 <ol type="1">
-<li>Registra’t per a un compte gratuït a Broadcom: Per accedir a les descàrregues de programari de VMware, necessites un compte a la plataforma de Broadcom.
-<ul>
-<li><p>Dirigeix-te a la pàgina de registre de Broadcom: <a href="https://profile.broadcom.com/web/registration">https://profile.broadcom.com/web/registration</a></p></li>
-<li><p>Introdueix la teva adreça de correu electrònic, realitza la verificació de seguretat i fes clic a <em>Next</em> <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration.png" class="img-fluid"></p></li>
-<li><p>Introdueix el codi de verificació que has rebut al teu correu electrònic. Fes clic a <strong>Verify</strong> per continuar. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration-email.png" class="img-fluid"></p></li>
-<li><p>Completa el formulari de registre amb la teva informació personal i crea una contrasenya. Fes clic a <strong>Create Account</strong> per completar el registre. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration-form.png" class="img-fluid"></p></li>
-<li><p>Un cop completat el registre, visualitzaràs un missatge de registre correcte. I us demanarà si voleu completar el perfil. Seleccioneu, <strong>I will do it later</strong> per continuar. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration-complete.png" class="img-fluid"></p></li>
-</ul></li>
-<li>Accedeix a les descàrregues gratuïtes de VMware:
-<ul>
-<li><p>Ves a la pàgina de login de Broadcom: <a href="https://profile.broadcom.com/web/login">https://profile.broadcom.com/web/login</a></p></li>
-<li><p>Inicia sessió amb el teu correu electrònic i la contrasenya que has creat.</p></li>
-<li><p>Ves directament a la secció de descàrregues a <a href="https://support.broadcom.com/group/ecx/free-downloads">(https://support.broadcom.com/group/ecx/free-downloads)</a>. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-downloads.png" class="img-fluid"></p></li>
-<li><p>Selecciona VMware Workstation Pro o VMware Fusion segons el teu sistema operatiu (Windows o macOS). En el meu cas, utiltizo Mac, així que seleccionaré <strong>VMware Fusion</strong>.</p></li>
-<li><p>Seleccioneu la versió que voleu descarregar. En aquest cas, podem seleccionar la versió més recent. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-vmware-fusion-version.png" class="img-fluid"></p></li>
-<li><p>En la pàgina següent:</p>
-<ol type="1">
-<li>Fes clic a l’enllaç de termes i condicions per que s’activi el checkbox de l’acceptació.</li>
-<li>Acceptar els termes i condicions.</li>
-<li>Fes clic a descàrrega per començar a descarregar el fitxer d’instal·lació. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-vmware-fusion-download.png" class="img-fluid"></li>
-</ol></li>
-</ul></li>
-<li>Instal·la VMware Workstation Pro o VMware Fusion.</li>
+<li><p>Accediu a la màquina virtual Debian i instal·leu el paquet <code>strace</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"apt install strace -y"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
-<section id="descarrega-de-la-imatge-iso-de-debian-12.5.0" class="level2">
-<h2 class="anchored" data-anchor-id="descarrega-de-la-imatge-iso-de-debian-12.5.0">Descarrega de la imatge ISO de Debian 12.5.0</h2>
+<section id="strace" class="level2">
+<h2 class="anchored" data-anchor-id="strace"><code>strace</code></h2>
+<p><strong><a href="https://strace.io/">Strace</a></strong> és una eina que permet monitoritzar i fer un seguiment de les crides al sistema que realitza un programa.</p>
+<ul>
+<li>Quines crides a sistema utilitza el procés?</li>
+<li>Quins fitxers esta utilitzant l’aplicació?</li>
+<li>Quins arguments es passen a les crides a sistema?</li>
+<li>Quines crides a sistema estan fallant, i per què?</li>
+</ul>
+<p>El seu funcionament es basa en la crida a sistema <code>ptrace</code>, que permet a un procés monitoritzar i controlar un altre procés.</p>
+<p>Per comenzar a utilitzar <code>strace</code>, simplement executa la comanda següent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> cat /dev/null</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquest exemple mostra totes les crides a sistema realitzades pel programa <code>cat</code>, que en aquest cas, no fa res perquè <code>/dev/null</code> és un fitxer buit.</p>
+<p>Si volem filtrar per crides específiques, podem fer-ho així:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-e</span> trace=close cat /dev/null</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En aquest cas, només veurem les crides <code>close</code> que fa el programa <code>cat</code>.</p>
+<p>Si volem filtrar per crides que comencin per un patró, podem fer-ho així:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-e</span> trace=/get<span class="pp">*</span> ls</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquest exemple mostra totes les crides que comencin per <code>get</code> que fa el programa <code>ls</code>.</p>
+<p>Per guardar la sortida en un fitxer, podem fer-ho així:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-o</span> strace.log <span class="at">-e</span> trace=open,close ls</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Això desarà totes les crides <code>open</code> i <code>close</code> en un fitxer anomenat <code>strace.log</code>.</p>
+<p>Si necessitem excloure una crida a sistema en particular, com <code>gettimeofday</code>, podem fer-ho així:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-o</span> strace.log <span class="at">-e</span> trace!=gettimeofday ls</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per filtrar per categories de crides a sistema, podem fer-ho així:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-o</span> strace.log <span class="at">-e</span> trace=%{X} ls</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>On <code>{X}</code> representa la categoria que t’interessa.</p>
+<p>Els filtres a <code>strace</code> es poden classificar en diverses categories per facilitar la depuració i l’anàlisi:</p>
+<ul>
+<li><code>%file</code>: Inclou totes les crides a sistema que impliquen fitxers com a arguments.</li>
+<li><code>%desc</code>: Comprèn les crides a sistema relacionades amb descriptors de fitxers.</li>
+<li><code>%process</code>: Inclou les crides a sistema que gestiona processos.</li>
+<li><code>%network</code>: Inclou les crides a sistema relacionades amb la xarxa.</li>
+<li><code>%signal</code>: Inclou les crides a sistema que gestionen senyals.</li>
+<li><code>%memory</code>: Inclou les crides a sistema que es relacionen amb la gestió de la memòria.</li>
+<li><code>%ipc</code>: Inclou les crides a sistema relacionades amb la comunicació interprocessual.</li>
+<li><code>%fs</code>: Inclou les crides a sistema relacionades amb el sistema de fitxers.</li>
+<li><code>%all</code>: Inclou totes les crides a sistema.</li>
+</ul>
+<p>Per exemple, si volem veure totes les crides a sistema relacionades amb la xarxa, podem fer-ho així:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-o</span> strace.log <span class="at">-e</span> trace=%network ls</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Addicionalment, <code>strace</code> ens permet obtenir un resum de les crides a sistema que fa un programa. Per exemple, si volem veure un resum de les crides a sistema que fa <code>cat</code>, podem fer-ho així:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-c</span> cat /dev/null</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exemple-strace-amb-un-hola-món" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-strace-amb-un-hola-món">Exemple: <code>strace</code> amb un Hola Món</h2>
+<p>El següent programa C escriu un missatge a la sortida estàndard i finalitza:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span><span class="pp">  </span><span class="co">// printf</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span><span class="pp"> </span><span class="co">// exit</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STR </span><span class="st">"HELLO</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span> STR<span class="op">);</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span>          </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
-<li><p>Ves a la pàgina de descàrrega de Debian 12.5.0: <a href="https://get.debian.org/images/archive/12.5.0/">https://get.debian.org/images/archive/12.5.0/</a></p></li>
-<li><p>Selecciona la imatge ISO per a la teva arquitectura (amd64 o arm64). <strong>La majoria dels vostres ordinadors tenen processadors amd64 (Intel o AMD)</strong>. <em>Els processadors ARM són més comuns en dispositius mòbils i en els nous Mac amb xips M.</em></p></li>
-<li><p>Seleccioneu la carpeta <em>iso-cd</em>.</p></li>
-<li><p>Seleccioneu el fitxer <em>debian-12.5.0-x-netinst.iso</em>. On <em>x</em> és l’arquitectura del vostre sistema (amd64 o arm64).</p>
+<li><p>Compileu el programa:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> hola.c <span class="at">-o</span> hola </span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Executeu el programa amb <code>strace</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-o</span> hola.log ./hola</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Consulteu el fitxer <code>hola.log</code> per veure les crides a sistema que fa el programa <code>hola</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> hola.log</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+<section id="analitzant-la-sortida" class="level3">
+<h3 class="anchored" data-anchor-id="analitzant-la-sortida">Analitzant la sortida</h3>
+<ol type="1">
+<li><p>La primera línia ens mostra la crida a sistema <code>execve</code> que s’ha fet per executar el programa <code>hola</code>. Quan es crea un nou procés a Linux <code>fork()</code>, el fill és idèntic al pare. Llavors, <code>execv()</code> substitueix el procés actual (fill) pel programa <code>hola.c</code>. Aquest efecte s’anomena <strong>recobriment</strong>. Com veurem més endavant, aquesta crida a sistema és la que ens permet executar un nou programa.</p></li>
+<li><p>La segona línia ens mostra la crida a sistema <code>brk</code> que ens permet ajustar el límit superior de l’heap, permetent al programa sol·licitar més memòria dinàmica. L’adreça retornada marca el límit actual de l’heap.</p></li>
+<li><p>La tercera línia ens mostra la crida a sistema <code>mmap</code> que ens permet mapejar una regió de memòria. En aquest cas, el programa <code>hola</code> mapeja una regió de memòria de 8192 bytes amb permisos de lectura i escriptura. Aquesta memòria s’utilitza per emmagatzemar dades temporals durant l’execució del programa. Ens mostra l’adreça on s’ha mapejat la regió de memòria.</p></li>
+<li><p>La quarta línia ens mostra la crida a sistema <code>faccessat</code> que ens permet comprovar si un fitxer es pot llegir. En aquest cas, el programa <code>hola</code> intenta llegir el fitxer <code>/etc/ld.so.preload</code>, però com que no existeix, la crida retorna <code>ENOENT</code> (El fitxer o directori no existeix).</p>
 <blockquote class="blockquote">
-<p>💡 <strong>Nota</strong>:</p>
-<p>La imatge <em>netinst</em> és una imatge d’instal·lació mínima que descarrega els paquets necessaris durant la instal·lació. Això permet personalitzar la instal·lació i seleccionar els paquets que voleu instal·lar.</p>
+<p>Nota: Tots els programes intenten obrir <code>/etc/ld.so.preload</code>, aquest comportament està integrat a Glibc. Normalment <code>/etc/ld.so.preload</code> no existeix, així que cada procés només crida <code>access</code>, rep una resposta negativa i segueix endavant.</p>
+</blockquote></li>
+<li><p>La cinquena línia ens mostra la crida a sistema <code>openat</code> que ens permet obrir un fitxer. En aquest cas, el programa <code>hola</code> intenta obrir el fitxer <code>/etc/ld.so.cache</code> en mode lectura. El valor de retorn és 3, que és el descriptor de fitxer que s’ha obert.</p></li>
+<li><p>La sisena línia ens mostra la crida a sistema <code>newfstatat</code> que ens permet obtenir informació sobre un fitxer com ara el seu estat, propietari, permisos, últim accés, etc. El valor de retorn ens indica que la crida ha estat satisfactòria.</p></li>
+<li><p>La setena línia ens mostra la crida a sistema <code>mmap</code> que ens permet mapejar una regió de memòria. En aquest cas, mapeja una regió de memòria de 20870 bytes amb permisos de lectura. Això es fa perquè el programa necessita llegir la informació del fitxer <code>/etc/ld.so.cache</code>. El valor de retorn ens indica l’adreça on s’ha mapejat la regió de memòria.</p></li>
+<li><p>La vuitena línia ens mostra la crida a sistema <code>close</code> que ens permet tancar un fitxer. En aquest cas, <code>/etc/ld.so.cache</code>. El valor de retorn ens indica que la crida ha estat satisfactòria. I el descriptor de fitxer 3 ja no està disponible.</p></li>
+<li><p>Per fer servir la llibreria <code>libc.so.6</code> que conté la implementació de les funcions bàsiques del llenguatge C, aquesta ha de ser carregada a la memòria. Els passos són els següents:</p>
+<ol type="1">
+<li>La crida a sistema <code>openat</code> obre la llibreria <code>libc.so.6</code> en mode lectura. El valor de retorn és 3, que és el descriptor de fitxer que s’ha obert.</li>
+<li>La crida a sistema <code>read</code> llegeix 832 bytes de la llibreria <code>libc.so.6</code>. El valor de retorn ens indica que s’han llegit 832 bytes. Aquesta informació és la capçalera que té format ELF.</li>
+<li>La crida a sistema <code>newfstatat</code> ens permet obtenir informació sobre la llibreria <code>libc.so.6</code>.</li>
+<li>La crida a sistema <code>mmap</code> mapeja una regió de memòria de 1826912 bytes amb permisos de lectura.</li>
+<li>La crida a sistema <code>mmap</code> mapeja una regió de memòria de 1761376 bytes amb permisos d’execució. Aquesta memòria es fa servir per executar la llibreria <code>libc.so.6</code>. El valor de retorn ens indica l’adreça on s’ha mapejat la regió de memòria.</li>
+<li>Les crides <code>munmap</code> alliberen regions de memòria que ja no es fan servir. En aquest cas, la llibreria <code>libc.so.6</code> ja no necessita llegir la capçalera ELF.</li>
+<li>La crida a sistema <code>mprotect</code> canvia els permisos d’una regió de memòria a <em>PROT_NONE</em> (sense permisos). Aquesta regió de memòria ja no es fa servir.</li>
+<li>Les crides <code>mmap</code> mapegen dos regions de memòria de 24576 i 49248 bytes amb permisos de lectura i escriptura per emmagatzemar dades temporals durant l’execució de la llibreria <code>libc.so.6</code>. El valor de retorn ens indica les adreces on s’han mapejat les regions de memòria (0xffff833bc000 i 0xffff833c2000).</li>
+<li>La crida a sistema <code>close</code> tanca la llibreria <code>libc.so.6</code>. El valor de retorn ens indica que la crida ha estat satisfactòria. I el descriptor de fitxer 3 ja no està disponible.</li>
+</ol>
+<blockquote class="blockquote">
+<p>No comentarem les crides a sistema <code>set_tid_address</code>, <code>set_robust_list</code>, <code>rseq</code>, <code>prlimit64</code>, <code>getrandom</code> ja que no són rellevants per aquest exemple i les veurem més endavant.</p>
+</blockquote></li>
+<li><p>Les següents crides a sistema <code>mprotect</code> canvien els permisos a <em>PROT_READ</em> (només lectura) de diferents regions de memòria. La primera regió de memòria és de 16384 bytes, la segona de 4096 bytes i la tercera de 8192 bytes.</p></li>
+<li><p>La crida a sistema <code>newfstatat</code> ens permet obtenir informació sobre la sortida estàndard. Fixeu-vos que el descriptor de fitxer és 1. L’objectiu del programa en C es mostrar el missatge <code>HELLO</code> per la sortida estàndard.</p></li>
+<li><p>Les crides <code>brk(NULL)</code> i <code>brk(0xaaaadad16000)</code> primer obtenen l’adreça final de la pila i després ajusten el límit superior de l’heap. Es a dir, el programa augmenta la mida de l’heap per emmagatzemar la cadena <code>HELLO\n</code> abans d’escriure-la per la sortida estàndard.</p>
+<blockquote class="blockquote">
+<p>Nota: Tot i que no s’utiltiza la memòria dinàmica de forma explícita, la crida a sistema <code>write(1, "HELLO\n", 6)</code> fa servir la memòria dinàmica per emmagatzemar la cadena <code>HELLO\n</code> abans d’escriure-la per la sortida estàndard. Podeu comprovar-ho si mirem la implementació de la funció <code>printf</code> de la llibreria <code>libc.so.6</code>.</p>
+</blockquote></li>
+<li><p>La crida a sistema <code>write</code> escriu 6 caràcters a la sortida estàndard. En aquest cas, el programa <code>hola</code> escriu la cadena <code>HELLO\n</code> per la sortida estàndard. El valor de retorn ens indica que s’han escrit 6 caràcters.</p></li>
+<li><p>La crida a sistema <code>exit_group</code> finalitza el programa <code>hola</code>. El valor de retorn és 0, que indica que el programa ha finalitzat correctament.</p>
+<blockquote class="blockquote">
+<p>Nota: La crida a sistema <code>exit_group</code> és la que s’utilitza per finalitzar un procés. Aquesta crida finalitza tots els fils del procés i allibera tots els recursos que s’han utilitzat. Si observeu el manual de la crida a sistema <code>exit</code> (<code>man 2 exit</code>), veureu que aquesta crida invoca la crida a sistema del kernel amb el mateix nom. Des de la versió 2.3 de Glibc, la funció <code>exit</code> invoca la crida a sistema <code>exit_group</code> per tal de finalitzar tots els fils d’un procés.</p>
 </blockquote></li>
 </ol>
 </section>
-<section id="configuració-de-la-màquina-virtual-amb-vmware" class="level2">
-<h2 class="anchored" data-anchor-id="configuració-de-la-màquina-virtual-amb-vmware">Configuració de la màquina virtual amb VMWare</h2>
-<ol type="1">
-<li>Selecciona l’opció <code>Create a New Virtual Machine</code> a VMWare Workstation Pro o VMWare Fusion.</li>
-<li>Selecciona <em>Install from disc or image</em>. <img src="../../figures/labs/01-introduction/lab01/debian12/install-01.png" class="img-fluid" alt="Install from disc or image"></li>
-<li>Selecciona la imatge ISO de Debian 12. <img src="../../figures/labs/01-introduction/lab01/debian12/install-02.png" class="img-fluid" alt="Select ISO"></li>
-<li>Configura els recursos de la màquina virtual. <img src="../../figures/labs/01-introduction/lab01/debian12/install-03.png" class="img-fluid" alt="Configuració"></li>
-<li>Anomena la màquina virtual i selecciona la ubicació on es guardarà. Per exemple, podeu posar el nom <code>vm-curs0-debian12</code> i seleccionar una ubicació al vostre directori d’usuari.</li>
-</ol>
 </section>
-<section id="installació-del-sistema-operatiu" class="level2">
-<h2 class="anchored" data-anchor-id="installació-del-sistema-operatiu">Instal·lació del sistema operatiu</h2>
+<section id="exercici-opcional-strace-amb-un-programa-que-obre-un-fitxer" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-opcional-strace-amb-un-programa-que-obre-un-fitxer">Exercici Opcional: <code>strace</code> amb un programa que obre un fitxer</h2>
 <ol type="1">
-<li><p>Un cop iniciada la màquina virtual, podeu seleccionar la opció <strong>Install</strong> o bé <strong>Graphical install</strong>. <img src="../../figures/labs/01-introduction/lab01/debian12/install-04.png" class="img-fluid"></p>
-<p>En aquest tutoriral, seleccionarem la opció <strong>Graphical install</strong> per a una instal·lació més amigable. La principal diferència entre les dues opcions és l’entorn gràfic.</p></li>
-<li><p>Selecciona l’idioma d’instal·lació. <img src="../../figures/labs/01-introduction/lab01/debian12/install-05.png" class="img-fluid"></p>
-<p>Podeu seleccionar l’idioma que vulgueu per a la instal·lació. En aquest cas, seleccionarem l’idioma <strong>Català</strong>.</p></li>
-<li><p>Selecciona la ubicació geogràfica. <img src="../../figures/labs/01-introduction/lab01/debian12/install-06.png" class="img-fluid"></p>
-<p>En aquest cas, seleccionarem la ubicació <strong>Espanya</strong>.</p></li>
-<li><p>Selecciona la disposició del teclat. <img src="../../figures/labs/01-introduction/lab01/debian12/install-07.png" class="img-fluid"></p>
-<p>En aquest cas, seleccionarem la disposició de teclat <strong>Català</strong>. Això ens asegurarà un mapeig correcte del teclat.</p></li>
-<li><p>Espereu que el sistema carregui els components necessaris. <img src="../../figures/labs/01-introduction/lab01/debian12/install-08.png" class="img-fluid"></p></li>
-<li><p>Configura la xarxa.</p>
-<ul>
-<li>El primer pas és configurar el nom d’amfitrió o hostname. Aquest nom permet identificar de forma única el vostre sistema. Podeu deixar el nom per defecte o canviar-lo al vostre gust.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-09.png" class="img-fluid"></p>
-<p>En aquest cas, hem canviat el nom d’amfitrió a <code>vm-curs0-debian12</code>, però podeu posar el nom que vulgeu com <code>debianlab</code>, etc.</p>
-<ul>
-<li>El segon pas és configurar el domini de la xarxa. Aquest pas el podeu deixar en blanc si no teniu un domini específic. O bé, podem utilitzar <code>.local</code> com a domini local per identicar que el servidor pertany a la xarxa local.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-10.png" class="img-fluid"></p></li>
-<li><p>Configura l’usuari administrador.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-11.png" class="img-fluid"></p>
-<p>En aquest punt, heu de tenir en compte que si no poseu cap contrasenya, es crearà l’usuari normal amb permisos de <code>sudo</code> i això us permetra executar comandes amb privilegis d’administrador.</p>
-<p>Si poseu una contrasenya, aquesta serà la contrasenya de l’usuari <code>root</code> i no es crearà un usuari normal amb permisos de <code>sudo</code>. I tampoc s’instal·larà el paquet <code>sudo</code>.</p>
-<blockquote class="blockquote">
-<p>⚠️ <strong>Compte</strong></p>
-<p>Com utilitzarem les màquines virtuals com a laboratoris de pràctiques, no cal que poseu una contrasenya molt segura. Podeu utilitzar una com a <code>1234</code>. Però, recordeu que en un entorn real, la seguretat és molt important i cal utilitzar contrasenyes segures.</p>
-</blockquote></li>
-<li><p>Configura un usuari normal.</p>
-<ul>
-<li>Nom complet: Podeu posar el vostre nom complet o el que vulgueu.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-12.png" class="img-fluid"></p>
-<ul>
-<li>Nom d’usuari: Podeu posar el vostre nom d’usuari o el que vulgueu.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-13.png" class="img-fluid"></p>
-<ul>
-<li>Contrasenya: El mateix que per l’usuari <code>root</code>.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-14.png" class="img-fluid"></p></li>
-<li><p>Configura la zona horària.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-15.png" class="img-fluid"></p>
-<p>En aquest cas, seleccionarem la zona horària de <strong>Madrid</strong>.</p></li>
-<li><p>Configura el disc dur.</p>
-<ul>
-<li>Particionament: En aquest curs, el tema del particionament no és molt important. Per tant, podeu fer servir la configuració per defecte més senzilla (<strong>Guiat - utilitzar el disc sencer</strong>). Aquesta configuració crearà les particions necessàries per a l’instal·lació del sistema.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-16.png" class="img-fluid"></p>
-<ul>
-<li>Selecciona el disc on instal·lar el sistema. En el meu cas, només tinc un disc virtual amb l’etiqueta <code>/dev/nvme0n1</code>. L’etiqueta indica el tipus de disc (NVMe) i el número de disc (1). Es possible tenir altres etiquetes com <code>/dev/sda</code> per discos SATA o <code>/dev/vda</code> per discos virtuals.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-17.png" class="img-fluid"></p>
-<ul>
-<li>Particions: Podeu seleccionar (<strong>Tots els fitxers en una partició</strong>) per simplificar la gestió i evitar problemes podeu seleccionar aquesta opció. Aquesta opció crearà una sola partició per a tot el sistema.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-18.png" class="img-fluid"></p>
-<ul>
-<li>Confirmeu els canvis. En aquest punt, el sistema crearà les particions necessàries:
-<ul>
-<li>La primera partició serà la partició <code>/boot</code> on es guardaran els fitxers per arrancar el sistema.</li>
-<li>La segona partició serà la partició <code>/</code> on es guardaran els fitxers del sistema.</li>
-<li>La tercera partició serà la partició de swap on es guardaran les dades de la memòria virtual.</li>
-</ul></li>
-</ul>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és la partició swap?</strong></p>
-<p>La <code>swap</code> és una partició especial que s’utilitza com a memòria virtual quan la memòria RAM s’omple. Aquesta partició permet alliberar memòria RAM i evitar que el sistema es bloquegi.</p>
-</blockquote>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-19.png" class="img-fluid"></p>
-<ul>
-<li>Escriu els canvis al disc.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-20.png" class="img-fluid"></p></li>
-<li><p>Espera que s’instal·li el sistema.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-21.png" class="img-fluid"></p></li>
-<li><p>Configura el gestor de paquets.</p>
-<ul>
-<li>Analitzar els discos de la instal·lació. Aquest pas permet seleccionar els discos on es troben els paquets d’instal·lació. Normalment, aquest pas no cal modificar-lo.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-22.png" class="img-fluid"></p>
-<ul>
-<li><p>Configura el gestor de paquets. En aquest cas, seleccionarem el servidor de paquets més proper a la nostra ubicació.</p>
-<ul>
-<li><p>Filtrar els servidors de paquets per ubicació. <img src="../../figures/labs/01-introduction/lab01/debian12/install-23.png" class="img-fluid"></p></li>
-<li><p>Seleccionar el servidor de paquets. <img src="../../figures/labs/01-introduction/lab01/debian12/install-24.png" class="img-fluid"></p></li>
-</ul>
-<blockquote class="blockquote">
-<p>👀 <strong>Nota</strong>:</p>
-<p>A vegades, els servidors de paquets poden estar saturats o no funcionar correctament. En aquest cas, podeu seleccionar un servidor alternatiu o provar més tard.</p>
-</blockquote></li>
-<li><p>Configura el proxy. Si esteu darrere d’un proxy, podeu configurar-lo en aquest pas.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-25.png" class="img-fluid"></p>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és un proxy?</strong></p>
-<p>Un proxy és un servidor intermediari entre el vostre sistema i Internet. Aquest servidor pot ser utilitzat per controlar l’accés a Internet, per protegir la vostra privacitat o per accelerar la connexió a Internet. Les peticions de connexió a Internet es fan a través del servidor proxy, que actua com a intermediari i reenvia les peticions al servidor de destinació. Per exemple, en una empresa, el proxy pot ser utilitzat per controlar l’accés a Internet dels empleats i protegir la xarxa interna de possibles amenaces.</p>
-</blockquote></li>
-</ul></li>
-<li><p>Espera que s’instal·lin els paquets.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-26.png" class="img-fluid"></p></li>
-<li><p>Configura el paquet <code>popularity-contest</code>.</p>
-<ul>
-<li>Aquest paquet permet enviar informació anònima sobre els paquets instal·lats al servidor de Debian per millorar la selecció de paquets i la qualitat dels paquets. Podeu seleccionar si voleu participar en aquest programa o no.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-27.png" class="img-fluid"></p></li>
-<li><p>Selecció de programari. En aquest punt podeu seleccionar si voleu un servidor en mode text o amb interfície gràfica. També us permet seleccionar si voleu instal·lar els serveis web i ssh al servidor i finalment si voleu les utilitats estàndard del sistema. Seleccionarem el servidor en mode text, el servei SSH activat i les utilitats estàndard del sistema.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-28.png" class="img-fluid"></p>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és un servidor en mode text?</strong></p>
-<p>Un servidor en mode text és un servidor que no té una interfície gràfica. Això significa que tota la interacció amb el servidor es fa a través de la línia de comandes. Aquest tipus de servidor és molt comú en entorns de producció, ja que consumeix menys recursos i és més segur que un servidor amb interfície gràfica.</p>
-</blockquote>
-<hr>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és el servei SSH?</strong></p>
-<p>El servei SSH (Secure Shell) és un protocol de xifratament que permet connectar-se de forma segura a un servidor remot. Aquest servei és molt utilitzat per administrar servidors a distància, ja que permet accedir al servidor de forma segura i xifratada.</p>
-</blockquote></li>
-<li><p>Espera que s’instal·li el programari.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-29.png" class="img-fluid"></p></li>
-<li><p>Instal·la el gestor d’arrancada GRUB. <img src="../../figures/labs/01-introduction/lab01/debian12/install-30.png" class="img-fluid"></p></li>
-<li><p>Instal·lació acabada. Un cop finalitzada la instal·lació, el sistema es reiniciarà i podreu accedir al GRUB per seleccionar el sistema operatiu. <img src="../../figures/labs/01-introduction/lab01/debian12/install-31.png" class="img-fluid"></p></li>
-<li><p>El GRUB us permet accedir al sistema operatiu. En aquest cas, seleccionarem Debian GNU/Linux. La resta d’opcions les veurem més endavant en el curs.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-32.png" class="img-fluid"></p>
-<blockquote class="blockquote">
-<p>ℹ️ Què és el GRUB?</p>
-<p>El GRUB és un gestor d’arrencada que permet seleccionar el sistema operatiu que volem iniciar. Aquest gestor és molt útil en sistemes amb múltiples sistemes operatius o múltiples versions del mateix sistema operatiu.</p>
-</blockquote></li>
-<li><p>Inicieu sessió amb l’usuari i la contrasenya que heu configurat durant la instal·lació.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-33.png" class="img-fluid"></p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Alerta
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Quan escriviu la contrasenya, no es mostrarà cap caràcter a la pantalla. Això és normal en sistemes Unix/Linux per motius de seguretat. Simplement escriviu la contrasenya i premeu <strong>Enter</strong>.</p>
-</div>
-</div></li>
-<li><p>Tanqueu la sessió amb la comanda <code>exit</code>.</p></li>
-<li><p>Inicieu sessió amb l’usuari <code>root</code> i la contrasenya que heu configurat durant la instal·lació.</p></li>
+<li><p>Creeu un fitxer anomenat <code>open.c</code> amb el següent codi:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> fd<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>argc <span class="op">!=</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">"Usage: </span><span class="sc">%s</span><span class="st"> &lt;file&gt;</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> argv<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    fd <span class="op">=</span> open<span class="op">(</span>argv<span class="op">[</span><span class="dv">1</span><span class="op">],</span> O_RDONLY<span class="op">);</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>fd <span class="op">==</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        perror<span class="op">(</span><span class="st">"open"</span><span class="op">);</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    close<span class="op">(</span>fd<span class="op">);</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquest programa obre un fitxer en mode lectura i el tanca. Si no es passa cap argument, mostra un missatge d’ús.</p></li>
+<li><p>Compileu el programa:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-o</span> open open.c</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Executeu el programa amb <code>strace</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-o</span> open_1.log ./open /etc/passwd</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Executeu el programa amb <code>strace</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">strace</span> <span class="at">-o</span> open_2.log ./open /etc/shadow</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
-</section>
-<section id="exercicis-adicionals" class="level2">
-<h2 class="anchored" data-anchor-id="exercicis-adicionals">Exercicis adicionals</h2>
-<ul>
-<li>Instal·leu altres màquines virtuals amb altres sistemes operatius en mode gràfic com:
-<ul>
-<li><a href="https://ubuntu.com/download/desktop">Ubuntu 24.04 LTS</a></li>
-<li><a href="https://getfedora.org/">Fedora 39</a></li>
-</ul></li>
-</ul>
+<p>Obriu els fitxers <code>open_1.log</code> i <code>open_2.log</code> amb un editor de text o amb la comanda <code>less</code> i analitzeu el seu comportament i les diferències entre ells.</p>
 
 
 </section>
