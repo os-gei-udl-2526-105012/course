@@ -1,0 +1,482 @@
+---
+title: "Crides a sistema"
+subtitle: "Unitat 2 · Sistemes Operatius (SO)"
+author: "Jordi Mateo Fornés"
+logo: "/figures/corporative/institute.png"
+format: 
+  revealjs:
+    transition: fade
+    slide-number: true
+    incremental: true 
+    chalkboard: false
+    css: styles.css
+    footer: "Unitat 2 · Sistemes Operatius (SO) [🏠](/index.html)</a>"
+editor: visual
+
+execute:
+  freeze: auto
+  echo: false
+---
+
+## Que són les crides a sistema? {.smaller}
+
+
+Les **crides a sistema**  són interfícies que permeten a un programa en mode usuari sol·licitar serveis al nucli del sistema operatiu de manera segura i controlada.
+
+
+| Sistema operatiu | Nº aproximat de syscalls | Notes                                            |
+| ---------------- | ------------------------ | ------------------------------------------------ |
+| Linux x86\_64    | \~300                    | Variació segons kernel                           |
+| FreeBSD          | \~500                    | Inclou syscalls BSD històrics                    |
+| Windows NT       | \~2000                   | Crides natives `Nt*`; moltes encapsulades en DLL |
+
+
+Normalment s’accedeix a les *syscalls* a través de llibreries de sistema, que encapsulen i abstrauen les crides:
+
+- **Unix/Linux**: *libc* (stdio.h, stdlib.h, sys/types.h, sys/shm.h, …)
+- **Windows**: API de Windows (kernel32.dll, ntdll.dll, …)
+
+## Principals crides a sistema? (I) {.smaller}
+
+| Categoria                             |                Windows (API / Syscall)                |    Unix/Linux (Syscall)   | Descripció                                                             |
+| ------------------------------------- | :---------------------------------------------------: | :-----------------------: | ------------------------------------------------------------------------------- |
+| **Control de processos**              |         `CreateProcess()` / `NtCreateProcess`         |    `fork()` / `clone()`   | `fork()` crea un procés fill; Windows encapsula la syscall amb `CreateProcess`. |
+|                                       |         `ExitProcess()` / `NtTerminateProcess`        |          `exit()`         | Tanca el procés.                                                                |
+|                                       |   `WaitForSingleObject()` / `NtWaitForSingleObject`   |   `wait()` / `waitpid()`  | Sincronització de processos. |
+
+## Principals crides a sistema? (II) {.smaller}
+
+| Categoria                             |                Windows (API / Syscall)                |    Unix/Linux (Syscall)   | Descripció                                                             |
+| ------------------------------------- | :---------------------------------------------------: | :-----------------------: | ------------------------------------------------------------------------------- |                                 
+| **Informació i temporització**        | `GetCurrentProcessId()` / `NtQueryInformationProcess` |         `getpid()`        | Retorna PID.                                                                    |
+|                                       |              `SetTimer()` / `NtSetTimer`              | `alarm()` / `nanosleep()` | Temporització i delays.                                                         |
+|                                       |             `Sleep()` / `NtDelayExecution`            | `sleep()` / `nanosleep()` | Pausa el procés; variants més precises disponibles.                             |
+| **Comunicació entre processos (IPC)** |        `CreatePipe()` / `NtCreateNamedPipeFile`       | `pipe()`  | Pipes anònims; Windows també té Named Pipes, mailslots, shared memory.          |
+
+## Principals crides a sistema? {.smaller}
+
+| Categoria                             |                Windows (API / Syscall)                |    Unix/Linux (Syscall)   | Descripció                                                             |
+| ------------------------------------- | :---------------------------------------------------: | :-----------------------: | ------------------------------------------------------------------------------- |
+| **Protecció i permisos**              |      `SetFileSecurity()` / `NtSetSecurityObject`      |    `chmod()`, `chown()`   | Windows usa ACLs complexes; Unix usa permisos Unix tradicionals.                |
+| **Manipulació de fitxers**            |            `CreateFile()` / `NtCreateFile`            |          `open()`         | Obre un fitxer.                                                                 |
+|                                       |              `ReadFile()` / `NtReadFile`              |          `read()`         | Llegeix dades.                                                                  |
+|                                       |             `WriteFile()` / `NtWriteFile`             |         `write()`         | Escriu dades.                                                                   |
+|                                       |              `CloseHandle()` / `NtClose`              |         `close()`         | Tanca descriptor o handle.                                                      |
+|                                       |            `DeleteFile()` / `NtDeleteFile`            |        `unlink()`         | Esborra un fitxer.                                                              |
+
+
+
+## Exemple amb la llibreria (*stdio.h*)
+
+:::center-container
+![](../figures/slides/02-syscalls/printf-write.png){width="90%"}
+:::
+
+## Protecció de la CPU  {.smaller}
+
+::: columns
+::: {.column width="60%"}
+- La CPU permet múltiples nivells de *seguretat*, anomenats **rings** (o anells).
+- Cada **ring** (començant pel ring 0) restringeix l'accés a certes instruccions.
+- El kernel utilitza el ring 0 (anell de *fes el que vulguis*) com a **Kernel Space** i el ring 3 (l'anell on tens més limitacions) com a **UserSpace** (on s'executen els teus programes).
+:::
+::: {.column width="40%"}
+![](../figures/slides/02-syscalls/theory/rings.png)
+:::
+:::
+
+::: {.fragment}
+Degut a l'accés restringit a la memòria i als ports d'E/S en el Ring 3, l'espai d'usuari no pot fer gairebé res per al món exterior sense cridar al kernel. No pot obrir fitxers, enviar paquets de xarxa, imprimir a la pantalla o assignar memòria.
+:::
+
+
+## Què és una crida al sistema? (II) {.smaller}
+
+1. Els programes en mode usuari necessiten accedir a recursos gestionats pel kernel (fitxers, dispositius, memòria, etc.).
+2. El kernel s'executa en mode privilegiat (anell 0) amb accés complet al maquinari.
+3. Els programes en mode usuari s'executen en mode restringit (anell 3) amb accés limitat.
+4. Les crides al sistema són la interfície que permet als programes en mode usuari sol·licitar serveis al kernel de manera segura.
+5. No tenim cap instrucció que permeti canviar directament del mode usuari al mode kernel.
+
+::: {.fragment .center-container}
+### Com pot un procés en mode usuari notificar al kernel que necessita fer alguna cosa? *Si no tenim cap instrucció que ho permeti?*
+:::
+
+
+## Com funciona el procesador? {.smaller}
+
+El processador executa instruccions seguint el cicle:
+
+::: center-container 
+[How Do CPUs Run Programs Using the Fetch, Decode, Execute Cycle?](https://www.youtube.com/watch?v=ctjnYgCo8Bc)
+<br>
+Fetch → Decode → Execute → Memory → Writeback.
+:::
+
+Pot processar múltiples instruccions en paral·lel gràcies a **pipelining** i execució fora d’ordre.
+
+- El codi usuari no pot accedir directament a dispositius o memòria reservada.
+- Els dispositius envien interrupcions per indicar esdeveniments (ex.: teclat, disc, xarxa).
+- El kernel intercepta aquestes interrupcions i pot invocar handlers, que poden traduir-se en crides a sistema per als processos usuari.
+
+## Què és una interrupció? {.smaller}
+
+Les interrupcions són senyals asíncrons enviats al processador per indicar esdeveniments que requereixen atenció immediata. Poden ser de **hardware** (*teclat, disc, temporitzador*) o de **software** (*excepcions, traps, syscalls*).
+
+### Gestió d’una interrupció
+
+1. Guardar el context del procés actual (registres, PC, flags).
+2. Canviar a mode kernel.
+3. Determinar la causa de la interrupció (vector d’interrupcions).
+4. Saltar a la Interrupt Service Routine (**RTI/ISR**).
+5. Executar **ISR** per atendre l’esdeveniment.
+6.Restaurar el context del procés.
+7. Tornar a mode usuari.
+
+::: {.fragment .center-container}
+Les interrupcions són prioritàries i poden executar-se **sobre** processos en execució per garantir resposta immediata.
+:::
+
+## Què és la taula d’interrupcions? {.smaller}
+
+- Quan el processador rep una interrupció, ha de saber a quin codi saltar per atendre-la.
+- La Interrupt Descriptor Table (**IDT**) és una estructura del kernel que indica al CPU la adreça de cada **ISR**.
+- Sense configurar la **IDT**, el CPU no sabria quin codi executar en rebre una interrupció.
+
+#### Qui configura la IDT?
+
+- El kernel, a l’inici, inicialitza la **IDT** i apunta cada entrada a la seva **ISR** corresponent.
+- El kernel també gestiona les actualitzacions de la **IDT** en temps d'execució, si és necessari.
+
+:::{.callout-tip title="IDT"}
+La IDT es pot veure directament al codi font del kernel Linux: [IDT](https://elixir.bootlin.com/linux/v6.11/source/arch/x86/include/asm/irq_vectors.h#L14) i on s'inicialitza: [IDT init](https://elixir.bootlin.com/linux/v6.16.4/source/arch/x86/kernel/idt.c#L194).
+:::
+
+
+## Excepcions {.smaller}
+
+Les excepcions són *esdeveniments generats pel CPU* quan una **instrucció provoca una condició anormal**.
+El sistema operatiu pot tractar l’excepció; si no pot, envia un senyal al procés, que pot usar el gestor per defecte o un gestor específic.
+
+| Tipus     | Quan s’informa        | Exemple                          | Descripció                                                                     |
+| --------- | --------------------- | -------------------------------- | ----------------------------------------------------------------------------- |
+| **Fault** | Abans de l’execució   | Page fault                       | Normalment es pot corregir; instrucció reintenta després del tractament.      |
+| **Trap**  | Després de l’execució | Breakpoint, syscall              | Condició detectada després; sovint informativa o de depuració.                |
+| **Abort** | Irrecuperable         | Paritat de memòria, kernel panic | No es pot continuar; sovint provoca terminació del procés o panic del kernel. |
+
+
+## Exemples d'excepcions {.smaller}
+
+| Name                   | Type      | Descripció curta                                        |
+| ---------------------- | --------- | ------------------------------------------------------- |
+| Divide-by-zero         | Fault     | Instrucció divideix per zero                            |
+| Debug                  | Trap      | Depuració; després de la instrucció                     |
+| Non-maskable Interrupt | Interrupt | Interrupció crítica de hardware                         |
+| Breakpoint             | Trap      | Trap de depuració per breakpoint                        |
+| Overflow               | Trap      | L’operació aritmètica sobrepassa capacitat del registre |
+| Bound Range Exceeded   | Fault     | Index fora de rang en instrucció BOUND                  |
+| Device not Available   | Fault     | FPU o dispositiu no disponible                          |
+| Double Fault           | Abort     | Error crític del CPU durant gestió d’una altra excepció |
+| Page Fault             | Fault     | Accés a pàgina no resident en memòria                   |
+
+::: center-container
+[Excepcions](https://wiki.osdev.org/Exceptions)
+:::
+
+::: notes
+Per a més informació podeu consultar el següent enllaç: [Excepcions](https://wiki.osdev.org/Exceptions).
+:::
+
+
+## Com accedim al Kernel {.smaller}
+
+:::center-container
+![](../figures/slides/02-syscalls/theory/excepciointerrupcio.png){width=60%}
+:::
+
+:::center
+Un **trap** és una interrupció de software generada deliberadament pel procés usuari per sol·licitar un servei del kernel. La majoria de syscalls s'implementen com traps, que canvien a mode kernel i executen la funció corresponent.
+:::
+
+## `read(fd, buffer, nbytes)` 
+
+#### Espai d'usuari
+
+1. Programa C:
+   * Posa *fd, buffer, nbytes* als registres(*RDI,RSI,RDX*).
+   * Crida a `read()`.
+
+2. Llibreria de sistema:
+   * Posa el codi de `read` a *RAX*.
+   * Executa **syscall** (TRAP a mode kernel).
+  
+::: {.fragment .center-container}
+**Transició a mode kernel**
+::: 
+
+
+## `read(fd, buffer, nbytes)` 
+
+* CPU canvia a mode supervisor i salta a la rutina del kernel indicada a la IDT.
+
+::: {.fragment}
+#### Espai del kernel
+
+- Validació de descriptors i permisos.
+- Localitza rutina de tractament de `read` a la taula de syscall.
+- Executa la rutina:
+  - Llegeix dades del dispositiu d’E/S.
+  - Copia dades al buffer d’usuari (`copy_to_user`).
+  - Retorna resultat (nombre de bytes llegits o -1 en cas d’error).
+:::
+
+
+
+## `read(fd, buffer, nbytes)`
+
+::: {.fragment .center-container}
+**Transició a mode usuari**
+::: 
+
+- CPU restaura context del procés i retorna al programa.
+
+#### Espai d'usuari
+
+* **Llibreria de sistema**: Retorna el resultat de la crida a `read()` al Programa C.
+* **Programa**: Continua l'execució utilitzant les dades llegides. O bé, tracta l'error si n'hi ha (*errno*)
+
+## Resum amb `open()` {.smaller}
+
+:::center-container
+![](../figures/slides/02-syscalls/theory/example_syscall.open.png){width=40%}
+:::
+
+```asm
+# Executem a user space
+mov edx,4       ; message length
+mov ecx,msg     ; message to write
+mov ebx,1       ; file descriptor (stdout)
+mov eax,4       ; system call number (sys_write)
+int 0x80        ; interrupt! Number 128 (0x80 in hex); 
+```
+
+
+## Setup de les crides a sistema {.smaller}
+
+- Les syscalls estan identificades per números únics (syscall numbers).
+- Arguments màxims: 6 registres, depenent de l’arquitectura.
+- Valor de retorn: en el registre principal (EAX/RAX).
+
+:::{.fragment .center-container}  
+| Arquitectura | Registre syscall number | Arguments (1..6)               | Retorn |
+| ------------ | ----------------------- | ------------------------------ | ------ |
+| x86 32-bit   | `EAX`                   | `EBX, ECX, EDX, ESI, EDI, EBP` | `EAX`  |
+| x86 64-bit   | `RAX`                   | `RDI, RSI, RDX, R10, R8, R9`   | `RAX`  |
+:::
+
+1. Programa usuari escriu arguments als registres corresponents.
+2. Executa instrucció `int $0x80 (32-bit)` o `syscall (64-bit)` → *trap al kernel*.
+3. Kernel llegeix registre **syscall number**, localitza la rutina a la **syscall table**, executa i retorna resultat en **EAX/RAX**.
+
+## Linux Syscall Dispatcher (I) {.smaller}
+
+
+```c
+__visible noinstr bool do_syscall_64(struct pt_regs *regs, int nr)
+{
+	nr = syscall_enter_from_user_mode(regs, nr); 
+	if (!do_syscall_x64(regs, nr) && !do_syscall_x32(regs, nr) && nr != -1) {
+		regs->ax = __x64_sys_ni_syscall(regs);
+	}
+	syscall_exit_to_user_mode(regs);
+	return true;
+}
+```
+
+- `syscall_enter_from_user_mode(regs, nr)`
+  - Canvia a mode kernel.
+  - Realitza validacions de seguretat i prepara els registres (RAX, RDI, RSI, etc.).
+
+- `do_syscall_x64` / `do_syscall_x32`
+  - Invoca la rutina correcta de la syscall table segons arquitectura.
+
+- `syscall_exit_to_user_mode(regs)`
+  - Prepara els registres per tornar a mode usuari.
+
+
+::: center-container
+[syscall_64.c](https://elixir.bootlin.com/linux/v6.16.4/source/arch/x86/entry/syscall_64.c#L94)
+:::
+
+## Linux Syscall Dispatcher (II) {.smaller}
+
+```c
+static __always_inline bool do_syscall_x64(struct pt_regs *regs, int nr)
+{
+	unsigned int unr = nr;
+	if (likely(unr < NR_syscalls)) {
+		unr = array_index_nospec(unr, NR_syscalls);
+		regs->ax = x64_sys_call(regs, unr);
+		return true;
+	}
+	return false;
+}
+```
+
+- `NR_syscalls`: nombre total de syscalls suportades.
+- `array_index_nospec`: prevenció d’atacs de canal lateral al indexar la taula de syscalls.
+- `x64_sys_call(regs, unr)`: crida la funció de syscall corresponent.
+- Retorna `true` si la syscall és vàlida i s’ha executat, `false` en cas contrari.
+
+::: center-container
+[x64_syscall.c](https://elixir.bootlin.com/linux/v6.16.4/source/arch/x86/entry/syscall_64.c#L47)
+:::
+
+## Punters i seguretat {.smaller}
+
+:::center-container
+Tots els punters que provenen de l’usuari han de ser validads abans de ser utilitzats pel kernel.
+:::
+
+| Tipus de punter                        | Conseqüència / tractament                   |
+| -------------------------------------- | ------------------------------------------- |
+| Punter a **kernel space** des d’usuari | Corrupció de dades del kernel → bug crític. |
+| Punter **invàlid** a user space        | Page fault; el kernel gestiona l’error.     |
+| Punter **invàlid** dins del kernel     | Bug del kernel; pot provocar panic.         |
+
+
+- Funcions com `__chk_user_ptr(ptr)` comproven si el punter apunta a espai usuari vàlid.
+- Si es fa servir un punter invàlid, la MMU genera un page fault que el kernel pot gestionar.
+- Taula d’excepcions: el kernel registra quines instruccions poden accedir a l’espai usuari.
+- Permet diferenciar faults legítims de punters invàlids o errors del kernel.
+- `__get_user()` i `__put_user()` són funcions que permeten llegir i escriure dades a l'espai d'usuari de manera segura.
+- `__copy_to_user()` i `__copy_from_user()` són funcions que permeten copiar dades entre l'espai d'usuari i el kernel de manera segura.
+
+
+
+
+## Accés a dades d'usuari
+
+::: columns
+::: {.column width="50%"}
+
+```c
+#define get_user(x, ptr)					\
+({								\
+	const void __user *__p = (ptr);				\
+	might_fault();						\
+	access_ok(__p, sizeof(*ptr)) ?		\
+		__get_user((x), (__typeof__(*(ptr)) __user *)__p) :\
+		((x) = (__typeof__(*(ptr)))0,-EFAULT);		\
+})
+```
+:::
+::: {.column width="50%"}
+
+1. `__chk_user_ptr(ptr)`: Valida que ptr apunta a espai usuari vàlid abans d’accedir-hi.
+2. `might_fault()`: Marca que el codi següent pot generar un page fault.
+3. `access_ok(__p, sizeof(*ptr))`: Comprova que l’àrea de memòria és accessible.
+4. `__get_user((x), (__typeof__(*(ptr)) __user *)__p)`: Llegeix el valor de l’adreça d’usuari i el guarda a x.
+5. Si l’accés no és vàlid, assigna 0 a x i retorna -EFAULT.
+
+:::
+:::
+
+::: center-container
+Protegeix el kernel de punters maliciosos o invàlids. Pots veure més a [get_user](https://elixir.bootlin.com/linux/v6.16.4/source/include/asm-generic/uaccess.h#L50).
+:::
+
+
+## Virtual Dynamic Shared Object (VDSO) {.smaller}
+
+Àrea especial de memòria mapejada a l’espai usuari amb codi generat pel kernel per executar certes funcions de sistema de manera més ràpida. 
+
+#### Objectiu
+Evitar la transició completa a mode kernel, reduint latència i cost de syscalls repetitives.
+
+::: {.fragment .callout-tip title="Exemples"}
+- `gettimeofday()`
+- `time()`
+- `getpid()`
+:::
+
+- Algunes dades dinàmiques es troben en una regió de memòria RW dins del VDSO.
+- La funció accedeix directament a aquestes dades sense fer una syscall completa.
+- Si és necessari, el kernel actualitza aquestes dades de forma transparent.
+
+
+# Resum de la dualitat {.smaller}
+
+## Com funciona la dualitat?
+
+:::center-container
+![](../figures/slides/02-syscalls/theory/dualitat_so.png)
+:::
+
+## Canvi de context (I) 
+
+:::center-container
+![](../figures/slides/02-syscalls/theory/canvi_context_1.png){width=60%}
+:::
+
+## Canvi de context (II)
+
+:::center-container
+![](../figures/slides/02-syscalls/theory/canvi_context_2.png){width=60%}
+:::
+
+## Característiques de la dualitat {.smaller}
+
+- Tot el codi del nucli s’executa amb tots els privilegis.
+- Permet accés complet a instruccions privilegiades i dispositius.
+- El sistema operatiu limita el temps i el codi executat en mode supervisor per reduir riscos i latència.
+- Per accedir a serveis del nucli (syscalls, traps) cal un canvi de context:
+  - Des del mode usuari → mode kernel → execució → retorn.
+- Mecanisme controlat per accedir a rutines del kernel sense comprometre seguretat.
+- Accions potencialment insegures (accés a taules de pàgines, E/S, control del CPU) prohibit en mode usuari.
+- El kernel evita que processos accedeixin fora de la seva regió assignada.
+- Transforma adreces lògiques (abstractes) en físiques de forma segura.
+- Interrupcions periòdiques i control del temporitzador
+- El kernel pot interrompre processos usuari en qualsevol moment.
+
+## Exemples d'instruccions privilegiades {.smaller}
+
+* Assignació d'adreces de memòria.
+* Esborreu o invalideu la memòria cau de dades.
+* Invalideu les entrades a les taules de pàgines.
+* Carregueu i llegiu els registres del sistema.
+* Canvieu els modes de processador del nucli a l'usuari.
+* Canvieu el voltatge i la freqüència del processador.
+* Parar un processador.
+* Restableix un processador.
+* Fer operacions d'E/S.
+
+## Conclusió {.smaller}
+
+- La CPU executa instruccions de manera **lineal**, una darrere l'altra.
+- Per interactuar amb el món, depèn de les interrupcions.
+- La CPU té diferents nivells de privilegi, anomenats **rings**, que ajuden el sistema operatiu a aplicar la seguretat i el control. 
+- Els nostres programes normalment s'executen en l'anell menys privilegiat (mode usuari), cosa que significa que no podem executar directament certes instruccions.
+- Ens comuniquem amb el nucli a través de crides al sistema (syscalls), que són essencialment un tipus d'interrupció.
+- El nucli també configura interrupcions pel seu compte per gestionar els processos (com pausar-ne un, canviar a un altre o gestionar diversos esdeveniments del sistema). Podeu [ampliar aquí](https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-9.html)
+
+
+
+## Això és tot per avui {.smaller}
+
+::::: columns
+::: {.column width="60%"}
+#### TAKE HOME MESSAGE
+
+-   Els monolítics ofereixen velocitat però fragilitat.
+-   Els microkernels aposten per modularitat i seguretat a costa de latència.
+-   Els modulars permeten créixer sense reescriure tot el nucli.
+-   Els exokernels lliuren el control directe a l’aplicació per màxima eficiència.
+-   Els hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.
+-   Els unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.
+:::
+
+::: {.column width="40%"}
+![](https://static.posters.cz/image/750/posters/looney-tunes-thats-all-folks-i295.jpg)
+:::
+:::::
