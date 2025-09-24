@@ -62,8 +62,6 @@ Normalment s’accedeix a les *syscalls* a través de llibreries de sistema, que
 |                                       |              `ReadFile()` / `NtReadFile`              |          `read()`         | Llegeix dades.                                                                  |
 |                                       |             `WriteFile()` / `NtWriteFile`             |         `write()`         | Escriu dades.                                                                   |
 |                                       |              `CloseHandle()` / `NtClose`              |         `close()`         | Tanca descriptor o handle.                                                      |
-|                                       |            `DeleteFile()` / `NtDeleteFile`            |        `unlink()`         | Esborra un fitxer.                                                              |
-
 
 
 ## Exemple amb la llibreria (*stdio.h*)
@@ -123,15 +121,16 @@ Pot processar múltiples instruccions en paral·lel gràcies a **pipelining** i 
 
 Les interrupcions són senyals asíncrons enviats al processador per indicar esdeveniments que requereixen atenció immediata. Poden ser de **hardware** (*teclat, disc, temporitzador*) o de **software** (*excepcions, traps, syscalls*).
 
-### Gestió d’una interrupció
-
+:::{.fragment}
+#### Gestió d’una interrupció
 1. Guardar el context del procés actual (registres, PC, flags).
 2. Canviar a mode kernel.
 3. Determinar la causa de la interrupció (vector d’interrupcions).
 4. Saltar a la Interrupt Service Routine (**RTI/ISR**).
 5. Executar **ISR** per atendre l’esdeveniment.
-6.Restaurar el context del procés.
+6. 6.Restaurar el context del procés.
 7. Tornar a mode usuari.
+:::
 
 ::: {.fragment .center-container}
 Les interrupcions són prioritàries i poden executar-se **sobre** processos en execució per garantir resposta immediata.
@@ -143,12 +142,14 @@ Les interrupcions són prioritàries i poden executar-se **sobre** processos en 
 - La Interrupt Descriptor Table (**IDT**) és una estructura del kernel que indica al CPU la adreça de cada **ISR**.
 - Sense configurar la **IDT**, el CPU no sabria quin codi executar en rebre una interrupció.
 
+::: {.fragment }
 #### Qui configura la IDT?
 
 - El kernel, a l’inici, inicialitza la **IDT** i apunta cada entrada a la seva **ISR** corresponent.
 - El kernel també gestiona les actualitzacions de la **IDT** en temps d'execució, si és necessari.
+:::
 
-:::{.callout-tip title="IDT"}
+::: {.fragment .center-container}
 La IDT es pot veure directament al codi font del kernel Linux: [IDT](https://elixir.bootlin.com/linux/v6.11/source/arch/x86/include/asm/irq_vectors.h#L14) i on s'inicialitza: [IDT init](https://elixir.bootlin.com/linux/v6.16.4/source/arch/x86/kernel/idt.c#L194).
 :::
 
@@ -175,7 +176,6 @@ El sistema operatiu pot tractar l’excepció; si no pot, envia un senyal al pro
 | Breakpoint             | Trap      | Trap de depuració per breakpoint                        |
 | Overflow               | Trap      | L’operació aritmètica sobrepassa capacitat del registre |
 | Bound Range Exceeded   | Fault     | Index fora de rang en instrucció BOUND                  |
-| Device not Available   | Fault     | FPU o dispositiu no disponible                          |
 | Double Fault           | Abort     | Error crític del CPU durant gestió d’una altra excepció |
 | Page Fault             | Fault     | Accés a pàgina no resident en memòria                   |
 
@@ -191,7 +191,7 @@ Per a més informació podeu consultar el següent enllaç: [Excepcions](https:/
 ## Com accedim al Kernel {.smaller}
 
 :::center-container
-![](../figures/slides/02-syscalls/theory/excepciointerrupcio.png){width=60%}
+![](../figures/slides/02-syscalls/theory/excepciointerrupcio.png){width=50%}
 :::
 
 :::center
@@ -215,7 +215,7 @@ Un **trap** és una interrupció de software generada deliberadament pel procés
 ::: 
 
 
-## `read(fd, buffer, nbytes)` 
+## `read(fd, buffer, nbytes)` {}
 
 * CPU canvia a mode supervisor i salta a la rutina del kernel indicada a la IDT.
 
@@ -227,7 +227,7 @@ Un **trap** és una interrupció de software generada deliberadament pel procés
 - Executa la rutina:
   - Llegeix dades del dispositiu d’E/S.
   - Copia dades al buffer d’usuari (`copy_to_user`).
-  - Retorna resultat (nombre de bytes llegits o -1 en cas d’error).
+  - Retorna resultat (nombre de bytes llegits o -1).
 :::
 
 
@@ -240,15 +240,17 @@ Un **trap** és una interrupció de software generada deliberadament pel procés
 
 - CPU restaura context del procés i retorna al programa.
 
+:::{.fragment}
 #### Espai d'usuari
 
 * **Llibreria de sistema**: Retorna el resultat de la crida a `read()` al Programa C.
 * **Programa**: Continua l'execució utilitzant les dades llegides. O bé, tracta l'error si n'hi ha (*errno*)
+:::
 
 ## Resum amb `open()` {.smaller}
 
 :::center-container
-![](../figures/slides/02-syscalls/theory/example_syscall.open.png){width=40%}
+![](../figures/slides/02-syscalls/theory/example_syscall.open.png){width=30%}
 :::
 
 ```asm
@@ -261,7 +263,7 @@ int 0x80        ; interrupt! Number 128 (0x80 in hex);
 ```
 
 
-## Setup de les crides a sistema {.smaller}
+## Setup de les crides a sistema (x86) {.smaller}
 
 - Les syscalls estan identificades per números únics (syscall numbers).
 - Arguments màxims: 6 registres, depenent de l’arquitectura.
@@ -332,7 +334,7 @@ static __always_inline bool do_syscall_x64(struct pt_regs *regs, int nr)
 [x64_syscall.c](https://elixir.bootlin.com/linux/v6.16.4/source/arch/x86/entry/syscall_64.c#L47)
 :::
 
-## Punters i seguretat {.smaller}
+## Punters i seguretat (I) {.smaller}
 
 :::center-container
 Tots els punters que provenen de l’usuari han de ser validads abans de ser utilitzats pel kernel.
@@ -344,6 +346,7 @@ Tots els punters que provenen de l’usuari han de ser validads abans de ser uti
 | Punter **invàlid** a user space        | Page fault; el kernel gestiona l’error.     |
 | Punter **invàlid** dins del kernel     | Bug del kernel; pot provocar panic.         |
 
+## Punters i seguretat (II) {.smaller}
 
 - Funcions com `__chk_user_ptr(ptr)` comproven si el punter apunta a espai usuari vàlid.
 - Si es fa servir un punter invàlid, la MMU genera un page fault que el kernel pot gestionar.
@@ -355,23 +358,20 @@ Tots els punters que provenen de l’usuari han de ser validads abans de ser uti
 
 
 
-## Accés a dades d'usuari
+## Accés a dades d'usuari {.smaller}
 
-::: columns
-::: {.column width="50%"}
 
 ```c
-#define get_user(x, ptr)					\
-({								\
-	const void __user *__p = (ptr);				\
-	might_fault();						\
-	access_ok(__p, sizeof(*ptr)) ?		\
-		__get_user((x), (__typeof__(*(ptr)) __user *)__p) :\
-		((x) = (__typeof__(*(ptr)))0,-EFAULT);		\
+#define get_user(x, ptr)					
+({								
+	const void __user *__p = (ptr);				
+	might_fault();						
+	access_ok(__p, sizeof(*ptr)) ?		
+		__get_user((x), (__typeof__(*(ptr)) __user *)__p) :
+		((x) = (__typeof__(*(ptr)))0,-EFAULT);		
 })
 ```
-:::
-::: {.column width="50%"}
+
 
 1. `__chk_user_ptr(ptr)`: Valida que ptr apunta a espai usuari vàlid abans d’accedir-hi.
 2. `might_fault()`: Marca que el codi següent pot generar un page fault.
@@ -379,8 +379,6 @@ Tots els punters que provenen de l’usuari han de ser validads abans de ser uti
 4. `__get_user((x), (__typeof__(*(ptr)) __user *)__p)`: Llegeix el valor de l’adreça d’usuari i el guarda a x.
 5. Si l’accés no és vàlid, assigna 0 a x i retorna -EFAULT.
 
-:::
-:::
 
 ::: center-container
 Protegeix el kernel de punters maliciosos o invàlids. Pots veure més a [get_user](https://elixir.bootlin.com/linux/v6.16.4/source/include/asm-generic/uaccess.h#L50).
@@ -391,8 +389,10 @@ Protegeix el kernel de punters maliciosos o invàlids. Pots veure més a [get_us
 
 Àrea especial de memòria mapejada a l’espai usuari amb codi generat pel kernel per executar certes funcions de sistema de manera més ràpida. 
 
+::: {.fragment}
 #### Objectiu
 Evitar la transició completa a mode kernel, reduint latència i cost de syscalls repetitives.
+:::
 
 ::: {.fragment .callout-tip title="Exemples"}
 - `gettimeofday()`
@@ -460,6 +460,13 @@ Evitar la transició completa a mode kernel, reduint latència i cost de syscall
 - Ens comuniquem amb el nucli a través de crides al sistema (syscalls), que són essencialment un tipus d'interrupció.
 - El nucli també configura interrupcions pel seu compte per gestionar els processos (com pausar-ne un, canviar a un altre o gestionar diversos esdeveniments del sistema). Podeu [ampliar aquí](https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-9.html)
 
+## Exercicis proposats {.smaller}
+
+- [Laboratori 07: Espiant el Kernel](../labs/03-syscalls/lab01.qmd)
+- [Laboratori 08: Crides a sistema personalitzades](../labs/03-syscalls/lab02.qmd)
+
+- [Activitat: Kernel Linux](../activities/unit01/01-kernel.qmd)
+
 
 
 ## Això és tot per avui {.smaller}
@@ -468,12 +475,10 @@ Evitar la transició completa a mode kernel, reduint latència i cost de syscall
 ::: {.column width="60%"}
 #### TAKE HOME MESSAGE
 
--   Els monolítics ofereixen velocitat però fragilitat.
--   Els microkernels aposten per modularitat i seguretat a costa de latència.
--   Els modulars permeten créixer sense reescriure tot el nucli.
--   Els exokernels lliuren el control directe a l’aplicació per màxima eficiència.
--   Els hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.
--   Els unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.
+- Les crides a sistema (`syscalls`) són la porta perquè els processos d’usuari accedeixin a serveis del kernel.
+- El dispatcher de Linux (`do_syscall_64`) gestiona syscalls, identifica el número, valida arguments i crida la rutina corresponent.
+- Excepcions i interrupcions: són l´únic mecanisme perquè els processos d’usuari accedeixin al kernel.
+- Flux: **Usuari → Trap/syscall → Dispatcher → Rutina → Kernel → Retorn → Usuari**.
 :::
 
 ::: {.column width="40%"}
