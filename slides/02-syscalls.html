@@ -378,12 +378,6 @@ Jordi Mateo Fornés
 <td style="text-align: center;"><code>close()</code></td>
 <td>Tanca descriptor o handle.</td>
 </tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;"><code>DeleteFile()</code> / <code>NtDeleteFile</code></td>
-<td style="text-align: center;"><code>unlink()</code></td>
-<td>Esborra un fitxer.</td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -438,15 +432,18 @@ Jordi Mateo Fornés
 <section id="què-és-una-interrupció" class="slide level2 smaller">
 <h2>Què és una interrupció?</h2>
 <p>Les interrupcions són senyals asíncrons enviats al processador per indicar esdeveniments que requereixen atenció immediata. Poden ser de <strong>hardware</strong> (<em>teclat, disc, temporitzador</em>) o de <strong>software</strong> (<em>excepcions, traps, syscalls</em>).</p>
-<h3 id="gestió-duna-interrupció">Gestió d’una interrupció</h3>
+<div class="fragment">
+<h4 id="gestió-duna-interrupció">Gestió d’una interrupció</h4>
 <ol type="1">
 <li class="fragment">Guardar el context del procés actual (registres, PC, flags).</li>
 <li class="fragment">Canviar a mode kernel.</li>
 <li class="fragment">Determinar la causa de la interrupció (vector d’interrupcions).</li>
 <li class="fragment">Saltar a la Interrupt Service Routine (<strong>RTI/ISR</strong>).</li>
-<li class="fragment">Executar <strong>ISR</strong> per atendre l’esdeveniment. 6.Restaurar el context del procés.</li>
+<li class="fragment">Executar <strong>ISR</strong> per atendre l’esdeveniment.</li>
+<li class="fragment">6.Restaurar el context del procés.</li>
 <li class="fragment">Tornar a mode usuari.</li>
 </ol>
+</div>
 <div class="fragment center-container">
 <p>Les interrupcions són prioritàries i poden executar-se <strong>sobre</strong> processos en execució per garantir resposta immediata.</p>
 </div>
@@ -458,25 +455,15 @@ Jordi Mateo Fornés
 <li class="fragment">La Interrupt Descriptor Table (<strong>IDT</strong>) és una estructura del kernel que indica al CPU la adreça de cada <strong>ISR</strong>.</li>
 <li class="fragment">Sense configurar la <strong>IDT</strong>, el CPU no sabria quin codi executar en rebre una interrupció.</li>
 </ul>
+<div class="fragment">
 <h4 id="qui-configura-la-idt">Qui configura la IDT?</h4>
 <ul>
 <li class="fragment">El kernel, a l’inici, inicialitza la <strong>IDT</strong> i apunta cada entrada a la seva <strong>ISR</strong> corresponent.</li>
 <li class="fragment">El kernel també gestiona les actualitzacions de la <strong>IDT</strong> en temps d’execució, si és necessari.</li>
 </ul>
-<div title="IDT">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<p><strong>IDT</strong></p>
-</div>
-<div class="callout-content">
+<div class="fragment center-container">
 <p>La IDT es pot veure directament al codi font del kernel Linux: <a href="https://elixir.bootlin.com/linux/v6.11/source/arch/x86/include/asm/irq_vectors.h#L14">IDT</a> i on s’inicialitza: <a href="https://elixir.bootlin.com/linux/v6.16.4/source/arch/x86/kernel/idt.c#L194">IDT init</a>.</p>
-</div>
-</div>
-</div>
 </div>
 </section>
 <section id="excepcions" class="slide level2 smaller">
@@ -566,16 +553,11 @@ Jordi Mateo Fornés
 <td>Index fora de rang en instrucció BOUND</td>
 </tr>
 <tr class="odd">
-<td>Device not Available</td>
-<td>Fault</td>
-<td>FPU o dispositiu no disponible</td>
-</tr>
-<tr class="even">
 <td>Double Fault</td>
 <td>Abort</td>
 <td>Error crític del CPU durant gestió d’una altra excepció</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Page Fault</td>
 <td>Fault</td>
 <td>Accés a pàgina no resident en memòria</td>
@@ -602,7 +584,7 @@ Jordi Mateo Fornés
 <section id="com-accedim-al-kernel" class="slide level2 smaller">
 <h2>Com accedim al Kernel</h2>
 <div class="center-container">
-<p><img data-src="../figures/slides/02-syscalls/theory/excepciointerrupcio.png" style="width:60.0%"></p>
+<p><img data-src="../figures/slides/02-syscalls/theory/excepciointerrupcio.png" style="width:50.0%"></p>
 </div>
 <div class="center">
 <p>Un <strong>trap</strong> és una interrupció de software generada deliberadament pel procés usuari per sol·licitar un servei del kernel. La majoria de syscalls s’implementen com traps, que canvien a mode kernel i executen la funció corresponent.</p>
@@ -641,7 +623,7 @@ Jordi Mateo Fornés
 <ul>
 <li class="fragment">Llegeix dades del dispositiu d’E/S.</li>
 <li class="fragment">Copia dades al buffer d’usuari (<code>copy_to_user</code>).</li>
-<li class="fragment">Retorna resultat (nombre de bytes llegits o -1 en cas d’error).</li>
+<li class="fragment">Retorna resultat (nombre de bytes llegits o -1).</li>
 </ul></li>
 </ul>
 </div>
@@ -654,16 +636,18 @@ Jordi Mateo Fornés
 <ul>
 <li class="fragment">CPU restaura context del procés i retorna al programa.</li>
 </ul>
+<div class="fragment">
 <h4 id="espai-dusuari-1">Espai d’usuari</h4>
 <ul>
 <li class="fragment"><strong>Llibreria de sistema</strong>: Retorna el resultat de la crida a <code>read()</code> al Programa C.</li>
 <li class="fragment"><strong>Programa</strong>: Continua l’execució utilitzant les dades llegides. O bé, tracta l’error si n’hi ha (<em>errno</em>)</li>
 </ul>
+</div>
 </section>
 <section id="resum-amb-open" class="slide level2 smaller">
 <h2>Resum amb <code>open()</code></h2>
 <div class="center-container">
-<p><img data-src="../figures/slides/02-syscalls/theory/example_syscall.open.png" style="width:40.0%"></p>
+<p><img data-src="../figures/slides/02-syscalls/theory/example_syscall.open.png" style="width:30.0%"></p>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource asm number-lines code-with-copy"><code class="sourceCode fasm"><span id="cb1-1"><a></a># Executem a user space</span>
 <span id="cb1-2"><a></a><span class="bu">mov</span> <span class="kw">edx</span><span class="op">,</span><span class="dv">4</span>       <span class="co">; message length</span></span>
@@ -672,8 +656,8 @@ Jordi Mateo Fornés
 <span id="cb1-5"><a></a><span class="bu">mov</span> <span class="kw">eax</span><span class="op">,</span><span class="dv">4</span>       <span class="co">; system call number (sys_write)</span></span>
 <span id="cb1-6"><a></a><span class="bu">int</span> <span class="bn">0x80</span>        <span class="co">; interrupt! Number 128 (0x80 in hex); </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="setup-de-les-crides-a-sistema" class="slide level2 smaller">
-<h2>Setup de les crides a sistema</h2>
+<section id="setup-de-les-crides-a-sistema-x86" class="slide level2 smaller">
+<h2>Setup de les crides a sistema (x86)</h2>
 <ul>
 <li class="fragment">Les syscalls estan identificades per números únics (syscall numbers).</li>
 <li class="fragment">Arguments màxims: 6 registres, depenent de l’arquitectura.</li>
@@ -769,8 +753,8 @@ Jordi Mateo Fornés
 <p><a href="https://elixir.bootlin.com/linux/v6.16.4/source/arch/x86/entry/syscall_64.c#L47">x64_syscall.c</a></p>
 </div>
 </section>
-<section id="punters-i-seguretat" class="slide level2 smaller">
-<h2>Punters i seguretat</h2>
+<section id="punters-i-seguretat-i" class="slide level2 smaller">
+<h2>Punters i seguretat (I)</h2>
 <div class="center-container">
 <p>Tots els punters que provenen de l’usuari han de ser validads abans de ser utilitzats pel kernel.</p>
 </div>
@@ -800,6 +784,9 @@ Jordi Mateo Fornés
 </tr>
 </tbody>
 </table>
+</section>
+<section id="punters-i-seguretat-ii" class="slide level2 smaller">
+<h2>Punters i seguretat (II)</h2>
 <ul>
 <li class="fragment">Funcions com <code>__chk_user_ptr(ptr)</code> comproven si el punter apunta a espai usuari vàlid.</li>
 <li class="fragment">Si es fa servir un punter invàlid, la MMU genera un page fault que el kernel pot gestionar.</li>
@@ -809,19 +796,16 @@ Jordi Mateo Fornés
 <li class="fragment"><code>__copy_to_user()</code> i <code>__copy_from_user()</code> són funcions que permeten copiar dades entre l’espai d’usuari i el kernel de manera segura.</li>
 </ul>
 </section>
-<section id="accés-a-dades-dusuari" class="slide level2">
+<section id="accés-a-dades-dusuari" class="slide level2 smaller">
 <h2>Accés a dades d’usuari</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="pp">#define get_user</span><span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> ptr</span><span class="op">)</span><span class="pp">                    </span><span class="op">\</span></span>
-<span id="cb4-2"><a></a><span class="op">({</span><span class="pp">                              </span><span class="op">\</span></span>
-<span id="cb4-3"><a></a><span class="pp">    </span><span class="dt">const</span><span class="pp"> </span><span class="dt">void</span><span class="pp"> __user </span><span class="op">*</span><span class="pp">__p </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">ptr</span><span class="op">);</span><span class="pp">             </span><span class="op">\</span></span>
-<span id="cb4-4"><a></a><span class="pp">    might_fault</span><span class="op">();</span><span class="pp">                      </span><span class="op">\</span></span>
-<span id="cb4-5"><a></a><span class="pp">    access_ok</span><span class="op">(</span><span class="pp">__p</span><span class="op">,</span><span class="pp"> </span><span class="kw">sizeof</span><span class="op">(*</span><span class="pp">ptr</span><span class="op">))</span><span class="pp"> </span><span class="op">?</span><span class="pp">      </span><span class="op">\</span></span>
-<span id="cb4-6"><a></a><span class="pp">        __get_user</span><span class="op">((</span><span class="pp">x</span><span class="op">),</span><span class="pp"> </span><span class="op">(</span><span class="pp">__typeof__</span><span class="op">(*(</span><span class="pp">ptr</span><span class="op">))</span><span class="pp"> __user </span><span class="op">*)</span><span class="pp">__p</span><span class="op">)</span><span class="pp"> </span><span class="op">:\</span></span>
-<span id="cb4-7"><a></a><span class="pp">        </span><span class="op">((</span><span class="pp">x</span><span class="op">)</span><span class="pp"> </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">__typeof__</span><span class="op">(*(</span><span class="pp">ptr</span><span class="op">)))</span><span class="dv">0</span><span class="op">,-</span><span class="pp">EFAULT</span><span class="op">);</span><span class="pp">      </span><span class="op">\</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="pp">#define get_user</span><span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> ptr</span><span class="op">)</span><span class="pp">                    </span></span>
+<span id="cb4-2"><a></a><span class="op">({</span>                              </span>
+<span id="cb4-3"><a></a>    <span class="dt">const</span> <span class="dt">void</span> __user <span class="op">*</span>__p <span class="op">=</span> <span class="op">(</span>ptr<span class="op">);</span>             </span>
+<span id="cb4-4"><a></a>    might_fault<span class="op">();</span>                      </span>
+<span id="cb4-5"><a></a>    access_ok<span class="op">(</span>__p<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(*</span>ptr<span class="op">))</span> <span class="op">?</span>      </span>
+<span id="cb4-6"><a></a>        __get_user<span class="op">((</span>x<span class="op">),</span> <span class="op">(</span>__typeof__<span class="op">(*(</span>ptr<span class="op">))</span> __user <span class="op">*)</span>__p<span class="op">)</span> <span class="op">:</span></span>
+<span id="cb4-7"><a></a>        <span class="op">((</span>x<span class="op">)</span> <span class="op">=</span> <span class="op">(</span>__typeof__<span class="op">(*(</span>ptr<span class="op">)))</span><span class="dv">0</span><span class="op">,-</span>EFAULT<span class="op">);</span>      </span>
 <span id="cb4-8"><a></a><span class="op">})</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column" style="width:50%;">
 <ol type="1">
 <li class="fragment"><code>__chk_user_ptr(ptr)</code>: Valida que ptr apunta a espai usuari vàlid abans d’accedir-hi.</li>
 <li class="fragment"><code>might_fault()</code>: Marca que el codi següent pot generar un page fault.</li>
@@ -829,7 +813,6 @@ Jordi Mateo Fornés
 <li class="fragment"><code>__get_user((x), (__typeof__(*(ptr)) __user *)__p)</code>: Llegeix el valor de l’adreça d’usuari i el guarda a x.</li>
 <li class="fragment">Si l’accés no és vàlid, assigna 0 a x i retorna -EFAULT.</li>
 </ol>
-</div></div>
 <div class="center-container">
 <p>Protegeix el kernel de punters maliciosos o invàlids. Pots veure més a <a href="https://elixir.bootlin.com/linux/v6.16.4/source/include/asm-generic/uaccess.h#L50">get_user</a>.</p>
 </div>
@@ -837,8 +820,10 @@ Jordi Mateo Fornés
 <section id="virtual-dynamic-shared-object-vdso" class="slide level2 smaller">
 <h2>Virtual Dynamic Shared Object (VDSO)</h2>
 <p>Àrea especial de memòria mapejada a l’espai usuari amb codi generat pel kernel per executar certes funcions de sistema de manera més ràpida.</p>
+<div class="fragment">
 <h4 id="objectiu">Objectiu</h4>
 <p>Evitar la transició completa a mode kernel, reduint latència i cost de syscalls repetitives.</p>
+</div>
 <div class="fragment" title="Exemples">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -930,18 +915,24 @@ Jordi Mateo Fornés
 <li class="fragment">El nucli també configura interrupcions pel seu compte per gestionar els processos (com pausar-ne un, canviar a un altre o gestionar diversos esdeveniments del sistema). Podeu <a href="https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-9.html">ampliar aquí</a></li>
 </ul>
 </section>
+<section id="exercicis-proposats" class="slide level2 smaller">
+<h2>Exercicis proposats</h2>
+<ul>
+<li class="fragment"><p><a href="../labs/03-syscalls/lab01.html">Laboratori 07: Espiant el Kernel</a></p></li>
+<li class="fragment"><p><a href="../labs/03-syscalls/lab02.html">Laboratori 08: Crides a sistema personalitzades</a></p></li>
+<li class="fragment"><p><a href="../activities/unit01/01-kernel.html">Activitat: Kernel Linux</a></p></li>
+</ul>
+</section>
 <section id="això-és-tot-per-avui" class="slide level2 smaller">
 <h2>Això és tot per avui</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <h4 id="take-home-message">TAKE HOME MESSAGE</h4>
 <ul>
-<li class="fragment">Els monolítics ofereixen velocitat però fragilitat.</li>
-<li class="fragment">Els microkernels aposten per modularitat i seguretat a costa de latència.</li>
-<li class="fragment">Els modulars permeten créixer sense reescriure tot el nucli.</li>
-<li class="fragment">Els exokernels lliuren el control directe a l’aplicació per màxima eficiència.</li>
-<li class="fragment">Els hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.</li>
-<li class="fragment">Els unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.</li>
+<li class="fragment">Les crides a sistema (<code>syscalls</code>) són la porta perquè els processos d’usuari accedeixin a serveis del kernel.</li>
+<li class="fragment">El dispatcher de Linux (<code>do_syscall_64</code>) gestiona syscalls, identifica el número, valida arguments i crida la rutina corresponent.</li>
+<li class="fragment">Excepcions i interrupcions: són l´únic mecanisme perquè els processos d’usuari accedeixin al kernel.</li>
+<li class="fragment">Flux: <strong>Usuari → Trap/syscall → Dispatcher → Rutina → Kernel → Retorn → Usuari</strong>.</li>
 </ul>
 </div><div class="column" style="width:40%;">
 <p><img data-src="https://static.posters.cz/image/750/posters/looney-tunes-thats-all-folks-i295.jpg"></p>

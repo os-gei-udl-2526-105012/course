@@ -2610,7 +2610,7 @@
     "href": "slides/02-syscalls.html#principals-crides-a-sistema",
     "title": "Crides a sistema",
     "section": "Principals crides a sistema?",
-    "text": "Principals crides a sistema?\n\n\n\n\n\n\n\n\n\nCategoria\nWindows (API / Syscall)\nUnix/Linux (Syscall)\nDescripció\n\n\n\n\nProtecció i permisos\nSetFileSecurity() / NtSetSecurityObject\nchmod(), chown()\nWindows usa ACLs complexes; Unix usa permisos Unix tradicionals.\n\n\nManipulació de fitxers\nCreateFile() / NtCreateFile\nopen()\nObre un fitxer.\n\n\n\nReadFile() / NtReadFile\nread()\nLlegeix dades.\n\n\n\nWriteFile() / NtWriteFile\nwrite()\nEscriu dades.\n\n\n\nCloseHandle() / NtClose\nclose()\nTanca descriptor o handle.\n\n\n\nDeleteFile() / NtDeleteFile\nunlink()\nEsborra un fitxer.",
+    "text": "Principals crides a sistema?\n\n\n\n\n\n\n\n\n\nCategoria\nWindows (API / Syscall)\nUnix/Linux (Syscall)\nDescripció\n\n\n\n\nProtecció i permisos\nSetFileSecurity() / NtSetSecurityObject\nchmod(), chown()\nWindows usa ACLs complexes; Unix usa permisos Unix tradicionals.\n\n\nManipulació de fitxers\nCreateFile() / NtCreateFile\nopen()\nObre un fitxer.\n\n\n\nReadFile() / NtReadFile\nread()\nLlegeix dades.\n\n\n\nWriteFile() / NtWriteFile\nwrite()\nEscriu dades.\n\n\n\nCloseHandle() / NtClose\nclose()\nTanca descriptor o handle.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2665,7 +2665,7 @@
     "href": "slides/02-syscalls.html#què-és-una-interrupció",
     "title": "Crides a sistema",
     "section": "Què és una interrupció?",
-    "text": "Què és una interrupció?\nLes interrupcions són senyals asíncrons enviats al processador per indicar esdeveniments que requereixen atenció immediata. Poden ser de hardware (teclat, disc, temporitzador) o de software (excepcions, traps, syscalls).\nGestió d’una interrupció\n\nGuardar el context del procés actual (registres, PC, flags).\nCanviar a mode kernel.\nDeterminar la causa de la interrupció (vector d’interrupcions).\nSaltar a la Interrupt Service Routine (RTI/ISR).\nExecutar ISR per atendre l’esdeveniment. 6.Restaurar el context del procés.\nTornar a mode usuari.\n\n\nLes interrupcions són prioritàries i poden executar-se sobre processos en execució per garantir resposta immediata.",
+    "text": "Què és una interrupció?\nLes interrupcions són senyals asíncrons enviats al processador per indicar esdeveniments que requereixen atenció immediata. Poden ser de hardware (teclat, disc, temporitzador) o de software (excepcions, traps, syscalls).\n\nGestió d’una interrupció\n\nGuardar el context del procés actual (registres, PC, flags).\nCanviar a mode kernel.\nDeterminar la causa de la interrupció (vector d’interrupcions).\nSaltar a la Interrupt Service Routine (RTI/ISR).\nExecutar ISR per atendre l’esdeveniment.\n6.Restaurar el context del procés.\nTornar a mode usuari.\n\n\n\nLes interrupcions són prioritàries i poden executar-se sobre processos en execució per garantir resposta immediata.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2676,7 +2676,7 @@
     "href": "slides/02-syscalls.html#què-és-la-taula-dinterrupcions",
     "title": "Crides a sistema",
     "section": "Què és la taula d’interrupcions?",
-    "text": "Què és la taula d’interrupcions?\n\nQuan el processador rep una interrupció, ha de saber a quin codi saltar per atendre-la.\nLa Interrupt Descriptor Table (IDT) és una estructura del kernel que indica al CPU la adreça de cada ISR.\nSense configurar la IDT, el CPU no sabria quin codi executar en rebre una interrupció.\n\nQui configura la IDT?\n\nEl kernel, a l’inici, inicialitza la IDT i apunta cada entrada a la seva ISR corresponent.\nEl kernel també gestiona les actualitzacions de la IDT en temps d’execució, si és necessari.\n\n\n\n\n\n\n\n\nIDT\n\n\nLa IDT es pot veure directament al codi font del kernel Linux: IDT i on s’inicialitza: IDT init.",
+    "text": "Què és la taula d’interrupcions?\n\nQuan el processador rep una interrupció, ha de saber a quin codi saltar per atendre-la.\nLa Interrupt Descriptor Table (IDT) és una estructura del kernel que indica al CPU la adreça de cada ISR.\nSense configurar la IDT, el CPU no sabria quin codi executar en rebre una interrupció.\n\n\nQui configura la IDT?\n\nEl kernel, a l’inici, inicialitza la IDT i apunta cada entrada a la seva ISR corresponent.\nEl kernel també gestiona les actualitzacions de la IDT en temps d’execució, si és necessari.\n\n\n\nLa IDT es pot veure directament al codi font del kernel Linux: IDT i on s’inicialitza: IDT init.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2698,7 +2698,7 @@
     "href": "slides/02-syscalls.html#exemples-dexcepcions",
     "title": "Crides a sistema",
     "section": "Exemples d’excepcions",
-    "text": "Exemples d’excepcions\n\n\n\n\n\n\n\n\nName\nType\nDescripció curta\n\n\n\n\nDivide-by-zero\nFault\nInstrucció divideix per zero\n\n\nDebug\nTrap\nDepuració; després de la instrucció\n\n\nNon-maskable Interrupt\nInterrupt\nInterrupció crítica de hardware\n\n\nBreakpoint\nTrap\nTrap de depuració per breakpoint\n\n\nOverflow\nTrap\nL’operació aritmètica sobrepassa capacitat del registre\n\n\nBound Range Exceeded\nFault\nIndex fora de rang en instrucció BOUND\n\n\nDevice not Available\nFault\nFPU o dispositiu no disponible\n\n\nDouble Fault\nAbort\nError crític del CPU durant gestió d’una altra excepció\n\n\nPage Fault\nFault\nAccés a pàgina no resident en memòria\n\n\n\n\nExcepcions\n\n\nPer a més informació podeu consultar el següent enllaç: Excepcions.",
+    "text": "Exemples d’excepcions\n\n\n\n\n\n\n\n\nName\nType\nDescripció curta\n\n\n\n\nDivide-by-zero\nFault\nInstrucció divideix per zero\n\n\nDebug\nTrap\nDepuració; després de la instrucció\n\n\nNon-maskable Interrupt\nInterrupt\nInterrupció crítica de hardware\n\n\nBreakpoint\nTrap\nTrap de depuració per breakpoint\n\n\nOverflow\nTrap\nL’operació aritmètica sobrepassa capacitat del registre\n\n\nBound Range Exceeded\nFault\nIndex fora de rang en instrucció BOUND\n\n\nDouble Fault\nAbort\nError crític del CPU durant gestió d’una altra excepció\n\n\nPage Fault\nFault\nAccés a pàgina no resident en memòria\n\n\n\n\nExcepcions\n\n\nPer a més informació podeu consultar el següent enllaç: Excepcions.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2731,7 +2731,7 @@
     "href": "slides/02-syscalls.html#readfd-buffer-nbytes-1",
     "title": "Crides a sistema",
     "section": "read(fd, buffer, nbytes)",
-    "text": "read(fd, buffer, nbytes)\n\nCPU canvia a mode supervisor i salta a la rutina del kernel indicada a la IDT.\n\n\nEspai del kernel\n\nValidació de descriptors i permisos.\nLocalitza rutina de tractament de read a la taula de syscall.\nExecuta la rutina:\n\nLlegeix dades del dispositiu d’E/S.\nCopia dades al buffer d’usuari (copy_to_user).\nRetorna resultat (nombre de bytes llegits o -1 en cas d’error).",
+    "text": "read(fd, buffer, nbytes)\n\nCPU canvia a mode supervisor i salta a la rutina del kernel indicada a la IDT.\n\n\nEspai del kernel\n\nValidació de descriptors i permisos.\nLocalitza rutina de tractament de read a la taula de syscall.\nExecuta la rutina:\n\nLlegeix dades del dispositiu d’E/S.\nCopia dades al buffer d’usuari (copy_to_user).\nRetorna resultat (nombre de bytes llegits o -1).",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2742,7 +2742,7 @@
     "href": "slides/02-syscalls.html#readfd-buffer-nbytes-2",
     "title": "Crides a sistema",
     "section": "read(fd, buffer, nbytes)",
-    "text": "read(fd, buffer, nbytes)\n\nTransició a mode usuari\n\n\nCPU restaura context del procés i retorna al programa.\n\nEspai d’usuari\n\nLlibreria de sistema: Retorna el resultat de la crida a read() al Programa C.\nPrograma: Continua l’execució utilitzant les dades llegides. O bé, tracta l’error si n’hi ha (errno)",
+    "text": "read(fd, buffer, nbytes)\n\nTransició a mode usuari\n\n\nCPU restaura context del procés i retorna al programa.\n\n\nEspai d’usuari\n\nLlibreria de sistema: Retorna el resultat de la crida a read() al Programa C.\nPrograma: Continua l’execució utilitzant les dades llegides. O bé, tracta l’error si n’hi ha (errno)",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2760,11 +2760,11 @@
     ]
   },
   {
-    "objectID": "slides/02-syscalls.html#setup-de-les-crides-a-sistema",
-    "href": "slides/02-syscalls.html#setup-de-les-crides-a-sistema",
+    "objectID": "slides/02-syscalls.html#setup-de-les-crides-a-sistema-x86",
+    "href": "slides/02-syscalls.html#setup-de-les-crides-a-sistema-x86",
     "title": "Crides a sistema",
-    "section": "Setup de les crides a sistema",
-    "text": "Setup de les crides a sistema\n\nLes syscalls estan identificades per números únics (syscall numbers).\nArguments màxims: 6 registres, depenent de l’arquitectura.\nValor de retorn: en el registre principal (EAX/RAX).\n\n\n\n\n\n\n\n\n\n\n\nArquitectura\nRegistre syscall number\nArguments (1..6)\nRetorn\n\n\n\n\nx86 32-bit\nEAX\nEBX, ECX, EDX, ESI, EDI, EBP\nEAX\n\n\nx86 64-bit\nRAX\nRDI, RSI, RDX, R10, R8, R9\nRAX\n\n\n\n\n\nPrograma usuari escriu arguments als registres corresponents.\nExecuta instrucció int $0x80 (32-bit) o syscall (64-bit) → trap al kernel.\nKernel llegeix registre syscall number, localitza la rutina a la syscall table, executa i retorna resultat en EAX/RAX.",
+    "section": "Setup de les crides a sistema (x86)",
+    "text": "Setup de les crides a sistema (x86)\n\nLes syscalls estan identificades per números únics (syscall numbers).\nArguments màxims: 6 registres, depenent de l’arquitectura.\nValor de retorn: en el registre principal (EAX/RAX).\n\n\n\n\n\n\n\n\n\n\n\nArquitectura\nRegistre syscall number\nArguments (1..6)\nRetorn\n\n\n\n\nx86 32-bit\nEAX\nEBX, ECX, EDX, ESI, EDI, EBP\nEAX\n\n\nx86 64-bit\nRAX\nRDI, RSI, RDX, R10, R8, R9\nRAX\n\n\n\n\n\nPrograma usuari escriu arguments als registres corresponents.\nExecuta instrucció int $0x80 (32-bit) o syscall (64-bit) → trap al kernel.\nKernel llegeix registre syscall number, localitza la rutina a la syscall table, executa i retorna resultat en EAX/RAX.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2793,11 +2793,22 @@
     ]
   },
   {
-    "objectID": "slides/02-syscalls.html#punters-i-seguretat",
-    "href": "slides/02-syscalls.html#punters-i-seguretat",
+    "objectID": "slides/02-syscalls.html#punters-i-seguretat-i",
+    "href": "slides/02-syscalls.html#punters-i-seguretat-i",
     "title": "Crides a sistema",
-    "section": "Punters i seguretat",
-    "text": "Punters i seguretat\n\nTots els punters que provenen de l’usuari han de ser validads abans de ser utilitzats pel kernel.\n\n\n\n\n\n\n\n\nTipus de punter\nConseqüència / tractament\n\n\n\n\nPunter a kernel space des d’usuari\nCorrupció de dades del kernel → bug crític.\n\n\nPunter invàlid a user space\nPage fault; el kernel gestiona l’error.\n\n\nPunter invàlid dins del kernel\nBug del kernel; pot provocar panic.\n\n\n\n\nFuncions com __chk_user_ptr(ptr) comproven si el punter apunta a espai usuari vàlid.\nSi es fa servir un punter invàlid, la MMU genera un page fault que el kernel pot gestionar.\nTaula d’excepcions: el kernel registra quines instruccions poden accedir a l’espai usuari.\nPermet diferenciar faults legítims de punters invàlids o errors del kernel.\n__get_user() i __put_user() són funcions que permeten llegir i escriure dades a l’espai d’usuari de manera segura.\n__copy_to_user() i __copy_from_user() són funcions que permeten copiar dades entre l’espai d’usuari i el kernel de manera segura.",
+    "section": "Punters i seguretat (I)",
+    "text": "Punters i seguretat (I)\n\nTots els punters que provenen de l’usuari han de ser validads abans de ser utilitzats pel kernel.\n\n\n\n\n\n\n\n\nTipus de punter\nConseqüència / tractament\n\n\n\n\nPunter a kernel space des d’usuari\nCorrupció de dades del kernel → bug crític.\n\n\nPunter invàlid a user space\nPage fault; el kernel gestiona l’error.\n\n\nPunter invàlid dins del kernel\nBug del kernel; pot provocar panic.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Crides a sistema"
+    ]
+  },
+  {
+    "objectID": "slides/02-syscalls.html#punters-i-seguretat-ii",
+    "href": "slides/02-syscalls.html#punters-i-seguretat-ii",
+    "title": "Crides a sistema",
+    "section": "Punters i seguretat (II)",
+    "text": "Punters i seguretat (II)\n\nFuncions com __chk_user_ptr(ptr) comproven si el punter apunta a espai usuari vàlid.\nSi es fa servir un punter invàlid, la MMU genera un page fault que el kernel pot gestionar.\nTaula d’excepcions: el kernel registra quines instruccions poden accedir a l’espai usuari.\nPermet diferenciar faults legítims de punters invàlids o errors del kernel.\n__get_user() i __put_user() són funcions que permeten llegir i escriure dades a l’espai d’usuari de manera segura.\n__copy_to_user() i __copy_from_user() són funcions que permeten copiar dades entre l’espai d’usuari i el kernel de manera segura.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2808,7 +2819,7 @@
     "href": "slides/02-syscalls.html#accés-a-dades-dusuari",
     "title": "Crides a sistema",
     "section": "Accés a dades d’usuari",
-    "text": "Accés a dades d’usuari\n\n\n#define get_user(x, ptr)                    \\\n({                              \\\n    const void __user *__p = (ptr);             \\\n    might_fault();                      \\\n    access_ok(__p, sizeof(*ptr)) ?      \\\n        __get_user((x), (__typeof__(*(ptr)) __user *)__p) :\\\n        ((x) = (__typeof__(*(ptr)))0,-EFAULT);      \\\n})\n\n\n__chk_user_ptr(ptr): Valida que ptr apunta a espai usuari vàlid abans d’accedir-hi.\nmight_fault(): Marca que el codi següent pot generar un page fault.\naccess_ok(__p, sizeof(*ptr)): Comprova que l’àrea de memòria és accessible.\n__get_user((x), (__typeof__(*(ptr)) __user *)__p): Llegeix el valor de l’adreça d’usuari i el guarda a x.\nSi l’accés no és vàlid, assigna 0 a x i retorna -EFAULT.\n\n\n\nProtegeix el kernel de punters maliciosos o invàlids. Pots veure més a get_user.",
+    "text": "Accés a dades d’usuari\n#define get_user(x, ptr)                    \n({                              \n    const void __user *__p = (ptr);             \n    might_fault();                      \n    access_ok(__p, sizeof(*ptr)) ?      \n        __get_user((x), (__typeof__(*(ptr)) __user *)__p) :\n        ((x) = (__typeof__(*(ptr)))0,-EFAULT);      \n})\n\n__chk_user_ptr(ptr): Valida que ptr apunta a espai usuari vàlid abans d’accedir-hi.\nmight_fault(): Marca que el codi següent pot generar un page fault.\naccess_ok(__p, sizeof(*ptr)): Comprova que l’àrea de memòria és accessible.\n__get_user((x), (__typeof__(*(ptr)) __user *)__p): Llegeix el valor de l’adreça d’usuari i el guarda a x.\nSi l’accés no és vàlid, assigna 0 a x i retorna -EFAULT.\n\n\nProtegeix el kernel de punters maliciosos o invàlids. Pots veure més a get_user.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2819,7 +2830,7 @@
     "href": "slides/02-syscalls.html#virtual-dynamic-shared-object-vdso",
     "title": "Crides a sistema",
     "section": "Virtual Dynamic Shared Object (VDSO)",
-    "text": "Virtual Dynamic Shared Object (VDSO)\nÀrea especial de memòria mapejada a l’espai usuari amb codi generat pel kernel per executar certes funcions de sistema de manera més ràpida.\nObjectiu\nEvitar la transició completa a mode kernel, reduint latència i cost de syscalls repetitives.\n\n\n\n\n\n\n\nExemples\n\n\n\ngettimeofday()\ntime()\ngetpid()\n\n\n\n\n\n\nAlgunes dades dinàmiques es troben en una regió de memòria RW dins del VDSO.\nLa funció accedeix directament a aquestes dades sense fer una syscall completa.\nSi és necessari, el kernel actualitza aquestes dades de forma transparent.",
+    "text": "Virtual Dynamic Shared Object (VDSO)\nÀrea especial de memòria mapejada a l’espai usuari amb codi generat pel kernel per executar certes funcions de sistema de manera més ràpida.\n\nObjectiu\nEvitar la transició completa a mode kernel, reduint latència i cost de syscalls repetitives.\n\n\n\n\n\n\n\n\nExemples\n\n\n\ngettimeofday()\ntime()\ngetpid()\n\n\n\n\n\n\nAlgunes dades dinàmiques es troben en una regió de memòria RW dins del VDSO.\nLa funció accedeix directament a aquestes dades sense fer una syscall completa.\nSi és necessari, el kernel actualitza aquestes dades de forma transparent.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
@@ -2892,11 +2903,22 @@
     ]
   },
   {
+    "objectID": "slides/02-syscalls.html#exercicis-proposats",
+    "href": "slides/02-syscalls.html#exercicis-proposats",
+    "title": "Crides a sistema",
+    "section": "Exercicis proposats",
+    "text": "Exercicis proposats\n\nLaboratori 07: Espiant el Kernel\nLaboratori 08: Crides a sistema personalitzades\nActivitat: Kernel Linux",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 02 · Crides a sistema"
+    ]
+  },
+  {
     "objectID": "slides/02-syscalls.html#això-és-tot-per-avui",
     "href": "slides/02-syscalls.html#això-és-tot-per-avui",
     "title": "Crides a sistema",
     "section": "Això és tot per avui",
-    "text": "Això és tot per avui\n\n\nTAKE HOME MESSAGE\n\nEls monolítics ofereixen velocitat però fragilitat.\nEls microkernels aposten per modularitat i seguretat a costa de latència.\nEls modulars permeten créixer sense reescriure tot el nucli.\nEls exokernels lliuren el control directe a l’aplicació per màxima eficiència.\nEls hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.\nEls unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.",
+    "text": "Això és tot per avui\n\n\nTAKE HOME MESSAGE\n\nLes crides a sistema (syscalls) són la porta perquè els processos d’usuari accedeixin a serveis del kernel.\nEl dispatcher de Linux (do_syscall_64) gestiona syscalls, identifica el número, valida arguments i crida la rutina corresponent.\nExcepcions i interrupcions: són l´únic mecanisme perquè els processos d’usuari accedeixin al kernel.\nFlux: Usuari → Trap/syscall → Dispatcher → Rutina → Kernel → Retorn → Usuari.",
     "crumbs": [
       "Diapositives",
       "Unitat 02 · Crides a sistema"
