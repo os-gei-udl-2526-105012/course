@@ -20,38 +20,34 @@ execute:
 
 ## Què és el nucli d'un sistema operatiu? {.smaller}
 
-El nucli del **SO** és la capa més crítica i conté les rutines de gestió  del sistema relacionades amb els recursos físic. Es troba sempre carregat a la Memòria.
+El nucli del **SO** és la capa més crítica i conté les rutines de gestió del sistema relacionades amb els recursos físic. Es troba sempre carregat a la Memòria.
 
 #### Funcionalitats del nucli
 
-* El nucli té la capacitat d'assignar i desassignar la CPU als usuaris i processos per evitar que acaparin el recurs de forma ininterrompuda.
-* El nucli evita que els usuaris i processos accedeixin a dades d'altres usuaris.
-* El nucli evita els usuaris modifíquin el codi i les dades del nucli.
-* El nucli evita que els usuaris realitzin E/S il·legals.
+-   El nucli té la capacitat d'assignar i desassignar la CPU als usuaris i processos per evitar que acaparin el recurs de forma ininterrompuda.
+-   El nucli evita que els usuaris i processos accedeixin a dades d'altres usuaris.
+-   El nucli evita els usuaris modifíquin el codi i les dades del nucli.
+-   El nucli evita que els usuaris realitzin E/S il·legals.
 
 ## Qué és la dualitat? {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="60%"}
 #### Mode kernel
-* El codi que s'executa en aquest mode té accés a qualsevol adreça de Memòria i a tots els recursos hardware.
-* Si un programa falla en aquest mode, tot el sistema quedarà aturat.
+
+-   El codi que s'executa en aquest mode té accés a qualsevol adreça de Memòria i a tots els recursos hardware.
+-   Si un programa falla en aquest mode, tot el sistema quedarà aturat.
 
 #### Mode usuari
 
-* El codi no té accés directe a Memòria ni als recursos hardware.
-* Si un programa falla en aquest mode, únicament atura el programa i no el sistema.
+-   El codi no té accés directe a Memòria ni als recursos hardware.
+-   Si un programa falla en aquest mode, únicament atura el programa i no el sistema.
 :::
 
 ::: {.column width="40%"}
 ![](../figures/slides/01-introduction/esquema2.png)
-
 :::
-:::
-
-
-
-
+:::::
 
 ## Repte: Separació de responsabilitats {.smaller}
 
@@ -59,46 +55,43 @@ El nucli del **SO** és la capa més crítica i conté les rutines de gestió  d
 Quina és la millor manera d'organitzar/separar totes les parts del sistema operatiu?
 :::
 
-* Com **organitzem** les parts?
-* **Definició de polítiques**: Quines seran les accions a realitzar.
-* Com **cooperen** les parts?
-* **Mecanismes**: Com es duran a terme aquestes accions.
+-   Com **organitzem** les parts?
+-   **Definició de polítiques**: Quines seran les accions a realitzar.
+-   Com **cooperen** les parts?
+-   **Mecanismes**: Com es duran a terme aquestes accions.
 
-::: {.fragment}
+::: fragment
 #### Classificació (Estructura Interna)
 
-1. Monolítics
-2. Capes
-3. Micro-kernel
-4. Híbrids
-5. Hypervisors
+1.  Monolítics
+2.  Capes
+3.  Micro-kernel
+4.  Híbrids
+5.  Hypervisors
 :::
 
 ## Estructura simple {.smaller}
 
-::: columns
+:::::: columns
 ::: {.column width="45%"}
-
 ### Característiques
 
-* Estructura no ben definida.
-* El **SO** és un conjunt de procediments que es poden cridar sense cap limitació.
-* Son sistemes complexos; difícil d'implementar i de depurar.
-* No tenen mode **dual**.
-* Exemple: MS-DOS
-
+-   Estructura no ben definida.
+-   El **SO** és un conjunt de procediments que es poden cridar sense cap limitació.
+-   Son sistemes complexos; difícil d'implementar i de depurar.
+-   No tenen mode **dual**.
+-   Exemple: MS-DOS
 :::
-::: {.column width="45%"}
 
-:::center
+:::: {.column width="45%"}
+::: center
 ![](../figures/slides/02-kernel/kernel-msdos.png)
 :::
-
-:::
-:::
+::::
+::::::
 
 ::: notes
-Els sistemes operatius com MS-DOS o Unix (original)  no tenien estructures ben definides.
+Els sistemes operatius com MS-DOS o Unix (original) no tenien estructures ben definides.
 
 No hi havia cap mode d’execució de la CPU (usuari i nucli), de manera que els errors en les aplicacions podrien provocar un bloqueig de tot el sistema.
 
@@ -107,83 +100,69 @@ Quan es va escriure DOS originalment, els seus desenvolupadors no tenien ni idea
 
 ## Estructura Monolítica {.smaller}
 
-::: columns
-::: {.column width="45%"}
-
+:::::: columns
+:::: {.column width="45%"}
 Els serveis d'usuari i serveis del kernel s'implementen sota el mateix espai d'adreces.
 
 ::: center
 ![](../figures/slides/02-kernel/kernel-monolitic.png)
 :::
+::::
 
-:::
 ::: {.column width="45%"}
-
-* 👍 Les funcionalitats (serveis) s'invoquen amb crides al sistema.
-* 👍 Els controladors de dispositius es carreguen al nucli i passen a formar part del nucli.
-* 👎 Difícil d'entendre, modificar i mantenir.
-* 👎 Poc fiable (sense aïllament entre els mòduls del sistema)
-
+-   👍 Les funcionalitats (serveis) s'invoquen amb crides al sistema.
+-   👍 Els controladors de dispositius es carreguen al nucli i passen a formar part del nucli.
+-   👎 Difícil d'entendre, modificar i mantenir.
+-   👎 Poc fiable (sense aïllament entre els mòduls del sistema)
 :::
-:::
+::::::
 
 ## Estructura per capes {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
 ![](../figures/slides/02-kernel/layered-kernel.png)
-
 :::
+
 ::: {.column width="40%"}
-
-* 👍 Independència entre les capes.
-* 👍 Permet descriure el **SO** de forma clara.
-* 👍 Simplicitat en la construcció i depuració.
-* 👎 Rendiment.
-* 👎 És difícil definir les capes a causa de les limitacions per comunicar-se.
-
+-   👍 Independència entre les capes.
+-   👍 Permet descriure el **SO** de forma clara.
+-   👍 Simplicitat en la construcció i depuració.
+-   👎 Rendiment.
+-   👎 És difícil definir les capes a causa de les limitacions per comunicar-se.
 :::
-:::
+:::::
 
 ::: notes
-
-Un exemple és UNIX, aquest sistema operatiu, creat per Dennis Ritchie i Ken Thompson als anys 70, va adoptar una
-arquitectura en capes més simple que Multics. Aquestes capes són: Hardware, Kernel, Shell i Aplicacions.
-Un exemple és: NetBSD.
+Un exemple és UNIX, aquest sistema operatiu, creat per Dennis Ritchie i Ken Thompson als anys 70, va adoptar una arquitectura en capes més simple que Multics. Aquestes capes són: Hardware, Kernel, Shell i Aplicacions. Un exemple és: NetBSD.
 
 Permet que cada anell tingui un conjunt de funcions i responsabilitats clarament definides, i que cada anell pugui comunicar-se amb els anells adjaçents.
-
 :::
 
 ## Estructura Microkernel {.smaller}
 
-::: columns
+:::::: columns
 ::: {.column width="45%"}
+-   Els serveis d'usuari i serveis del kernel s'implementi en diferents espais d'adreces.
 
-* Els serveis d'usuari i serveis del kernel s'implementi en diferents espais d'adreces.
-* Comunicació entre els mòduls utilitza el pas de missatges.
+-   Comunicació entre els mòduls utilitza el pas de missatges.
 
-* 👍 El kernel té una mida més reduïda.
-* 👍 Portable, segur, fiable i extensible.
-* 👎 Reducció de la velocitat d'execució i del rendiment.
+-   👍 El kernel té una mida més reduïda.
 
+-   👍 Portable, segur, fiable i extensible.
+
+-   👎 Reducció de la velocitat d'execució i del rendiment.
 :::
-::: {.column width="45%"}
 
+:::: {.column width="45%"}
 ::: center
 ![](../figures/slides/02-kernel/microkernel.png)
 :::
+::::
+::::::
 
-:::
-:::
-
-:::notes
-
-El sistema operatiu MacOS, desenvolupat per Apple, va aprofitar l’estabilitat i seguretat del nucli
-Mach com a base per al seu sistema operatiu. En aquest sistema, serveis com la gestió de memòria, la gestió
-de fitxers i la xarxa es van traslladar fora del nucli, a servidors externs, millorant la estabilitat, fiabilitat i
-modularitat del sistema.
+::: notes
+El sistema operatiu MacOS, desenvolupat per Apple, va aprofitar l’estabilitat i seguretat del nucli Mach com a base per al seu sistema operatiu. En aquest sistema, serveis com la gestió de memòria, la gestió de fitxers i la xarxa es van traslladar fora del nucli, a servidors externs, millorant la estabilitat, fiabilitat i modularitat del sistema.
 
 Sistemes en temps real com QNX, o dispotius encastats poden utilitzar aquesta arquitectura.
 :::
@@ -194,7 +173,7 @@ Sistemes en temps real com QNX, o dispotius encastats poden utilitzar aquesta ar
 ![](../figures/slides/02-kernel/theory/Microkernel-Vs-Monolithic-Kernel.png){width="80%"}
 :::
 
-:::notes
+::: notes
 El **microkernel** és més *lent* però més *segur i fiable* que el nucli **monolític**. El nucli **monolític** és *ràpid* però menys *segur*, ja que qualsevol fallada del servei pot causar un bloqueig del sistema.
 :::
 
@@ -210,23 +189,22 @@ Molts experts en sistemes operatius consideren que el terme **híbrid** és un t
 
 > "As to the whole 'hybrid kernel' thing - it's just marketing. It's 'oh, those microkernels had good PR, how can we try to get good PR for our working kernel? Oh, I know, let's use a cool name and try to imply that it has all the PR advantages that that other system has' - Linus Torvalds
 
-
 ## Kernel Modular
 
 ::: definition-box
 El serveis (*core*) estan integrats al kernel, la resta es poden carregar i descarregar de forma dinàmica.
 :::
 
-* No cal reiniciar per afegir nous mòduls.
-* No cal implementar mecanismes de pas de missatges com en els microkernels.
-* Qualsevol mòdul pot comunicar-se amb qualsevol altre.
+-   No cal reiniciar per afegir nous mòduls.
+-   No cal implementar mecanismes de pas de missatges com en els microkernels.
+-   Qualsevol mòdul pot comunicar-se amb qualsevol altre.
 
 ::: center-container
 ![](../figures/slides/02-kernel/modular-kernel.png){width="60%"}
 :::
 
-:::notes
-Els sistemes operatius modulars com  la majoria de sistemes operatius monolítics moderns com Linux, BSD,  poden carregar (i descarregar) dinàmicament mòduls executables en temps d’execució.
+::: notes
+Els sistemes operatius modulars com la majoria de sistemes operatius monolítics moderns com Linux, BSD, poden carregar (i descarregar) dinàmicament mòduls executables en temps d’execució.
 
 Aquesta modularitat del sistema operatiu és a nivell binari (imatge) i no a nivell d’arquitectura.
 
@@ -239,83 +217,73 @@ Els mòduls que es poden carregar dinàmicament comporten una petita sobrecàrre
 Tanmateix, en alguns casos, carregar mòduls dinàmicament (segons calgui) ajuda a mantenir la quantitat de codi que s’executa a l’espai del nucli al mínim; per exemple, per minimitzar la petjada del sistema operatiu per a dispositius incrustats o aquells amb recursos de maquinari limitats. És a dir, no cal que un mòdul descarregat s’emmagatzemi en memòria d’accés aleatori escàs.
 :::
 
-## Monolític i Modular 
+## Monolític i Modular
 
-* Els kernels monolítics poden ser modulars.
-* Els mòduls es carreguen i descarreguen dinàmicament en temps d'execució.
-* Els components es poden activar o desactivar en temps de compilació.
-* El kernel s'organitza en subsistemes lògics independents.
-* Interfícies estrictes però amb baix cost en rendiment: macros, funcions en línia, punters a funcions.
-
+-   Els kernels monolítics poden ser modulars.
+-   Els mòduls es carreguen i descarreguen dinàmicament en temps d'execució.
+-   Els components es poden activar o desactivar en temps de compilació.
+-   El kernel s'organitza en subsistemes lògics independents.
+-   Interfícies estrictes però amb baix cost en rendiment: macros, funcions en línia, punters a funcions.
 
 ## Exemple: Linux {.smaller}
 
-::: columns
-::: {.column width="50%"}
-
+::::::: columns
+:::: {.column width="50%"}
 ::: definition-box
 El nucli Linux és un dels projectes de codi obert més grans del món, amb milers de desenvolupadors que aporten codi i milions de línies de codi canviats per a cada versió.
 :::
 
-* Arquitectura **Monolítica** híbrida basada en mòduls.
-  * Enllaçat dinàmic.
-  * Mòduls apilables.
-* Disseny orientat a objectes.
-* Suport per a múltiples fils d'execució.
-* Suport per processament múltiple simètric.
-* Abstracció hardware.
+-   Arquitectura **Monolítica** híbrida basada en mòduls.
+    -   Enllaçat dinàmic.
+    -   Mòduls apilables.
+-   Disseny orientat a objectes.
+-   Suport per a múltiples fils d'execució.
+-   Suport per processament múltiple simètric.
+-   Abstracció hardware.
+::::
 
-:::
-::: {.column width="40%"}
-
+:::: {.column width="40%"}
 ::: center
 ![](../figures/slides/02-kernel/theory/cas-linux.png)
 :::
-
-:::
-:::
+::::
+:::::::
 
 ::: notes
-
 Es distribueix sota la llicència GPLv2, que simplement esmenta, requereix que qualsevol modificació del nucli feta amb el programari que s’envia al client s’hagi de posar a la seva disposició (els clients), tot i que a la pràctica la majoria de les empreses posen el codi font a disposició del públic.
 
 Per tal d’escalar el procés de desenvolupament, Linux utilitza un model de manteniment jeràrquic:
 
 Linus Torvalds és el mantenidor del nucli Linux i fa merge dels **pull requests** de la comunitat.
 
-La comunitat té un o més mantenidors que accepten *patches* de desenvolupadors, mantenint  el seu propi arbre git.
+La comunitat té un o més mantenidors que accepten *patches* de desenvolupadors, mantenint el seu propi arbre git.
 
-* Linux Torvalds: [git](git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git)
-* David Miller (treball en xarxa): [git](git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/)
+-   Linux Torvalds: [git](git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git)
+-   David Miller (treball en xarxa): [git](git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/)
 :::
 
 ## Hypervisors {.smaller}
 
-- Capa fina sobre el maquinari
-- Sistemes host dins màquines virtuals
-- Normalment requereixen característiques de maquinari (p.e. Intel VT-x)
+-   Capa fina sobre el maquinari
+-   Sistemes host dins màquines virtuals
+-   Normalment requereixen característiques de maquinari (p.e. Intel VT-x)
 
-:::center-container
+::: center-container
 ![](../figures/slides/02-kernel/theory/mvs.png){width="60%"}
 :::
 
-
-
 ## Hypervisors {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
-- KVM és un mòdul del kernel Linux que permet la virtualització a través d'un sistema host.
-- XEN és un hypervisor de codi obert que permet la virtualització directa del maquinari.
-
+-   KVM és un mòdul del kernel Linux que permet la virtualització a través d'un sistema host.
+-   XEN és un hypervisor de codi obert que permet la virtualització directa del maquinari.
 :::
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ![](../figures/slides/02-kernel/xen-kvm.png){width="80%"}
-
 :::
-:::
+:::::
 
 ## Exokernels {.smaller}
 
@@ -323,12 +291,12 @@ La comunitat té un o més mantenidors que accepten *patches* de desenvolupadors
 Cada màquina virtual disposa d’un exokernel que exporta directament els recursos físics.
 :::
 
-- No implementa abstraccions altes (fitxers, sockets, processos), sinó que ofereix primitives de baix nivell (p. ex. blocs de disc, pàgines de memòria, línies de CPU).
-- Només valida i arbitra l’ús dels recursos, delegant la seva gestió a biblioteques d’usuari.
-- Mou la multiprogramació a l’espai d’usuari, com la planificació, la gestió de memòria i la comunicació entre processos (IPC).
-- 🤏 Els exokernels són tan petits que poden ser incorporats dins aplicacions específiques (p. ex. control de trànsit urbà).
-- ✨ minimitza l’overhead i dona flexibilitat en la gestió de recursos.
-  
+-   No implementa abstraccions altes (fitxers, sockets, processos), sinó que ofereix primitives de baix nivell (p. ex. blocs de disc, pàgines de memòria, línies de CPU).
+-   Només valida i arbitra l’ús dels recursos, delegant la seva gestió a biblioteques d’usuari.
+-   Mou la multiprogramació a l’espai d’usuari, com la planificació, la gestió de memòria i la comunicació entre processos (IPC).
+-   🤏 Els exokernels són tan petits que poden ser incorporats dins aplicacions específiques (p. ex. control de trànsit urbà).
+-   ✨ minimitza l’overhead i dona flexibilitat en la gestió de recursos.
+
 ::: {.center-container .fragment}
 👉 No es traslladen instruccions de mode kernel a mode usuari, sinó la lògica de gestió de recursos.
 :::
@@ -345,19 +313,19 @@ En aquest cas no estem movent instruccions de mode kernel a mode usuari, sinó q
 Els unikernels empaqueten aplicació + mínim sistema operatiu en una única imatge executable sobre un hipervisor o hardware.
 :::
 
-- Només s’inclouen les llibreries i serveis estrictament necessaris per l’aplicació.
-- Execució directa: corren sobre un hipervisor o hardware, sense cap OS d’host per sota.
-- Eficiència: imatges extremadament petites, ràpides d’arrencar.
-- Inspiració:
-  - Dels contenidors, però sense dependre d’un kernel complet subjacent.
-  - Dels exokernels, però aquí les primitives exposades no són per al maquinari, sinó per a les necessitats específiques de l’aplicació.
-- S'utilitzen en IoT, serveis cloud lleugers, entorns on importen temps d’arrencada i seguretat.
+-   Només s’inclouen les llibreries i serveis estrictament necessaris per l’aplicació.
+-   Execució directa: corren sobre un hipervisor o hardware, sense cap OS d’host per sota.
+-   Eficiència: imatges extremadament petites, ràpides d’arrencar.
+-   Inspiració:
+    -   Dels contenidors, però sense dependre d’un kernel complet subjacent.
+    -   Dels exokernels, però aquí les primitives exposades no són per al maquinari, sinó per a les necessitats específiques de l’aplicació.
+-   S'utilitzen en IoT, serveis cloud lleugers, entorns on importen temps d’arrencada i seguretat.
 
 ::: {.center-container .fragment}
 El codi de l’aplicació i el kernel formen una sola unitat optimitzada.
 :::
 
-:::notes
+::: notes
 Els unikernels són una forma de sistema operatiu que empaqueta tot el codi necessari per a una aplicació en un sol paquet. Aquest paquet s’executa directament sobre una màquina virtual o un hipervisor, sense cap sistema operatiu subministrat. Això permet als unikernels ser molt petits i molt eficients, ja que no hi ha cap codi innecessari.
 
 S'inspiren en els contenidors, però en lloc d’executar-se en un sistema operatiu complet, s’executen directament sobre el hardware. Això els fa molt més petits i molt més eficients que els contenidors, ja que no hi ha cap sistema operatiu subministrat.
@@ -365,21 +333,18 @@ S'inspiren en els contenidors, però en lloc d’executar-se en un sistema opera
 S'inspiren en els exokernels, però en lloc de proporcionar un conjunt de primitives de baix nivell per accedir directament als recursos de la màquina, proporcionen un conjunt de primitives de baix nivell per accedir directament als recursos de l’aplicació.
 :::
 
-
 ## Això és tot per avui {.smaller}
 
 ::::: columns
 ::: {.column width="60%"}
+#### TAKE HOME MESSAGE
 
-#### TAKE HOME MESSAGE 
-
-- Els monolítics ofereixen velocitat però fragilitat.
-- Els microkernels aposten per modularitat i seguretat a costa de latència.
-- Els modulars permeten créixer sense reescriure tot el nucli.
-- Els exokernels lliuren el control directe a l’aplicació per màxima eficiència.
-- Els hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.
-- Els unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.
-
+-   Els monolítics ofereixen velocitat però fragilitat.
+-   Els microkernels aposten per modularitat i seguretat a costa de latència.
+-   Els modulars permeten créixer sense reescriure tot el nucli.
+-   Els exokernels lliuren el control directe a l’aplicació per màxima eficiència.
+-   Els hipervisors faciliten la convivència d’ecosistemes sencers sobre un mateix hardware.
+-   Els unikernels empaqueten aplicació i SO per a desplegaments ultralleugers i segurs.
 :::
 
 ::: {.column width="40%"}

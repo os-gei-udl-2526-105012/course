@@ -11,7 +11,8 @@ En aquest exercici, compilarem el kernel de Linux. La compilació del kernel és
 En primer lloc, accedirem a una sessió com a usuari root per poder instal·lar tots els paquets que necessitarem per realitzar el laboratori.
 
 ```sh
-su - root
+su -
+apt update && apt upgrade -y 
 ```
 
 1. Instal·la les eines essencials per a la construcció de programar:
@@ -69,9 +70,7 @@ nvme0n1     259:0    0    20G  0 disk
 nvme0n2     259:4    0    60G  0 disk 
 ```
 
-Per obtenir l'etiquesta del disc nou que heu afegit. En el meu cas és **nvme0n2**.
-
-Un cop tingueu l'etiqueta del disc nou, podeu formatar-lo i muntar-lo.
+Per obtenir l'etiquesta del disc nou que heu afegit. En el meu cas és **nvme0n2**. En el vostre cas pot ser diferent i pot ser **sdb**, **vdc**, etc. Un cop tingueu l'etiqueta del disc nou, podeu formatar-lo i muntar-lo. Assegureu-vos que és de 60 GB.
 
 ```sh
 mkfs.ext4 /dev/nvme0n2
@@ -80,9 +79,13 @@ mount /dev/nvme0n2 /mnt
 
 Quan us baixeu els *sources* del kernel, feu-ho a la carpeta **/mnt** que és on teniu el disc nou muntat.
 
+```bash
+cd /mnt
+```
+
 ## Obtenció d'un kernel
 
-Baixeu l'última versió del nucli 6.11.1 de [kernel.org](https://www.kernel.org/) i descomprimiu els *sources* a la vostra màquina virtual. Podeu baixar els fitxers directament a **/root**.
+Baixeu una versió del nucli 6.11.1 de [kernel.org](https://www.kernel.org/) i descomprimiu els *sources* a la vostra màquina virtual. Podeu baixar els fitxers directament a **/root**.
 
 ```sh
 wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.11.1.tar.xz
