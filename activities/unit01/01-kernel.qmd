@@ -51,7 +51,7 @@ Com a usuari normal, reviseu quin és la versió del kernel actual:
 uname -r
 ```
 
-En el meu cas és 6.1.0-25-arm64.
+En el meu cas és 6.1.0-39-arm64.
 
 > **Nota**:
 >
@@ -73,6 +73,7 @@ nvme0n2     259:4    0    60G  0 disk
 Per obtenir l'etiquesta del disc nou que heu afegit. En el meu cas és **nvme0n2**. En el vostre cas pot ser diferent i pot ser **sdb**, **vdc**, etc. Un cop tingueu l'etiqueta del disc nou, podeu formatar-lo i muntar-lo. Assegureu-vos que és de 60 GB.
 
 ```sh
+# Com a root
 mkfs.ext4 /dev/nvme0n2
 mount /dev/nvme0n2 /mnt
 ```
@@ -85,7 +86,7 @@ cd /mnt
 
 ## Obtenció d'un kernel
 
-Baixeu una versió del nucli 6.11.1 de [kernel.org](https://www.kernel.org/) i descomprimiu els *sources* a la vostra màquina virtual. Podeu baixar els fitxers directament a **/root**.
+Baixeu una versió del nucli 6.11.1 de [kernel.org](https://www.kernel.org/) i descomprimiu els *sources* a la vostra màquina virtual. Podeu baixar els fitxers directament a **/mnt**.
 
 ```sh
 wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.11.1.tar.xz

@@ -65,10 +65,17 @@ website:
                 text: Laboratori 5 · Calculadora col·laborativa amb C
               - href: ./labs/02-c-pointers/lab01.qmd
                 text: Laboratori 6 · Punters·Heap·Stack en C
+          - section: Unitat 02
+            contents:
               - href: ./labs/03-syscalls/lab01.qmd
                 text: Laboratori 7 · Espiant el Kernel
               - href: ./labs/03-syscalls/lab02.qmd
                 text: Laboratori 8 · Anàlisi de crides a sistema
+              - href: ./labs/04-kernel/lab01.qmd
+                text: Laboratori 9 · Programació de mòduls per al Kernel de Linux
+              - href: ./labs/04-kernel/lab02.qmd
+                text: Laboratori 10 · Escalada de privilegis
+              
 
       - section: Activitats
         contents:

@@ -18,5 +18,6 @@ A continuació es presenta un calendari complet dels temes, el contingut del cur
 | 2    | Teoria             |16/09/25    | **Unitat 01**: Introducció a la programació de Sistema (I) (C)   | [📖](../slides/01-c.html#prepare)  |  [📚](../activities/unit00/02-ex01-c.qmd) |  |   |        | 
 | 3    | Teoria/Laboratori  |22/09/25    | **Unitat 02**: Kernel de Linux   | [📖](../slides/02-kernel.html#prepare)   |  | [📄](../labs/02-c-pointers/lab01.html#prepare)  |      |  
 | 3   | Laboratori         |24/09/25    | **Unitat 02**: Crides a sistema   | [📖](../slides/02-syscalls.html#prepare)   |  | [📄](../labs/03-syscalls/lab01.qmd) [📄](../labs/03-syscalls/lab02.qmd)[👩🏻‍💻](../activities/unit00/01-debianbin.qmd)   |      |[👩🏻‍💻](../activities/unit01/01-kernel.qmd) | 
+| 4    | Laboratori  |29/09/25    | **Unitat 02**: Kernel de Linux   |   |  | [📄](../labs/04-kernel/lab01.qmd) [📄](../labs/04-kernel/lab02.qmd) |      |
 
 ::: 
