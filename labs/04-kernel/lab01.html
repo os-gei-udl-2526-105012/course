@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Laboratori 8: Analitzant les crides a sistema – SO - Fall 2025</title>
+<title>Laboratori 9: Programació de mòduls per al Kernel de Linux – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab01.html">Unitat 02</a></li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab02.html">Laboratori 8 · Anàlisi de crides a sistema</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab01.html">Unitat 02</a></li><li class="breadcrumb-item"><a href="../../labs/04-kernel/lab01.html">Laboratori 9 · Programació de mòduls per al Kernel de Linux</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -286,13 +286,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 8 · Anàlisi de crides a sistema</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/04-kernel/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/04-kernel/lab01.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Laboratori 9 · Programació de mòduls per al Kernel de Linux</span></a>
   </div>
 </li>
@@ -373,18 +373,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En aquesta pàgina</h2>
    
   <ul>
-  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
-  <li><a href="#tasca" id="toc-tasca" class="nav-link" data-scroll-target="#tasca">Tasca</a></li>
-  <li><a href="#exercicis-opcionals" id="toc-exercicis-opcionals" class="nav-link" data-scroll-target="#exercicis-opcionals">Exercicis opcionals</a></li>
+  <li><a href="#requisits-previs" id="toc-requisits-previs" class="nav-link active" data-scroll-target="#requisits-previs">Requisits previs</a></li>
+  <li><a href="#tasques" id="toc-tasques" class="nav-link" data-scroll-target="#tasques">Tasques</a>
+  <ul class="collapse">
+  <li><a href="#explorant-el-kernel" id="toc-explorant-el-kernel" class="nav-link" data-scroll-target="#explorant-el-kernel">Explorant el kernel</a></li>
+  <li><a href="#programant-un-mòdul" id="toc-programant-un-mòdul" class="nav-link" data-scroll-target="#programant-un-mòdul">Programant un mòdul</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab01.html">Unitat 02</a></li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab02.html">Laboratori 8 · Anàlisi de crides a sistema</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/03-syscalls/lab01.html">Unitat 02</a></li><li class="breadcrumb-item"><a href="../../labs/04-kernel/lab01.html">Laboratori 9 · Programació de mòduls per al Kernel de Linux</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Laboratori 8: Analitzant les crides a sistema</h1>
+<h1 class="title">Laboratori 9: Programació de mòduls per al Kernel de Linux</h1>
 </div>
 
 
@@ -401,94 +404,151 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Les crides a sistema són la interfície entre els programes d’usuari i el nucli del sistema operatiu. Aquestes crides són les que permeten als programes d’usuari accedir a les funcionalitats del sistema operatiu. En aquest laboratori, analitzarem la complexitat de les crides a sistema i les compararem amb les crides a procediments.</p>
-<p>Les preguntes que ens fem són:</p>
+<p>En aquest laboratori aprendrem a programar mòduls per al kernel de Linux. Aquesta és una de les tasques més complexes que es poden fer en el món de la programació de sistemes. Per això, realitzarem uns exemples senzills per a entendre com es programen els mòduls i com es poden integrar al kernel.</p>
+<section id="requisits-previs" class="level2">
+<h2 class="anchored" data-anchor-id="requisits-previs">Requisits previs</h2>
 <ul>
-<li>Quina és la diferència de temps entre una crida a sistema i una crida a procediment?</li>
-<li>Quina és la complexitat d’una crida a sistema?</li>
-<li>Per què una crida es més costosa que l’altre?</li>
-</ul>
-<section id="objectius" class="level2">
-<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
+<li>Màquina virtual amb Debian.</li>
+<li>Realitzar una snapshot de la màquina virtual abans de començar el laboratori.</li>
+<li>Programari necessari:
 <ul>
-<li>Comprendre el funcionament de les crides a sistema.</li>
-<li>Comparar el cost d’una crida a sistema amb el cost d’una crida a procediment.</li>
-<li>Dissenyar experiments en C.</li>
+<li><p>Eines de construcció de programari: <code>build-essential</code></p></li>
+<li><p>Capçaleres del kernel: <code>linux-headers-$(uname -r)</code></p></li>
+<li><p>Altres eines: <code>libncurses-dev</code>, <code>bison</code>, <code>flex</code>, <code>kmod</code></p></li>
+<li><p>Instal·lació de les eines necessàries:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"apt update &amp;&amp; apt upgrade -y"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"apt install build-essential linux-headers-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-r</span><span class="va">)</span><span class="st"> libncurses-dev bison flex kmod -y"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
 </ul>
 </section>
-<section id="tasca" class="level2">
-<h2 class="anchored" data-anchor-id="tasca">Tasca</h2>
-<p>Per respondre a les preguntes plantejades, dissenyarem un experiment en C que ens permeti mesurar el temps que triga una crida a sistema i una crida a procediment. Aquest experiment consistirà en cridar una funció simple i una crida a sistema un nombre determinat de vegades, i mesurar el temps que triga aquestes crides. Per exemple, podem utiltizar una crida a sistema com <code>getpid()</code> i una funció simple com <code>funcio()</code> que retorna un valor constant i calcular el temps que triga aquestes crides. Com a tota experimentació, caldrà repetir l’experiment un nombre suficient de vegades per obtenir resultats significatius, per exemple, 1000000 vegades i calcular el temps mitjà de cada crida.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;time.h&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define N_ITERATIONS </span><span class="dv">1000000</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> funcio<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">20</span><span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> timespec start<span class="op">,</span> end<span class="op">;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> totalTimeSysCall<span class="op">,</span> totalTimeFuncCall<span class="op">;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> avgTimeSysCall<span class="op">,</span> avgTimeFuncCall<span class="op">;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>start<span class="op">);</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N_ITERATIONS<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        funcio<span class="op">();</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>end<span class="op">);</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    totalTimeFuncCall <span class="op">=</span> <span class="op">(</span>end<span class="op">.</span>tv_nsec <span class="op">-</span> start<span class="op">.</span>tv_nsec<span class="op">);</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    avgTimeFuncCall <span class="op">=</span> totalTimeFuncCall <span class="op">/</span> N_ITERATIONS<span class="op">;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Temps mitjà de la funció: </span><span class="sc">%f</span><span class="st"> ns</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> avgTimeFuncCall<span class="op">);</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>start<span class="op">);</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N_ITERATIONS<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        getpid<span class="op">();</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    clock_gettime<span class="op">(</span>CLOCK_MONOTONIC<span class="op">,</span> <span class="op">&amp;</span>end<span class="op">);</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    totalTimeSysCall <span class="op">=</span> <span class="op">(</span>end<span class="op">.</span>tv_nsec <span class="op">-</span> start<span class="op">.</span>tv_nsec<span class="op">);</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    avgTimeSysCall <span class="op">=</span> totalTimeSysCall <span class="op">/</span> N_ITERATIONS<span class="op">;</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Temps mitjà de la crida a sistema: </span><span class="sc">%f</span><span class="st"> ns</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> avgTimeSysCall<span class="op">);</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>En aquest codi, s’utilitza la funció <code>clock_gettime()</code> per mesurar el temps que triga una crida a sistema i una crida a procediment. Aquesta funció ens retorna una estructura <code>timespec</code> que conté el temps en segons i nanosegons (tv_sec o tv_nsec). Per a més informació, podeu consultar el manual de linux <code>man clock_gettime</code> o <code>man timespec</code>.</p>
-<p>Per tal d’obtenir el temps transcorregut entre dues crides, es calcula la diferència entre el temps final i el temps inicial. Per tant, definim dues variables <code>start</code> i <code>end</code> de tipus <code>timespec</code> que contindran el temps abans i després de les crides. El temps total de les crides es calcula restant el temps final i el temps inicial. Finalment, es calcula el temps mitjà de les crides dividint el temps total pel nombre de crides realitzades.</p>
-<blockquote class="blockquote">
-<p><strong>Nota</strong>: En aquest exemple, he simplificat el càlcul del temps per a facilitar la comprensió i per que cada mesura no excedira el segon. Si es vol fer una mesura més universal, es recomana utilitzar la següent fórmula: <code>totalTime = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9</code>. Ja que cada segon, la variable <code>tv_sec</code> incrementa en 1 i la variable <code>tv_nsec</code> es reinicia a 0. Això permet mesurar temps superiors a 1 segon.</p>
-</blockquote>
-<hr>
-<blockquote class="blockquote">
-<p><strong>Nota</strong>: La variable <code>CLOCK_MONOTONIC</code> segons el manual de linux mesura el temps de forma monòtona, és a dir, no es veu afectada per salts discontinus en el temps del sistema.</p>
-</blockquote>
-<p>Per executar aquest experiment, compilem el codi amb la següent comanda:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> experiment.c <span class="at">-o</span> experiment <span class="at">-o0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Afegim l’opció <code>-o0</code> per desactivar l’optimització del compilador i obtenir resultats més precisos. El compilador de C, sovint optimitza el codi i això pot afectar als resultats. Per tant, desactivem l’optimització per obtenir resultats més fiables.</p>
-<p>Un cop compilat, executem el programa amb la següent comanda:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./experiment</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Temps</span> mitjà de la funció: 5.298092 ns</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Temps</span> mitjà de la crida a sistema: 142.388794 ns</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Com a resultat de l’experiment, es mostrarà el temps mitjà de la crida a sistema és molt més gran que el temps mitjà de la crida a procediment. Això és degut a la complexitat de les crides a sistema, que involucren moltes més operacions que una crida a procediment. Recordeu que les crides a sistema impliquen accedir al mode kernel, canviar de context, executar la crida a sistema i tornar al mode d’usuari, mentre que una crida a procediment és simplement una crida a una funció.</p>
-</section>
-<section id="exercicis-opcionals" class="level2">
-<h2 class="anchored" data-anchor-id="exercicis-opcionals">Exercicis opcionals</h2>
+<section id="tasques" class="level2">
+<h2 class="anchored" data-anchor-id="tasques">Tasques</h2>
+<section id="explorant-el-kernel" class="level3">
+<h3 class="anchored" data-anchor-id="explorant-el-kernel">Explorant el kernel</h3>
 <ol type="1">
-<li>Optimitza l’experiment per evitar repeticions de codi.</li>
-<li>Optimitza la mesura del temps per obtenir resultats més generals aplicant la fórmula recomanada.</li>
-<li>Modifica aquest experiment per comparar altres funcions i crides a sistema.</li>
-<li>Crea un makefile per compilar el codi de forma més eficient.</li>
+<li><p>Obtenir informació sobre la versió del kernel actual:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-r</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En el meu cas, la versió del kernel és <code>6.1.0-39-arm64</code>.</p></li>
+<li><p>Per veure els mòduls carregats al kernel, podem fer servir la comanda <code>lsmod</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"lsmod"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>També podem fer servir la comanda <code>cat</code> per llegir el fitxer <code>/proc/modules</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"cat /proc/modules"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si volem filtrar un mòdul concret, podem fer servir la comanda <code>grep</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"lsmod | grep fat"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
+<p>Els moduls del kernel registren la informació de log en una consola, però per defecte no la podreu veure per la sortida estàndard (sdtout) o la sortida d’error (stderr). Per veure aquesta informació, necessitarem fer servir la comanda <code>dmesg</code>.</p>
+<p>Per exemple, si volem veure els últims missatges del kernel, podem fer servir la comanda:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"dmesg | tail -n 10"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquest missatge provenen dels mòduls del kernel que utilitzen la funció <code>printk</code> per imprimir informació de log. Aquesta funció permet especificar el nivell de log i el mòdul que genera el missatge. Per canviar el nivell de log, podem fer servir la comanda <code>dmesg</code> amb l’opció <code>-n</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"dmesg -n 4"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En aquest cas, el nivell de log és 4, que correspon a <code>WARNING</code>. Això significa que només es mostraran els missatges de log amb nivell <code>WARNING</code> o superior.</p>
+<p>Nivells de log disponibles:</p>
+<ul>
+<li>0: <code>KERN_EMERG</code>: Missatges d’emergència.</li>
+<li>1: <code>KERN_ALERT</code>: Missatges d’alerta.</li>
+<li>2: <code>KERN_CRIT</code>: Missatges crítics.</li>
+<li>3: <code>KERN_ERR</code>: Missatges d’error.</li>
+<li>4: <code>KERN_WARNING</code>: Missatges d’avís.</li>
+<li>5: <code>KERN_NOTICE</code>: Missatges de notificació.</li>
+<li>6: <code>KERN_INFO</code>: Missatges d’informació.</li>
+<li>7: <code>KERN_DEBUG</code>: Missatges de depuració.</li>
+<li>8: <code>KERN_DEFAULT</code>: Nivell per defecte.</li>
+</ul>
+</section>
+<section id="programant-un-mòdul" class="level3">
+<h3 class="anchored" data-anchor-id="programant-un-mòdul">Programant un mòdul</h3>
+<p>En aquesta secció, programarem un mòdul senzill per al kernel de Linux. Aquest mòdul imprimirà un missatge d’inici i un missatge de finalització quan es carregui i descarregui al kernel.</p>
+<ol type="1">
+<li><p>Creem un directori per al nostre mòdul:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$HOME</span>/kernel</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$HOME</span>/kernel</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Creem un fitxer anomenat <code>hello.c</code> amb el següent contingut:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;linux/kernel.h&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;linux/module.h&gt;</span><span class="pp"> </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>MODULE_LICENSE<span class="op">(</span><span class="st">"GPL"</span><span class="op">);</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> init_module<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    printk<span class="op">(</span>KERN_INFO <span class="st">"Hello, world!</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> cleanup_module<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    printk<span class="op">(</span>KERN_INFO <span class="st">"Goodbye, world!</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Crearem un fitxer <code>Makefile</code> per compilar el nostre mòdul amb el següent contingut:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CONFIG_MODULE_SIG</span><span class="ch">=</span><span class="st">n</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">obj-m</span> <span class="ch">+=</span><span class="st"> hello.o</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dv">all:</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>make -C /lib/modules/<span class="ch">$(</span><span class="kw">shell</span><span class="st"> uname -r</span><span class="ch">)</span>/build M=<span class="ch">$(</span><span class="dt">PWD</span><span class="ch">)</span> modules</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="dv">clean:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>make -C /lib/modules/<span class="ch">$(</span><span class="kw">shell</span><span class="st"> uname -r</span><span class="ch">)</span>/build M=<span class="ch">$(</span><span class="dt">PWD</span><span class="ch">)</span> clean</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Nota</strong>:</p>
+<ul>
+<li>El fitxer <code>Makefile</code> és sensible a la indentació. Assegureu-vos que utilitzeu tabuladors en lloc d’espais.</li>
+<li>La variable <code>obj-m</code> indica quin és el mòdul que volem compilar.</li>
+<li>La variable <code>PWD</code> conté la ruta del directori actual.</li>
+<li><code>$(shell uname -r)</code> retorna la versió del kernel actual.</li>
+<li><code>CONFIG_MODULE_SIG=n</code> desactiva la verificació de la signatura del mòdul.</li>
+</ul>
+</blockquote></li>
+<li><p>Compil·lem el nostre mòdul amb la comanda <code>make</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Troubleshooting</strong>:</p>
+<ul>
+<li>Si obteniu un error de <code>missing separator</code>, assegureu-vos que utilitzeu tabuladors en lloc d’espais.</li>
+<li>Si obteniu un error de <code>/lib/modules/</code>, assegureu-vos que teniu instal·lat el paquet <code>linux-headers</code>.</li>
+<li>Si obteniu un error de <code>missing MODULE_LICENSE()</code>, podeu afegir la següent línia al vostre fitxer <code>hello.c</code>:</li>
+</ul>
+</blockquote></li>
+<li><p>Carreguem el nostre mòdul amb la comanda <code>insmod</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">insmod</span> /home/jordi/laboratoris/lab2-kernel/kernel-modules/hello.ko</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Nota</strong>: Si teniu errors assegureu-vos que esteu executant la comanda com a <code>root</code>. Quan canviem a l’usuari <code>root</code>, la variable <code>$HOME</code> canvia a <code>/root</code>. Per tant, assegureu-vos d’apuntar a la ruta correcta.</p>
+</blockquote></li>
+<li><p>Comprovem que el mòdul s’ha carregat correctament amb la comanda <code>lsmod</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lsmod</span> <span class="kw">|</span> <span class="fu">grep</span> hello</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si el mòdul s’ha carregat correctament, veureu una sortida similar a aquesta:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hello</span>                 16384  0</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Comprovem els missatges del kernel amb la comanda <code>dmesg</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-c</span> <span class="st">"dmesg"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si tot ha anat bé, veureu els missatges <code>Hello, world!</code> al final de la sortida.</p></li>
+<li><p>Descarreguem el mòdul amb la comanda <code>rmmod</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rmmod</span> hello</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Comprovem que el mòdul s’ha descarregat correctament amb la comanda <code>lsmod</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lsmod</span> <span class="kw">|</span> <span class="fu">grep</span> hello</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si el mòdul s’ha descarregat correctament, hauríeu de veure el missatge <code>Goodbye, world!</code> al final de la sortida de <code>dmesg</code>.</p></li>
+</ol>
+<p>Es poden fer diferents millores i moduls més complexos, però aquest és un exemple senzill per a començar a programar mòduls per al kernel de Linux. Per exemple, podeu afegir més informació al mòdul com llicència, autor, descripció i versió. També podeu utilitzar les macros <code>__init</code> i <code>__exit</code> per optimitzar el mòdul i reduir la memòria utilitzada.</p>
+<p>Per exemple, aquí teniu un exemple millorat del mòdul <code>hello.c</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;linux/init.h&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;linux/module.h&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;linux/kernel.h&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>MODULE_LICENSE<span class="op">(</span><span class="st">"GPL"</span><span class="op">);</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>MODULE_AUTHOR<span class="op">(</span><span class="st">"Jordi Mateo"</span><span class="op">);</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>MODULE_DESCRIPTION<span class="op">(</span><span class="st">"Hello World OS Kernel Module"</span><span class="op">);</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>MODULE_VERSION<span class="op">(</span><span class="st">"0.1"</span><span class="op">);</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> __init hello_init<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    printk<span class="op">(</span>KERN_INFO <span class="st">"WOW I AM A KERNEL HACKER!!!</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">void</span> __exit hello_cleanup<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    printk<span class="op">(</span>KERN_INFO <span class="st">"I am dead.</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>module_init<span class="op">(</span>hello_init<span class="op">);</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>module_exit<span class="op">(</span>hello_cleanup<span class="op">);</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
