@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Laboratori 2: Configurant el meu entorn de desenvolupament amb VSCode – SO - Fall 2025</title>
+<title>Pràctica 01: Manipulació de Cadenes de Caràcters en C – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,23 +58,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c30451789a0a2bcd5e941535c675cd30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c30451789a0a2bcd5e941535c675cd30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab02.html">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects/project01.html">Projectes</a></li><li class="breadcrumb-item"><a href="../projects/project01.html">Pràctica 01 · Manipulació de Cadenes de Caràcters en C</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -126,12 +126,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../figures/logo.png" alt="SO Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../figures/logo.png" alt="SO Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
-    <a href="../../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
+    <a href="../index.html" title="Home" class="quarto-navigation-tool px-1" aria-label="Home"><i class="bi bi-house"></i></a>
     <a href="https://github.com/os-gei-udl-2526-105012/course" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cv.udl.cat/" title="Sakai" class="quarto-navigation-tool px-1" aria-label="Sakai"><i class="bi bi-person-fill"></i></a>
 </div>
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../.././course-information/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href=".././course-information/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Planificació</span></a>
   </div>
 </li>
@@ -166,31 +166,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../slides/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 · Introducció als sistemes operatius</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../slides/01-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/01-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 · Introducció a la programació de Sistema (I) (C)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../slides/02-kernel.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/02-kernel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 02 · Kernel de Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../slides/02-syscalls.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/02-syscalls.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 02 · Crides a sistema</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../slides/03-procs.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/03-procs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 03 · Processos</span></a>
   </div>
 </li>
@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notes/01-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 ·Introducció als sistemes operatius</span></a>
   </div>
 </li>
@@ -215,61 +215,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Laboratoris</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Unitat 01</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori · Virtualització i Control de Versions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab03.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/01-introduction/lab03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 3 · Hola món en C a Debian</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab04.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/01-introduction/lab04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 4 · Configurant Git a la màquina virtual</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab05.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/01-introduction/lab05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 5 · Calculadora col·laborativa amb C</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/02-c-pointers/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/02-c-pointers/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 6 · Punters·Heap·Stack en C</span></a>
   </div>
 </li>
@@ -286,25 +286,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/03-syscalls/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 7 · Espiant el Kernel</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/03-syscalls/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 8 · Anàlisi de crides a sistema</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/04-kernel/lab01.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/04-kernel/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 9 · Programació de mòduls per al Kernel de Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/04-kernel/lab02.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/04-kernel/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 10 · Escalada de privilegis</span></a>
   </div>
 </li>
@@ -314,16 +314,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Projectes</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../projects/project01.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/project01.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Pràctica 01 · Manipulació de Cadenes de Caràcters en C</span></a>
   </div>
 </li>
@@ -349,19 +349,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/unit00/01-debianbin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RMSF · Implementant una paperera de reciclatge a Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../activities/unit00/02-ex01-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/unit00/02-ex01-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercicis amb C - Pokemon·</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/unit00/03-ex02-c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercicis amb C</span></a>
   </div>
 </li>
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../activities/unit01/01-kernel.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/unit01/01-kernel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Compilant el Kernel de Linux</span></a>
   </div>
 </li>
@@ -396,18 +396,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En aquesta pàgina</h2>
    
   <ul>
-  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
-  <li><a href="#requisits-previs" id="toc-requisits-previs" class="nav-link" data-scroll-target="#requisits-previs">Requisits previs</a></li>
-  <li><a href="#configurant-vscode-per-connectar-se-a-la-màquina-virtual" id="toc-configurant-vscode-per-connectar-se-a-la-màquina-virtual" class="nav-link" data-scroll-target="#configurant-vscode-per-connectar-se-a-la-màquina-virtual">Configurant VSCode per connectar-se a la màquina virtual</a></li>
+  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">🎯 Objectius</a></li>
+  <li><a href="#entorn-de-desenvolupament" id="toc-entorn-de-desenvolupament" class="nav-link" data-scroll-target="#entorn-de-desenvolupament">🛠️ Entorn de Desenvolupament</a></li>
+  <li><a href="#estructura-del-projecte" id="toc-estructura-del-projecte" class="nav-link" data-scroll-target="#estructura-del-projecte">🗂️ Estructura del Projecte</a></li>
+  <li><a href="#tasques-a-realitzar" id="toc-tasques-a-realitzar" class="nav-link" data-scroll-target="#tasques-a-realitzar">📜 Tasques a realitzar</a>
+  <ul class="collapse">
+  <li><a href="#llibreria-ohmy_string.h" id="toc-llibreria-ohmy_string.h" class="nav-link" data-scroll-target="#llibreria-ohmy_string.h">Llibreria <code>ohmy_string.h</code></a></li>
+  <li><a href="#llibreria-safe_string.h" id="toc-llibreria-safe_string.h" class="nav-link" data-scroll-target="#llibreria-safe_string.h">Llibreria <code>safe_string.h</code></a></li>
+  <li><a href="#configuració-del-makefile" id="toc-configuració-del-makefile" class="nav-link" data-scroll-target="#configuració-del-makefile">Configuració del Makefile</a></li>
+  </ul></li>
+  <li><a href="#avaluació-i-criteris-de-qualitat" id="toc-avaluació-i-criteris-de-qualitat" class="nav-link" data-scroll-target="#avaluació-i-criteris-de-qualitat">💯 Avaluació i Criteris de Qualitat</a></li>
+  <li><a href="#lliurament" id="toc-lliurament" class="nav-link" data-scroll-target="#lliurament">📦 Lliurament</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab02.html">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects/project01.html">Projectes</a></li><li class="breadcrumb-item"><a href="../projects/project01.html">Pràctica 01 · Manipulació de Cadenes de Caràcters en C</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Laboratori 2: Configurant el meu entorn de desenvolupament amb VSCode</h1>
+<h1 class="title">Pràctica 01: Manipulació de Cadenes de Caràcters en C</h1>
 </div>
 
 
@@ -425,83 +433,198 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="objectius" class="level2">
-<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
+<h2 class="anchored" data-anchor-id="objectius">🎯 Objectius</h2>
 <ul>
-<li>Configurar el Visual Studio Code (VSCode) per connectar-se a la màquina virtual mitjançant SSH.</li>
+<li>Entendre i implementar les funcions per operar amb strings (char *) en C.</li>
+<li>Aprendre a gestionar la memòria dinàmica de manera segura i eficient amb <code>malloc</code>, <code>calloc</code>, <code>realloc</code> i <code>free</code>.</li>
+<li>Dissenyar i implementar llibreries modulars i reutilitzables.</li>
+<li>Aplicar bones pràctiques de programació per assegurar la qualitat del codi.</li>
 </ul>
 </section>
-<section id="requisits-previs" class="level2">
-<h2 class="anchored" data-anchor-id="requisits-previs">Requisits previs</h2>
+<section id="entorn-de-desenvolupament" class="level2">
+<h2 class="anchored" data-anchor-id="entorn-de-desenvolupament">🛠️ Entorn de Desenvolupament</h2>
 <ul>
-<li>Màquina virtual en funcionament (vegeu <a href="../../labs/01-introduction/lab01.html">Laboratori 1</a>).</li>
-<li>Visual Studio Code (VSCode) instal·lat al vostre ordinador. Podeu descarregar-lo des de <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>.</li>
-<li>Obtenir la IP de la màquina virtual. Per fer-ho, podeu:
-<ul>
-<li>Consultar la informació a VMWare: <img src="../../figures/labs/01-introduction/lab01/vmware/vmware-vm-ip.png" class="img-fluid"></li>
-<li>O bé, iniciar sessió a la màquina virtual i executar la comanda <code>ip a</code> per obtenir la IP: <img src="../../figures/labs/01-introduction/lab01/debian12/vm-ip.png" class="img-fluid"></li>
+<li>Llenguatge de programació: C (estàndard C99 o superior).</li>
+<li>Compilador: <code>gcc</code>.</li>
+<li>Eina de construcció: <code>make</code>.</li>
+<li>VM amb Debian.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
+</section>
+<section id="estructura-del-projecte" class="level2">
+<h2 class="anchored" data-anchor-id="estructura-del-projecte">🗂️ Estructura del Projecte</h2>
+<p>El projecte es pot realitzar amb grups de fins a 3 persones. Per obtenir el repositori del projecte, heu d’acceptar l’activitat del <a href="https://classroom.github.com/a/baHnbkQS">Github Classroom</a>. Un cop acceptada, el primer membre assignarà un nom a l’equip i la restants membres s’hi podran afegir. Un cop fet això, cada membre haurà de clonar el repositori al seu entorn local.</p>
+<p>La següent és l’estructura bàsica del projecte:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> build            </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ohmy_string.o</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── test_ohmystring</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> include           </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ohmy_string.h</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── safe_string.h</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> Makefile          </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> README.md         </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> samples           </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> src               </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── string</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       ├── ohmy_string.c</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       └── safe_string.c</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> tests             </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> graded_test.c</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> graded_test.h</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> test_ohmystring.c</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> test_safestring.c</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled" title="No modifiqueu els fitxers de tests">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Important</span>No modifiqueu els fitxers de tests
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En els dos casos, la IP de la màquina virtual és <strong>172.16.10.223</strong>.</p>
+<p>Els fitxers de tests no s’han de modificar. Aquests fitxers contenen proves automàtiques que s’executaran per verificar la funcionalitat de les llibreries i programes.</p>
 </div>
-</div></li>
+</div>
+</section>
+<section id="tasques-a-realitzar" class="level2">
+<h2 class="anchored" data-anchor-id="tasques-a-realitzar">📜 Tasques a realitzar</h2>
+<section id="llibreria-ohmy_string.h" class="level3">
+<h3 class="anchored" data-anchor-id="llibreria-ohmy_string.h">Llibreria <code>ohmy_string.h</code></h3>
+<p>Aquesta llibreria ha de replicar les funcionalitats bàsiques de la llibreria estàndard <code>string.h</code>, implementant funcions com <code>strlen</code>, <code>strcpy</code>, <code>strcat</code>, <code>strcmp</code>, entre altres, sense utilitzar cap funció de la llibreria estàndard.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strcpy<span class="op">(</span><span class="dt">char</span> <span class="op">*</span>dest<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>src<span class="op">);</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strncpy<span class="op">(</span><span class="dt">char</span> <span class="op">*</span>dest<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>src<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strcat<span class="op">(</span><span class="dt">char</span> <span class="op">*</span>dest<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>src<span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strncat<span class="op">(</span><span class="dt">char</span> <span class="op">*</span>dest<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>src<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">size_t</span> ohmy_strlen<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s<span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ohmy_strcmp<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s1<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s2<span class="op">);</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ohmy_strncmp<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s1<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s2<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strchr<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s<span class="op">,</span> <span class="dt">int</span> c<span class="op">);</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strrchr<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s<span class="op">,</span> <span class="dt">int</span> c<span class="op">);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strstr<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>haystack<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>needle<span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>ohmy_strrstr<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>haystack<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>needle<span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span>ohmy_memcpy<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>dest<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>src<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span>ohmy_memmove<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>dest<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>src<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">);</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span>ohmy_memset<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>s<span class="op">,</span> <span class="dt">int</span> c<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">);</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ohmy_memcmp<span class="op">(</span><span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>s1<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>s2<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">);</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Implementeu totes les funcions del fitxer d’encapçalament <code>ohmy_string.h</code> a <code>ohmy_string.c</code>. Com a referència, podeu consultar la documentació oficial del manual de C per a la llibreria <code>string.h</code> o bé les referències de la llibreria <a href="https://elixir.bootlin.com/musl/v1.2.5/source/src/string">musl libc</a>.</li>
+<li>No es permet l’ús de cap funció de la llibreria estàndard <code>string.h</code> dins de la implementació.</li>
+<li>No es pot incloure cap altra llibreria a <code>ohmy_string.c</code> ni a <code>ohmy_string.h</code>, excepte les necessàries per a la definició de tipus bàsics (com <code>stddef.h</code> per a <code>size_t</code>(i opcionalment <code>stdint.h</code> o <code>limits.h</code> si ho necessiteu per constants o tipus bàsics)).</li>
+<li>Implementar un conjunt de programes simples que utilitzin les funcions de la llibreria per demostrar-ne el funcionament. Aquests programes s’han de col·locar a la carpeta <code>samples/</code>.</li>
+<li>Pots verificar la funcionalitat de la llibreria mitjançant la comanda de test: <code>make test_ohmy</code>. Aquesta comanda compilarà i executarà els tests automàtics definits a <code>tests/test_ohmystring.c</code>.</li>
 </ul>
 </section>
-<section id="configurant-vscode-per-connectar-se-a-la-màquina-virtual" class="level2">
-<h2 class="anchored" data-anchor-id="configurant-vscode-per-connectar-se-a-la-màquina-virtual">Configurant VSCode per connectar-se a la màquina virtual</h2>
-<p>Un cop hagueu instal·lat el vostre entorn de desenvolupament (IDE), podeu afegir les següents extensions utilitzant el marketplace de VSCode: <strong>remote-ssh</strong>. Primer, feu clic a <strong>Marketplace (1)</strong>, després cerqueu <em>remote-ssh</em> i, finalment, feu clic a <strong>(3)</strong> per instal·lar la extensió. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/remote-ssh.png" class="img-fluid"></p>
-<p>Un cop hagueu instal·lat la extensió, ja podeu connectar-vos a la màquina virtual. Per fer-ho, feu clic a la icona de la part inferior esquerra <strong>(1)</strong> i seleccioneu l’opció <strong>Remote-SSH: Connect to Host… (2)</strong>. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/remote-ssh2.png" class="img-fluid"></p>
-<p>Ara apareixerà una finestra on podreu escriure la connexió SSH. També veureu l’opció <strong>Add a New SSH Host</strong>. Feu clic en aquesta opció i introduïu la comanda SSH per connectar-vos a la màquina virtual. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/add_new_host.png" class="img-fluid"></p>
-<p>Seleccioneu la primera opció del menú desplegable amb la ruta del vostre usuari i feu clic a <strong>Add</strong>. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/select_config.png" class="img-fluid"></p>
-<p>i comproveu que l’amfitrió s’ha afegit correctament.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/host_added.png" class="img-fluid"></p>
-<p>Ara feu clic a <strong>Open Config</strong> i observeu que s’ha creat una nova entrada amb el vostre usuari i la IP de la màquina virtual:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> 172.16.10.223</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">HostName</span> 172.16.10.223</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">User</span> jordi</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Us recomano que modifiqueu el fitxer de configuració perquè sigui més fàcil de recordar. Per exemple, podeu canviar el nom de l’amfitrió per <strong>vm-curs0-debian12</strong> :</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> vm-curs0-debian12</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">HostName</span> 172.16.10.202</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">User</span> jordi</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Un cop hagueu modificat el fitxer de configuració, guardem-lo i tanquem-lo. Ara ja podeu connectar-vos a la màquina virtual <strong>vm-curs0-debian12</strong>. Per fer-ho:</p>
+<section id="llibreria-safe_string.h" class="level3">
+<h3 class="anchored" data-anchor-id="llibreria-safe_string.h">Llibreria <code>safe_string.h</code></h3>
+<p>Aquest apartat implica el disseny i implementació d’un nou tipus de dada <strong>SafeString</strong> (o similar) que gestioni cadenes de caràcters de manera segura. Aquest nou tipus ha d’abordar problemes comuns com desbordaments de búfer, gestió de memòria i accés no controlat, problemes habituals quan es treballa amb cadenes dinàmiques en C.</p>
+<p>Per exemple, l’ús de la llibreria <code>safe_string.h</code> no hauria de permetre:</p>
 <ol type="1">
-<li>Feu clic a la icona de la part inferior esquerra.</li>
-<li>Seleccioneu <strong>Remote-SSH: Connect to Host…</strong>.</li>
-<li>Seleccioneu <strong>vm-curs0-debian12</strong>:</li>
+<li><p>Desbordaments de búfer</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> buffer<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>strcpy<span class="op">(</span>buffer<span class="op">,</span> <span class="st">"Aquesta cadena és massa llarga per al buffer"</span><span class="op">);</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Fugues de memòria</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>str <span class="op">=</span> malloc<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">// ... ús de str</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Oblidem alliberar la memòria</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Accessos fora de límits</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>str <span class="op">=</span> malloc<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>str<span class="op">[</span><span class="dv">10</span><span class="op">]</span> <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span> <span class="co">// Accés fora de límits</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
+<p>El tipus <strong>SafeString</strong> ha de ser una estructura que gestioni el seu propi estat. Ha de contenir, almenys, els següents camps:</p>
 <ul>
-<li>Us apareixerà una finestra emergent que us demanarà si voleu confiar en l’amfitrió. Feu clic a <strong>Continue</strong>. <img src="../../figures/labs/01-introduction/lab01/vscode/trust_host.png" class="img-fluid"></li>
-<li>Us apareixerà una altra finestra emergent que us demanarà la contrasenya de l’usuari <strong>jordi</strong>. <img src="../../figures/labs/01-introduction/lab01/vscode/enter_password.png" class="img-fluid"></li>
+<li>Punter al buffer de caràcters.</li>
+<li>Longitud actual de la cadena.</li>
+<li>Capacitat total del buffer assignat (la mida màxima actual).</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La primera vegada que us connecteu a la màquina virtual, VSCode instal·larà el servidor remot a la màquina virtual. Això pot trigar uns minuts.</p>
-</div>
-</div>
-<p>Un cop us hàgiu connectat, veureu que la finestra de VSCode ha canviat i que ara esteu treballant a la màquina virtual. Podeu comprovar-ho a la part inferior esquerra on apareix el nom de l’amfitrió <strong>vm-curs0-debian12</strong>.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/connected.png" class="img-fluid"></p>
-<p>Per comprovar que tot funciona correctament, podeu obrir una terminal integrada a VSCode i executar la comanda <code>uname -a</code> per veure la informació del sistema i comprovar que esteu a la màquina virtual.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/terminal-linux.png" class="img-fluid"></p>
+<p>Aquesta estructura ha de ser opaca, és a dir, els usuaris de la llibreria no han de poder accedir directament als seus camps. En lloc d’això, han d’utilitzar les funcions proporcionades per la llibreria per interactuar amb les cadenes. La llibreria no pot exposar cap camp públic que permeti l’accés directe a la memòria interna. Tota operació de modificació (afegir, inserir) ha de comprovar la capacitat i redimensionar l’espai (realloc) si cal.</p>
+<ul>
+<li>Implementeu totes les funcions del fitxer d’encapçalament <code>safe_string.h</code> a <code>safe_string.c</code>.</li>
+<li>Heu de fer ús de la llibreria <code>string.h</code> per a les operacions internes amb cadenes.</li>
+<li>Podeu incloure altres llibreries estàndard si és necessari (com <code>stdlib.h</code> per a la gestió de memòria).</li>
+<li>Implementar un conjunt de programes simples que utilitzin les funcions de la llibreria per demostrar-ne el funcionament. Aquests programes s’han de col·locar a la carpeta <code>samples/</code>.</li>
+<li>Pots verificar la funcionalitat de la llibreria mitjançant la comanda de test: <code>make test_safe</code>. Aquesta comanda compilarà i executarà els tests automàtics definits a <code>tests/test_safestring.c</code>.</li>
+</ul>
+</section>
+<section id="configuració-del-makefile" class="level3">
+<h3 class="anchored" data-anchor-id="configuració-del-makefile">Configuració del Makefile</h3>
+<p>El <code>Makefile</code> ha de permetre compilar les dues llibreries (<code>ohmy_string</code> i <code>safe_string</code>), així com els programes de test i els exemples. La versió inicial del <code>Makefile</code> ja està proporcionada, però no està completa per als programes de la carpeta <code>samples/</code>. La resta de funcionalitats del <code>Makefile</code> esta implementada, incloent la compilació de les llibreries i els tests automàtics. Cal afegir les regles necessàries per compilar i executar els programes de la carpeta <code>samples</code>.</p>
+</section>
+</section>
+<section id="avaluació-i-criteris-de-qualitat" class="level2">
+<h2 class="anchored" data-anchor-id="avaluació-i-criteris-de-qualitat">💯 Avaluació i Criteris de Qualitat</h2>
+<p>Per avaluar el projecte, es tindran en compte els següents aspectes:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Aspecte</th>
+<th>Puntuació Màxima</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ohmy_string</code></td>
+<td>25%</td>
+</tr>
+<tr class="even">
+<td><code>safe_string</code></td>
+<td>25%</td>
+</tr>
+<tr class="odd">
+<td><code>samples</code></td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td><code>Makefile</code></td>
+<td>10%</td>
+</tr>
+<tr class="odd">
+<td><code>Documentació</code></td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td><code>Qualitat del Codi</code></td>
+<td>20%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>ohmy_string</code>: S’avaluarà a través dels tests automàtics proporcionats. Si es passen tots els tests, s’obtindrà la puntuació completa. Si no, es donarà una puntuació proporcional al nombre de tests superats.</li>
+<li><code>safe_string</code>: Igual que per <code>ohmy_string</code>, s’avaluarà a través dels tests automàtics proporcionats.</li>
+<li><code>samples</code>: S’avaluarà la qualitat, simplicitat i creativitat dels exemples proporcionats a la carpeta <code>samples/</code>.</li>
+<li><code>Makefile</code>: S’avaluarà la correcta configuració del <code>Makefile</code>, assegurant que compili totes les parts del projecte de manera eficient i sense errors.</li>
+<li><code>Documentació</code>: S’avaluarà la profesionalitat i el contingut del fitxer <code>README.md</code>, assegurant que explica:
+<ul>
+<li>Com compilar i executar el projecte.</li>
+<li>Com utilitzar les llibreries.</li>
+<li>Exemples d’ús de les llibreries.</li>
+<li>Distribució de tasques entre els membres de l’equip (si escau).</li>
+</ul></li>
+<li><code>Qualitat del Codi</code>:
+<ul>
+<li>Evitar l’ús de funcions repetides o codi duplicat innecessàriament.</li>
+<li>Codi net i ben estructurat.</li>
+<li>Compilació sense warnings.</li>
+<li>Gestió correcta de la memòria (sense fugues ni accessos fora de límits).</li>
+<li>Ús adequat de comentaris i noms de variables descriptius.</li>
+<li>Documentació basada en estàndards com Doxygen (opcional però recomanat).</li>
+<li>Ús adequat de commits en Git, amb missatges clars i descriptius.</li>
+<li>Gestió d’issues.</li>
+<li>Generació de <code>realease</code> al repositori GitHub amb la versió final del projecte.</li>
+</ul></li>
+</ul>
+</section>
+<section id="lliurament" class="level2">
+<h2 class="anchored" data-anchor-id="lliurament">📦 Lliurament</h2>
+<p>Tot el codi i els fitxers del projecte s’han de pujar al repositori GitHub assignat per a la pràctica. És imprescindible assegurar-se que l’execució de la comanda <code>make</code> compili tot el projecte sense errors ni warnings i que tots els tests automàtics s’hagin superat correctament. Es valorarà únicament el codi de la branca principal (<code>main</code> o <code>master</code>).</p>
+<p>Per formalitzar el lliurament al Campus Virtual, copieu i enganxeu el text corresponent a la caixa de text de lliurament del Campus:</p>
+<pre class="text"><code>Individual o Grupal: [Indicar si és Individual o Grupal]
+&lt;Si Grupal&gt;
+Membres: [Llista de Noms, incloent el teu]
+Team: [Nom del Team al Classroom]</code></pre>
+<hr>
+<blockquote class="blockquote">
+<p>Happy Coding! 🚀</p>
+</blockquote>
 
 
 </section>
