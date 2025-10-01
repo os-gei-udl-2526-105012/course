@@ -9,19 +9,17 @@ lang: ca
 - Aprendre a gestionar la memòria dinàmica de manera segura i eficient amb `malloc`, `calloc`, `realloc` i `free`.
 - Dissenyar i implementar llibreries modulars i reutilitzables.
 - Aplicar bones pràctiques de programació per assegurar la qualitat del codi.
-- Detecció i prevenció d'errors de memòria amb eines com `Valgrind`.
 
 ## 🛠️ Entorn de Desenvolupament
 
 - Llenguatge de programació: C (estàndard C99 o superior).
 - Compilador: `gcc`.
 - Eina de construcció: `make`.
-- Eina de detecció d'errors de memòria: Valgrind.
 - VM amb Debian.
 
 ## 🗂️ Estructura del Projecte
 
-El projecte es pot realitzar amb grups de fins a 3 persones. Per obtenir el repositori del projecte, heu d'acceptar l'activitat del Github Classroom. Un cop acceptada, el primer membre assignarà un nom a l'equip i la restants membres s'hi podran afegir. Un cop fet això, cada membre haurà de clonar el repositori al seu entorn local.
+El projecte es pot realitzar amb grups de fins a 3 persones. Per obtenir el repositori del projecte, heu d'acceptar l'activitat del [Github Classroom](https://classroom.github.com/a/baHnbkQS). Un cop acceptada, el primer membre assignarà un nom a l'equip i la restants membres s'hi podran afegir. Un cop fet això, cada membre haurà de clonar el repositori al seu entorn local.
 
 La següent és l'estructura bàsica del projecte:
 
@@ -155,7 +153,7 @@ Per avaluar el projecte, es tindran en compte els següents aspectes:
   - Evitar l'ús de funcions repetides o codi duplicat innecessàriament.
   - Codi net i ben estructurat.
   - Compilació sense warnings.
-  - Gestió correcta de la memòria (sense fugues ni accessos fora de límits), verificada amb Valgrind en els exemples proporcionats.
+  - Gestió correcta de la memòria (sense fugues ni accessos fora de límits).
   - Ús adequat de comentaris i noms de variables descriptius.
   - Documentació basada en estàndards com Doxygen (opcional però recomanat).
   - Ús adequat de commits en Git, amb missatges clars i descriptius.
