@@ -25,8 +25,6 @@ La següent és l'estructura bàsica del projecte:
 
 ```bash
 ├── build            
-│   ├── ohmy_string.o
-│   └── test_ohmystring
 ├── include           
 │   ├── ohmy_string.h
 │   └── safe_string.h
@@ -80,7 +78,7 @@ int ohmy_memcmp(const void *s1, const void *s2, size_t n);
 
 ### Llibreria `safe_string.h`
 
-Aquest apartat implica el disseny i implementació d'un nou tipus de dada **SafeString** (o similar) que gestioni cadenes de caràcters de manera segura. Aquest nou tipus ha d'abordar problemes comuns com desbordaments de búfer, gestió de memòria i accés no controlat, problemes habituals quan es treballa amb cadenes dinàmiques en C.
+Aquest apartat implica el disseny i implementació d'un nou tipus de dada **SafeString** que gestioni cadenes de caràcters de manera segura. Aquest nou tipus ha d'abordar problemes comuns com desbordaments de búfer, gestió de memòria i accés no controlat, problemes habituals quan es treballa amb cadenes dinàmiques en C.
 
 Per exemple, l'ús de la llibreria `safe_string.h` no hauria de permetre:
 
