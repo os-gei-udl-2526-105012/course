@@ -19,7 +19,7 @@ lang: ca
 
 ## 🗂️ Estructura del Projecte
 
-El projecte es pot realitzar amb grups de fins a 3 persones. Per obtenir el repositori del projecte, heu d'acceptar l'activitat del [Github Classroom](https://classroom.github.com/a/baHnbkQS). Un cop acceptada, el primer membre assignarà un nom a l'equip i la restants membres s'hi podran afegir. Un cop fet això, cada membre haurà de clonar el repositori al seu entorn local.
+El projecte es pot realitzar amb grups de fins a 3 persones. Per obtenir el repositori del projecte, heu d'acceptar l'activitat del [Github Classroom](https://classroom.github.com/a/XZA9JXsb). Un cop acceptada, el primer membre assignarà un nom a l'equip i la restants membres s'hi podran afegir. Un cop fet això, cada membre haurà de clonar el repositori al seu entorn local.
 
 La següent és l'estructura bàsica del projecte:
 
