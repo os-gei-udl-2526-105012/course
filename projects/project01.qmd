@@ -1,0 +1,186 @@
+---
+title: "Pràctica 01: Manipulació de Cadenes de Caràcters en C"
+lang: ca
+---
+
+## 🎯 Objectius
+
+- Entendre i implementar les funcions  per operar amb strings (char *) en C.
+- Aprendre a gestionar la memòria dinàmica de manera segura i eficient amb `malloc`, `calloc`, `realloc` i `free`.
+- Dissenyar i implementar llibreries modulars i reutilitzables.
+- Aplicar bones pràctiques de programació per assegurar la qualitat del codi.
+- Detecció i prevenció d'errors de memòria amb eines com `Valgrind`.
+
+## 🛠️ Entorn de Desenvolupament
+
+- Llenguatge de programació: C (estàndard C99 o superior).
+- Compilador: `gcc`.
+- Eina de construcció: `make`.
+- Eina de detecció d'errors de memòria: Valgrind.
+- VM amb Debian.
+
+## 🗂️ Estructura del Projecte
+
+El projecte es pot realitzar amb grups de fins a 3 persones. Per obtenir el repositori del projecte, heu d'acceptar l'activitat del Github Classroom. Un cop acceptada, el primer membre assignarà un nom a l'equip i la restants membres s'hi podran afegir. Un cop fet això, cada membre haurà de clonar el repositori al seu entorn local.
+
+La següent és l'estructura bàsica del projecte:
+
+```bash
+├── build            
+│   ├── ohmy_string.o
+│   └── test_ohmystring
+├── include           
+│   ├── ohmy_string.h
+│   └── safe_string.h
+├── Makefile          
+├── README.md         
+├── samples           
+├── src               
+│   └── string
+│       ├── ohmy_string.c
+│       └── safe_string.c
+└── tests             
+    ├── graded_test.c
+    ├── graded_test.h
+    ├── test_ohmystring.c
+    └── test_safestring.c
+```
+
+:::{.callout-important title="No modifiqueu els fitxers de tests"}
+Els fitxers de tests no s'han de modificar. Aquests fitxers contenen proves automàtiques que s'executaran per verificar la funcionalitat de les llibreries i programes.
+:::
+
+## 📜 Tasques a realitzar
+
+### Llibreria `ohmy_string.h`
+
+Aquesta llibreria ha de replicar les funcionalitats bàsiques de la llibreria estàndard `string.h`, implementant funcions com `strlen`, `strcpy`, `strcat`, `strcmp`, entre altres, sense utilitzar cap funció de la llibreria estàndard. 
+
+```c 
+char *ohmy_strcpy(char *dest, const char *src);
+char *ohmy_strncpy(char *dest, const char *src, size_t n);
+char *ohmy_strcat(char *dest, const char *src);
+char *ohmy_strncat(char *dest, const char *src, size_t n);
+size_t ohmy_strlen(const char *s);
+int ohmy_strcmp(const char *s1, const char *s2);
+int ohmy_strncmp(const char *s1, const char *s2, size_t n);
+char *ohmy_strchr(const char *s, int c);
+char *ohmy_strrchr(const char *s, int c);
+char *ohmy_strstr(const char *haystack, const char *needle);
+char *ohmy_strrstr(const char *haystack, const char *needle);
+void *ohmy_memcpy(void *dest, const void *src, size_t n);
+void *ohmy_memmove(void *dest, const void *src, size_t n);
+void *ohmy_memset(void *s, int c, size_t n);
+int ohmy_memcmp(const void *s1, const void *s2, size_t n);
+```
+
+- Implementeu totes les funcions del fitxer d'encapçalament `ohmy_string.h` a `ohmy_string.c`. Com a referència, podeu consultar la documentació oficial del manual de C per a la llibreria `string.h` o bé les referències de la llibreria [musl libc](https://elixir.bootlin.com/musl/v1.2.5/source/src/string).
+- No es permet l'ús de cap funció de la llibreria estàndard `string.h` dins de la implementació.
+- No es pot incloure cap altra llibreria a `ohmy_string.c` ni a `ohmy_string.h`, excepte les necessàries per a la definició de tipus bàsics (com `stddef.h` per a `size_t`(i opcionalment `stdint.h` o `limits.h` si ho necessiteu per constants o tipus bàsics)).
+- Implementar un conjunt de programes simples que utilitzin les funcions de la llibreria per demostrar-ne el funcionament. Aquests programes s'han de col·locar a la carpeta `samples/`.
+- Pots verificar la funcionalitat de la llibreria mitjançant la comanda de test: `make test_ohmy`. Aquesta comanda compilarà i executarà els tests automàtics definits a `tests/test_ohmystring.c`. 
+
+### Llibreria `safe_string.h`
+
+Aquest apartat implica el disseny i implementació d'un nou tipus de dada **SafeString** (o similar) que gestioni cadenes de caràcters de manera segura. Aquest nou tipus ha d'abordar problemes comuns com desbordaments de búfer, gestió de memòria i accés no controlat, problemes habituals quan es treballa amb cadenes dinàmiques en C.
+
+Per exemple, l'ús de la llibreria `safe_string.h` no hauria de permetre:
+
+1. Desbordaments de búfer
+
+    ```c
+    char buffer[10];
+    strcpy(buffer, "Aquesta cadena és massa llarga per al buffer");
+    ```
+
+2. Fugues de memòria
+
+    ```c
+    char *str = malloc(100);
+    // ... ús de str
+    // Oblidem alliberar la memòria
+    ```
+
+3. Accessos fora de límits
+
+    ```c
+    char *str = malloc(10);
+    str[10] = 'A'; // Accés fora de límits
+    ```
+
+El tipus **SafeString** ha de ser una estructura que gestioni el seu propi estat. Ha de contenir, almenys, els següents camps:
+
+- Punter al buffer de caràcters.
+- Longitud actual de la cadena.
+- Capacitat total del buffer assignat (la mida màxima actual).
+
+Aquesta estructura ha de ser opaca, és a dir, els usuaris de la llibreria no han de poder accedir directament als seus camps. En lloc d'això, han d'utilitzar les funcions proporcionades per la llibreria per interactuar amb les cadenes. La llibreria no pot exposar cap camp públic que permeti l'accés directe a la memòria interna. Tota operació de modificació (afegir, inserir) ha de comprovar la capacitat i redimensionar l'espai (realloc) si cal.
+
+
+- Implementeu totes les funcions del fitxer d'encapçalament `safe_string.h` a `safe_string.c`.
+- Heu de fer ús de la llibreria `string.h` per a les operacions internes amb cadenes.
+- Podeu incloure altres llibreries estàndard si és necessari (com `stdlib.h` per a la gestió de memòria).
+- Implementar un conjunt de programes simples que utilitzin les funcions de la llibreria per demostrar-ne el funcionament. Aquests programes s'han de col·locar a la carpeta `samples/`.
+- Pots verificar la funcionalitat de la llibreria mitjançant la comanda de test: `make test_safe`. Aquesta comanda compilarà i executarà els tests automàtics definits a `tests/test_safestring.c`.
+
+
+### Configuració del Makefile
+
+El `Makefile` ha de permetre compilar les dues llibreries (`ohmy_string` i `safe_string`), així com els programes de test i els exemples. La versió inicial del `Makefile` ja està proporcionada, però no està completa per als programes de la carpeta `samples/`. La resta de funcionalitats del `Makefile` esta implementada, incloent la compilació de les llibreries i els tests automàtics. Cal afegir les regles necessàries per compilar i executar els programes de la carpeta `samples`.
+
+
+## 💯 Avaluació i Criteris de Qualitat
+
+Per avaluar el projecte, es tindran en compte els següents aspectes:
+
+| Aspecte                        | Puntuació Màxima |
+|--------------------------------|------------------|
+| `ohmy_string`                  | 25%              |
+| `safe_string`                  | 25%              |
+| `samples`                      | 10%              |
+| `Makefile`                     | 10%              |
+| `Documentació`                 | 10%              |
+| `Qualitat del Codi`            | 20%              |
+
+- `ohmy_string`: S'avaluarà a través dels tests automàtics proporcionats. Si es passen tots els tests, s'obtindrà la puntuació completa. Si no, es donarà una puntuació proporcional al nombre de tests superats.
+- `safe_string`: Igual que per `ohmy_string`, s'avaluarà a través dels tests automàtics proporcionats.
+- `samples`: S'avaluarà la qualitat, simplicitat i creativitat dels exemples proporcionats a la carpeta `samples/`.
+- `Makefile`: S'avaluarà la correcta configuració del `Makefile`, assegurant que compili totes les parts del projecte de manera eficient i sense errors.
+- `Documentació`: S'avaluarà la profesionalitat i el contingut del fitxer `README.md`, assegurant que explica:
+  -  Com compilar i executar el projecte.
+  -  Com utilitzar les llibreries.
+  -  Exemples d'ús de les llibreries.
+  -  Distribució de tasques entre els membres de l'equip (si escau).
+- `Qualitat del Codi`: 
+  - Evitar l'ús de funcions repetides o codi duplicat innecessàriament.
+  - Codi net i ben estructurat.
+  - Compilació sense warnings.
+  - Gestió correcta de la memòria (sense fugues ni accessos fora de límits), verificada amb Valgrind en els exemples proporcionats.
+  - Ús adequat de comentaris i noms de variables descriptius.
+  - Documentació basada en estàndards com Doxygen (opcional però recomanat).
+  - Ús adequat de commits en Git, amb missatges clars i descriptius.
+  - Gestió d'issues.
+  - Generació de `realease` al repositori GitHub amb la versió final del projecte.
+
+
+## 📦 Lliurament
+
+Tot el codi i els fitxers del projecte s'han de pujar al repositori GitHub assignat per a la pràctica. És imprescindible assegurar-se que l'execució de la comanda `make` compili tot el projecte sense errors ni warnings i que tots els tests automàtics s'hagin superat correctament. Es valorarà únicament el codi de la branca principal (`main` o `master`). 
+
+Per formalitzar el lliurament al Campus Virtual, copieu i enganxeu el text corresponent a la caixa de text de lliurament del Campus:
+
+```text
+Individual o Grupal: [Indicar si és Individual o Grupal]
+<Si Grupal>
+Membres: [Llista de Noms, incloent el teu]
+Team: [Nom del Team al Classroom]
+```
+
+---
+> Happy Coding! 🚀
+
+
+ 
+
+
+

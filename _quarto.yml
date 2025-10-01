@@ -76,7 +76,10 @@ website:
               - href: ./labs/04-kernel/lab02.qmd
                 text: Laboratori 10 · Escalada de privilegis
               
-
+      - section: Projectes
+        contents:
+          - href: ./projects/project01.qmd
+            text: Pràctica 01 · Manipulació de Cadenes de Caràcters en C
       - section: Activitats
         contents:
           - section: Unitat 01
