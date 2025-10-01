@@ -455,23 +455,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>El projecte es pot realitzar amb grups de fins a 3 persones. Per obtenir el repositori del projecte, heu d’acceptar l’activitat del <a href="https://classroom.github.com/a/XZA9JXsb">Github Classroom</a>. Un cop acceptada, el primer membre assignarà un nom a l’equip i la restants membres s’hi podran afegir. Un cop fet això, cada membre haurà de clonar el repositori al seu entorn local.</p>
 <p>La següent és l’estructura bàsica del projecte:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> build            </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ohmy_string.o</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── test_ohmystring</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> include           </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ohmy_string.h</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── safe_string.h</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> Makefile          </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> README.md         </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> samples           </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> src               </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── string</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       ├── ohmy_string.c</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       └── safe_string.c</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> tests             </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> graded_test.c</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> graded_test.h</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> test_ohmystring.c</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> test_safestring.c</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> include           </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ohmy_string.h</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── safe_string.h</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> Makefile          </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> README.md         </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> samples           </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> src               </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── string</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       ├── ohmy_string.c</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       └── safe_string.c</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> tests             </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> graded_test.c</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> graded_test.h</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> test_ohmystring.c</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> test_safestring.c</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-important callout-titled" title="No modifiqueu els fitxers de tests">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -516,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="llibreria-safe_string.h" class="level3">
 <h3 class="anchored" data-anchor-id="llibreria-safe_string.h">Llibreria <code>safe_string.h</code></h3>
-<p>Aquest apartat implica el disseny i implementació d’un nou tipus de dada <strong>SafeString</strong> (o similar) que gestioni cadenes de caràcters de manera segura. Aquest nou tipus ha d’abordar problemes comuns com desbordaments de búfer, gestió de memòria i accés no controlat, problemes habituals quan es treballa amb cadenes dinàmiques en C.</p>
+<p>Aquest apartat implica el disseny i implementació d’un nou tipus de dada <strong>SafeString</strong> que gestioni cadenes de caràcters de manera segura. Aquest nou tipus ha d’abordar problemes comuns com desbordaments de búfer, gestió de memòria i accés no controlat, problemes habituals quan es treballa amb cadenes dinàmiques en C.</p>
 <p>Per exemple, l’ús de la llibreria <code>safe_string.h</code> no hauria de permetre:</p>
 <ol type="1">
 <li><p>Desbordaments de búfer</p>
