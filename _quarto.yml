@@ -43,6 +43,8 @@ website:
             text: Unitat 02 · Kernel de Linux
           - href: ./slides/02-syscalls.qmd
             text: Unitat 02 · Crides a sistema
+          - href: ./slides/03-procs.qmd
+            text: Unitat 03 · Processos
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
