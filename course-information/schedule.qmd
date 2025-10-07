@@ -21,6 +21,7 @@ A continuació es presenta un calendari complet dels temes, el contingut del cur
 | 4    | Laboratori  |29/09/25    | **Unitat 02**: Kernel de Linux   |   |  | [📄](../labs/04-kernel/lab01.qmd) [📄](../labs/04-kernel/lab02.qmd) |      |
 | 4    | Teoria/Laboratori  |01/10/25    | **Unitat 03**: Processos   | [📖](../slides/03-procs.html#prepare)   |  |  |     | [🔨](../projects/project01.qmd) | |
 | 5    | Teoria  |06/10/25    | **Unitat 03**: Creació de Processos   | [📖](../slides/03-create.html#prepare)   |   |  |     |    [👩🏻‍💻](../activities/unit02/01-create.qmd)    |
+| 5    | Teoria/Laboratori  |08/10/25    | **Unitat 03**: Senyals   |  [📖](../slides/03-signals.html#prepare) |  |  |      |
 
 
 ::: 

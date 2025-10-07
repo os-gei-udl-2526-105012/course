@@ -20,9 +20,8 @@ execute:
 
 ## Mecanisme de Creació `fork()` {.smaller}
 
-::: columns
-::: {.column width="45%"}
-
+:::::: columns
+:::: {.column width="45%"}
 `fork()` crea una **còpia exacta** del procés actual (*el pare*). Aquesta còpia esdevé el procés *fill* i s'executa **independentment** i **simultàniament**.
 
 ``` {.c code-line-numbers="false"}
@@ -37,15 +36,12 @@ int main() {
 ::: {.callout-warning title="Espai de Memòria"}
 Els processos **pare (A)** i **fill (B)** *no comparteixen espai de memòria*. Cada procés té el seu propi espai d'adreces virtuals. No obstant això, el contingut inicial de la memòria del procés pare es copia a l'espai d'adreces del fill.
 :::
-
-:::
+::::
 
 ::: {.column width="55%"}
 ![](../figures/slides/03-create/fork_1.png)
 :::
-
-:::
-
+::::::
 
 ## Jerarquia de Processos · `fork()` {.smaller}
 
@@ -81,29 +77,31 @@ echo $$ && gcc ex1.c -o ex1 && ./ex1
 
 ## Execució Independent:`fork()` {.smaller}
 
-::: columns
-::: {.column width="50%"}
-::: {.callout-note title="Valors de retorn: ```fork()```"}
+::::::::::: columns
+::::::::: {.column width="50%"}
+:::: {.callout-note title="Valors de retorn: ```fork()```"}
 ::: nonincremental
-- Si `fork()` té èxit:
-  - Retorna un valor $>0$ al procés **pare** (*el PID del procés fill*).
-  - Retorna **0** al procés **fill**.
+-   Si `fork()` té èxit:
+    -   Retorna un valor $>0$ al procés **pare** (*el PID del procés fill*).
+    -   Retorna **0** al procés **fill**.
 :::
-:::
-::: {.callout-caution title="Consideracions"}
+::::
+
+:::: {.callout-caution title="Consideracions"}
 ::: nonincremental
-- Si `fork()` falla en el procés **pare**, retorna un valor $<0$ i el codi d'error es guarda a la variable *errno*.
-- Si `fork()` falla, no es crea cap **procés fill**.
+-   Si `fork()` falla en el procés **pare**, retorna un valor $<0$ i el codi d'error es guarda a la variable *errno*.
+-   Si `fork()` falla, no es crea cap **procés fill**.
 :::
-:::
+::::
 
 :::: {.callout-tip title="Observacions"}
 ::: nonincremental
--  La instrucció `exit(0)` s'executa tant pel procés **pare** com pel **fill**.
+-   La instrucció `exit(0)` s'executa tant pel procés **pare** com pel **fill**.
 -   Cada procés executa el seu propi `printf` de manera independent.
 :::
-:::
-:::
+::::
+:::::::::
+
 ::: {.column width="50%"}
 #### ex2.c
 
@@ -131,10 +129,8 @@ int main() {
 ``` {.bash code-line-numbers="false"}
 gcc ex2.c -o ex2 && ./ex2
 ```
-
 :::
-:::
-
+:::::::::::
 
 ## Registres i `fork()` {.smaller}
 
@@ -184,13 +180,13 @@ sequenceDiagram
 ::: {.callout-note title="Observació"}
 A l'arquitectura x86, el registre **RAX** s'utilitza per emmagatzemar el valor de retorn de la crida al sistema `fork()`. En altres arquitectures, s'utilitzen registres equivalents (sovint *R0* o *X0*).
 :::
-:::
-:::
+::::
+::::::
 
 ## Gestió d'errors: `fork()` {.smaller}
 
 | Error | Descripció | Raons |
-|:---|:---|:-------------|
+|:--------------|:--------------|:-----------------------------------------|
 | *EAGAIN* | S'han assolit els límits del sistema. | \- Límits de processos (**RLIMIT_NPROC**)<br>- Límits de fils (*threads-max*)<br>- Esgotament dels PIDs disponibles (*pid_max*)<br>- Límits de cgroup |
 | *ENOMEM* | Memòria del Kernel insuficient. | \- Escassetat de RAM o Swap<br>- Problemes amb els espais de noms PID |
 | *ENOSYS* | `fork()` no és compatible. | \- Maquinari sense unitat de gestió de memòria (*MMU*)<br>- SO no compatible amb `fork()` |
@@ -198,8 +194,8 @@ A l'arquitectura x86, el registre **RAX** s'utilitza per emmagatzemar el valor d
 
 ## Forkbomb {.smaller}
 
-::: columns
-::: {.column width="50%"}
+:::::::: columns
+:::::: {.column width="50%"}
 ::: {.callout-warning title="Què és una Forkbomb?"}
 A **forkbomb** és un atac de denegació de servei que crea ràpidament un nombre massiu de processos, sobrecarregant els recursos del sistema i fent-lo inoperable.
 
@@ -211,15 +207,15 @@ int main() {
 ```
 :::
 
-::: {.callout-note title="Mecanismes de Protecció"}
+:::: {.callout-note title="Mecanismes de Protecció"}
 ::: nonincremental
 El nucli implementa dos mecanismes per prevenir les *forkbombs*:
 
 1.  **Límits de processos per usuari**: Cada usuari té un límit configurable sobre el nombre de processos que pot crear, establert per `ulimit -u`.
 2.  **Límit global de processos**: El sistema té un límit global sobre el nombre total de processos que pot crear, configurat per `pid_max` (*típicament 32768*).
 :::
-:::
-:::
+::::
+::::::
 
 ::: {.column width="50%"}
 ```{mermaid}
@@ -261,34 +257,34 @@ sequenceDiagram
     Note over K: Estat Final:<br>- Límit de processos assolit<br>- CPU al 100%<br>- Nous forks bloquejats.
 ```
 :::
-:::
+::::::::
 
 ## Exemple: `fork()` and GDB {.smaller}
 
-:::center-container
+::: center-container
 ![](../figures/slides/03-create/ex2.mov)
 :::
 
 ## Gestió de Memòria · `fork()` {.smaller}
 
-::: columns
+:::::::: columns
 ::: {.column width="50%"}
 ![](../figures/slides/03-create/copia-exacta.png){.smaller}
 :::
 
-::: {.column width="50%"}
-::: {.callout-note title="Observacions"}
+:::::: {.column width="50%"}
+:::: {.callout-note title="Observacions"}
 ::: nonincremental
 1.  En el moment de `fork()` $\rightarrow$ El **pare** i el **fill** comparteixen el mateix espai d'adreces **físic**.
 2.  Cada procés té el seu propi espai d'adreces **virtual**, que *tradueix* a l'espai d'adreces **físic** compartit.
 :::
-:::
+::::
 
 ::: {.callout-tip title="Duplicats idèntics"}
 Inicialment, el **pare** i el **fill** són *duplicats idèntics*. A partir d'aquest moment, cada procés té el seu propi espai d'adreces virtual, i **qualsevol modificació en un no afecta l'altre**.
 :::
-:::
-:::
+::::::
+::::::::
 
 ## Duplicació $\rightarrow$ Independència {.smaller}
 
@@ -360,7 +356,7 @@ sequenceDiagram
     P->>P: Prints: data=11 stack=22 heap=55
 ```
 :::
-:::
+:::::
 
 ## Copy-On-Write (CoW) {.smaller}
 
@@ -387,23 +383,23 @@ sequenceDiagram
 ```
 :::
 
-::: {.column width="35%"}
+:::: {.column width="35%"}
 ::: {.callout-note .nonincremental title="Com funciona?"}
 Quan `fork()` crea un nou procés, el pare i el fill inicialment comparteixen les mateixes pàgines de memòria. Aquestes es marquen com a **només lectura** per a ambdós processos.
 
 1.  Crea una **còpia privada** d'aquella pàgina per al procés que escriu.
 2.  Assigna la nova pàgina amb permisos d'escriptura.
 3.  Manté la transparència per a l'aplicació.
-   
+
 Aquest mecanisme optimitza tant el temps com la memòria, ja que només es copia la informació modificada.
 :::
-:::
-:::
+::::
+::::::
 
 ## `fork()` or `clone()` {.smaller}
 
-::: columns
-::: {.column width="40%"}
+::::::::: columns
+::::: {.column width="40%"}
 ``` {.c code-line-numbers="false"}
 #include <stdio.h>
 #include <stdlib.h>
@@ -427,37 +423,34 @@ strace -c ./ex7
 strace -e trace=process ./ex7
 ```
 
-::: {.callout-tip title="Exercicis" .fragment}
-:::{.nonincremental}
-- Investiga les simplificacions que `fork()` fa sobre `clone()`.
-- Adapta el codi per utilitzar `clone()` directament.
-:::
-:::
-
-:::
-
-::: {.column width="60%"}
-::: {.callout-note title="Observacions"}
+:::: {.callout-tip .fragment title="Exercicis"}
 ::: nonincremental
-1. **Absència de `fork()` en strace**:
+-   Investiga les simplificacions que `fork()` fa sobre `clone()`.
+-   Adapta el codi per utilitzar `clone()` directament.
+:::
+::::
+:::::
+
+::::: {.column width="60%"}
+:::: {.callout-note title="Observacions"}
+::: nonincremental
+1.  **Absència de `fork()` en strace**:
     -   No hi ha una invocació directa a la crida al sistema `fork()`.
     -   En canvi, es detecta una crida a `clone()`, que és la crida al sistema principal del nucli de Linux per crear tant processos com fils.
-2. **Relació entre `fork()` i `clone()`**:
+2.  **Relació entre `fork()` i `clone()`**:
     -   La funció `fork()`, definida a la biblioteca estàndard de C (*glibc*), actua com un embolcall que crida internament a `clone()` amb un conjunt de paràmetres predeterminats.
-3. **`clone()` i els seus flags**:
+3.  **`clone()` i els seus flags**:
     -   **SIGCHLD**: Configura el mecanisme de notificació per al procés pare.
     -   **CLONE_CHILD_SETTID**: Estableix l'identificador de fil (TID) al procés fill.
     -   **CLONE_CHILD_CLEARTID**: Neteja automàticament aquest identificador en finalitzar.
 :::
-:::
-:::
-:::
-
-
+::::
+:::::
+:::::::::
 
 ## Indeterminisme `fork()` {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ``` {.c code-line-numbers="false"}
 int main() {
@@ -481,20 +474,18 @@ int main() {
 
 :::: {.callout-note title="Observacions"}
 ::: nonincremental
-- La execució del programa és **no determinista**.
-- El procés **pare** i el **fill** poden executar-se en **qualsevol ordre**.
-- L'**planificador** del sistema operatiu decideix quin procés s'executa en un moment donat.
+-   La execució del programa és **no determinista**.
+-   El procés **pare** i el **fill** poden executar-se en **qualsevol ordre**.
+-   L'**planificador** del sistema operatiu decideix quin procés s'executa en un moment donat.
 :::
-:::
+::::
 
 ## `wait()` {.smaller}
 
-::: columns
-::: {.column width="55%"}
+::::::::: columns
+::::::: {.column width="55%"}
 ::: {.callout-note title="`wait()`"}
-
 La crida al sistema `wait()` permet que un procés pare bloquegi la seva execució fins que un dels seus processos fills canviï d'estat (normalment, quan finalitza). També recupera informació sobre el fill que ha canviat d'estat.
-
 
 ``` {.c code-line-numbers="false"}
 #include <sys/types.h>
@@ -505,10 +496,10 @@ pid_t wait(int *_Nullable wstatus);
 
 :::: {.callout-note title="Propietats"}
 ::: nonincremental
-- Retorna el PID del procés fill que ha canviat d'estat, o -1 en cas d'error.
-- Si `wstatus` no és **NULL**, l'estat de sortida del fill s'hi emmagatzema.
+-   Retorna el PID del procés fill que ha canviat d'estat, o -1 en cas d'error.
+-   Si `wstatus` no és **NULL**, l'estat de sortida del fill s'hi emmagatzema.
 :::
-:::
+::::
 
 ::: {.callout-warning title="`SIGCHLD`"}
 El senyal `SIGCHLD` s'envia al procés pare quan un fill canvia d'estat.
@@ -538,12 +529,12 @@ sequenceDiagram
     K-->>P: Retorna estat (42)
 ```
 :::
-:::
+:::::::::
 
 ## Example: `wait()` {.smaller}
 
-::: columns
-::: {.column width="60%"}
+::::::: columns
+::::: {.column width="60%"}
 ``` {.c code-line-numbers="false"}
 int main() {
     pid_t pid;
@@ -561,13 +552,13 @@ int main() {
 
 :::: {.callout-note title="Observacions"}
 ::: nonincremental
-- El procés **pare** utilitza `wait()` per esperar que el seu **fill** finalitzi abans de continuar. Això assegura que la sortida serà sempre *My name is King Viserys* després de *My name is Rhaenyra*.
-- No garanteix que el fill s'executi primer. Només assegura que el fill acabi abans que el pare reprengui la seva execució.
-- `wait()` és per a un *pare* que espera un *fill*. Un *fill* no pot utilitzar-lo per esperar el seu *pare*.
-- Altres mecanismes, com `pause()` i *senyals*, són necessaris per a diferents escenaris de sincronització.
+-   El procés **pare** utilitza `wait()` per esperar que el seu **fill** finalitzi abans de continuar. Això assegura que la sortida serà sempre *My name is King Viserys* després de *My name is Rhaenyra*.
+-   No garanteix que el fill s'executi primer. Només assegura que el fill acabi abans que el pare reprengui la seva execució.
+-   `wait()` és per a un *pare* que espera un *fill*. Un *fill* no pot utilitzar-lo per esperar el seu *pare*.
+-   Altres mecanismes, com `pause()` i *senyals*, són necessaris per a diferents escenaris de sincronització.
 :::
-:::
-:::
+::::
+:::::
 
 ::: {.column width="40%"}
 ```{mermaid}
@@ -597,12 +588,12 @@ sequenceDiagram
     P->>K: exit(0)
 ```
 :::
-:::
+:::::::
 
 ## `waitpid()` {.smaller}
 
-::: columns
-::: {.column width="60%"}
+::::::::::: columns
+:::::: {.column width="60%"}
 ::: {.callout-tip title="`waitpid()`"}
 Permet que un procés pare esperi de manera **selectiva** que un procés fill específic canviï d'estat. També proporciona més control sobre el comportament de l'espera mitjançant opcions addicionals.
 
@@ -613,36 +604,32 @@ pid_t waitpid(pid_t pid, int *_Nullable wstatus, int options);
 
 :::: {.callout-note title="`Options`"}
 ::: nonincremental
-- `WNOHANG`: No bloquejar si cap procés fill ha canviat d'estat. Això significa que la crida retorna immediatament.
-- `WUNTRACED`: També retorna per processos fills que han estat aturats (per exemple, per un senyal).
-- `WCONTINUED`: També retorna per processos fills que han estat reprès després d'haver estat aturat (*disponible des de Linux 2.6.10*).
+-   `WNOHANG`: No bloquejar si cap procés fill ha canviat d'estat. Això significa que la crida retorna immediatament.
+-   `WUNTRACED`: També retorna per processos fills que han estat aturats (per exemple, per un senyal).
+-   `WCONTINUED`: També retorna per processos fills que han estat reprès després d'haver estat aturat (*disponible des de Linux 2.6.10*).
 :::
-:::
-:::
+::::
+::::::
 
-::: {.column width="40%"}
-::: {.callout-caution title="Valors de `pid`"}
+:::::: {.column width="40%"}
+:::: {.callout-caution title="Valors de `pid`"}
 ::: nonincremental
-
-- $\lt -1$: Espera qualsevol procés fill el PID del qual sigui igual al valor absolut de pid.
-- $= -1$: Espera qualsevol procés fill.
-- $= 0$: Espera qualsevol procés fill el PID del qual sigui igual al del procés que crida (el pare).
-- $\gt 0$: Espera el procés fill específic identificat per aquest valor de pid.
+-   $\lt -1$: Espera qualsevol procés fill el PID del qual sigui igual al valor absolut de pid.
+-   $= -1$: Espera qualsevol procés fill.
+-   $= 0$: Espera qualsevol procés fill el PID del qual sigui igual al del procés que crida (el pare).
+-   $\gt 0$: Espera el procés fill específic identificat per aquest valor de pid.
 :::
-:::
+::::
 
-::: {.callout-warning title="Observació" }
+::: {.callout-warning title="Observació"}
 `wait(NULL)` és equivalent a `waitpid(-1, NULL, 0)`
 :::
-
-:::
-:::
-
-
+::::::
+:::::::::::
 
 ## Example: `waitpid()` {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
 ``` {.c code-line-numbers="false"}
 
@@ -705,7 +692,7 @@ sequenceDiagram
     D->>K: exit(0)
 ```
 :::
-:::
+:::::
 
 ## `wait()`/`waitpid()`: Macros {.smaller}
 
@@ -713,7 +700,7 @@ El paràmetre **status** de `wait()` o `waitpid()` és un enter (*int*) que cont
 
 ::: {.callout-note title="x86"}
 | Bits | Camp | Descripció |
-|----|:---|:---|
+|------------------------|:-----------------------|:-----------------------|
 | 0-6 | Codi de Senyal | El número del senyal que ha causat la terminació del fill, si n'hi ha. (`WTERMSIG(status)`). |
 | 7 | Indicador de Core Dump | Indicador si s'ha generat un core dump. (`WCOREDUMP(status)`). |
 | 8-15 | Exit | El valor de retorn de l'`exit()` del fill. (`WEXITSTATUS(status)`) |
@@ -727,10 +714,10 @@ El número 256 es converteix en un codi de sortida de 0 perquè els codis de sor
 ## `wait()`/`waitpid()`: Status Macros (I) {.smaller}
 
 ::: nonincremental
-- **`WIFEXITED(status)`**: Retorna cert (no zero) si el procés fill ha finalitzat normalment mitjançant `exit()`.
-- **`WEXITSTATUS(status)`**: Retorna el codi de sortida del fill. *Només* vàlid si `WIFEXITED(status)` és cert. 
-- **`WIFSIGNALED(status)`**: Retorna cert si el canvi d'estat del fill ha estat causat per un senyal.
-- **`WTERMSIG(status)`**: Retorna el número del senyal que ha causat la terminació del procés fill. *Només* vàlid si `WIFSIGNALED(status)` és cert.
+-   **`WIFEXITED(status)`**: Retorna cert (no zero) si el procés fill ha finalitzat normalment mitjançant `exit()`.
+-   **`WEXITSTATUS(status)`**: Retorna el codi de sortida del fill. *Només* vàlid si `WIFEXITED(status)` és cert.
+-   **`WIFSIGNALED(status)`**: Retorna cert si el canvi d'estat del fill ha estat causat per un senyal.
+-   **`WTERMSIG(status)`**: Retorna el número del senyal que ha causat la terminació del procés fill. *Només* vàlid si `WIFSIGNALED(status)` és cert.
 :::
 
 ## `wait()`/`waitpid()`: Status Macros (II) {.smaller}
@@ -742,11 +729,9 @@ El número 256 es converteix en un codi de sortida de 0 perquè els codis de sor
 -   **`WIFCONTINUED(status)`**: Retorna cert si un fill que havia estat aturat ha estat reactivat (amb `SIGCONT`). Requereix l'opció `WCONTINUED` en `waitpid()` (*Linux kernel 2.6 i posteriors*).
 :::
 
-
-
 ## Exemple: `waitpid()` & Macros {.smaller}
 
-::: columns
+:::::: columns
 ::: {.column width="50%"}
 ``` {.c .code-overflow-scroll .code-overflow-wrap code-line-numbers="false"}
 int main(int argc, char *argv[]){
@@ -777,14 +762,14 @@ if (pid == 0) {
 ```
 :::
 
-::: {.column width="50%"}
+:::: {.column width="50%"}
 ![](../figures/slides/03-create/waitpid-signals.png)
 
 ::: {.callout-warning .fragment title="Pregunta?"}
 Quin serà el resultat després d'executar `./ex8 42`?
 :::
-:::
-:::
+::::
+::::::
 
 ## Estat Zombie {.smaller}
 
@@ -819,12 +804,11 @@ static void exit_notify(struct task_struct *tsk,
 }
 ```
 :::
-:::
+:::::
 
 ## Orfes (I) {.smaller}
 
 Un procés fill esdevé un **orfe** si el seu pare mor abans que ell. En aquest cas, el nucli reassigna el fill al procés `init` (PID 1), que és responsable de netejar els processos orfes.
-
 
 ```{mermaid}
 %%| echo: false
@@ -847,13 +831,12 @@ sequenceDiagram
 
 ## Orfes i Zombies {.smaller}
 
-|Escenari|Mecanisme del Nucli|Temps|Consequències|
-|--------|-------------------|---------|-------------------|
-| **Pare Actiu** | Reté `task_struct` fins a `wait()` |Indefinit| - Consumeix entrada a la taula de processos<br>- PID es manté ocupat|
-| **Pare Mort** | `reparent_to_init()` (PPID←1) | $\le 1$ ms | - Init neteja en segon pla (`init` periodicament crida `wait()`) <br>- Alliberació asíncrona|
-| **Reinici del Sistema** | `kill(pid, SIGKILL)` | 0 | - Alliberació forçada (via `do_exit()` global) <br>- Sense garantia d'estat|
-| **Pare ignora SIGCHLD** | Zombie persistent | $\infty$ | - Requereix intervenció manual|
-
+| Escenari | Mecanisme del Nucli | Temps | Consequències |
+|---------------|---------------------|---------------|---------------------|
+| **Pare Actiu** | Reté `task_struct` fins a `wait()` | Indefinit | \- Consumeix entrada a la taula de processos<br>- PID es manté ocupat |
+| **Pare Mort** | `reparent_to_init()` (PPID←1) | $\le 1$ ms | \- Init neteja en segon pla (`init` periodicament crida `wait()`) <br>- Alliberació asíncrona |
+| **Reinici del Sistema** | `kill(pid, SIGKILL)` | 0 | \- Alliberació forçada (via `do_exit()` global) <br>- Sense garantia d'estat |
+| **Pare ignora SIGCHLD** | Zombie persistent | $\infty$ | \- Requereix intervenció manual |
 
 ## Example: Factoria de Zombies {.smaller}
 
@@ -881,8 +864,6 @@ return 0;
 :::
 
 ::: {.column width="40%"}
-
-
 #### Terminal 1
 
 ``` bash
@@ -902,7 +883,7 @@ Zombie #3 born:
 $ watch -n 1 "ps u -C zombie"
 ```
 :::
-:::
+:::::
 
 ::: aside
 Inspired by <https://www.refining-linux.org/archives/7-Dr.-Frankenlinux-or-how-to-create-zombie-processes.html>
@@ -910,9 +891,8 @@ Inspired by <https://www.refining-linux.org/archives/7-Dr.-Frankenlinux-or-how-t
 
 ## Transformació: `exec()` {.smaller}
 
-::: columns
-
-::: {.column width="65%"}
+:::::::: columns
+:::::: {.column width="65%"}
 ::: {.callout-note title="Processos Independents?"}
 Tots els processos (excepte PID 1) tenen un pare i es creen amb `clone()`. Però com poden `bash` i `ls` ser programes separats?
 :::
@@ -921,18 +901,16 @@ Tots els processos (excepte PID 1) tenen un pare i es creen amb `clone()`. Però
 Permet **transformar un procés fill en un nou programa**. La família de funcions `exec` substitueix l'espai d'adreces del procés actual amb un nou programa carregat des d'un fitxer executable (*normalment en format ELF*).
 :::
 
-::: {.callout}
-
-|Component           | Abans de `exec()`       | Després de `exec()`                  |
-|--------------------|-------------------------|--------------------------------------|
-| Espai d'Adreces    | Mapeig original         | Nou mapeig **ELF**                   |
-| Taula de Fitxers   | Heretat                 | Heretat (excepte `FD_CLOEXEC`)       |
-| Registres CPU      | Context original        | **EIP**=punt d'entrada, **ESP**=pila |
-| Senyals            | Handlers personalitzats | Tots restablerts a `SIG_DFL`         |
-| Memòria Compartida | `MAP_SHARED` preservada | `MAP_PRIVATE` eliminada              |
+::: callout
+| Component | Abans de `exec()` | Després de `exec()` |
+|------------------|----------------------|--------------------------------|
+| Espai d'Adreces | Mapeig original | Nou mapeig **ELF** |
+| Taula de Fitxers | Heretat | Heretat (excepte `FD_CLOEXEC`) |
+| Registres CPU | Context original | **EIP**=punt d'entrada, **ESP**=pila |
+| Senyals | Handlers personalitzats | Tots restablerts a `SIG_DFL` |
+| Memòria Compartida | `MAP_SHARED` preservada | `MAP_PRIVATE` eliminada |
 :::
-
-:::
+::::::
 
 ::: {.column width="35%"}
 ```{mermaid}
@@ -967,25 +945,24 @@ sequenceDiagram
 
     Note right of P: Els espai d'adreces original <br> s'ha destruït <br> `task_struct` és el mateix <br> però amb el nou codi carregat
 ```
-
 :::
-:::
+::::::::
 
 ## Familia `exec()` {.smaller}
 
-::: columns
-::: {.column width="40%"}
+::::::::: columns
+::::: {.column width="40%"}
 ![](../figures/slides/03-create/env.png)
 
-::: {.callout-note title="Valors de retorn"}
-::: {.nonincremental}
+:::: {.callout-note title="Valors de retorn"}
+::: nonincremental
 -   Mai retorna en cas d'èxit (*substitueix completament el procés*).
 -   Retorna -1 només en cas d'error (*s'estableix `errno`*).
 :::
-:::
-:::
+::::
+:::::
 
-:::: {.column width="60%"}
+::::: {.column width="60%"}
 ``` {.c code-line-numbers="false"}
 #include <unistd.h>
 // Variants with argument list (variable arguments)
@@ -1006,14 +983,14 @@ int execve(const char *path, char *const argv[],
     char *const envp[]);             
 ```
 
-::: {.callout}
-::: {.nonincremental}
+:::: callout
+::: nonincremental
 -   `execve()` és la crida al sistema bàsica (*les altres són embolcalls de glibc*).
 -   Gestiona correctament SUID/SGID.
-::: 
 :::
-:::
-:::
+::::
+:::::
+:::::::::
 
 ## Exemple: `ls -la` {.smaller}
 
@@ -1104,11 +1081,11 @@ sequenceDiagram
     deactivate P
 ```
 :::
-:::
+:::::
 
 ## Exercicis proposats {.smaller}
 
-- [Exercici de Creació de Processos](../activities/unit02/01-create.qmd)
+-   [Exercici de Creació de Processos](../activities/unit02/01-create.qmd)
 
 ## Això és tot per avui {.smaller}
 
