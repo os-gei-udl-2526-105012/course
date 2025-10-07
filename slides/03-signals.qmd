@@ -192,27 +192,6 @@ sequenceDiagram
 | `sigqueue(pid_t pid, int sig, const union sigval value)`                       | Envia un senyal amb una dada associada.      | Afegeix entrada a `queue`. |
 | `alarm(unsigned int sec)`                                                      | Programa l’enviament de `SIGALRM`.           | Configura `alarm_timer`.   |
 
-## Interacció amb el PCB
-
-```{mermaid}
-%%| echo: false
-%%| echo: false
-flowchart LR
-    subgraph PCB [Process Control Block]
-        A[signal_pending]
-        B[signal_mask]
-        C[handlers[]]
-        D[queue: senyals pendents amb dades]
-    end
-
-    sigprocmask --> B
-    sigpending --> A
-    sigqueue --> D
-
-    sigaction --> C
-    alarm --> D
-```
-
 
 ## Gestió de senyals en C
 
