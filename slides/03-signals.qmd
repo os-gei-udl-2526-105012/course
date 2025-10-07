@@ -92,7 +92,7 @@ ctrl+c
 :::
 
 * *Quants senyals estem enviant?* 3
-* *Quines?* SIGTSTP, SIGIN, SIGCONT
+* *Quines?* SIGTSTP, SIGINT, SIGCONT
 * *Quina acció fa el procés quan rep les senyals?* Aturar l'execució en primer pla i portar el procés a segon pla. Arrancar l'execució en segon pla. Acabar el procés.
 
 
@@ -102,7 +102,7 @@ ctrl+c
 
 - Després amb la comanda **bg**, el kernel tramet al procés el senyal *SIGCONT* i continua la seva execució en segon pla quan la rep. Una altra manera equivalent per realitzar aquest procés és **yes>/dev/null &** on *&* ens envia l'ordre directament en execució al background.
 
-- Observeu també com de  forma similar la comanda **fg**; en aquest cas el kernel tramet *SIGCONT* i el procés quan rep *SIGCONT*; torna a executar-se al primer pla.  Noteu que amb ctrl-c tenim un comportament similar; i el procés en primer pla és acabat en rebre el senyal *SIGKILL* (**ctrl+c**).
+- Observeu també com de  forma similar la comanda **fg**; en aquest cas el kernel tramet *SIGCONT* i el procés quan rep *SIGCONT*; torna a executar-se al primer pla.  Noteu que amb ctrl-c tenim un comportament similar; i el procés en primer pla és acabat en rebre el senyal *SIGINT* (**ctrl+c**).
 
 ## Diagrama de canvis d'estat
 
@@ -132,13 +132,13 @@ ctrl+c
 
 ## Rutines de Tractament de senyals 
 
-Quan el procés rebi el senyal *signum* executarà *manejador*, que
+Quan el procés rebi el senyal *signum* executarà *gestor*, que
 pot ser una **funció** o **SIG_DFL**, acció per defecte, o **SIG_IGN** per ignorar el senyal.
 
 ```c
 #include <signal.h> 
 typedef void (*sighandler_t)(int);
-sighandler_t signal(int signum, sighandler_t manejador);
+sighandler_t signal(int signum, sighandler_t gestor);
 ```
 <br>
 
@@ -157,6 +157,62 @@ int pause(void);
 
 * Sempré **retorna -1**.
 * Es **bloqueja** fins que el procés rep un senyal (qualsevol).
+
+## Gestió interna de senyals (Kernel)
+
+Quan el nucli genera o rep un senyal destinat a un procés, no interromp immediatament el procés en execució.
+El senyal es marca com a pendent dins del PCB i es comprova abans de tornar a mode usuari.
+
+```{mermaid}
+%%| echo: false
+sequenceDiagram
+    participant U as CPU · Mode Usuari
+    participant K as Nucli
+    participant P as PCB del Procés
+
+    U->>K: Interrupció / Excepció / Syscall
+    K->>P: Marca senyal SIGINT com a pendent · signal_pending |= SIGINT
+    K->>P: Actualitza cua de senyals i màscara
+    K->>U: Retorna del mode nucli → mode usuari
+    U->>P: Comprova senyals pendents · signal_pending & ~signal_mask
+    alt Senyal amb handler
+        U->>P: Executa rutina del senyal user handler
+    else Acció per defecte
+        U->>K: Finalitza procés (SIG_DFL)
+    end
+```
+
+## Crides a sistema {.smaller}
+
+| Crida                                                                          | Funció                                       | Acció sobre el PCB         |
+| ------------------------------------------------------------------------------ | -------------------------------------------- | -------------------------- |
+| `sigprocmask(int how, const sigset_t *set, sigset_t *oldset)`                  | Bloqueja o desbloqueja senyals.              | Modifica `signal_mask`.    |
+| `sigpending(sigset_t *set)`                                                    | Consulta els senyals pendents.               | Llegeix `signal_pending`.  |
+| `sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)` | Defineix un manejador per un senyal concret. | Modifica `handlers[]`.     |
+| `sigqueue(pid_t pid, int sig, const union sigval value)`                       | Envia un senyal amb una dada associada.      | Afegeix entrada a `queue`. |
+| `alarm(unsigned int sec)`                                                      | Programa l’enviament de `SIGALRM`.           | Configura `alarm_timer`.   |
+
+## Interacció amb el PCB
+
+```{mermaid}
+%%| echo: false
+%%| echo: false
+flowchart LR
+    subgraph PCB [Process Control Block]
+        A[signal_pending]
+        B[signal_mask]
+        C[handlers[]]
+        D[queue: senyals pendents amb dades]
+    end
+
+    sigprocmask --> B
+    sigpending --> A
+    sigqueue --> D
+
+    sigaction --> C
+    alarm --> D
+```
+
 
 ## Gestió de senyals en C
 
@@ -246,6 +302,8 @@ Envia el senyal *sig* al/s procés/ssos segons pid:
 * En cas d'error, retorna **SIG_ERR**
 :::
 
+
+
 ## Cas pràctic: Problema típic
 
 ```c 
@@ -283,9 +341,22 @@ int main(void) {
 }
 ```
 
-## Cas pràctic: Error típic
+## Cas pràctic: Error típic {.smaller}
 
-fer un malloc dins del handler
+Les rutines de senyals s’executen de forma **asíncrona**: únicament han de fer operacions **async-signal-safe**, és a dir, mai es poden cridar funcions com `malloc()`, `printf()`, etc.
+
+```c
+void handler(int sig) {
+    // ❌ Error típic: malloc() no és async-signal-safe
+    char *buf = malloc(100);  
+    write(1, "SIGINT rebut\n", 13);  // ✅ write() és segura dins del handler
+    free(buf);
+}
+```
+
+Una funció és **async-signal-safe** si no provoca comportament indefinit o corrupció de memòria.Només es poden cridar funcions que no depenguin de recursos globals compartits que puguin estar en un estat inconsistent. En aquest cas, `malloc()` i `free()` no són segures perquè poden modificar l'estat intern del gestor de memòria, acabant en corrupció de memòria **heap**.
+
+
 
 ## Taula resum de senyals {.smaller}
 
