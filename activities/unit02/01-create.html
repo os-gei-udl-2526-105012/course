@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Cerca"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -195,6 +198,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Unitat 03 · Processos</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/03-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unitat 03 · Senyals</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -210,6 +219,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../notes/01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unitat 01 ·Introducció als sistemes operatius</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes/03-process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unitat 03 · Gestió de processos amb C (userspace)</span></a>
   </div>
 </li>
       </ul>
@@ -423,40 +438,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <ol type="1">
-<li>Quants processos es creen en executar el següent codi? (Compteu el procés pare i els fills)</li>
-</ol>
+<li><p>Quants processos es creen en executar el següent codi i quina és la seqüència d’esdeveniments?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fork<span class="op">();</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>wait<span class="op">(</span>st<span class="op">)&gt;</span><span class="dv">0</span><span class="op">)</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    fork<span class="op">();</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="2" type="1">
-<li>Quantes vegades s’imprimirà OS?</li>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    fork<span class="op">();</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>exit<span class="op">();</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Solució:</strong></p>
+<p>Aquest codi crea 3 processos en total: el procés pare i dos processos fills. La seqüència d’esdeveniments és la següent:</p></li>
 </ol>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">    sequenceDiagram
+        autonumber
+        participant P as Pare · PID 100
+        participant F1 as Fill1 · PID 101
+        participant F2 as Fill2 · PID 102
+
+        P-&gt;&gt;F1: fork → crea F1
+        P-&gt;&gt;P: wait bloquejat
+        F1-&gt;&gt;F1: wait retorna -1
+        F1-&gt;&gt;F1: exit 
+        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101
+        P-&gt;&gt;F2: fork → crea F2
+        P-&gt;&gt;P: exit
+        F2-&gt;&gt;F2: exit
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El valors del PID són només exemples i poden variar en cada execució.</p>
+</div>
+</div>
+<ol start="2" type="1">
+<li><p>Quantes vegades s’imprimirà OS?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>execel<span class="op">(</span><span class="st">"bin/ls"</span><span class="op">,</span><span class="st">"ls"</span><span class="op">,</span>NULL<span class="op">)</span> <span class="op">==</span> <span class="op">-</span><span class="dv">1</span><span class="op">){</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    perror<span class="op">(</span><span class="st">"execl"</span><span class="op">);</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"OS</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
-<li>Quantes vegades <code>wait(st)</code> retorna -1?</li>
-</ol>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Quantes vegades <code>wait(st)</code> retorna -1?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>id <span class="op">=</span> fork<span class="op">();</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span> <span class="co">//1</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>id<span class="op">==</span><span class="dv">0</span><span class="op">)</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    fork<span class="op">();</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="4" type="1">
-<li>Quantes vegades <code>wait(st)</code> retorna -1?</li>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span> <span class="co">//2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>exit<span class="op">();</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Solució:</strong> En aquest cas, <code>wait(st)</code> retorna -1 <strong>3</strong> vegades. La seqüència d’esdeveniments és la següent:</p></li>
 </ol>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">    sequenceDiagram
+        autonumber
+        participant P as Pare · PID 100
+        participant F1 as Fill1 · PID 101
+        participant N1 as Net1 · PID 102
+
+        P-&gt;&gt;F1: fork → crea F1
+        P-&gt;&gt;P: wait bloquejat //1
+        F1-&gt;&gt;F1: wait retorna -1 //1
+        F1-&gt;&gt;N1: fork → crea N1
+        F1-&gt;&gt;F1: wait bloquejat //2
+        N1-&gt;&gt;N1: wait retorna -1 //2
+        N1-&gt;&gt;N1: exit
+        N1--&gt;&gt;F1: desbloqueja wait del PID 101, retorna 102
+        F1-&gt;&gt;F1: exit
+        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101
+        P--&gt;&gt;P: wait retorna -1 //2
+        P-&gt;&gt;P: exit
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p>Quantes vegades <code>wait(st)</code> retorna -1?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>id <span class="op">=</span> fork<span class="op">();</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span> <span class="co">//1</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>id<span class="op">!=</span><span class="dv">0</span><span class="op">)</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    fork<span class="op">();</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="5" type="1">
-<li>Analitza el següent codi i respon les preguntes:</li>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>wait<span class="op">(</span>st<span class="op">);</span> <span class="co">//2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>exit<span class="op">();</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Solució:</strong> En aquest cas, <code>wait(st)</code> retorna -1 <strong>3</strong> vegades. La seqüència d’esdeveniments és la següent:</p></li>
 </ol>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">    sequenceDiagram
+        autonumber
+        participant P as Pare · PID 100
+        participant F1 as Fill1 · PID 101
+        participant F2 as Fill2 · PID 102
+
+        P-&gt;&gt;F1: fork → crea F1
+        P-&gt;&gt;P: wait bloquejat //1
+        F1-&gt;&gt;F1: wait retorna -1 //1
+        F1-&gt;&gt;F1: wait retorna -1 //2
+        F1-&gt;&gt;F1: exit
+        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101
+        P-&gt;&gt;F2: fork → crea F2
+        P-&gt;&gt;P: wait bloquejat //2
+        F2-&gt;&gt;F2: wait retorna -1 //2
+        F2-&gt;&gt;F2: exit
+        F2--&gt;&gt;P: desbloqueja wait del PID 100, retorna 102
+        P-&gt;&gt;P: exit
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li><p>Analitza el següent codi i respon les preguntes:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    pid_t fork_ret <span class="op">=</span> fork<span class="op">();</span></span>
@@ -471,10 +586,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Quin és el valor de <code>a</code> en el procés pare i en el procés fill?</li>
 <li>S’imprimirà la mateixa adreça de memòria per a <code>a</code> en el procés pare i en el procés fill?</li>
 <li>S’imprimirà a la mateixa sortida estàndard (STDOUT) en el procés pare i en el procés fill?</li>
-</ul>
-<ol start="6" type="1">
-<li>Analitza el següent codi i justifica quin serà el resultat de la seva execució:</li>
-</ol>
+</ul></li>
+<li><p>Analitza el següent codi i justifica quin serà el resultat de la seva execució:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> stuff <span class="op">=</span> malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>stuff <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
@@ -483,10 +596,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>fork_ret <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>stuff <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="7" type="1">
-<li>Quina és la sortida del següent codi?</li>
-</ol>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Quina és la sortida del següent codi?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span><span class="op">(</span>fork<span class="op">()){</span></span>
@@ -501,10 +612,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span> wait<span class="op">(&amp;</span>st<span class="op">);</span> exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="8" type="1">
-<li>Indiqueu quin és el resultat de l’execució del següent codi. Nombre de processos creats, parantiu, informació de stdout, procés zombi, etc.</li>
-</ol>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Indiqueu quin és el resultat de l’execució del següent codi. Nombre de processos creats, parantiu, informació de stdout, procés zombi, etc.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define N </span><span class="dv">10</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
@@ -516,18 +625,102 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">0</span><span class="op">:</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span> <span class="op">(</span>pid<span class="op">%</span><span class="dv">2</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">)</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                    printf<span class="op">(</span><span class="st">"Pid Fill: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">());</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span> <span class="co">//3</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">default</span><span class="op">:</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span> <span class="op">(</span>pid<span class="op">%</span><span class="dv">2</span><span class="op">)</span> <span class="op">!==</span> <span class="dv">0</span> <span class="op">)</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span> <span class="co">//2</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    wait<span class="op">(</span>NULL<span class="op">);</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span> <span class="co">//1</span></span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Solució:</strong></p>
+<p>El comportament del codi depèn de si el pid del procés pare és parell o senar:</p>
+<ul>
+<li><strong>Cas parell:</strong></li>
+</ul></li>
+</ol>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">    sequenceDiagram
+    autonumber
+    participant P as Pare (PID parell)
+    participant F1 as Fill1
+    participant F2 as Fill2
+    participant Fx as ...
+    participant F10 as Fill10
+
+    P-&gt;&gt;F1: fork() crea Fill1
+    F1-&gt;&gt;F1: printf("Pid Fill: 101") i exit() //3
+    P-&gt;&gt;F2: fork() crea Fill2
+    F2-&gt;&gt;F2: printf("Pid Fill: 102") i exit() //3
+    P-&gt;&gt;Fx: fork() crea FillX
+    Fx-&gt;&gt;Fx: printf("Pid Fill: 10X") i exit() //3
+    P-&gt;&gt;F10: fork() crea Fill10
+    F10-&gt;&gt;F10: printf("Pid Fill: 110") i exit() //3
+    
+    P-&gt;&gt;P: wait()
+    Note over P,F10: Pare fa wait(NULL) al final i recull un fill
+    P-&gt;&gt;P: exit() //1
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li><p>El procés pare crea 10 fills, un a cada iteració del bucle.</p></li>
+<li><p>Els fills acaben immediatament amb la crida a <code>exit(0)</code>.</p></li>
+<li><p>El pare, no fa cap <code>wait()</code> dins del bucle, per tant, els fills es converteixen en processos zombis temporals.</p></li>
+<li><p>El pare únicament fa un <code>wait()</code> al final del bucle, per tant, el procés pare rebra la notificació de la finalització d’un fill i acabarà.</p></li>
+<li><p>Tots els processos <strong>fills -1</strong> acaben en <em>estat zombi</em>.</p></li>
+<li><p>Tots els processos <strong>orfes</strong> fins que <strong>init</strong> els recull.</p></li>
+<li><p><strong>Cas senar:</strong></p></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">    sequenceDiagram
+    autonumber
+    participant P as Pare (PID senar)
+    participant F as Fill
+    participant N as Net
+    participant P10 as Pare 10e
+    participant F10 as Fill 10e
+
+    P-&gt;&gt;F: fork() crea Fill
+    P-&gt;&gt;P: exit() //2
+    F-&gt;&gt;N: fork() crea Net
+    F-&gt;&gt;F: exit() //2
+
+    P10-&gt;&gt;F10: fork() crea Fill 10e
+    P10-&gt;&gt;P10: exit() //2
+    F10-&gt;&gt;F10: surt del bucle
+    F10-&gt;&gt;F10: wait() retorna -1
+    F10-&gt;&gt;F10: exit()
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>En aquest cas, el pare <strong>acaba</strong> després de crear el primer fill.</li>
+<li>Cada iteració del bucle, el nou pare (<em>fill iteració anterior</em>) crea un fill i <strong>acaba</strong>.</li>
+<li>Es creen 10 generacions a partir del pare: <strong>P -&gt; F -&gt; N -&gt; BN …</strong></li>
+<li>Cap pare fa cap <code>wait()</code>, per tant, tots els fills es converteixen en processos zombis.</li>
+<li>L’últim fill executarà el <code>wait()</code> i com no té fills, retornarà <strong>-1</strong> i acabarà.</li>
+<li>Tots els processos fills acaben en estat <strong>zombi</strong> temporal.</li>
+<li>Tots els processos fills esdevenen <strong>orfes</strong> fins que init els recull.</li>
+</ul>
 
 
 

@@ -253,7 +253,7 @@ Jordi Mateo Fornés
 <span id="cb2-9"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <h4 id="terminal-a">Terminal A</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">watch</span> <span class="at">-n</span> 1 <span class="st">"ps -ef | grep bash | grep -v grep"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">watch</span> <span class="at">-n</span> 1 <span class="st">"ps -ef | grep ex1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <h4 id="terminal-b">Terminal B</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$$</span> <span class="kw">&amp;&amp;</span> <span class="fu">gcc</span> ex1.c <span class="at">-o</span> ex1 <span class="kw">&amp;&amp;</span> <span class="ex">./ex1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -419,9 +419,9 @@ Jordi Mateo Fornés
 <h2>Gestió d’errors: <code>fork()</code></h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 63%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -544,12 +544,6 @@ Jordi Mateo Fornés
 </div>
 </div>
 </div></div>
-</section>
-<section id="exemple-fork-and-gdb" class="slide level2 smaller">
-<h2>Exemple: <code>fork()</code> and GDB</h2>
-<div class="center-container">
-<p><video data-src="../figures/slides/03-create/ex2.mov" controls=""><a href="../figures/slides/03-create/ex2.mov">Video</a></video></p>
-</div>
 </section>
 <section id="gestió-de-memòria-fork" class="slide level2 smaller">
 <h2>Gestió de Memòria · <code>fork()</code></h2>
@@ -1347,10 +1341,10 @@ Jordi Mateo Fornés
 <h2>Orfes i Zombies</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 34%">
-<col style="width: 16%">
-<col style="width: 34%">
+<col style="width: 22%">
+<col style="width: 27%">
+<col style="width: 22%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1398,16 +1392,15 @@ Jordi Mateo Fornés
 <span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
 <span id="cb19-4"><a aria-hidden="true" tabindex="-1"></a>    pid <span class="op">=</span> fork<span class="op">();</span></span>
 <span id="cb19-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>pid <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb19-6"><a aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Zombie #</span><span class="sc">%d</span><span class="st"> born:</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span></span>
-<span id="cb19-7"><a aria-hidden="true" tabindex="-1"></a>         i <span class="op">+</span> <span class="dv">1</span><span class="op">);</span> sleep<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb19-6"><a aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Zombie #</span><span class="sc">%d</span><span class="st"> born:</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">);</span> </span>
+<span id="cb19-7"><a aria-hidden="true" tabindex="-1"></a>        sleep<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
 <span id="cb19-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb19-9"><a aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"*drool* Boooo! </span></span>
-<span id="cb19-10"><a aria-hidden="true" tabindex="-1"></a>           Arrgghh<span class="op">!</span> <span class="op">*</span>slobber<span class="op">*</span>\n<span class="st">");</span></span>
-<span id="cb19-11"><a aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
-<span id="cb19-12"><a aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb19-13"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb19-14"><a aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb19-15"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-9"><a aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"*drool* Boooo! Arrgghh! *slobber*</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb19-10"><a aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb19-11"><a aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-12"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-13"><a aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-14"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:40%;">
 <h4 id="terminal-1">Terminal 1</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a></a><span class="ex">$</span> gcc zombie.c <span class="at">-o</span> zombie</span>
@@ -1463,9 +1456,9 @@ Jordi Mateo Fornés
 <div class="callout-content">
 <table class="caption-top">
 <colgroup>
-<col style="width: 24%">
+<col style="width: 25%">
 <col style="width: 30%">
-<col style="width: 45%">
+<col style="width: 44%">
 </colgroup>
 <thead>
 <tr class="header">
