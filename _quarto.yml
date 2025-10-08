@@ -51,6 +51,8 @@ website:
         contents:
           - href: ./notes/01-introduction.qmd
             text: Unitat 01 ·Introducció als sistemes operatius
+          - href: ./notes/03-process.qmd
+            text: Unitat 03 · Gestió de processos amb C (userspace)
       - section: Laboratoris
         contents:
           - section: Unitat 01

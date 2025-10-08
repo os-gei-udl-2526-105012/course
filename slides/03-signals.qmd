@@ -18,7 +18,7 @@ execute:
   echo: false
 ---
 
-## Què són els senyals? 
+## Què són els senyals? {.smaller}
 
 Un **senyal** és una notificació asíncrona enviada pel nucli a un procés per informar d’un esdeveniment (*com una excepció o acció de l’usuari*).
 
@@ -39,19 +39,15 @@ int y = 5 / x;
 ```{mermaid}
 %%| echo: false
 sequenceDiagram 
-    participant U as Usuari
     participant K as Nucli
     participant A as Procés A
-
-    U->>K: Excepció (divisió per zero)
-    K->>K: Detecta excepció
+    A->>K: Excepció (divisió per zero)
     K->>A: Envia senyal SIGFPE al procés A
     A->>A: Té rutina de gestió de senyal?
     alt Sí
         A->>A: Executa rutina de gestió de senyal
     else No
-        A->>A: Executa acció per defecte
-        K->>K: Finalitza procés A
+        A->>K: Acció per defecte (finalitza procés)
     end
 ```
 
@@ -140,7 +136,6 @@ pot ser una **funció** o **SIG_DFL**, acció per defecte, o **SIG_IGN** per ign
 typedef void (*sighandler_t)(int);
 sighandler_t signal(int signum, sighandler_t gestor);
 ```
-<br>
 
 #### Valors de retorn
 * En cas d'èxit retorna un **punter a la anterior funció gestora del senyal**.
@@ -158,10 +153,7 @@ int pause(void);
 * Sempré **retorna -1**.
 * Es **bloqueja** fins que el procés rep un senyal (qualsevol).
 
-## Gestió interna de senyals (Kernel)
-
-Quan el nucli genera o rep un senyal destinat a un procés, no interromp immediatament el procés en execució.
-El senyal es marca com a pendent dins del PCB i es comprova abans de tornar a mode usuari.
+## Gestió interna de senyals (Kernel) {.smaller}
 
 ```{mermaid}
 %%| echo: false
@@ -238,7 +230,7 @@ int main(void) {
 ```
 
 :::center-container
-Aquesta és la sintaxis recomanada per incloure la gestió de senyals en C. Més modern i segura.
+Aquesta és més moderna i segura.
 :::
 
 ## Accions per defecte
