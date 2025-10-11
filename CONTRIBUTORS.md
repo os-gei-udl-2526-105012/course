@@ -1,5 +1,7 @@
 - **Samuel Ntim Jakari**: [Sakytsu](https://github.com/Sakytsu)
 - **Eric Pérez Llerena**: [epl1185](https://github.com/epl1185).
+  Vull aportar aquest video (com a recomanació) sobre la Heap Vs Stack:
+  https://www.youtube.com/watch?v=_8-ht2AKyH4
 - **Marc Nicolás**: [mnsanch](https://github.com/mnsanch)
 - **Oriol Escolà Serra**: [oriolescserr](https://github.com/oriolescserr) 
 - **Abderrahman Albaitar**: [AbderrahmanAlbaitar](https://github.com/AbderrahmanAlbaitar)
@@ -20,3 +22,4 @@
 - **Eric Buenavida Crespo**: [EricBuenavidaUdL](https://github.com/EricBuenavidaUdL)
 - **Ikram Maaroufi**: [Ikram692](https://github.com/ikram692)
 - **Alejandro Matas**: [TheAleMax13](https://github.com/TheAleMax13)
+
