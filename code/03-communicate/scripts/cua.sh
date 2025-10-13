@@ -1,0 +1,1 @@
+../bin/escriptor_cua_misstages & ../bin/lector_cua_misstages

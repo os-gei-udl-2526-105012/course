@@ -1,0 +1,132 @@
+---
+title: "Laboratori 11: ohmy_sudo"
+subtitle: "Unitat 03 · Gestió de processos"
+lang: "ca"
+---
+
+## Objectiu
+
+- Implementació simple de la comanda `sudo`.
+
+## Context
+
+La comanda `sudo` permet als usuaris executar programes amb els privilegis de seguretat d'un altre usuari, per defecte l'usuari `root`. Per exemple:
+
+```bash
+sudo cat /etc/shadow 
+# mostra el contingut del fitxer /etc/shadow
+cat /etc/shadow
+# error de permís denegat
+```
+
+## Descripció de l'activitat
+
+Implementeu un programa anomenat `ohmy_sudo` que reprodueixi una funcionalitat bàsica de `sudo`. Es a dir, el programa ha de permetre a un usuari executar una comanda amb els privilegis de l'usuari `root`.
+
+## Permisos a Linux
+
+Els sistemes UNIX/Linux permet controlar **QUI** pot accedir als fitxers i directoris a través dels permisos. Hi ha tres tipus de permisos: *lectura, escriptura i execució*. Aquests permisos es poden assignar a tres tipus d'usuaris: *owner, group i others*.
+
+- **Owner**: Usuari que ha creat el fitxer.
+- **Group**: Usuaris dels grups.
+- **Other**: Qualsevol usuari del sistema.
+
+Els permisos es representen amb una cadena de 10 caràcters. El primer caràcter indica el tipus de fitxer (per exemple, `-` per a fitxers normals i `d` per a directoris). Els següents nou caràcters es divideixen en tres grups de tres caràcters cadascun, que representen els permisos per a l'owner, el group i els others, respectivament. Cada grup de tres caràcters pot contenir els següents caràcters:
+
+* `r`: Permís de lectura.
+* `w`: Permís d'escriptura.
+* `x`: Permís d'execució.
+* `-`: Permís denegat.
+
+Per exemple:
+
+```bash
+jordi@debianlab:~$ touch a.txt
+jordi@debianlab:~$ ls -la a.txt
+-rw-r--r-- 1 jordi jordi 0 11 de jul.  11:26 a.txt
+```
+
+- L'usuari jordi és **owner** del `fitxer a.txt` i pot **llegir/escriure però no executar**. 
+- Els membres del **grup** jordi poden **llegir el fitxer, però no escriure ni executar**. 
+- Igual que la resta d'usuaris.
+
+Per a gestionar els permisos dels fitxers i directoris, utilitzarem la comanda `chmod`. Aquesta comanda ens permet canviar els permisos d'accés dels fitxers i directoris. La sintaxi de la comanda és la següent:
+
+```bash
+chmod [qui] operació permisos fitxer
+```
+
+- Amb `ls -la fitxer`, podem veure els permisos actuals del fitxer.
+- Amb `chod +x fitxer`, afegim el permís d'execució per a tots els usuaris (owner, grup i altres).
+- Amb `chmod -x fitxer`, eliminem el permís d'execució per a tots els usuaris.
+- Amb `chmod o-r fitxer`, eliminem el permís de lectura per a altres usuaris.
+- Amb `chmod g+w fitxer`, afegim el permís d'escriptura per al grup.
+- Amb `chmod o+w fitxer`, afegim el permís d'escriptura per a altres usuaris.
+- Amb `chmod a-w fitxer`, eliminem el permís d'escriptura per a tots els usuaris (owner, grup i altres).
+- Amb `chmod +w fitxer`, afegim el permís d'escriptura a tots els usuaris.
+- Amb `chmod -r fitxer`, eliminem tots els permisos de lectura per a tots els usuaris.
+
+La comanda `chown` ens permet canviar l'**owner** i el **grup** d'un fitxer o directori. La sintaxi de la comanda és la següent:
+
+```bash
+chown [nou_owner][:nou_grup] fitxer
+```
+
+A més dels permisos bàsics, Linux també permet assignar permisos especials als fitxers i directoris. Aquests permisos especials són:
+
+- **Setuid (SUID)**: Permet que un usuari executi un fitxer amb els privilegis de l'owner del fitxer. Aquest permís s'indica amb una `s` en lloc de la `x` en els permisos de l'owner. Per exemple, si un fitxer té els permisos `-rwsr-xr-x`, significa que qualsevol usuari que executi aquest fitxer ho farà amb els privilegis de l'owner del fitxer.
+
+- **Setgid (SGID)**: Permet que un usuari executi un fitxer amb els privilegis del grup del fitxer. Aquest permís s'indica amb una `s` en lloc de la `x` en els permisos del grup. Per exemple, si un fitxer té els permisos `-rwxr-sr-x`, significa que qualsevol usuari que executi aquest fitxer ho farà amb els privilegis del grup del fitxer.
+
+- **Sticky bit**: Permet que només l'owner d'un fitxer o directori pugui eliminar o renombrar els fitxers dins d'un directori. Aquest permís s'indica amb una `t` en lloc de la `x` en els permisos dels altres usuaris. Per exemple, si un directori té els permisos `drwxrwxrwt`, significa que qualsevol usuari pot crear fitxers dins d'aquest directori, però només l'owner dels fitxers pot eliminar-los o renombrar-los.
+
+## Implementació
+
+Implementareu el programa `ohmy_sudo` en C basat en el següent esquelet:
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main( int argc, char* argv[] ){
+    @TODO afegir codi
+    return 0;
+}
+```
+
+Actualizeu el fitxer `Makefile` per compilar el programa i executar-lo amb els permisos adequats.
+
+```Makefile
+Makefile
+all: ohmy_sudo
+
+ohmy_sudo: ohmy_sudo.o
+	gcc $< -o $@
+
+ohmy_sudo.o: ohmy_sudo.c
+	gcc -c $< -o $@
+
+configure:
+	@TODO permissos
+
+test:
+	useradd test
+	su test -c './ohmy_sudo whoami'
+	make configure
+	su test -c './ohmy_sudo whoami'
+	userdel test
+
+run:
+	./ohmy_sudo $(ARGS)
+
+clean:
+	rm ohmy_sudo.o ohmy_sudo
+```
+
+## Questions de reflexió
+
+1. Quina diferencia hi ha entre utilitzar un `PATH` absolut i un `PATH` relatiu per executar un programa?
+2. Si en el nostre entorn hi ha la variable `LD_PRELOAD=/tmp/mylib.so`, què passaria quan executés un programa?
+3. Què recomanaries per evitar situacions no desitjades en l'execució de programes amb privilegis elevats?

@@ -20,11 +20,11 @@ execute:
 
 ## Repàs de gestió de processos {.smaller}
 
-```echo "Missatge enviat" > missatge.txt```
+`echo "Missatge enviat" > missatge.txt`
 
 ![](../figures/slides/03-comunicate/reació-proc.png)
 
-:::{.callout-note title="Exercici"}
+::: {.callout-note title="Exercici"}
 Implementeu un programa en C que simuli aquest comportament.
 :::
 
@@ -32,54 +32,53 @@ Implementeu un programa en C que simuli aquest comportament.
 
 En un sistema operatiu *multiprogramat o distribuït*, diversos processos s’executen concurrentment i sovint necessiten intercanviar dades, sincronitzar accions o compartir recursos. Aquest intercanvi s’anomena **Inter-Process Communication (IPC)**.
 
-- Coordinació i sincronització entre processos independents.
-- Transferència d’informació sense accedir directament a l’espai d’adreces dels altres processos.
-- Compartició controlada de recursos (fitxers, memòria, dispositius, sockets).
+-   Coordinació i sincronització entre processos independents.
+-   Transferència d’informació sense accedir directament a l’espai d’adreces dels altres processos.
+-   Compartició controlada de recursos (fitxers, memòria, dispositius, sockets).
 
 ## Reptes de la comunicació (IPC) {.smaller}
 
-1. **Com es pot transferir la informació entre processos?** Recorda que els processos operen en espais d'adreçes independents. Per tant, **no poden accedir a la mateixa informació**.
+1.  **Com es pot transferir la informació entre processos?** Recorda que els processos operen en espais d'adreçes independents. Per tant, **no poden accedir a la mateixa informació**.
 
-2. **Com es pot assegurar que dos processos no intentin accedir simultàniament a la mateixa informació?** Imagina't 2 processos executant una reserva en un avió i els dos processos assignen el mateix seient a dos passatgers diferents.
+2.  **Com es pot assegurar que dos processos no intentin accedir simultàniament a la mateixa informació?** Imagina't 2 processos executant una reserva en un avió i els dos processos assignen el mateix seient a dos passatgers diferents.
 
-3. **Com es poden coordinar els processos dependents entre si?** Imagina't un procés que genera dades i un altre procés que les processa. El procés que processa les dades necessita esperar a que el procés que les genera les hagi generat totes.
+3.  **Com es poden coordinar els processos dependents entre si?** Imagina't un procés que genera dades i un altre procés que les processa. El procés que processa les dades necessita esperar a que el procés que les genera les hagi generat totes.
 
 ## Exemples de comunicació/sincronització {.smaller}
 
-* **Comunicació**: Intercanvi d'informació.
+-   **Comunicació**: Intercanvi d'informació.
 
-::: {.fragment}
-```sh
+::: fragment
+``` sh
 cat missatge.txt | grep "e"
 ```
 :::
 
-* **Sincronització**: Coordinació en l'accés als recursos i en l'ordre d'execució de les tasques.
+-   **Sincronització**: Coordinació en l'accés als recursos i en l'ordre d'execució de les tasques.
 
-::: {.fragment}
-```sh
+::: fragment
+``` sh
 echo "hola1"; echo "adeu1" && echo "hola2" || echo "adeu2"
 ```
 :::
 
 ::: notes
-
-* El `;` permet executar les comandes de forma seqüencial.
-* El `&&` permet executar la segona comanda si la primera s'ha executat correctament.
-* El `||` permet executar la segona comanda si la primera no s'ha executat correctament.
-
+-   El `;` permet executar les comandes de forma seqüencial.
+-   El `&&` permet executar la segona comanda si la primera s'ha executat correctament.
+-   El `||` permet executar la segona comanda si la primera no s'ha executat correctament.
 :::
 
-## ```cat < missatge.txt | grep "e"```
+## `cat < missatge.txt | grep "e"`
 
 ![](../figures/slides/03-comunicate/echo-grep.png)
 
 ## Esquema de la comunicació/sincronització {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
 ### Procés 1
-```c
+
+``` c
 while(!FiTasca1){
   EsperarFiTasca1();
 }
@@ -90,9 +89,11 @@ while(ExisteixTasca){
 }
 ```
 :::
+
 ::: {.column width="45%"}
 ### Procés 2
-```c
+
+``` c
 RealitzarTasca1();
 AvisarTasca1Completada();
 
@@ -102,123 +103,126 @@ while(ExisteixTasca){;
 }
 ```
 :::
-:::
+:::::
 
 ## Exemple: Cua d'impressió
 
 Assumeix que un proces A vol imprimir un document:
 
-1. El *procés A* ha d'introduir el nom del fitxer a imprimir en una cua d'impressió.
-2. El servei d'impressió *procés B* de forma periòdica revisa la cua d'impressió i imprimeix els fitxers que hi ha en la cua.
+1.  El *procés A* ha d'introduir el nom del fitxer a imprimir en una cua d'impressió.
+2.  El servei d'impressió *procés B* de forma periòdica revisa la cua d'impressió i imprimeix els fitxers que hi ha en la cua.
 
-::: {.fragment}
+::: fragment
 Per fer-ho, implementem una cua d'impressió amb dos variables una que apunta al següent slot a imprimir (**out**) i una al següent slot lliure (**in**).
 :::
 
 ## Exemple: Cua d'impressió {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="65%"}
-
-- El procés A llegeix la variable **in** i escriu el valor 7 en una variable local (*next_free_slot*).
-- El SO interromp el procés A i executa el procés B.
-- El procés B llegeix la variable **in** i escriu el valor 7 en una variable local (*next_free_slot*).
-- El procés B col·loca un fitxer a la cua d'impressió al slot 7 i el servei d'impressió modifica les variables **in** i **out**.
-- El procés B realitza altres tasques no relacionades amb la cua d'impressió.
-- El SO interromp el procés B i executa el procés A. El procés A utilitza la seva variable local (*next_free_slot*) per a escriure el fitxer a la cua d'impressió. El fitxer s'escriu al slot 7, i també actualitza les variables **in** i **out**.
+-   El procés A llegeix la variable **in** i escriu el valor 7 en una variable local (*next_free_slot*).
+-   El SO interromp el procés A i executa el procés B.
+-   El procés B llegeix la variable **in** i escriu el valor 7 en una variable local (*next_free_slot*).
+-   El procés B col·loca un fitxer a la cua d'impressió al slot 7 i el servei d'impressió modifica les variables **in** i **out**.
+-   El procés B realitza altres tasques no relacionades amb la cua d'impressió.
+-   El SO interromp el procés B i executa el procés A. El procés A utilitza la seva variable local (*next_free_slot*) per a escriure el fitxer a la cua d'impressió. El fitxer s'escriu al slot 7, i també actualitza les variables **in** i **out**.
 :::
-::: {.column width="35%"}
 
+::: {.column width="35%"}
 ![](../figures/slides/03-comunicate/impressio.png)
 
-1. El procés B ha perdut la impressió del fitxer. El procés A l'ha sobrescrit.
-2. El servei d'impressió no ha notat cap inconsistencia en les variables **in** i **out**.
-
-::: 
-::: 
+1.  El procés B ha perdut la impressió del fitxer. El procés A l'ha sobrescrit.
+2.  El servei d'impressió no ha notat cap inconsistencia en les variables **in** i **out**.
+:::
+:::::
 
 ## Condicions de carrera {.smaller}
 
 Les condicions de carrera es produeixen quan dos o més processos o fils d'execució intenten accedir simultàniament a recursos compartits o a dades sense la deguda sincronització.
 
-::: {.fragment}
+::: fragment
 #### Problemes
+
 Poden conduir a resultats inesperats o incorrectes en les operacions i a la inconsistència de les dades compartides.
 :::
 
-::: {.fragment}
-#### Solucions 
+::: fragment
+#### Solucions
 
-1. **Exclusió Mútua**: Utilitzar mecanismes com semàfors, mutex o candaus per a garantir que només un procés pugui accedir als recursos compartits a la vegada.
+1.  **Exclusió Mútua**: Utilitzar mecanismes com semàfors, mutex o candaus per a garantir que només un procés pugui accedir als recursos compartits a la vegada.
 
-2. **Sincronització**: Coordinar l'execució dels processos mitjançant sincronització de manera que no interfereixin entre ells quan accedeixen als recursos compartits.
+2.  **Sincronització**: Coordinar l'execució dels processos mitjançant sincronització de manera que no interfereixin entre ells quan accedeixen als recursos compartits.
 :::
 
 ## Evitar les condicions de carrera {.smaller}
 
 La **secció crítica** és la part del codi on s'accedeix a recursos compartits. Per a evitar les condicions de carrera, els processos han de complir les següents condicions:
 
-1. Dos processos no poden estar simultàniament en la secció crítica.
-2. No s'ha d'assumir que els processos són executats de forma ràpida o lenta.
-3. Cap procés que no estigui en la secció crítica pot bloquejar altres processos.
-4. Cap procés ha d'esperar per sempre per entrar a la secció crítica.
+1.  Dos processos no poden estar simultàniament en la secció crítica.
+2.  No s'ha d'assumir que els processos són executats de forma ràpida o lenta.
+3.  Cap procés que no estigui en la secció crítica pot bloquejar altres processos.
+4.  Cap procés ha d'esperar per sempre per entrar a la secció crítica.
 
 ::: center-container
 ![](../figures/slides/03-comunicate//mutex.png)
 :::
 
-
 ## Tipus de comunicació {.smaller}
 
 #### Pas de missatges
-- Permet integrar tasques de comunicació i sincronització entre processos situats en una mateixa màquina o en màquines distribuïdes.
-- Un missatge és un conjunt de dades intercanviades per 2 o més processos.
 
-:::{.fragment}
+-   Permet integrar tasques de comunicació i sincronització entre processos situats en una mateixa màquina o en màquines distribuïdes.
+-   Un missatge és un conjunt de dades intercanviades per 2 o més processos.
+
+::: fragment
 #### Memòria compartida
-- Els processos es comuniquen utilitzant variables o zones de memòria compartida.
-- S'utilitzen per comunicar processos en una mateixa màquina.
-- Es necessita regular l'accés a la informació compartida per garantir el resultat òptim i evitar les *race conditions*.
+
+-   Els processos es comuniquen utilitzant variables o zones de memòria compartida.
+-   S'utilitzen per comunicar processos en una mateixa màquina.
+-   Es necessita regular l'accés a la informació compartida per garantir el resultat òptim i evitar les *race conditions*.
 :::
 
 ## Característiques de la comunicació (I) {.smaller}
 
 #### Identificació
-* Mecanismes de noms
-    - Sense nom
-    - Nom local
-    - Nom de la red
 
-* Identificador de destí
-    - **Directe**: S'ha d'indicar el procés origen i destí. El missatge s'envia a un procés concret utilitzant el seu *pid*. El receptor pot (indicar o no) el procés que vol rebre el missatge.
-    - **Indirecte**: Els missatges s'envien a una zona contreta (bustia o port), sense identificar de forma explícita el destí.
+-   Mecanismes de noms
+    -   Sense nom
+    -   Nom local
+    -   Nom de la red
+-   Identificador de destí
+    -   **Directe**: S'ha d'indicar el procés origen i destí. El missatge s'envia a un procés concret utilitzant el seu *pid*. El receptor pot (indicar o no) el procés que vol rebre el missatge.
+    -   **Indirecte**: Els missatges s'envien a una zona contreta (bustia o port), sense identificar de forma explícita el destí.
 
 ## Característiques de la comunicació (II) {.smaller}
 
 #### Flux de dades
-- Unidireccional
-- Bidireccional
 
-:::{.fragment}
+-   Unidireccional
+-   Bidireccional
+
+::: fragment
 #### Buffering
-- Amb buffers
-- Sense buffers
+
+-   Amb buffers
+-   Sense buffers
 :::
 
-::: {.fragment}
+::: fragment
 #### Sincronització
-- Sincrons (bloquejants)
-- Asíncrons (no bloquejants)
+
+-   Sincrons (bloquejants)
+-   Asíncrons (no bloquejants)
 :::
 
 ## Tipus de mecanismes
 
-1. Fitxers.
-2. Pipes.
-3. FIFOS (Pipes amb nom).
-4. Cues de missatges.
-5. Sockets.
-6. Memòria compartida (IPC).
+1.  Fitxers.
+2.  Pipes.
+3.  FIFOS (Pipes amb nom).
+4.  Cues de missatges.
+5.  Sockets.
+6.  Memòria compartida (IPC).
 
 ## Fitxers {.smaller}
 
@@ -226,18 +230,17 @@ La comunicació entre processos a través dels s**istemes de fitxers** és una m
 
 #### Limitacions
 
-- **Persistència**: Els fitxers són persistents, la informació roman en disc fins que s'elimina de forma explícita. Això no és òptim per a la comunicació efímera o temporal entre processos.
+-   **Persistència**: Els fitxers són persistents, la informació roman en disc fins que s'elimina de forma explícita. Això no és òptim per a la comunicació efímera o temporal entre processos.
 
-- **Problemes de Sincronització**: Cal gestionar la sincronització de forma manual per garantir que un procés no llegeixi el fitxer abans que un altre procés hagi acabat d'escriure-hi. Aquesta sincronització pot ser complexa i pot conduir a errors si no es gestiona adequadament.
+-   **Problemes de Sincronització**: Cal gestionar la sincronització de forma manual per garantir que un procés no llegeixi el fitxer abans que un altre procés hagi acabat d'escriure-hi. Aquesta sincronització pot ser complexa i pot conduir a errors si no es gestiona adequadament.
 
-- **Eficiència**: L'ús de fitxers per a la comunicació no és eficient en termes de rendiment, ja que involucra operacions d'entrada i sortida a disc, que són més lentes que altres mètodes de comunicació en memòria.
-
+-   **Eficiència**: L'ús de fitxers per a la comunicació no és eficient en termes de rendiment, ja que involucra operacions d'entrada i sortida a disc, que són més lentes que altres mètodes de comunicació en memòria.
 
 ## Exemple: Comunicació amb fitxers
 
-Un procés 1 (escriptor) escriu un missatge en un fitxer anomenat *fitxer_comunicacio.txt*. 
+Un procés 1 (escriptor) escriu un missatge en un fitxer anomenat *fitxer_comunicacio.txt*.
 
-```c
+``` c
 // Process 1 (escriptor)
 int fd = open("fitxer_comunicacio.txt", O_WRONLY | O_CREAT, 0644);
 write(fd, "Missatge des de Process 1", strlen("Missatge des de Process 1"));
@@ -246,7 +249,7 @@ close(fd);
 
 Un procés 2 (lector) llegeix el missatge d'aquest fitxer i el mostra per pantalla.
 
-```c
+``` c
 // Process 2 (lector)
 int fd = open("fitxer_comunicacio.txt", O_RDONLY);
 char buffer[100];
@@ -259,27 +262,26 @@ printf("Missatge rebut: %s\n", buffer);
 
 Els **pipes** són dispositius lògics dissenyats per permetre la comunicació entre processos. Es comporten com una cua de caràcters amb una longitud fixa on els processos poden llegir o escriure.
 
-- **Sense Nom**: Els pipes són anònims, el que significa que no estan associats amb un fitxer del sistema de fitxers.
-- **Ús Amb fork()**: Es poden heretar i utilitzar fàcilment.
-- **Identificació**: Es caracteritzen per tenir dos descriptors de fitxers, un per a l'escriptura i un altre per a la lectura.
-- **Flux de Dades Unidireccional**: El flux de dades als pipes és unidireccional, la informació només es mou d'una direcció, és a dir, del procés escriptor al procés lector.
-- **Amb Buffering**: Els pipes utilitzen un mecanisme que permet acumular dades fins que es llegeixin.
-- **Restriccions d'Àmbit Local**: Comunicació entre processos a la mateixa màquina, ja que no estan dissenyats per a la comunicació a través de xarxes.
+-   **Sense Nom**: Els pipes són anònims, el que significa que no estan associats amb un fitxer del sistema de fitxers.
+-   **Ús Amb fork()**: Es poden heretar i utilitzar fàcilment.
+-   **Identificació**: Es caracteritzen per tenir dos descriptors de fitxers, un per a l'escriptura i un altre per a la lectura.
+-   **Flux de Dades Unidireccional**: El flux de dades als pipes és unidireccional, la informació només es mou d'una direcció, és a dir, del procés escriptor al procés lector.
+-   **Amb Buffering**: Els pipes utilitzen un mecanisme que permet acumular dades fins que es llegeixin.
+-   **Restriccions d'Àmbit Local**: Comunicació entre processos a la mateixa màquina, ja que no estan dissenyats per a la comunicació a través de xarxes.
 
-## Exemple: Comunicació amb Pipes (Bash) 
+## Exemple: Comunicació amb Pipes (Bash)
 
 En bash, podem utilitzar pipes per a comunicar dos processos. Per exemple, podem utilitzar el comandament `echo` per a enviar un missatge a través d'un pipe i el comandament `cat` per a llegir aquest missatge.
 
-```sh
+``` sh
 echo "Missatge des de Process Pare" | echo "Missatge rebut: $(cat)"
 ```
 
-
 ## Exemple: Comunicació amb pipes (C)
 
-::: columns
+::::: columns
 ::: {.column width="60%"}
-```c
+``` c
 int pipe_fd[2];
 pipe(pipe_fd);
 if (fork() == 0) { // Fill (lector)
@@ -298,23 +300,27 @@ if (fork() == 0) { // Fill (lector)
 }
 ```
 :::
+
 ::: {.column width="40%"}
 ![](../figures/slides/03-comunicate/pipe.png)
 :::
-:::
+:::::
 
+::: {.fragment .center-container}
+[pipes.c](../code/03-communicate/src/pipes.c)
+:::
 
 ## FIFOS {.smaller}
 
-* Funcionen com els **pipes**, però amb un mecanisme de comunicació amb nom.
-* Serveis:
-  * ```mkfifo(char *name,mode_t mode)```;
-  * ```open(char *name, int flag)```;
-    * S'obre un FIFO per r,w, r+w
-    * Acció bloquejant fins que algun procés estigui a l'altre extrem.
-  * Lectura i escriptura (*read()*, *write()*).
-  * Tancament amb *close()*.
-  * Eliminació amb *unlink()*.
+-   Funcionen com els **pipes**, però amb un mecanisme de comunicació amb nom.
+-   Serveis:
+    -   `mkfifo(char *name,mode_t mode)`;
+    -   `open(char *name, int flag)`;
+        -   S'obre un FIFO per r,w, r+w
+        -   Acció bloquejant fins que algun procés estigui a l'altre extrem.
+    -   Lectura i escriptura (*read()*, *write()*).
+    -   Tancament amb *close()*.
+    -   Eliminació amb *unlink()*.
 
 ::: {.center-container .fragment}
 Els **FIFOs** ofereixen una forma de comunicació més flexible entre processos amb l'avantatge afegit de poder ser utilitzats per processos que no comparteixen un antecessor comú.
@@ -322,36 +328,35 @@ Els **FIFOs** ofereixen una forma de comunicació més flexible entre processos 
 
 ##  Exemple: Comunicació amb FIFOS (Bash) {.smaller}
 
-:::{.nonincremental}
-1. Crear el FIFO en la terminal 1:
+::: nonincremental
+1.  Crear el FIFO en la terminal 1:
 
-```sh
+``` sh
 mkfifo fifo_example
 ```
 
-2. Executarem el process 1 (escriptor) a la terminal 1:
+2.  Executarem el process 1 (escriptor) a la terminal 1:
 
-```sh
+``` sh
 echo "Missatge des de Process 1" > fifo_example
 ```
 
-3. Executarem el process 2 (lector) a la terminal 2:
+3.  Executarem el process 2 (lector) a la terminal 2:
 
-```sh
+``` sh
 cat < fifo_example
 ```
 
-4. Eliminarem el FIFO:
+4.  Eliminarem el FIFO:
 
-```sh
+``` sh
 rm fifo_example
 ```
 :::
 
-
 ## Exemple: Comunicació amb FIFOS (C)
 
-```c
+``` c
 mkfifo("fifo_example", 0666);
 
 // Process 1 (escriptor)
@@ -370,28 +375,31 @@ printf("Missatge rebut: %s\n", buffer);
 unlink("fifo_example");
 ```
 
-## Cua de missatges {.smaller}
-
-- Comunicació mitjançant pas de missatge de la llibreria IPC.
-- Mateixa màquina.
-- Identificació: indirecta amb identificador especial **idCua**.
-- Amb nom local.
-- Amb buffering.
-- Unidireccional.
-- Sincronització: bloquejant i no bloquejant.
-
-:::{.fragment}
-#### Operacions bàsiques:
-
-- `int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)`: Envia un missatge *msgp* de mida *msgz* a la cua *msgid*.
-
-- `ssize_t msgrcv(int msqid,void *msgp, size_t msgsz,long msgtyp,int msgflg)`: Rep un missatge de la cua *msgid* i el guarda a *msgp*.
+::: {.fragment .center-container}
+[lector_fifos.c](../code/03-communicate/src/lector_fifo.c) · [escriptor_fifos.c](../code/03-communicate/src/escriptor_fifo.c)
 :::
 
+## Cua de missatges {.smaller}
+
+-   Comunicació mitjançant pas de missatge de la llibreria IPC.
+-   Mateixa màquina.
+-   Identificació: indirecta amb identificador especial **idCua**.
+-   Amb nom local.
+-   Amb buffering.
+-   Unidireccional.
+-   Sincronització: bloquejant i no bloquejant.
+
+::: fragment
+#### Operacions bàsiques:
+
+-   `int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)`: Envia un missatge *msgp* de mida *msgz* a la cua *msgid*.
+
+-   `ssize_t msgrcv(int msqid,void *msgp, size_t msgsz,long msgtyp,int msgflg)`: Rep un missatge de la cua *msgid* i el guarda a *msgp*.
+:::
 
 ## Ex: Comunicació amb Cua de missatges (C) - Escriptor
 
-```c
+``` c
 struct message {
     long msg_type;
     char msg_text[100];
@@ -409,10 +417,13 @@ int main() {
 }
 ```
 
+::: {.fragment .center-container}
+[escriptor_msg.c](../code/03-communicate/src/escriptor_cua_misstages.c)
+:::
+
 ## Ex: Comunicació amb Cua de missatges (C) - Lector
 
-
-```c
+``` c
 struct message {
     long msg_type;
     char msg_text[100];
@@ -429,28 +440,33 @@ int main() {
 }
 ```
 
+::: {.fragment .center-container}
+[lector_msg.c](../code/03-communicate/src/lector_cua_misstages.c)
+:::
+
 ## Sockets {.smaller}
 
 Els **sockets** són eines fonamentals per a la comunicació entre processos a través d'una xarxa o dins del mateix ordinador. Poden utilitzar-se per a la comunicació mitjançant diferents protocols com *TCP/IP* o *UDP*.
 
-- **Comunicació a través de la xarxa o local**: Els sockets permeten la comunicació entre processos que poden estar en el mateix ordinador o en diferents ordinadors a través de la xarxa.
+-   **Comunicació a través de la xarxa o local**: Els sockets permeten la comunicació entre processos que poden estar en el mateix ordinador o en diferents ordinadors a través de la xarxa.
 
-- **Adreces**: Els sockets estan identificats per adreces, com les adreces IP per a la comunicació a través de xarxes o adreces locals per a comunicació dins del mateix ordinador.
+-   **Adreces**: Els sockets estan identificats per adreces, com les adreces IP per a la comunicació a través de xarxes o adreces locals per a comunicació dins del mateix ordinador.
 
-- **Protocols**: Els sockets poden utilitzar diferents protocols com TCP/IP o UDP, segons les necessitats de la comunicació.
+-   **Protocols**: Els sockets poden utilitzar diferents protocols com TCP/IP o UDP, segons les necessitats de la comunicació.
 
 ## Exemple: Comunicació amb Sockets
 
+::: {.center-container}
 ![](../figures/slides/03-comunicate/socket.png)
+:::
 
+## Ex: Comunicació amb Sockets (C) {.smaller}
 
-
-## Ex: Comunicació amb Sockets (C) 
-
-::: columns
+::::: columns
 ::: {.column width="50%"}
 #### Servidor
-```c
+
+``` c
 int sockfd, new_sock;
 struct sockaddr_in server_addr;
 struct  sockaddr_in new_addr;
@@ -466,11 +482,12 @@ new_sock = accept(sockfd,
 recv(new_sock, buffer, 100, 0);
 printf("Missatge rebut: %s\n", buffer);
 ```
-
 :::
+
 ::: {.column width="50%"}
 #### Client
-```c
+
+``` c
 int sockfd;
 struct sockaddr_in server_addr;
 char buffer[100];
@@ -483,19 +500,23 @@ send(sockfd,"Missatge des del client",
 strlen("Missatge des del client"), 0);
 ```
 :::
+:::::
+
+::: {.fragment .center-container}
+[client_socket.c](../code/03-communicate/src/client_sockets.c) · [server_socket.c](../code/03-communicate/src/server_sockets.c)
 :::
 
 ## Memòria compartida {.smaller}
 
 La comunicació mitjançant **memòria compartida** implica compartir una àrea de memòria entre diferents processos o fils d'execució d'un mateix procés. Aquest àrea de memòria és accessible per a tots els fils d'execució involucrats, permetent un accés directe i eficient a les dades compartides.
 
-* **Espai d'adreçament únic**: Fils d'execució d'un procés.
-* **Múltiples espai d'adreces**: Zones de Memòria que són accessibles per processos diferents.
-* *S'ha de controlar/sincronitzar* l'accés a les **dades compartides** per assegurar la consistència de les dades amb mecanismes com semàfors, mutex o candaus.
+-   **Espai d'adreçament únic**: Fils d'execució d'un procés.
+-   **Múltiples espai d'adreces**: Zones de Memòria que són accessibles per processos diferents.
+-   *S'ha de controlar/sincronitzar* l'accés a les **dades compartides** per assegurar la consistència de les dades amb mecanismes com semàfors, mutex o candaus.
 
 ## Ex: Comunicació amb Memòria Compartida (C)
 
-```c
+``` c
 key_t key = ftok("fitxer_clau", 'R');
 int shmid = shmget(key, 1024, 0666 | IPC_CREAT);
 char *shared_memory = (char *)shmat(shmid, (void *)0, 0);
@@ -511,29 +532,31 @@ shmdt((void *)shared_memory);
 shmctl(shmid, IPC_RMID, NULL);
 ```
 
-## Llibreries de Memòria compartida 
+## Llibreries de Memòria compartida
 
-- **pthread (POSIX Threads)**: És una interfície estàndard que facilita la creació i gestió de fils d'execució (threads) en C. Permet als processos tenir múltiples fils d'execució que comparteixen memòria i recursos.
+-   **pthread (POSIX Threads)**: És una interfície estàndard que facilita la creació i gestió de fils d'execució (threads) en C. Permet als processos tenir múltiples fils d'execució que comparteixen memòria i recursos.
 
-- **OpenMP**: És una API que facilita la programació paral·lela. Permet als desenvolupadors marcar parts del codi com a regions paral·leles, que s'executaran de forma concurrent en diferents fils d'execució.
+-   **OpenMP**: És una API que facilita la programació paral·lela. Permet als desenvolupadors marcar parts del codi com a regions paral·leles, que s'executaran de forma concurrent en diferents fils d'execució.
+
+::: {.fragment .center-container}
+[pthread_mc.c](../code/03-communicate/src/pthread_mc.c) · [openmp_mc.c](../code/03-communicate/src/openmp_mc.c)
+:::
 
 ## Comparació/Selecció de mecanismes de comunicació {.smaller}
 
-- **Fitxers**: Comunicació temporal de dades. No recomanat.
-- **Pipes**: Comunicació *unidireccional* entre processos amb un antecessor comú.
-- **FIFOS**: Comunicació *unidireccional* entre processos amb un antecessor comú.
-- **Cues de missatges**: Quan es necessita enviar missatges amb sincronització asíncrona i buffering.
-- **Sockets**: Comunicació a través de la xarxa o local.
-- **Memòria compartida**: Quan es necessita accedir ràpidament a dades compartides entre processos.
-
+-   **Fitxers**: Comunicació temporal de dades. No recomanat.
+-   **Pipes**: Comunicació *unidireccional* entre processos amb un antecessor comú.
+-   **FIFOS**: Comunicació *unidireccional* entre processos amb un antecessor comú.
+-   **Cues de missatges**: Quan es necessita enviar missatges amb sincronització asíncrona i buffering.
+-   **Sockets**: Comunicació a través de la xarxa o local.
+-   **Memòria compartida**: Quan es necessita accedir ràpidament a dades compartides entre processos.
 
 ## Això és tot per avui {.smaller}
 
 ::::: columns
 ::: {.column width="60%"}
 #### TAKE HOME MESSAGE
-
-
+La comunicació entre processos és essencial per a la coordinació i sincronització en sistemes operatius multiprogramats o distribuïts. Hi ha diversos mecanismes de comunicació, cadascun amb les seves pròpies característiques, avantatges i limitacions. La selecció del mecanisme adequat depèn de les necessitats específiques de l'aplicació, com la velocitat, la complexitat i l'escala de la comunicació requerida.
 :::
 
 ::: {.column width="40%"}

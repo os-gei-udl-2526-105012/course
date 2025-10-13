@@ -1,0 +1,1 @@
+../bin/lector_fifo & ../bin/escriptor_fifo
