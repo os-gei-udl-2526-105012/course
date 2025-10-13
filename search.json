@@ -2934,49 +2934,84 @@
     "href": "labs/05-procs/lab01.html",
     "title": "Laboratori 11: ohmy_sudo",
     "section": "",
-    "text": "Implementació simple de la comanda sudo."
+    "text": "Implementació simple de la comanda sudo.",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 03",
+      "Laboratori 11 · OhMySudo!"
+    ]
   },
   {
     "objectID": "labs/05-procs/lab01.html#objectiu",
     "href": "labs/05-procs/lab01.html#objectiu",
     "title": "Laboratori 11: ohmy_sudo",
     "section": "",
-    "text": "Implementació simple de la comanda sudo."
+    "text": "Implementació simple de la comanda sudo.",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 03",
+      "Laboratori 11 · OhMySudo!"
+    ]
   },
   {
     "objectID": "labs/05-procs/lab01.html#context",
     "href": "labs/05-procs/lab01.html#context",
     "title": "Laboratori 11: ohmy_sudo",
     "section": "Context",
-    "text": "Context\nLa comanda sudo permet als usuaris executar programes amb els privilegis de seguretat d’un altre usuari, per defecte l’usuari root. Per exemple:\nsudo cat /etc/shadow \n# mostra el contingut del fitxer /etc/shadow\ncat /etc/shadow\n# error de permís denegat"
+    "text": "Context\nLa comanda sudo permet als usuaris executar programes amb els privilegis de seguretat d’un altre usuari, per defecte l’usuari root. Per exemple:\nsudo cat /etc/shadow \n# mostra el contingut del fitxer /etc/shadow\ncat /etc/shadow\n# error de permís denegat",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 03",
+      "Laboratori 11 · OhMySudo!"
+    ]
   },
   {
     "objectID": "labs/05-procs/lab01.html#descripció-de-lactivitat",
     "href": "labs/05-procs/lab01.html#descripció-de-lactivitat",
     "title": "Laboratori 11: ohmy_sudo",
     "section": "Descripció de l’activitat",
-    "text": "Descripció de l’activitat\nImplementeu un programa anomenat ohmy_sudo que reprodueixi una funcionalitat bàsica de sudo. Es a dir, el programa ha de permetre a un usuari executar una comanda amb els privilegis de l’usuari root."
+    "text": "Descripció de l’activitat\nImplementeu un programa anomenat ohmy_sudo que reprodueixi una funcionalitat bàsica de sudo. Es a dir, el programa ha de permetre a un usuari executar una comanda amb els privilegis de l’usuari root.",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 03",
+      "Laboratori 11 · OhMySudo!"
+    ]
   },
   {
     "objectID": "labs/05-procs/lab01.html#permisos-a-linux",
     "href": "labs/05-procs/lab01.html#permisos-a-linux",
     "title": "Laboratori 11: ohmy_sudo",
     "section": "Permisos a Linux",
-    "text": "Permisos a Linux\nEls sistemes UNIX/Linux permet controlar QUI pot accedir als fitxers i directoris a través dels permisos. Hi ha tres tipus de permisos: lectura, escriptura i execució. Aquests permisos es poden assignar a tres tipus d’usuaris: owner, group i others.\n\nOwner: Usuari que ha creat el fitxer.\nGroup: Usuaris dels grups.\nOther: Qualsevol usuari del sistema.\n\nEls permisos es representen amb una cadena de 10 caràcters. El primer caràcter indica el tipus de fitxer (per exemple, - per a fitxers normals i d per a directoris). Els següents nou caràcters es divideixen en tres grups de tres caràcters cadascun, que representen els permisos per a l’owner, el group i els others, respectivament. Cada grup de tres caràcters pot contenir els següents caràcters:\n\nr: Permís de lectura.\nw: Permís d’escriptura.\nx: Permís d’execució.\n-: Permís denegat.\n\nPer exemple:\njordi@debianlab:~$ touch a.txt\njordi@debianlab:~$ ls -la a.txt\n-rw-r--r-- 1 jordi jordi 0 11 de jul.  11:26 a.txt\n\nL’usuari jordi és owner del fitxer a.txt i pot llegir/escriure però no executar.\nEls membres del grup jordi poden llegir el fitxer, però no escriure ni executar.\nIgual que la resta d’usuaris.\n\nPer a gestionar els permisos dels fitxers i directoris, utilitzarem la comanda chmod. Aquesta comanda ens permet canviar els permisos d’accés dels fitxers i directoris. La sintaxi de la comanda és la següent:\nchmod [qui] operació permisos fitxer\n\nAmb ls -la fitxer, podem veure els permisos actuals del fitxer.\nAmb chod +x fitxer, afegim el permís d’execució per a tots els usuaris (owner, grup i altres).\nAmb chmod -x fitxer, eliminem el permís d’execució per a tots els usuaris.\nAmb chmod o-r fitxer, eliminem el permís de lectura per a altres usuaris.\nAmb chmod g+w fitxer, afegim el permís d’escriptura per al grup.\nAmb chmod o+w fitxer, afegim el permís d’escriptura per a altres usuaris.\nAmb chmod a-w fitxer, eliminem el permís d’escriptura per a tots els usuaris (owner, grup i altres).\nAmb chmod +w fitxer, afegim el permís d’escriptura a tots els usuaris.\nAmb chmod -r fitxer, eliminem tots els permisos de lectura per a tots els usuaris.\n\nLa comanda chown ens permet canviar l’owner i el grup d’un fitxer o directori. La sintaxi de la comanda és la següent:\nchown [nou_owner][:nou_grup] fitxer\nA més dels permisos bàsics, Linux també permet assignar permisos especials als fitxers i directoris. Aquests permisos especials són:\n\nSetuid (SUID): Permet que un usuari executi un fitxer amb els privilegis de l’owner del fitxer. Aquest permís s’indica amb una s en lloc de la x en els permisos de l’owner. Per exemple, si un fitxer té els permisos -rwsr-xr-x, significa que qualsevol usuari que executi aquest fitxer ho farà amb els privilegis de l’owner del fitxer.\nSetgid (SGID): Permet que un usuari executi un fitxer amb els privilegis del grup del fitxer. Aquest permís s’indica amb una s en lloc de la x en els permisos del grup. Per exemple, si un fitxer té els permisos -rwxr-sr-x, significa que qualsevol usuari que executi aquest fitxer ho farà amb els privilegis del grup del fitxer.\nSticky bit: Permet que només l’owner d’un fitxer o directori pugui eliminar o renombrar els fitxers dins d’un directori. Aquest permís s’indica amb una t en lloc de la x en els permisos dels altres usuaris. Per exemple, si un directori té els permisos drwxrwxrwt, significa que qualsevol usuari pot crear fitxers dins d’aquest directori, però només l’owner dels fitxers pot eliminar-los o renombrar-los."
+    "text": "Permisos a Linux\nEls sistemes UNIX/Linux permet controlar QUI pot accedir als fitxers i directoris a través dels permisos. Hi ha tres tipus de permisos: lectura, escriptura i execució. Aquests permisos es poden assignar a tres tipus d’usuaris: owner, group i others.\n\nOwner: Usuari que ha creat el fitxer.\nGroup: Usuaris dels grups.\nOther: Qualsevol usuari del sistema.\n\nEls permisos es representen amb una cadena de 10 caràcters. El primer caràcter indica el tipus de fitxer (per exemple, - per a fitxers normals i d per a directoris). Els següents nou caràcters es divideixen en tres grups de tres caràcters cadascun, que representen els permisos per a l’owner, el group i els others, respectivament. Cada grup de tres caràcters pot contenir els següents caràcters:\n\nr: Permís de lectura.\nw: Permís d’escriptura.\nx: Permís d’execució.\n-: Permís denegat.\n\nPer exemple:\njordi@debianlab:~$ touch a.txt\njordi@debianlab:~$ ls -la a.txt\n-rw-r--r-- 1 jordi jordi 0 11 de jul.  11:26 a.txt\n\nL’usuari jordi és owner del fitxer a.txt i pot llegir/escriure però no executar.\nEls membres del grup jordi poden llegir el fitxer, però no escriure ni executar.\nIgual que la resta d’usuaris.\n\nPer a gestionar els permisos dels fitxers i directoris, utilitzarem la comanda chmod. Aquesta comanda ens permet canviar els permisos d’accés dels fitxers i directoris. La sintaxi de la comanda és la següent:\nchmod [qui] operació permisos fitxer\n\nAmb ls -la fitxer, podem veure els permisos actuals del fitxer.\nAmb chod +x fitxer, afegim el permís d’execució per a tots els usuaris (owner, grup i altres).\nAmb chmod -x fitxer, eliminem el permís d’execució per a tots els usuaris.\nAmb chmod o-r fitxer, eliminem el permís de lectura per a altres usuaris.\nAmb chmod g+w fitxer, afegim el permís d’escriptura per al grup.\nAmb chmod o+w fitxer, afegim el permís d’escriptura per a altres usuaris.\nAmb chmod a-w fitxer, eliminem el permís d’escriptura per a tots els usuaris (owner, grup i altres).\nAmb chmod +w fitxer, afegim el permís d’escriptura a tots els usuaris.\nAmb chmod -r fitxer, eliminem tots els permisos de lectura per a tots els usuaris.\n\nLa comanda chown ens permet canviar l’owner i el grup d’un fitxer o directori. La sintaxi de la comanda és la següent:\nchown [nou_owner][:nou_grup] fitxer\nA més dels permisos bàsics, Linux també permet assignar permisos especials als fitxers i directoris. Aquests permisos especials són:\n\nSetuid (SUID): Permet que un usuari executi un fitxer amb els privilegis de l’owner del fitxer. Aquest permís s’indica amb una s en lloc de la x en els permisos de l’owner. Per exemple, si un fitxer té els permisos -rwsr-xr-x, significa que qualsevol usuari que executi aquest fitxer ho farà amb els privilegis de l’owner del fitxer.\nSetgid (SGID): Permet que un usuari executi un fitxer amb els privilegis del grup del fitxer. Aquest permís s’indica amb una s en lloc de la x en els permisos del grup. Per exemple, si un fitxer té els permisos -rwxr-sr-x, significa que qualsevol usuari que executi aquest fitxer ho farà amb els privilegis del grup del fitxer.\nSticky bit: Permet que només l’owner d’un fitxer o directori pugui eliminar o renombrar els fitxers dins d’un directori. Aquest permís s’indica amb una t en lloc de la x en els permisos dels altres usuaris. Per exemple, si un directori té els permisos drwxrwxrwt, significa que qualsevol usuari pot crear fitxers dins d’aquest directori, però només l’owner dels fitxers pot eliminar-los o renombrar-los.",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 03",
+      "Laboratori 11 · OhMySudo!"
+    ]
   },
   {
     "objectID": "labs/05-procs/lab01.html#implementació",
     "href": "labs/05-procs/lab01.html#implementació",
     "title": "Laboratori 11: ohmy_sudo",
     "section": "Implementació",
-    "text": "Implementació\nImplementareu el programa ohmy_sudo en C basat en el següent esquelet:\n#include &lt;stdlib.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;unistd.h&gt;\n\nint main( int argc, char* argv[] ){\n    @TODO afegir codi\n    return 0;\n}\nActualizeu el fitxer Makefile per compilar el programa i executar-lo amb els permisos adequats.\nMakefile\nall: ohmy_sudo\n\nohmy_sudo: ohmy_sudo.o\n    gcc $&lt; -o $@\n\nohmy_sudo.o: ohmy_sudo.c\n    gcc -c $&lt; -o $@\n\nconfigure:\n    @TODO permissos\n\ntest:\n    useradd test\n    su test -c './ohmy_sudo whoami'\n    make configure\n    su test -c './ohmy_sudo whoami'\n    userdel test\n\nrun:\n    ./ohmy_sudo $(ARGS)\n\nclean:\n    rm ohmy_sudo.o ohmy_sudo"
+    "text": "Implementació\nImplementareu el programa ohmy_sudo en C basat en el següent esquelet:\n#include &lt;stdlib.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;unistd.h&gt;\n\nint main( int argc, char* argv[] ){\n    @TODO afegir codi\n    return 0;\n}\nActualizeu el fitxer Makefile per compilar el programa i executar-lo amb els permisos adequats.\nMakefile\nall: ohmy_sudo\n\nohmy_sudo: ohmy_sudo.o\n    gcc $&lt; -o $@\n\nohmy_sudo.o: ohmy_sudo.c\n    gcc -c $&lt; -o $@\n\nconfigure:\n    @TODO permissos\n\ntest:\n    useradd test\n    su test -c './ohmy_sudo whoami'\n    make configure\n    su test -c './ohmy_sudo whoami'\n    userdel test\n\nrun:\n    ./ohmy_sudo $(ARGS)\n\nclean:\n    rm ohmy_sudo.o ohmy_sudo",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 03",
+      "Laboratori 11 · OhMySudo!"
+    ]
   },
   {
     "objectID": "labs/05-procs/lab01.html#questions-de-reflexió",
     "href": "labs/05-procs/lab01.html#questions-de-reflexió",
     "title": "Laboratori 11: ohmy_sudo",
     "section": "Questions de reflexió",
-    "text": "Questions de reflexió\n\nQuina diferencia hi ha entre utilitzar un PATH absolut i un PATH relatiu per executar un programa?\nSi en el nostre entorn hi ha la variable LD_PRELOAD=/tmp/mylib.so, què passaria quan executés un programa?\nQuè recomanaries per evitar situacions no desitjades en l’execució de programes amb privilegis elevats?"
+    "text": "Questions de reflexió\n\nQuina diferencia hi ha entre utilitzar un PATH absolut i un PATH relatiu per executar un programa?\nSi en el nostre entorn hi ha la variable LD_PRELOAD=/tmp/mylib.so, què passaria quan executés un programa?\nQuè recomanaries per evitar situacions no desitjades en l’execució de programes amb privilegis elevats?",
+    "crumbs": [
+      "Laboratoris",
+      "Unitat 03",
+      "Laboratori 11 · OhMySudo!"
+    ]
   },
   {
     "objectID": "labs/03-syscalls/lab01.html",
