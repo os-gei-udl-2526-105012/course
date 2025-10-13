@@ -85,6 +85,10 @@ website:
                 text: Laboratori 9 · Programació de mòduls per al Kernel de Linux
               - href: ./labs/04-kernel/lab02.qmd
                 text: Laboratori 10 · Escalada de privilegis
+          - section: Unitat 03
+            contents:
+              - href: ./labs/05-procs/lab01.qmd
+                text: Laboratori 11 · OhMySudo!
               
       - section: Projectes
         contents:
