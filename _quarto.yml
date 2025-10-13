@@ -45,8 +45,12 @@ website:
             text: Unitat 02 · Crides a sistema
           - href: ./slides/03-procs.qmd
             text: Unitat 03 · Processos
+          - href: ./slides/03-create.qmd
+            text: Unitat 03 · Creació de processos
           - href: ./slides/03-signals.qmd
             text: Unitat 03 · Senyals
+          - href: ./slides/03-communicate.qmd
+            text: Unitat 03 · Comunicació entre processos
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
