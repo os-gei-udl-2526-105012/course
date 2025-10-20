@@ -51,6 +51,8 @@ website:
             text: Unitat 03 · Senyals
           - href: ./slides/03-communicate.qmd
             text: Unitat 03 · Comunicació entre processos
+          - href: ./slides/03-pipes.qmd
+            text: Unitat 03 · Pipes
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
@@ -112,6 +114,8 @@ website:
             contents:
               - href: ./activities/unit02/01-create.qmd
                 text: Exercici · Creació de processos
+              - href: ./activities/unit02/02-pipes.qmd
+                text: Exercici · Pipes i redireccions
 
 
   
