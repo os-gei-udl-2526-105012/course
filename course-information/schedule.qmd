@@ -23,6 +23,8 @@ A continuació es presenta un calendari complet dels temes, el contingut del cur
 | 5    | Teoria  |06/10/25    | **Unitat 03**: Creació de Processos   | [📖](../slides/03-create.html#prepare)   |   |  |     |    [👩🏻‍💻](../activities/unit02/01-create.qmd)    |
 | 5    | Teoria/Laboratori  |08/10/25    | **Unitat 03**: Senyals   |  [📖](../slides/03-signals.html#prepare) | [👩🏻‍💻](../notes/03-process.qmd) |  |      | 
 | 6    | Teoria/Laboratori  |13/10/25    | **Unitat 03**: Comunicació entre processos  | [📖](../slides/03-communicate.html#prepare)   |  | [📄](../labs/05-procs/lab01.qmd) |      |
+| 6    | Laboratori         |15/10/25    | Vaga general   |    |  |   |      |
+| 7    | Teoria/Laboratori  |20/10/25    | **Unitat 03**: Pipes   | [📖](../slides/03-pipes.html#prepare)   |  |  |      |
 
 
 ::: 

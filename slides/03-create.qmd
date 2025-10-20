@@ -186,7 +186,7 @@ A l'arquitectura x86, el registre **RAX** s'utilitza per emmagatzemar el valor d
 ## Gestió d'errors: `fork()` {.smaller}
 
 | Error | Descripció | Raons |
-|:----------------|:----------------|:--------------------------------------|
+|:-----------------|:-----------------|:-----------------------------------|
 | *EAGAIN* | S'han assolit els límits del sistema. | \- Límits de processos (**RLIMIT_NPROC**)<br>- Límits de fils (*threads-max*)<br>- Esgotament dels PIDs disponibles (*pid_max*)<br>- Límits de cgroup |
 | *ENOMEM* | Memòria del Kernel insuficient. | \- Escassetat de RAM o Swap<br>- Problemes amb els espais de noms PID |
 | *ENOSYS* | `fork()` no és compatible. | \- Maquinari sense unitat de gestió de memòria (*MMU*)<br>- SO no compatible amb `fork()` |
@@ -826,7 +826,7 @@ sequenceDiagram
 ## Orfes i Zombies {.smaller}
 
 | Escenari | Mecanisme del Nucli | Temps | Consequències |
-|-----------------|--------------------|-----------------|--------------------|
+|------------------|------------------|------------------|------------------|
 | **Pare Actiu** | Reté `task_struct` fins a `wait()` | Indefinit | \- Consumeix entrada a la taula de processos<br>- PID es manté ocupat |
 | **Pare Mort** | `reparent_to_init()` (PPID←1) | $\le 1$ ms | \- Init neteja en segon pla (`init` periodicament crida `wait()`) <br>- Alliberació asíncrona |
 | **Reinici del Sistema** | `kill(pid, SIGKILL)` | 0 | \- Alliberació forçada (via `do_exit()` global) <br>- Sense garantia d'estat |
