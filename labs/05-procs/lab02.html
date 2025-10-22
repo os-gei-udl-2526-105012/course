@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jordi Mateo Fornés">
 
-<title>Laboratori 1: Instal·lació de Debian 12 – SO - Fall 2025</title>
+<title>Escape Room entre processos amb Pipes – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -80,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab01.html">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/05-procs/lab01.html">Unitat 03</a></li><li class="breadcrumb-item"><a href="../../labs/05-procs/lab02.html">Laboratori 12 · Escape Room amb processos i pipes</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -219,13 +284,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Unitat 01</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
@@ -234,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../labs/01-introduction/lab01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</span></a>
   </div>
 </li>
@@ -307,13 +372,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Unitat 03</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../labs/05-procs/lab01.html" class="sidebar-item-text sidebar-link">
@@ -322,7 +387,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/05-procs/lab02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../labs/05-procs/lab02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Laboratori 12 · Escape Room amb processos i pipes</span></a>
   </div>
 </li>
@@ -437,27 +502,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En aquesta pàgina</h2>
    
   <ul>
-  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
-  <li><a href="#installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion" id="toc-installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion" class="nav-link" data-scroll-target="#installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion">Instal·lació del Hypervisor (VMWare Workstation Pro o VMWare Fusion)</a></li>
-  <li><a href="#descarrega-de-la-imatge-iso-de-debian-12.5.0" id="toc-descarrega-de-la-imatge-iso-de-debian-12.5.0" class="nav-link" data-scroll-target="#descarrega-de-la-imatge-iso-de-debian-12.5.0">Descarrega de la imatge ISO de Debian 12.5.0</a></li>
-  <li><a href="#configuració-de-la-màquina-virtual-amb-vmware" id="toc-configuració-de-la-màquina-virtual-amb-vmware" class="nav-link" data-scroll-target="#configuració-de-la-màquina-virtual-amb-vmware">Configuració de la màquina virtual amb VMWare</a></li>
-  <li><a href="#installació-del-sistema-operatiu" id="toc-installació-del-sistema-operatiu" class="nav-link" data-scroll-target="#installació-del-sistema-operatiu">Instal·lació del sistema operatiu</a></li>
-  <li><a href="#exercicis-adicionals" id="toc-exercicis-adicionals" class="nav-link" data-scroll-target="#exercicis-adicionals">Exercicis adicionals</a></li>
+  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">🎯 Objectius</a></li>
+  <li><a href="#descripció" id="toc-descripció" class="nav-link" data-scroll-target="#descripció">🏗️ Descripció</a></li>
+  <li><a href="#jugador.c" id="toc-jugador.c" class="nav-link" data-scroll-target="#jugador.c">🧩 <code>jugador.c</code></a></li>
+  <li><a href="#sala.c" id="toc-sala.c" class="nav-link" data-scroll-target="#sala.c">🧩 sala.c</a></li>
+  <li><a href="#extensió-ou-de-pasqua-amb-fifo" id="toc-extensió-ou-de-pasqua-amb-fifo" class="nav-link" data-scroll-target="#extensió-ou-de-pasqua-amb-fifo">🥚 Extensió: Ou de pasqua amb FIFO</a></li>
+  <li><a href="#makefile" id="toc-makefile" class="nav-link" data-scroll-target="#makefile">📄 Makefile</a></li>
+  <li><a href="#exercicis-addicionals" id="toc-exercicis-addicionals" class="nav-link" data-scroll-target="#exercicis-addicionals">📚 Exercicis addicionals</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab01.html">Laboratori 1 · Instal·lació i configuració d’un entorn Linux</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/05-procs/lab01.html">Unitat 03</a></li><li class="breadcrumb-item"><a href="../../labs/05-procs/lab02.html">Laboratori 12 · Escape Room amb processos i pipes</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Laboratori 1: Instal·lació de Debian 12</h1>
+<h1 class="title">Escape Room entre processos amb Pipes</h1>
+<p class="subtitle lead">Unitat 3 · Sistemes Operatius (SO)</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jordi Mateo Fornés </p>
+          </div>
+  </div>
     
   
     
@@ -469,220 +542,183 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="objectius" class="level2">
-<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
+<h2 class="anchored" data-anchor-id="objectius">🎯 Objectius</h2>
 <ul>
-<li>Instal·lar el programari de virtualització VMWare Workstation Pro o VMWare Fusion.</li>
-<li>Instal·lar una màquina virtual basada en un sistema operatiu Linux.</li>
+<li>Crear i gestionar processos fills amb <code>fork()</code>.</li>
+<li>Comunicar processos amb pipes i FIFOs.</li>
+<li>Utilitzar senyals (<code>SIGALRM</code>, <code>SIGUSR1</code>).</li>
+<li>Sincronitzar i finalitzar processos.</li>
 </ul>
 </section>
-<section id="installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion" class="level2">
-<h2 class="anchored" data-anchor-id="installació-del-hypervisor-vmware-workstation-pro-o-vmware-fusion">Instal·lació del Hypervisor (VMWare Workstation Pro o VMWare Fusion)</h2>
-<p>Aquestes instruccions et guiaran a través del procés per crear un compte a Broadcom i descarregar una de les versions gratuïtes de VMware Workstation Pro (per a Windows) o VMware Fusion (per a macOS).</p>
+<section id="descripció" class="level2">
+<h2 class="anchored" data-anchor-id="descripció">🏗️ Descripció</h2>
+<p>En aquest laboratori us proposem implementar un joc senzill d’Escape Room utilitzant processos i comunicació entre ells mitjançant pipes. Per fer-ho, haureu de crear un procés pare que gestioni la partida i diversos processos fills que representin els jugadors. La idea és que els jugadors intentin endevinar una clau secreta abans que s’acabi el temps.</p>
+<p><img src="../../figures/labs/04-escape/disseny.png" class="img-fluid"></p>
+<p>Per simplificar, la clau serà una cadena de 4 caràcters (per exemple, <strong>ABCD</strong>) i els jugadors generaran combinacions aleatòries fins a trobar la correcta o que s’acabi el temps.</p>
+<p>El programa acceptarà tres arguments:</p>
 <ol type="1">
-<li>Registra’t per a un compte gratuït a Broadcom: Per accedir a les descàrregues de programari de VMware, necessites un compte a la plataforma de Broadcom.
-<ul>
-<li><p>Dirigeix-te a la pàgina de registre de Broadcom: <a href="https://profile.broadcom.com/web/registration">https://profile.broadcom.com/web/registration</a></p></li>
-<li><p>Introdueix la teva adreça de correu electrònic, realitza la verificació de seguretat i fes clic a <em>Next</em> <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration.png" class="img-fluid"></p></li>
-<li><p>Introdueix el codi de verificació que has rebut al teu correu electrònic. Fes clic a <strong>Verify</strong> per continuar. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration-email.png" class="img-fluid"></p></li>
-<li><p>Completa el formulari de registre amb la teva informació personal i crea una contrasenya. Fes clic a <strong>Create Account</strong> per completar el registre. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration-form.png" class="img-fluid"></p></li>
-<li><p>Un cop completat el registre, visualitzaràs un missatge de registre correcte. I us demanarà si voleu completar el perfil. Seleccioneu, <strong>I will do it later</strong> per continuar. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-registration-complete.png" class="img-fluid"></p></li>
-</ul></li>
-<li>Accedeix a les descàrregues gratuïtes de VMware:
-<ul>
-<li><p>Ves a la pàgina de login de Broadcom: <a href="https://profile.broadcom.com/web/login">https://profile.broadcom.com/web/login</a></p></li>
-<li><p>Inicia sessió amb el teu correu electrònic i la contrasenya que has creat.</p></li>
-<li><p>Ves directament a la secció de descàrregues a <a href="https://support.broadcom.com/group/ecx/free-downloads">(https://support.broadcom.com/group/ecx/free-downloads)</a>. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-downloads.png" class="img-fluid"></p></li>
-<li><p>Selecciona VMware Workstation Pro o VMware Fusion segons el teu sistema operatiu (Windows o macOS). En el meu cas, utiltizo Mac, així que seleccionaré <strong>VMware Fusion</strong>.</p></li>
-<li><p>Seleccioneu la versió que voleu descarregar. En aquest cas, podem seleccionar la versió més recent. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-vmware-fusion-version.png" class="img-fluid"></p></li>
-<li><p>En la pàgina següent:</p>
-<ol type="1">
-<li>Fes clic a l’enllaç de termes i condicions per que s’activi el checkbox de l’acceptació.</li>
-<li>Acceptar els termes i condicions.</li>
-<li>Fes clic a descàrrega per començar a descarregar el fitxer d’instal·lació. <img src="../../figures/labs/01-introduction/lab01/vmware/broadcom-vmware-fusion-download.png" class="img-fluid"></li>
-</ol></li>
-</ul></li>
-<li>Instal·la VMware Workstation Pro o VMware Fusion.</li>
+<li>Temps màxim per a la partida (en segons).</li>
+<li>Nombre de jugadors (processos fills).</li>
+<li>Clau secreta (cadena de 4 caràcters).</li>
 </ol>
-</section>
-<section id="descarrega-de-la-imatge-iso-de-debian-12.5.0" class="level2">
-<h2 class="anchored" data-anchor-id="descarrega-de-la-imatge-iso-de-debian-12.5.0">Descarrega de la imatge ISO de Debian 12.5.0</h2>
+<p>El programa finalitzarà quan un jugador encerti la clau o quan s’acabi el temps.</p>
 <ol type="1">
-<li><p>Ves a la pàgina de descàrrega de Debian 12.5.0: <a href="https://get.debian.org/images/archive/12.5.0/">https://get.debian.org/images/archive/12.5.0/</a></p></li>
-<li><p>Selecciona la imatge ISO per a la teva arquitectura (amd64 o arm64). <strong>La majoria dels vostres ordinadors tenen processadors amd64 (Intel o AMD)</strong>. <em>Els processadors ARM són més comuns en dispositius mòbils i en els nous Mac amb xips M.</em></p></li>
-<li><p>Seleccioneu la carpeta <em>iso-cd</em>.</p></li>
-<li><p>Seleccioneu el fitxer <em>debian-12.5.0-x-netinst.iso</em>. On <em>x</em> és l’arquitectura del vostre sistema (amd64 o arm64).</p>
-<blockquote class="blockquote">
-<p>💡 <strong>Nota</strong>:</p>
-<p>La imatge <em>netinst</em> és una imatge d’instal·lació mínima que descarrega els paquets necessaris durant la instal·lació. Això permet personalitzar la instal·lació i seleccionar els paquets que voleu instal·lar.</p>
-</blockquote></li>
+<li><p>Els jugadors acertaran la clau enviant-la al procés pare mitjançant un pipe i guanyaran si ho aconsegueixen abans que s’acabi el temps.</p>
+<p><img src="../../figures/labs/04-escape/victoria.png" class="img-fluid"></p></li>
+<li><p>Si el temps s’esgota, el procés pare enviarà un senyal als processos fills per indicar que la partida ha acabat.</p>
+<p><img src="../../figures/labs/04-escape/derrota.png" class="img-fluid"></p></li>
 </ol>
+<p>A més, implementarem la lògica del <code>jugador</code> i del <code>sala</code> (pare) en fitxers separats. El pare (<code>sala.c</code>) esperarà la finalització dels seus fills (<code>jugador.c</code>) per acabar la partida.</p>
 </section>
-<section id="configuració-de-la-màquina-virtual-amb-vmware" class="level2">
-<h2 class="anchored" data-anchor-id="configuració-de-la-màquina-virtual-amb-vmware">Configuració de la màquina virtual amb VMWare</h2>
-<ol type="1">
-<li>Selecciona l’opció <code>Create a New Virtual Machine</code> a VMWare Workstation Pro o VMWare Fusion.</li>
-<li>Selecciona <em>Install from disc or image</em>. <img src="../../figures/labs/01-introduction/lab01/debian12/install-01.png" class="img-fluid" alt="Install from disc or image"></li>
-<li>Selecciona la imatge ISO de Debian 12. <img src="../../figures/labs/01-introduction/lab01/debian12/install-02.png" class="img-fluid" alt="Select ISO"></li>
-<li>Configura els recursos de la màquina virtual. <img src="../../figures/labs/01-introduction/lab01/debian12/install-03.png" class="img-fluid" alt="Configuració"></li>
-<li>Anomena la màquina virtual i selecciona la ubicació on es guardarà. Per exemple, podeu posar el nom <code>vm-curs0-debian12</code> i seleccionar una ubicació al vostre directori d’usuari.</li>
-</ol>
-</section>
-<section id="installació-del-sistema-operatiu" class="level2">
-<h2 class="anchored" data-anchor-id="installació-del-sistema-operatiu">Instal·lació del sistema operatiu</h2>
-<ol type="1">
-<li><p>Un cop iniciada la màquina virtual, podeu seleccionar la opció <strong>Install</strong> o bé <strong>Graphical install</strong>. <img src="../../figures/labs/01-introduction/lab01/debian12/install-04.png" class="img-fluid"></p>
-<p>En aquest tutoriral, seleccionarem la opció <strong>Graphical install</strong> per a una instal·lació més amigable. La principal diferència entre les dues opcions és l’entorn gràfic.</p></li>
-<li><p>Selecciona l’idioma d’instal·lació. <img src="../../figures/labs/01-introduction/lab01/debian12/install-05.png" class="img-fluid"></p>
-<p>Podeu seleccionar l’idioma que vulgueu per a la instal·lació. En aquest cas, seleccionarem l’idioma <strong>Català</strong>.</p></li>
-<li><p>Selecciona la ubicació geogràfica. <img src="../../figures/labs/01-introduction/lab01/debian12/install-06.png" class="img-fluid"></p>
-<p>En aquest cas, seleccionarem la ubicació <strong>Espanya</strong>.</p></li>
-<li><p>Selecciona la disposició del teclat. <img src="../../figures/labs/01-introduction/lab01/debian12/install-07.png" class="img-fluid"></p>
-<p>En aquest cas, seleccionarem la disposició de teclat <strong>Català</strong>. Això ens asegurarà un mapeig correcte del teclat.</p></li>
-<li><p>Espereu que el sistema carregui els components necessaris. <img src="../../figures/labs/01-introduction/lab01/debian12/install-08.png" class="img-fluid"></p></li>
-<li><p>Configura la xarxa.</p>
+<section id="jugador.c" class="level2">
+<h2 class="anchored" data-anchor-id="jugador.c">🧩 <code>jugador.c</code></h2>
+<p>El codi jugador el teniu a continuació amb algunes seccions marcades com a TODO que heu de completar. Si compileu i executeu el codi tal qual està ara, veureu que cada jugador escriu un missatge a la sortida estàndard indicant que ha entrat a la sala. Heu de completar el codi per generar la clau aleatòria i esperar el senyal de finalització. La vostra missió és completar les seccions marcades com a TODO.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;time.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;signal.h&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span><span class="al">TODO</span><span class="co">: Els misstges de log no han d'anar a stdout sinó a stderr</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> s<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    sprintf<span class="op">(</span>s<span class="op">,</span> <span class="st">"--- Jugador </span><span class="sc">%d</span><span class="st"> ha entrat a la sala</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">());</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    write<span class="op">(</span><span class="dv">1</span><span class="op">,</span> s<span class="op">,</span> strlen<span class="op">(</span>s<span class="op">));</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Gestionar senyal SIGUSR1 per acabar el procés</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> pass<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    srand<span class="op">(</span>time<span class="op">(</span>NULL<span class="op">)</span> <span class="op">+</span> getpid<span class="op">());</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Generar 4 caràcters aleatoris (per ex. 'A' + rand() % 26)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Enviar els caràcters al pare mitjançant pipe</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    sprintf<span class="op">(</span>s<span class="op">,</span> <span class="st">"--- La clau generada pel jugador </span><span class="sc">%d</span><span class="st"> és: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">(),</span> pass<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    write<span class="op">(</span><span class="dv">1</span><span class="op">,</span> s<span class="op">,</span> strlen<span class="op">(</span>s<span class="op">));</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span><span class="al">TODO</span><span class="co">: Esperar senyal de finalització (SIGUSR1)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquest codi s’executa aparentment bé, però amaga un error subtil: utilitza una variable no inicialitzada per imprimir la clau generada. Això pot provocar comportaments erràtics, valors aleatoris o fins i tot fallades d’execució segons l’estat de la memòria. Aquest tipus d’error és molt freqüent en programes amb punters i comunicació entre processos, i pot ser molt difícil de detectar només amb proves manuals.</p>
+<p>Per comprovar si el vostre programa pateix aquest problema, utilitzeu l’eina Valgrind, que permet rastrejar errors de memòria com:</p>
 <ul>
-<li>El primer pas és configurar el nom d’amfitrió o hostname. Aquest nom permet identificar de forma única el vostre sistema. Podeu deixar el nom per defecte o canviar-lo al vostre gust.</li>
+<li>Ús de variables no inicialitzades.</li>
+<li>Lectura o escriptura fora dels límits d’un buffer.</li>
+<li>Fuites de memòria (malloc sense free).</li>
+<li>Errors en la gestió de punters.</li>
 </ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-09.png" class="img-fluid"></p>
-<p>En aquest cas, hem canviat el nom d’amfitrió a <code>vm-curs0-debian12</code>, però podeu posar el nom que vulgeu com <code>debianlab</code>, etc.</p>
-<ul>
-<li>El segon pas és configurar el domini de la xarxa. Aquest pas el podeu deixar en blanc si no teniu un domini específic. O bé, podem utilitzar <code>.local</code> com a domini local per identicar que el servidor pertany a la xarxa local.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-10.png" class="img-fluid"></p></li>
-<li><p>Configura l’usuari administrador.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-11.png" class="img-fluid"></p>
-<p>En aquest punt, heu de tenir en compte que si no poseu cap contrasenya, es crearà l’usuari normal amb permisos de <code>sudo</code> i això us permetra executar comandes amb privilegis d’administrador.</p>
-<p>Si poseu una contrasenya, aquesta serà la contrasenya de l’usuari <code>root</code> i no es crearà un usuari normal amb permisos de <code>sudo</code>. I tampoc s’instal·larà el paquet <code>sudo</code>.</p>
-<blockquote class="blockquote">
-<p>⚠️ <strong>Compte</strong></p>
-<p>Com utilitzarem les màquines virtuals com a laboratoris de pràctiques, no cal que poseu una contrasenya molt segura. Podeu utilitzar una com a <code>1234</code>. Però, recordeu que en un entorn real, la seguretat és molt important i cal utilitzar contrasenyes segures.</p>
-</blockquote></li>
-<li><p>Configura un usuari normal.</p>
-<ul>
-<li>Nom complet: Podeu posar el vostre nom complet o el que vulgueu.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-12.png" class="img-fluid"></p>
-<ul>
-<li>Nom d’usuari: Podeu posar el vostre nom d’usuari o el que vulgueu.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-13.png" class="img-fluid"></p>
-<ul>
-<li>Contrasenya: El mateix que per l’usuari <code>root</code>.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-14.png" class="img-fluid"></p></li>
-<li><p>Configura la zona horària.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-15.png" class="img-fluid"></p>
-<p>En aquest cas, seleccionarem la zona horària de <strong>Madrid</strong>.</p></li>
-<li><p>Configura el disc dur.</p>
-<ul>
-<li>Particionament: En aquest curs, el tema del particionament no és molt important. Per tant, podeu fer servir la configuració per defecte més senzilla (<strong>Guiat - utilitzar el disc sencer</strong>). Aquesta configuració crearà les particions necessàries per a l’instal·lació del sistema.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-16.png" class="img-fluid"></p>
-<ul>
-<li>Selecciona el disc on instal·lar el sistema. En el meu cas, només tinc un disc virtual amb l’etiqueta <code>/dev/nvme0n1</code>. L’etiqueta indica el tipus de disc (NVMe) i el número de disc (1). Es possible tenir altres etiquetes com <code>/dev/sda</code> per discos SATA o <code>/dev/vda</code> per discos virtuals.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-17.png" class="img-fluid"></p>
-<ul>
-<li>Particions: Podeu seleccionar (<strong>Tots els fitxers en una partició</strong>) per simplificar la gestió i evitar problemes podeu seleccionar aquesta opció. Aquesta opció crearà una sola partició per a tot el sistema.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-18.png" class="img-fluid"></p>
-<ul>
-<li>Confirmeu els canvis. En aquest punt, el sistema crearà les particions necessàries:
-<ul>
-<li>La primera partició serà la partició <code>/boot</code> on es guardaran els fitxers per arrancar el sistema.</li>
-<li>La segona partició serà la partició <code>/</code> on es guardaran els fitxers del sistema.</li>
-<li>La tercera partició serà la partició de swap on es guardaran les dades de la memòria virtual.</li>
-</ul></li>
-</ul>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és la partició swap?</strong></p>
-<p>La <code>swap</code> és una partició especial que s’utilitza com a memòria virtual quan la memòria RAM s’omple. Aquesta partició permet alliberar memòria RAM i evitar que el sistema es bloquegi.</p>
-</blockquote>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-19.png" class="img-fluid"></p>
-<ul>
-<li>Escriu els canvis al disc.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-20.png" class="img-fluid"></p></li>
-<li><p>Espera que s’instal·li el sistema.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-21.png" class="img-fluid"></p></li>
-<li><p>Configura el gestor de paquets.</p>
-<ul>
-<li>Analitzar els discos de la instal·lació. Aquest pas permet seleccionar els discos on es troben els paquets d’instal·lació. Normalment, aquest pas no cal modificar-lo.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-22.png" class="img-fluid"></p>
-<ul>
-<li><p>Configura el gestor de paquets. En aquest cas, seleccionarem el servidor de paquets més proper a la nostra ubicació.</p>
-<ul>
-<li><p>Filtrar els servidors de paquets per ubicació. <img src="../../figures/labs/01-introduction/lab01/debian12/install-23.png" class="img-fluid"></p></li>
-<li><p>Seleccionar el servidor de paquets. <img src="../../figures/labs/01-introduction/lab01/debian12/install-24.png" class="img-fluid"></p></li>
-</ul>
-<blockquote class="blockquote">
-<p>👀 <strong>Nota</strong>:</p>
-<p>A vegades, els servidors de paquets poden estar saturats o no funcionar correctament. En aquest cas, podeu seleccionar un servidor alternatiu o provar més tard.</p>
-</blockquote></li>
-<li><p>Configura el proxy. Si esteu darrere d’un proxy, podeu configurar-lo en aquest pas.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-25.png" class="img-fluid"></p>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és un proxy?</strong></p>
-<p>Un proxy és un servidor intermediari entre el vostre sistema i Internet. Aquest servidor pot ser utilitzat per controlar l’accés a Internet, per protegir la vostra privacitat o per accelerar la connexió a Internet. Les peticions de connexió a Internet es fan a través del servidor proxy, que actua com a intermediari i reenvia les peticions al servidor de destinació. Per exemple, en una empresa, el proxy pot ser utilitzat per controlar l’accés a Internet dels empleats i protegir la xarxa interna de possibles amenaces.</p>
-</blockquote></li>
-</ul></li>
-<li><p>Espera que s’instal·lin els paquets.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-26.png" class="img-fluid"></p></li>
-<li><p>Configura el paquet <code>popularity-contest</code>.</p>
-<ul>
-<li>Aquest paquet permet enviar informació anònima sobre els paquets instal·lats al servidor de Debian per millorar la selecció de paquets i la qualitat dels paquets. Podeu seleccionar si voleu participar en aquest programa o no.</li>
-</ul>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-27.png" class="img-fluid"></p></li>
-<li><p>Selecció de programari. En aquest punt podeu seleccionar si voleu un servidor en mode text o amb interfície gràfica. També us permet seleccionar si voleu instal·lar els serveis web i ssh al servidor i finalment si voleu les utilitats estàndard del sistema. Seleccionarem el servidor en mode text, el servei SSH activat i les utilitats estàndard del sistema.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-28.png" class="img-fluid"></p>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és un servidor en mode text?</strong></p>
-<p>Un servidor en mode text és un servidor que no té una interfície gràfica. Això significa que tota la interacció amb el servidor es fa a través de la línia de comandes. Aquest tipus de servidor és molt comú en entorns de producció, ja que consumeix menys recursos i és més segur que un servidor amb interfície gràfica.</p>
-</blockquote>
-<hr>
-<blockquote class="blockquote">
-<p>ℹ️ <strong>Què és el servei SSH?</strong></p>
-<p>El servei SSH (Secure Shell) és un protocol de xifratament que permet connectar-se de forma segura a un servidor remot. Aquest servei és molt utilitzat per administrar servidors a distància, ja que permet accedir al servidor de forma segura i xifratada.</p>
-</blockquote></li>
-<li><p>Espera que s’instal·li el programari.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-29.png" class="img-fluid"></p></li>
-<li><p>Instal·la el gestor d’arrancada GRUB. <img src="../../figures/labs/01-introduction/lab01/debian12/install-30.png" class="img-fluid"></p></li>
-<li><p>Instal·lació acabada. Un cop finalitzada la instal·lació, el sistema es reiniciarà i podreu accedir al GRUB per seleccionar el sistema operatiu. <img src="../../figures/labs/01-introduction/lab01/debian12/install-31.png" class="img-fluid"></p></li>
-<li><p>El GRUB us permet accedir al sistema operatiu. En aquest cas, seleccionarem Debian GNU/Linux. La resta d’opcions les veurem més endavant en el curs.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-32.png" class="img-fluid"></p>
-<blockquote class="blockquote">
-<p>ℹ️ Què és el GRUB?</p>
-<p>El GRUB és un gestor d’arrencada que permet seleccionar el sistema operatiu que volem iniciar. Aquest gestor és molt útil en sistemes amb múltiples sistemes operatius o múltiples versions del mateix sistema operatiu.</p>
-</blockquote></li>
-<li><p>Inicieu sessió amb l’usuari i la contrasenya que heu configurat durant la instal·lació.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/debian12/install-33.png" class="img-fluid"></p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<p>Executeu el vostre programa amb Valgrind de la següent manera:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">valgrind</span> ./jugador</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A la sortida, Valgrind us indicarà exactament quina línia accedeix a memòria no inicialitzada o allibera memòria incorrectament.</p>
+<p>Per instal·lar Valgrind en sistemes basats en Debian o Ubuntu:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install valgrind</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Recomanació">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Alerta
+<span class="screen-reader-only">Alerta</span>Recomanació
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Quan escriviu la contrasenya, no es mostrarà cap caràcter a la pantalla. Això és normal en sistemes Unix/Linux per motius de seguretat. Simplement escriviu la contrasenya i premeu <strong>Enter</strong>.</p>
+<p>Durant tot el laboratori, executeu sempre el vostre codi amb Valgrind abans de donar-lo per bo. Un programa que funciona però genera errors de memòria no es considera correcte.</p>
 </div>
-</div></li>
-<li><p>Tanqueu la sessió amb la comanda <code>exit</code>.</p></li>
-<li><p>Inicieu sessió amb l’usuari <code>root</code> i la contrasenya que heu configurat durant la instal·lació.</p></li>
-</ol>
+</div>
 </section>
-<section id="exercicis-adicionals" class="level2">
-<h2 class="anchored" data-anchor-id="exercicis-adicionals">Exercicis adicionals</h2>
+<section id="sala.c" class="level2">
+<h2 class="anchored" data-anchor-id="sala.c">🧩 sala.c</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;signal.h&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;sys/types.h&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;sys/wait.h&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;errno.h&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>color_blue   <span class="op">=</span> <span class="st">"</span><span class="sc">\033</span><span class="st">[01;34m"</span><span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>color_end    <span class="op">=</span> <span class="st">"</span><span class="sc">\033</span><span class="st">[00m"</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>color_red    <span class="op">=</span> <span class="st">"</span><span class="sc">\033</span><span class="st">[01;31m"</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>color_green  <span class="op">=</span> <span class="st">"</span><span class="sc">\033</span><span class="st">[01;32m"</span><span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>args<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="st">"jugador"</span><span class="op">,</span> <span class="st">"jugador"</span><span class="op">,</span> NULL<span class="op">};</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="al">TODO</span><span class="co">: Funcionalitat per gestionar l'alarma (SIGALRM)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> fd<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> s<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>pids<span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> tempsPartida<span class="op">,</span> numJugadors<span class="op">;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span>clau<span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>argc <span class="op">&lt;</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">"Ús: </span><span class="sc">%s</span><span class="st"> tempsPartida numJugadors clau</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> argv<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span><span class="al">TODO</span><span class="co">: Llegir arguments</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span><span class="al">TODO</span><span class="co">: Definir l'acció per a la senyal SIGALRM</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    sprintf<span class="op">(</span>s<span class="op">,</span> <span class="st">"Inici del Room Escape [</span><span class="sc">%d</span><span class="st">] (</span><span class="sc">%d</span><span class="st"> segons)</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> getpid<span class="op">(),</span> tempsPartida<span class="op">);</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    write<span class="op">(</span><span class="dv">1</span><span class="op">,</span> s<span class="op">,</span> strlen<span class="op">(</span>s<span class="op">));</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    sprintf<span class="op">(</span>s<span class="op">,</span> <span class="st">"--- Entren </span><span class="sc">%d</span><span class="st"> jugadors a la sala</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> numJugadors<span class="op">);</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    write<span class="op">(</span><span class="dv">1</span><span class="op">,</span> s<span class="op">,</span> strlen<span class="op">(</span>s<span class="op">));</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    sprintf<span class="op">(</span>s<span class="op">,</span> <span class="st">"--- La clau secreta és: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> clau<span class="op">);</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    write<span class="op">(</span><span class="dv">1</span><span class="op">,</span> s<span class="op">,</span> strlen<span class="op">(</span>s<span class="op">));</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* </span><span class="al">TODO</span><span class="co"> 2: Crear processos fills (jugadors) amb fork() */</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    alarm<span class="op">(</span>tempsPartida<span class="op">);</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span><span class="al">TODO</span><span class="co"> 3: Esperar respostes dels jugadors mitjançant pipe</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Si algun jugador encerta la clau, mostrar missatge de victòria i acabar</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span><span class="al">TODO</span><span class="co"> 5: Gestionar finalització en funció de si s'ha encertat la clau o ha sonat l'alarma</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co"> 6: Mostrar missatge final segons resultat</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="extensió-ou-de-pasqua-amb-fifo" class="level2">
+<h2 class="anchored" data-anchor-id="extensió-ou-de-pasqua-amb-fifo">🥚 Extensió: Ou de pasqua amb FIFO</h2>
+<p>Canvia el programa per utilitzar un FIFO en lloc d’un pipe. D’aquesta manera, un procés extern pot <em>ajudar</em> els jugadors enviant la clau correcta.</p>
+<ol type="1">
+<li>Crea un FIFO amb <code>mkfifo()</code>.</li>
+<li>Utilitza aquesta FIFO per escriure i llegir les claus generades pels jugadors enlloc del pipe.</li>
+<li>Allibera el FIFO al final del programa amb <code>unlink()</code>.</li>
+</ol>
+<p>Per testar el FIFO, pots utilitzar la comanda <code>echo</code> des d’un altre terminal per enviar la clau correcta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"AAAA"</span> <span class="op">&gt;</span> myfifo</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../../figures/labs/04-escape/fifos.png" class="img-fluid"></p>
+</section>
+<section id="makefile" class="level2">
+<h2 class="anchored" data-anchor-id="makefile">📄 Makefile</h2>
+<p>Prepareu un <code>Makefile</code> per compilar els fitxers <code>sala.c</code> i <code>jugador.c</code>. Permeteu compilar, netejar i executar el programa amb diferents paràmetres.</p>
+</section>
+<section id="exercicis-addicionals" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-addicionals">📚 Exercicis addicionals</h2>
+<ol type="1">
+<li><p>Canvia el missatge que envia cada jugador per una estructura amb punters:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    pid_t pid<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span>clau<span class="op">;</span>   </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> missatge_jugador<span class="op">;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Modifica el programa per permetre l’enviament de pistes als jugadors des del procés pare. Per exemple:</p>
 <ul>
-<li>Instal·leu altres màquines virtuals amb altres sistemes operatius en mode gràfic com:
-<ul>
-<li><a href="https://ubuntu.com/download/desktop">Ubuntu 24.04 LTS</a></li>
-<li><a href="https://getfedora.org/">Fedora 39</a></li>
+<li>Els jugadors poden enviar <code>SIGUSR2</code> per demanar una pista.</li>
+<li>El pare respondrà enviant un missatge pel pipe amb una pista. Per exemple, la primera lletra de la clau és ‘A’. Cada pista permet reduir l’espai de cerca. Únicament es poden donar <span class="math inline">\(n-1\)</span> pistes on <span class="math inline">\(n\)</span> és la longitud de la clau.</li>
 </ul></li>
-</ul>
+<li><p>Implementa un scape room competitiu on cada jugador és un procés independent que competeix per trobar la clau abans que els altres. Al final, de la partida, s’ha de mostrar un ranking amb el nombre d’intents i el temps emprat per cada jugador.</p></li>
+</ol>
 
 
 </section>

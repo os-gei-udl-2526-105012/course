@@ -290,7 +290,7 @@ Jordi Mateo Fornés
 <h2>Escriptura en les pipes</h2>
 <ul>
 <li class="fragment">L’escriptura a les <em>pipes</em> es realitza utilitzant la crida a sistema: <strong>write()</strong> o la funció <strong>fprintf()</strong>.</li>
-<li class="fragment">Si un procés <strong>escriu</strong> en un <em>pipe</em> que tingui el <strong>descriptor de lectura tancat</strong>, <strong><span class="alert">write() falla i s’envia un senyal SIGPIPE</span></strong>.</li>
+<li class="fragment">Si un procés <strong>escriu</strong> en un <em>pipe</em> que tingui el <strong>descriptor de lectura tancat</strong>, <span class="alert"><strong>write() falla i s’envia un senyal SIGPIPE</strong></span>.</li>
 <li class="fragment">Si un procés escriu <em>menys bytes</em> dels que admet el <em>pipe</em>, <strong>l’escriptura es realitza de forma atòmica</strong>.</li>
 <li class="fragment">Si s’intenta escriure sobre un <em>pipe</em> <strong>ple</strong>; <strong>el procés</strong> es queda <em>bloquejat</em> fins que el <em>pipe es buidi</em> <strong>(un altre procés ha llegit les dades)</strong> i <em>llavors s’acaba l’escriptura</em>.</li>
 </ul>
@@ -299,7 +299,7 @@ Jordi Mateo Fornés
 <h2>Lectura de les pipes</h2>
 <ul>
 <li class="fragment">La lectura dels <em>pipes</em> es fan mitjançant la crida a sistema: <strong>read()</strong> o la funció <strong>fscanf()</strong>.</li>
-<li class="fragment">Si un procés <strong>llegeix</strong> en un <em>pipe</em> que tingui el <strong>descriptor tancat</strong>, <strong><span class="alert">retorna un 0, indicant la condició de final de fitxer</span></strong>.</li>
+<li class="fragment">Si un procés <strong>llegeix</strong> en un <em>pipe</em> que tingui el <strong>descriptor tancat</strong>, <span class="alert"><strong>retorna un 0, indicant la condició de final de fitxer</strong></span>.</li>
 <li class="fragment">Si un procés <strong>llegeix</strong> d’un <strong>pipe</strong> <em>buit es bloqueja fins que les dades estiguin disponibles</em>.</li>
 <li class="fragment">Si un procés intenta <strong>llegir</strong> <em>més dades que les disponibles</em> en un pipe, <em>es llegeixen els disponibles i es retorna el nombre de bytes llegits</em>.</li>
 </ul>
@@ -455,7 +455,7 @@ Jordi Mateo Fornés
 <li class="fragment">El <em>procés 1</em> farà un <strong>recobriment de la comanda ls</strong> i l’<strong>executarà</strong>. Per defecte la comanda <em>ls</em> imprimeix per <em>stdout</em> el llistat de fitxers i directoris del directori actual.</li>
 <li class="fragment">En aquest cas <em>la pipe (|)</em> indica que <code>ls</code> no escriurà per <strong>stdout</strong> i ho farà per la <strong>pipe</strong>. D’aquesta manera no veurem el llista de fitxers a la terminal, seran enviats a la <em>pipe</em>.</li>
 <li class="fragment">El <em>procés 2</em> farà un <strong>recobriment de la comanda wc -l</strong>, aquesta comanda <em>compta el nombre de línies rebudes per</em> <strong>stdin</strong>. En aquest cas, com tenim la comanda precedida d’una pipe… El procés <em>redireccionarà</em> <strong>stdin</strong> a la <strong>pipe</strong>. Per tant, llegirà el contingut escrit per la comanda <code>ls</code>.</li>
-<li class="fragment">Per defecte la comanda <code>wc -l</code> escriu a <strong>stdout</strong>, com ara no hi ha cap més <strong>pipe</strong>. Aquesta sortida <strong><span class="alert">no es redirecciona</span></strong> i per tant únicament veurem el resultat per <strong>stdout</strong>. És a dir, el nombre de fitxers i directoris del directori actual.</li>
+<li class="fragment">Per defecte la comanda <code>wc -l</code> escriu a <strong>stdout</strong>, com ara no hi ha cap més <strong>pipe</strong>. Aquesta sortida <span class="alert"><strong>no es redirecciona</strong></span> i per tant únicament veurem el resultat per <strong>stdout</strong>. És a dir, el nombre de fitxers i directoris del directori actual.</li>
 </ul>
 </section>
 <section id="exemple-a-linux-ls-wc--l-iii" class="slide level2">
