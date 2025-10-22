@@ -91,6 +91,8 @@ website:
             contents:
               - href: ./labs/05-procs/lab01.qmd
                 text: Laboratori 11 · OhMySudo!
+              - href: ./labs/05-procs/lab02.qmd
+                text: Laboratori 12 · Escape Room amb processos i pipes
               
       - section: Projectes
         contents:
