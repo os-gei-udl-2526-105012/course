@@ -45,8 +45,14 @@ website:
             text: Unitat 02 · Crides a sistema
           - href: ./slides/03-procs.qmd
             text: Unitat 03 · Processos
+          - href: ./slides/03-create.qmd
+            text: Unitat 03 · Creació de processos
           - href: ./slides/03-signals.qmd
             text: Unitat 03 · Senyals
+          - href: ./slides/03-communicate.qmd
+            text: Unitat 03 · Comunicació entre processos
+          - href: ./slides/03-pipes.qmd
+            text: Unitat 03 · Pipes
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
@@ -81,6 +87,12 @@ website:
                 text: Laboratori 9 · Programació de mòduls per al Kernel de Linux
               - href: ./labs/04-kernel/lab02.qmd
                 text: Laboratori 10 · Escalada de privilegis
+          - section: Unitat 03
+            contents:
+              - href: ./labs/05-procs/lab01.qmd
+                text: Laboratori 11 · OhMySudo!
+              - href: ./labs/05-procs/lab02.qmd
+                text: Laboratori 12 · Escape Room amb processos i pipes
               
       - section: Projectes
         contents:
@@ -104,6 +116,8 @@ website:
             contents:
               - href: ./activities/unit02/01-create.qmd
                 text: Exercici · Creació de processos
+              - href: ./activities/unit02/02-pipes.qmd
+                text: Exercici · Pipes i redireccions
 
 
   

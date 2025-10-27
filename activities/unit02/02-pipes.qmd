@@ -1,0 +1,59 @@
+---
+title: Exercicis de Pipes en C
+description: Communicació de processos en C
+lang: ca
+---
+
+1. Volem implementar un programa en `C` que permeti generar bitllets de loteria de forma concurrent de la mateixa manera que als apunts [generador_loteria](../../notes/03-process.qmd), però aquesta vegada els processos fills han de comunicar els números generats al procés pare mitjançant una **pipe** en lloc de retornar-los com a codi de sortida.
+
+2. Analitza el programa següent i indica la evolució de la taula de descriptors oberts de cada fitxer. Explica què fa el programa.
+
+    ```c
+    #include <unistd.h>
+    #include <stdlib.h>
+    #include <stdio.h>
+    #include <string.h>
+    #include <signal.h>
+    #include <sys/wait.h>
+    #include <fcntl.h>
+
+    int main(){
+        int fd;
+        int pipefd[2];
+        char msg[200];
+        char buffer[200];
+
+        fd = open("fitxer.txt", O_RDONLY);
+        pipe(pipefd);
+
+        if(fork() == 0){
+            close(1);
+            close(pipefd[0]);
+            write(4, "Hola", 4);
+            while(1);
+            exit(0);
+        }
+
+        else{
+            close(pipefd[1]);
+            read(pipefd[0], buffer, 4);
+            sprintf(msg, "PARE -> %s\n", buffer);
+            write(1, msg, strlen(msg));
+            wait(NULL);
+            exit(0);
+        }
+    }
+    ```
+
+3. Implementa amb `C` la comanda següent: `cat < /etc/passwd | grep root` utilitzant 2 fills i un pare. Per recobrir heu de fer servir obligatòriament les crides:
+
+   - `execlp("grep", "grep", "root", NULL)`
+   - `execlp("cat", "cat", NULL)`
+
+4. En el programa anterior el filtre és estàtic *root*, com podriam modificar el codi anterior per tenir un filtre dinàmic passat com a argument a l'execució del programa? Per exemple: `./prog root`.
+
+5. Implementa amb `C` el següent programa: `head -10 < infile | sort -n | tail -3 > outfile`.
+
+6. Implementa la multiplicació de matrius utilitzant processos i pipes. El procés pare ha de llegir dues matrius quadrades d'un fitxer d'entrada i crear un procés fill per a cada fila de la matriu resultat. Cada procés fill ha de calcular la fila corresponent de la matriu resultat i enviar-la al procés pare mitjançant una pipe. El procés pare ha de recollir totes les files i escriure la matriu resultat en un fitxer de sortida.
+
+7. Modifica l'exercici anterior per utilitzar pipes anònimes i nominals. Compara els dos mètodes en termes de complexitat i eficiència.
