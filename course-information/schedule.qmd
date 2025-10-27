@@ -26,6 +26,7 @@ A continuació es presenta un calendari complet dels temes, el contingut del cur
 | 6    | Laboratori         |15/10/25    | Vaga general   |    |  |   |      |
 | 7    | Teoria/Laboratori  |20/10/25    | **Unitat 03**: Pipes   | [📖](../slides/03-pipes.html#prepare)   |  |  |      |[👩🏻‍💻](../activities/unit02/02-pipes.qmd)
 | 7    | Laboratori  |20/10/25    | **Unitat 03**   |   | | [📄](../labs/05-procs/lab02.qmd)  |  |      |
+| 8    | Teoria  |27/10/25    | **Repàs**   |    |  |  |      |
 
 
 ::: 
