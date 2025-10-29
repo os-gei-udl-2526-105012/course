@@ -98,6 +98,8 @@ website:
         contents:
           - href: ./projects/project01.qmd
             text: Pràctica 01 · Manipulació de Cadenes de Caràcters en C
+          - href: ./projects/project02.qmd
+            text: Pràctica 02 · Implementació d'una Shell en C
       - section: Activitats
         contents:
           - section: Unitat 01

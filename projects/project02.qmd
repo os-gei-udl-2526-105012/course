@@ -70,7 +70,7 @@ Una shell ha de suportar dos modes d'entrada: interactiu i no interactiu.
   hola
   ```
 
-### 2. Implementació de comandes internces (built-ins)
+### 2. Implementació de comandes internes (built-ins)
 
 Implementa les següents comandes internes sense crear nous processos:
 
@@ -80,10 +80,12 @@ Implementa les següents comandes internes sense crear nous processos:
 - **`exit`**: Tanca la shell.
 - **`history`**: Mostra l’historial (màxim 100 línies, FIFO).
 
-Per implementar la comanda `history`, tens dues opcions:
+Per implementar la comanda history, tens dues opcions:
 
-1. Emmagatzemar les comandes en memòria utilitzant una llista enllaçada i volcar-les a un fitxer per fer-les persistents entre sessions. (avançat) `.ohmy_history`.
-2. Emmagatzemar les comandes en mèmoria utilitzant un punter a cadenes i volcar-les a un fitxer per fer-les persistents entre sessions. (bàsic) `.ohmy_history`.
+1. **Opció bàsica**: Emmagatzema les comandes en memòria utilitzant un punter a cadenes.
+2. **Opció avançada**: Emmagatzema les comandes en memòria mitjançant una llista enllaçada.
+
+En ambdues opcions, desa les comandes en un fitxer per mantenir-ne la persistència entre sessions (`.ohmy_history`) abans de sortir de la shell i carrega-les en iniciar-la.
 
 ### 2. Mode educatiu o debug
 
@@ -172,9 +174,9 @@ Les variables d'entorn s'han de gestionar correctament, permetent als usuaris es
 
 La shell ha de permetre als usuaris afegir comentaris a les línies de comandes utilitzant el caràcter `#`. Tot el que segueixi al caràcter `#` en una línia de comandes ha de ser ignorat per la shell.
 
-### BONUS: Extensió creativa (opcional)
+### BONUS
 
-Implementa almenys una de les següents funcionalitats addicionals per obtenir punts extra:
+Implementa almenys una de les següents funcionalitats addicionals per obtenir el bonus:
 
 - Configuració personalitzada del historial: Permet als usuaris configurar la mida màxima de l'historial i el fitxer on es desa.
   *Exemple*:
@@ -201,9 +203,9 @@ Per avaluar el projecte, es tindran en compte els següents aspectes:
 
 | Aspecte                        | Puntuació Màxima |
 |--------------------------------|------------------|
-| `Core`                         | 50               |
-| `Avançada`                     | 20               |
-| `Qualitat del codi`            | 10               |
+| `Core`                         | 40               |
+| `Avançada`                     | 30               |
+| `Qualitat del codi`            | 20               |
 | `Documentació`                 | 10               |
 | `Bonus`                        | 10               |
 
@@ -246,7 +248,7 @@ Per avaluar el projecte, es tindran en compte els següents aspectes:
 
 Aquesta pràctica és extensa i complexa, per això us recomano seguir la planificació proposada. Si feu una petita entrega cada setmana, us podré oferir feedback i tindreu l’oportunitat de corregir possibles errors abans de la data final de lliurament. Aquesta opció és voluntària; també podeu presentar la pràctica completa al final, segons el vostre ritme de treball.
 
-La nota d’aquesta pràctica tindrà un pes doble en la qualificació final, ja que equival a dues pràctiques en una i disposeu d’un mes per completar-la.
+La nota d’aquesta pràctica tindrà un **pes doble** (ponderada per 2), ja que equival a dues pràctiques en una i disposeu d’un mes per completar-la.
 
 ## ❓ Suport i Consultes
 
