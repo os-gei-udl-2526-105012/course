@@ -2195,14 +2195,14 @@
     "href": "course-information/schedule.html",
     "title": "Sistemes Operatius",
     "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs"
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs\n\n\n\n\n\n\n\n\n8\nTeoria\n29/10/25\nRepàs\n\n\n\n\n🔨"
   },
   {
     "objectID": "course-information/schedule.html#planificació",
     "href": "course-information/schedule.html#planificació",
     "title": "Sistemes Operatius",
     "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs"
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs\n\n\n\n\n\n\n\n\n8\nTeoria\n29/10/25\nRepàs\n\n\n\n\n🔨"
   },
   {
     "objectID": "labs/01-introduction/lab05.html",
@@ -2831,6 +2831,116 @@
     "crumbs": [
       "Projectes",
       "Pràctica 01 · Manipulació de Cadenes de Caràcters en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html",
+    "href": "projects/project02.html",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "",
+    "text": "La ohmy_shell és una minishell escrita en C que simula el comportament bàsic d’una shell Unix. Es tracta d’un projecte clàssic en molts cursos de Sistemes Operatius arreu del món. Per tant, és possible trobar implementacions similars a Internet, i fins i tot la intel·ligència artificial pot generar codi per ajudar-vos. Tot i així, implementar-la vosaltres mateixos us permetrà entendre el funcionament intern d’una shell real com bash o zsh.\nL’objectiu és escriure la vostra pròpia shell interactiva, gestionant manualment la memòria, el comportament dels operadors i la resposta davant errors. Acceptes el repte?\nPer començar, heu d’acceptar l’activitat del GitHub Classroom heu d’accedir a l’enllaç següent: Github Classroom. Un cop acceptada, el primer membre del grup assignarà un nom a l’equip i la resta de membres s’hi podran unir. Després, cada membre haurà de clonar el repositori al seu entorn local.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#objectius",
+    "href": "projects/project02.html#objectius",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "🎯 Objectius",
+    "text": "🎯 Objectius\n\nComprendre la creació i gestió de processos en entorns Unix mitjançant fork(), exec*(), pipe(), dup2(), waitpid(), open(), close().\nReconèixer i programar l’ús de descriptors de fitxer, pipes, redireccions i operadors lògics.\nDesenvolupar la gestió de senyals (SIGINT: Ctrl+C, SIGCHLD: reaprofitar processos fill).\nImplementar parsing: seqüència, pipes, condicions, execució en background.\nEvitar fugues de memòria i descriptors oberts.\nDiferenciar entre comandes internes (built-ins) i externes.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#entorn-de-desenvolupament",
+    "href": "projects/project02.html#entorn-de-desenvolupament",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "🛠️ Entorn de Desenvolupament",
+    "text": "🛠️ Entorn de Desenvolupament\n\nLlenguatge de programació: C (estàndard C99 o superior).\nCompilador: gcc.\nEina de construcció: make.\nVM amb Debian.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#estructura-del-projecte",
+    "href": "projects/project02.html#estructura-del-projecte",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "🗂️ Estructura del Projecte",
+    "text": "🗂️ Estructura del Projecte\nLa següent és l’estructura bàsica del projecte:\n├── build            \n├── include           \n│   ├── helpers.h\n│   └── log.h\n├── Makefile          \n├── README.md                  \n├── src  \n│   ├── helpers.c\n│   ├── log.c\n│   └── ohmy_shell.c                       \nLa llibreria helpers conté una implementació bàsica de funcions útils com la lectura i divisió de línies o la validació de caràcters. Podeu modificar-les o ampliar-les si cal, sempre amb justificació. No es pot canviar el tipus de retorn ni els paràmetres de les funcions existents.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#tasques-a-realitzar",
+    "href": "projects/project02.html#tasques-a-realitzar",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "📜 Tasques a realitzar",
+    "text": "📜 Tasques a realitzar\n\n1. Modes d’entrada: interactiu i no interactiu\nUna shell ha de suportar dos modes d’entrada: interactiu i no interactiu.\n\nMode interactiu: La shell mostra un prompt (ohmy_shell&gt;) i espera que l’usuari introdueixi comandes. Després d’executar cada comanda, torna a mostrar el prompt. Aquesta shell únicament ha de sortir quan l’usuari introdueixi la comanda exit o quan rebi un senyal d’aturada (com Ctrl+D) o la senyal SIGKILL.\n./ohmy_shell\nohmy_shell&gt; echo hola\nhola\nohmy_shell&gt; pwd\n/home/usuari\nohmy_shell&gt; exit\nMode no interactiu: La shell rep una comanda com a argument i l’executa directament sense mostrar cap prompt. Després d’executar la comanda, la shell ha de sortir immediatament.\n./ohmy_shell -c \"echo hola\"\nhola\n\n\n\n2. Implementació de comandes internes (built-ins)\nImplementa les següents comandes internes sense crear nous processos:\n\ncd: Canvia el directori; només s’executa si rep exactament un argument vàlid.\npwd: Mostra el directori actual.\nhelp: Mostra ajuda.\nexit: Tanca la shell.\nhistory: Mostra l’historial (màxim 100 línies, FIFO).\n\nPer implementar la comanda history, tens dues opcions:\n\nOpció bàsica: Emmagatzema les comandes en memòria utilitzant un punter a cadenes.\nOpció avançada: Emmagatzema les comandes en memòria mitjançant una llista enllaçada.\n\nEn ambdues opcions, desa les comandes en un fitxer per mantenir-ne la persistència entre sessions (.ohmy_history) abans de sortir de la shell i carrega-les en iniciar-la.\n\n\n2. Mode educatiu o debug\nImplementa un mode educatiu que s’activi amb l’opció -d en iniciar la shell. En aquest mode, la shell ha de mostrar informació detallada sobre cada pas de l’execució, permetent als usuaris comprendre millor el funcionament intern de la shell i facilitar la comprensió dels conceptes explicats en aquesta assignatura com pipes, fork(), exec(), redireccions, etc.\nExemple:\n./ohmy_shell -d\n12:00:00 DEBUG ohmy_shell.c:45: Starting shell in debug mode\nohmy_shell&gt; ls -la\n12:00:05 DEBUG ohmy_shell.c:78: Forking process for command 'ls -la'\n12:00:05 DEBUG ohmy_shell.c:85: Executing command 'ls -la' with PID 12345\n(total output of ls -la)\n12:00:06 DEBUG ohmy_shell.c:95: Command 'ls -la' completed with exit status 0\nohmy_shell&gt;\n\n\n3. Gestió de processos i execució\nLa shell ha de ser capaç de crear nous processos per executar comandes externes. La shell ha de permetre gestionar comandes simples en foreground i background.\n\nComandes en foreground: La shell ha d’esperar que la comanda acabi abans de tornar a mostrar el prompt.\nohmy_shell&gt; sleep 5\n(espera 5 segons)\nohmy_shell&gt;\nComandes en background: Si una comanda acaba amb &, la shell ha de crear un procés fill per executar la comanda en background i tornar immediatament el prompt a l’usuari sense esperar que la comanda acabi.\nohmy_shell&gt; sleep 10 &\n[1] 12345\nohmy_shell&gt;\nGestió d’operadors: Implementa els operadors &&, || i ; per permetre l’execució condicional i seqüencial de comandes.\nohmy_shell&gt; mkdir test && cd test\nohmy_shell&gt; false || echo \"La comanda ha fallat\"\nLa comanda ha fallat\nohmy_shell&gt; echo \"Primera comanda\"; echo \"Segona comanda\"\nPrimera comanda\nSegona comanda\nNota: La prioritat d’execució dels operadors és la següent: ; té la prioritat més baixa, seguit de && i || que tenen la mateixa prioritat i s’executen d’esquerra a dreta.\nGestió de senyals: La shell ha de gestionar correctament les senyals SIGINT (Ctrl+C) i SIGCHLD per evitar processos zombis.\n\nQuan l’usuari prem Ctrl+C, la shell ha de capturar la senyal i no tancar-se, sinó que ha de mostrar el prompt novament.\nQuan un procés fill acaba, la shell ha de capturar la senyal SIGCHLD i reaprofitar el procés fill per evitar processos zombis.\n\n\n\n\n4. Pipes i Redireccions\nLa shell ha de suportar l’ús de pipes (|) per connectar la sortida d’una comanda amb l’entrada d’una altra, així com redireccions d’entrada (&lt;), sortida (&gt;), i sortida en mode append (&gt;&gt;).\nExemple:\nohmy_shell&gt; cat fitxer.txt | grep \"cerca\"\n(Mostra línies del fitxer que contenen \"cerca\")\nohmy_shell&gt; echo \"hola\" &gt; out.txt\n(La sortida s'escriu a 'out.txt')\nohmy_shell&gt; echo \"més text\" &gt;&gt; out.txt\n(El text s'afegeix al final de 'out.txt')\nohmy_shell&gt; sort &lt; in.txt\n(Mostra el contingut de 'in.txt' ordenat)\n\n\n5. Variables d’entorn\nLa shell ha de permetre als usuaris establir i utilitzar variables d’entorn. Implementa la funcionalitat per assignar valors a variables i utilitzar-les en comandes.\nExemple:\nohmy_shell&gt; MYVAR=\"Hola Món\"\nohmy_shell&gt; echo $MYVAR\nHola Món\nLes variables d’entorn s’han de gestionar correctament, permetent als usuaris establir, modificar i eliminar variables segons sigui necessari. Aquestes variables s’hereten del procés del procés bash que ha iniciat l’aplicació ohmy_shell. Les variables no definides es tractaran com a cadenes buides.\n\n\n6. Comentaris a la línia de comandes\nLa shell ha de permetre als usuaris afegir comentaris a les línies de comandes utilitzant el caràcter #. Tot el que segueixi al caràcter # en una línia de comandes ha de ser ignorat per la shell.\n\n\nBONUS\nImplementa almenys una de les següents funcionalitats addicionals per obtenir el bonus:\n\nConfiguració personalitzada del historial: Permet als usuaris configurar la mida màxima de l’historial i el fitxer on es desa. Exemple:\nohmy_shell&gt; set_history_size 200\nohmy_shell&gt; set_history_file ~/.my_custom_history\nPermetre l’ús de comandes compostes amb parèntesis per agrupar comandes i controlar l’ordre d’execució. Exemple:\nohmy_shell&gt; (echo \"Inici\"; ls -la; echo \"Fi\")\nInici\n(sortida de ls -la)\nFi\nAutomatitza l’avaluació de la teva shell mitjançant un script de proves que verifiqui totes les funcionalitats implementades. L’script pot ser senzill i comparar la sortida esperada amb la sortida real de la shell en diversos casos de prova.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#avaluació-i-criteris-de-qualitat",
+    "href": "projects/project02.html#avaluació-i-criteris-de-qualitat",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "💯 Avaluació i Criteris de Qualitat",
+    "text": "💯 Avaluació i Criteris de Qualitat\nPer avaluar el projecte, es tindran en compte els següents aspectes:\n\n\n\nAspecte\nPuntuació Màxima\n\n\n\n\nCore\n40\n\n\nAvançada\n30\n\n\nQualitat del codi\n20\n\n\nDocumentació\n10\n\n\nBonus\n10\n\n\n\n\nCore: inclou la implementació d’una shell capaç d’executar comandes simples, gestionar processos en foreground i background, implementar les comandes internes especificades, i gestionar redireccions i pipes.\nAvançada: inclou l’ús d’operadors lògics (&&, ||, ;), variables d’entorn, comentaris, mode debug i historial de comandes.\nQualitat del codi: s’utilitzarà Valgrind i eines de linting per avaluar la qualitat del codi, assegurant que no hi hagi fugues de memòria, accessos fora de límits i que es segueixin les bones pràctiques de programació en C, com:\n\nNet i ben estructurat, evitant funcions repetides o codi duplicat innecessari.\nComentat adequadament, amb noms de variables descriptius.\nDocumentat segons estàndards com Doxygen (opcional però recomanat).\nÚs correcte i raonable del git amb commits clars i descriptius, gestió d’issues i generació de release amb la versió final del projecte.\n\nBonus: s’atorgarà per la implementació de funcionalitats addicionals com la configuració personalitzada de l’historial o l’ús de comandes compostes amb parèntesis.\nDocumentació: s’avaluarà la professionalitat i el contingut del fitxer README.md:\n\nCom compilar i executar el projecte.\nCom utilitzar-lo amb exemples en format video o imatges.\nDistribució de tasques entre els membres de l’equip (si escau).\nDisseny i arquitectura del projecte.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#prohibicions",
+    "href": "projects/project02.html#prohibicions",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "🚫 Prohibicions",
+    "text": "🚫 Prohibicions\n\nNo podeu utilitzar la funció system() per executar comandes externes, ni cap altre programa que realitzi la mateixa funció. Tota pràctica que no gestioni processos amb fork(), exec(), etc., serà considerada com a no realitzada.\nQualsevol instrucció no vista a classe s’ha de justificar. Si existeix alguna comanda vista a classe amb la mateixa finalitat i s’utilitza una altra, això suposarà una penalització de la nota. Totes les funcions de string.h així com de totes les llibreries que teniu incloses al projecte són permeses.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#planificació-i-versions",
+    "href": "projects/project02.html#planificació-i-versions",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "📅 Planificació i versions",
+    "text": "📅 Planificació i versions\n\n\n\n\n\n\n\n\nEntrega\nVersio\nContingut\n\n\n\n\n16-11-2025\n1.0\nImplementació bàsica de la shell amb built-in, comandes simples\n\n\n23-11-2025\n2.0\nPipes, redireccions, background\n\n\n30-11-2025\n3.0\nHistorial\n\n\n07-12-2025\n4.0\nOperadors lògics, variables d’entorn, comentaris, mode debug\n\n\n\nAquesta pràctica és extensa i complexa, per això us recomano seguir la planificació proposada. Si feu una petita entrega cada setmana, us podré oferir feedback i tindreu l’oportunitat de corregir possibles errors abans de la data final de lliurament. Aquesta opció és voluntària; també podeu presentar la pràctica completa al final, segons el vostre ritme de treball.\nLa nota d’aquesta pràctica tindrà un pes doble (ponderada per 2), ja que equival a dues pràctiques en una i disposeu d’un mes per completar-la.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#suport-i-consultes",
+    "href": "projects/project02.html#suport-i-consultes",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "❓ Suport i Consultes",
+    "text": "❓ Suport i Consultes\nHe creat un fòrum al Campus Virtual per resoldre dubtes i incidències relacionades amb aquesta pràctica. Us demano que utilitzeu aquest canal per centralitzar les consultes i evitar duplicitats en preguntes i respostes. També podeu ajudar a resoldre els dubtes dels companys: supervisaré totes les aportacions i corregiré qualsevol informació incorrecta si cal.",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
+    ]
+  },
+  {
+    "objectID": "projects/project02.html#lliurament",
+    "href": "projects/project02.html#lliurament",
+    "title": "Pràctica 02: Implementació d’una minishell ohmy_shell en C",
+    "section": "📦 Lliurament",
+    "text": "📦 Lliurament\n\nTot el projecte al repositori GitHub assignat.\nmake ha de compilar sense errors ni warnings.\nS’avaluarà només la branca principal (main o master).\n\nPer formalitzar el lliurament al Campus Virtual, copieu i enganxeu el text corresponent a la caixa de text de lliurament del Campus:\nIndividual o Grupal: [Indicar si és Individual o Grupal]\n&lt;Si Grupal&gt;\nMembres: [Llista de Noms, incloent el teu]\nTeam: [Nom del Team al Classroom]\n\n\nHappy Coding! 🚀",
+    "crumbs": [
+      "Projectes",
+      "Pràctica 02 · Implementació d'una Shell en C"
     ]
   },
   {
