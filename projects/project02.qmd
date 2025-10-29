@@ -1,0 +1,277 @@
+---
+title: "Pràctica 02: Implementació d'una minishell ohmy_shell en C"
+lang: ca
+---
+
+
+La `ohmy_shell` és una minishell escrita en C que simula el comportament bàsic d’una shell Unix. Es tracta d’un projecte clàssic en molts cursos de Sistemes Operatius arreu del món. Per tant, és possible trobar implementacions similars a Internet, i fins i tot la intel·ligència artificial pot generar codi per ajudar-vos. Tot i així, implementar-la vosaltres mateixos us permetrà entendre el funcionament intern d’una shell real com `bash` o `zsh`.
+
+L’objectiu és escriure la vostra pròpia shell interactiva, gestionant manualment la memòria, el comportament dels operadors i la resposta davant errors. **Acceptes el repte?**
+
+Per començar, heu d’acceptar l’activitat del GitHub Classroom heu d'accedir a l'enllaç següent: [Github Classroom](https://classroom.github.com/a/BuV7H_En). Un cop acceptada, el primer membre del grup assignarà un nom a l’equip i la resta de membres s’hi podran unir. Després, cada membre haurà de clonar el repositori al seu entorn local.
+
+## 🎯 Objectius
+
+- Comprendre la creació i gestió de processos en entorns Unix mitjançant `fork()`, `exec*()`, `pipe()`, `dup2()`, `waitpid()`, `open()`, `close()`.
+- Reconèixer i programar l’ús de descriptors de fitxer, pipes, redireccions i operadors lògics.
+- Desenvolupar la gestió de senyals (SIGINT: Ctrl+C, SIGCHLD: reaprofitar processos fill).
+- Implementar parsing: seqüència, pipes, condicions, execució en background.
+- Evitar fugues de memòria i descriptors oberts.
+- Diferenciar entre comandes internes (*built-ins*) i externes.
+
+## 🛠️ Entorn de Desenvolupament
+
+- Llenguatge de programació: C (estàndard C99 o superior).
+- Compilador: `gcc`.
+- Eina de construcció: `make`.
+- VM amb Debian.
+
+## 🗂️ Estructura del Projecte
+
+La següent és l'estructura bàsica del projecte:
+
+```bash
+├── build            
+├── include           
+│   ├── helpers.h
+│   └── log.h
+├── Makefile          
+├── README.md                  
+├── src  
+│   ├── helpers.c
+│   ├── log.c
+│   └── ohmy_shell.c                       
+
+```
+
+La llibreria helpers conté una implementació bàsica de funcions útils com la lectura i divisió de línies o la validació de caràcters. Podeu modificar-les o ampliar-les si cal, sempre amb justificació. **No es pot canviar el tipus de retorn ni els paràmetres de les funcions existents.**
+
+## 📜 Tasques a realitzar
+
+### 1. Modes d'entrada: interactiu i no interactiu
+
+Una shell ha de suportar dos modes d'entrada: interactiu i no interactiu.
+
+- **Mode interactiu**: La shell mostra un prompt (`ohmy_shell>`) i espera que l'usuari introdueixi comandes. Després d'executar cada comanda, torna a mostrar el prompt. Aquesta `shell` **únicament ha de sortir quan l'usuari introdueixi la comanda `exit`** o quan rebi un senyal d'aturada (com `Ctrl+D`) o la senyal `SIGKILL`.
+
+  ```bash
+  ./ohmy_shell
+  ohmy_shell> echo hola
+  hola
+  ohmy_shell> pwd
+  /home/usuari
+  ohmy_shell> exit
+  ```
+
+- **Mode no interactiu**: La shell rep una comanda com a argument i l'executa directament sense mostrar cap prompt. Després d'executar la comanda, la shell ha de sortir immediatament.
+
+  ```bash
+  ./ohmy_shell -c "echo hola"
+  hola
+  ```
+
+### 2. Implementació de comandes internces (built-ins)
+
+Implementa les següents comandes internes sense crear nous processos:
+
+- **`cd`**: Canvia el directori; només s’executa si rep exactament un argument vàlid.
+- **`pwd`**: Mostra el directori actual.
+- **`help`**: Mostra ajuda.
+- **`exit`**: Tanca la shell.
+- **`history`**: Mostra l’historial (màxim 100 línies, FIFO).
+
+Per implementar la comanda `history`, tens dues opcions:
+
+1. Emmagatzemar les comandes en memòria utilitzant una llista enllaçada i volcar-les a un fitxer per fer-les persistents entre sessions. (avançat) `.ohmy_history`.
+2. Emmagatzemar les comandes en mèmoria utilitzant un punter a cadenes i volcar-les a un fitxer per fer-les persistents entre sessions. (bàsic) `.ohmy_history`.
+
+### 2. Mode educatiu o debug
+
+Implementa un mode educatiu que s'activi amb l'opció `-d` en iniciar la shell. En aquest mode, la shell ha de mostrar informació detallada sobre cada pas de l'execució, permetent als usuaris comprendre millor el funcionament intern de la shell i facilitar la comprensió dels conceptes explicats en aquesta assignatura com `pipes`, `fork()`, `exec()`, `redireccions`, etc.
+
+*Exemple*:
+```bash
+./ohmy_shell -d
+12:00:00 DEBUG ohmy_shell.c:45: Starting shell in debug mode
+ohmy_shell> ls -la
+12:00:05 DEBUG ohmy_shell.c:78: Forking process for command 'ls -la'
+12:00:05 DEBUG ohmy_shell.c:85: Executing command 'ls -la' with PID 12345
+(total output of ls -la)
+12:00:06 DEBUG ohmy_shell.c:95: Command 'ls -la' completed with exit status 0
+ohmy_shell>
+```
+
+### 3. Gestió de processos i execució
+
+La shell ha de ser capaç de crear nous processos per executar comandes externes. La shell ha de permetre gestionar comandes simples en *foreground* i *background*.
+
+- **Comandes en foreground**: La shell ha d'esperar que la comanda acabi abans de tornar a mostrar el prompt.
+
+  ```bash
+  ohmy_shell> sleep 5
+  (espera 5 segons)
+  ohmy_shell>
+  ```
+
+- **Comandes en background**: Si una comanda acaba amb `&`, la shell ha de crear un procés fill per executar la comanda en background i tornar immediatament el prompt a l'usuari sense esperar que la comanda acabi.
+
+  ```bash
+  ohmy_shell> sleep 10 &
+  [1] 12345
+  ohmy_shell>
+  ```
+
+- **Gestió d'operadors**: Implementa els operadors `&&`, `||` i `;` per permetre l'execució condicional i seqüencial de comandes.
+
+  ```bash
+  ohmy_shell> mkdir test && cd test
+  ohmy_shell> false || echo "La comanda ha fallat"
+  La comanda ha fallat
+  ohmy_shell> echo "Primera comanda"; echo "Segona comanda"
+  Primera comanda
+  Segona comanda
+  ```
+
+  **Nota**: La prioritat d'execució dels operadors és la següent: `;` té la prioritat més baixa, seguit de `&&` i `||` que tenen la mateixa prioritat i s'executen d'esquerra a dreta.
+
+- **Gestió de senyals**: La shell ha de gestionar correctament les senyals `SIGINT` (Ctrl+C) i `SIGCHLD` per evitar processos zombis.
+
+  - Quan l'usuari prem `Ctrl+C`, la shell ha de capturar la senyal i no tancar-se, sinó que ha de mostrar el prompt novament.
+  - Quan un procés fill acaba, la shell ha de capturar la senyal `SIGCHLD` i reaprofitar el procés fill per evitar processos zombis.
+
+### 4. Pipes i Redireccions
+
+La shell ha de suportar l'ús de pipes (`|`) per connectar la sortida d'una comanda amb l'entrada d'una altra, així com redireccions d'entrada (`<`), sortida (`>`), i sortida en mode append (`>>`).
+
+*Exemple*:
+```bash
+ohmy_shell> cat fitxer.txt | grep "cerca"
+(Mostra línies del fitxer que contenen "cerca")
+ohmy_shell> echo "hola" > out.txt
+(La sortida s'escriu a 'out.txt')
+ohmy_shell> echo "més text" >> out.txt
+(El text s'afegeix al final de 'out.txt')
+ohmy_shell> sort < in.txt
+(Mostra el contingut de 'in.txt' ordenat)
+```
+
+### 5. Variables d'entorn
+
+La shell ha de permetre als usuaris establir i utilitzar variables d'entorn. Implementa la funcionalitat per assignar valors a variables i utilitzar-les en comandes.
+
+*Exemple*:
+```bash
+ohmy_shell> MYVAR="Hola Món"
+ohmy_shell> echo $MYVAR
+Hola Món
+```
+
+Les variables d'entorn s'han de gestionar correctament, permetent als usuaris establir, modificar i eliminar variables segons sigui necessari. Aquestes variables s’hereten del procés del procés `bash` que ha iniciat l'aplicació `ohmy_shell`. Les variables no definides es tractaran com a cadenes buides.
+
+### 6. Comentaris a la línia de comandes
+
+La shell ha de permetre als usuaris afegir comentaris a les línies de comandes utilitzant el caràcter `#`. Tot el que segueixi al caràcter `#` en una línia de comandes ha de ser ignorat per la shell.
+
+### BONUS: Extensió creativa (opcional)
+
+Implementa almenys una de les següents funcionalitats addicionals per obtenir punts extra:
+
+- Configuració personalitzada del historial: Permet als usuaris configurar la mida màxima de l'historial i el fitxer on es desa.
+  *Exemple*:
+  ```bash
+  ohmy_shell> set_history_size 200
+  ohmy_shell> set_history_file ~/.my_custom_history
+  ```
+
+- Permetre l'ús de comandes compostes amb parèntesis per agrupar comandes i controlar l'ordre d'execució.
+  *Exemple*:
+  ```bash
+  ohmy_shell> (echo "Inici"; ls -la; echo "Fi")
+  Inici
+  (sortida de ls -la)
+  Fi
+  ```
+
+- Automatitza l’avaluació de la teva shell mitjançant un script de proves que verifiqui totes les funcionalitats implementades. L’script pot ser senzill i comparar la sortida esperada amb la sortida real de la shell en diversos casos de prova.
+
+
+## 💯 Avaluació i Criteris de Qualitat
+
+Per avaluar el projecte, es tindran en compte els següents aspectes:
+
+| Aspecte                        | Puntuació Màxima |
+|--------------------------------|------------------|
+| `Core`                         | 50               |
+| `Avançada`                     | 20               |
+| `Qualitat del codi`            | 10               |
+| `Documentació`                 | 10               |
+| `Bonus`                        | 10               |
+
+
+- **Core**: inclou la implementació d’una shell capaç d’executar comandes simples, gestionar processos en foreground i background, implementar les comandes internes especificades, i gestionar redireccions i pipes.
+
+- **Avançada**: inclou l’ús d’operadors lògics (&&, ||, ;), variables d’entorn, comentaris, mode debug i historial de comandes.
+
+- **Qualitat del codi**: s’utilitzarà *Valgrind* i eines de linting per avaluar la qualitat del codi, assegurant que no hi hagi fugues de memòria, accessos fora de límits i que es segueixin les bones pràctiques de programació en C, com:
+
+  - Net i ben estructurat, evitant funcions repetides o codi duplicat innecessari.
+  - Comentat adequadament, amb noms de variables descriptius.
+  - Documentat segons estàndards com Doxygen (opcional però recomanat).
+  - Ús correcte i raonable del git amb commits clars i descriptius, gestió d’issues i generació de release amb la versió final del projecte.
+
+- **Bonus**: s’atorgarà per la implementació de funcionalitats addicionals com la configuració personalitzada de l’historial o l’ús de comandes compostes amb parèntesis.
+
+- **Documentació**: s’avaluarà la professionalitat i el contingut del fitxer `README.md`:
+
+  - Com compilar i executar el projecte.
+  - Com utilitzar-lo amb exemples en format video o imatges.
+  - Distribució de tasques entre els membres de l’equip (si escau).
+  - Disseny i arquitectura del projecte.
+
+## 🚫 Prohibicions
+
+- No podeu utilitzar la funció `system()` per executar comandes externes, ni cap altre programa que realitzi la mateixa funció. Tota pràctica que no gestioni processos amb `fork()`, `exec()`, etc., serà considerada com a no realitzada.
+
+- Qualsevol instrucció no vista a classe s’ha de justificar. Si existeix alguna comanda vista a classe amb la mateixa finalitat i s’utilitza una altra, això suposarà una penalització de la nota. Totes les funcions de `string.h` així com de totes les llibreries que teniu incloses al projecte són permeses.
+
+
+## 📅 Planificació i versions
+
+| Entrega    | Versio | Contingut                                   |
+|------------|--------|---------------------------------------------|
+| 16-11-2025 | 1.0    | Implementació bàsica de la shell amb **built-in**, comandes simples |
+| 23-11-2025 | 2.0    | Pipes, redireccions, background            |
+| 30-11-2025 | 3.0    | Historial |
+| 07-12-2025 | 4.0    | Operadors lògics, variables d'entorn, comentaris, mode debug |
+
+Aquesta pràctica és extensa i complexa, per això us recomano seguir la planificació proposada. Si feu una petita entrega cada setmana, us podré oferir feedback i tindreu l’oportunitat de corregir possibles errors abans de la data final de lliurament. Aquesta opció és voluntària; també podeu presentar la pràctica completa al final, segons el vostre ritme de treball.
+
+La nota d’aquesta pràctica tindrà un pes doble en la qualificació final, ja que equival a dues pràctiques en una i disposeu d’un mes per completar-la.
+
+## ❓ Suport i Consultes
+
+He creat un fòrum al Campus Virtual per resoldre dubtes i incidències relacionades amb aquesta pràctica. Us demano que utilitzeu aquest canal per centralitzar les consultes i evitar duplicitats en preguntes i respostes. També podeu ajudar a resoldre els dubtes dels companys: supervisaré totes les aportacions i corregiré qualsevol informació incorrecta si cal. 
+
+## 📦 Lliurament
+
+- Tot el projecte al repositori GitHub assignat.
+- `make` ha de compilar sense errors ni warnings.
+- S'avaluarà només la branca principal (`main` o `master`). 
+
+Per formalitzar el lliurament al Campus Virtual, copieu i enganxeu el text corresponent a la caixa de text de lliurament del Campus:
+
+```text
+Individual o Grupal: [Indicar si és Individual o Grupal]
+<Si Grupal>
+Membres: [Llista de Noms, incloent el teu]
+Team: [Nom del Team al Classroom]
+```
+
+---
+> Happy Coding! 🚀
+
+
+ 
+
+
+
