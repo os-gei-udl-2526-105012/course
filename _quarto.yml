@@ -15,15 +15,15 @@ website:
     logo-alt: "SO Logo"
     pinned: true
     tools:
-    - icon: house
-      href: "index.html"
-      text: "Home"
-    - icon: github
-      href: "https://github.com/os-gei-udl-2526-105012/course"
-      text: "GitHub organization"
-    - icon: person-fill
-      text: "Sakai"
-      href: "https://cv.udl.cat/"
+      - icon: house
+        href: "index.html"
+        text: "Home"
+      - icon: github
+        href: "https://github.com/os-gei-udl-2526-105012/course"
+        text: "GitHub organization"
+      - icon: person-fill
+        text: "Sakai"
+        href: "https://cv.udl.cat/"
 
     style: "docked"
     search: false
@@ -102,7 +102,19 @@ website:
 format:
   html:
     toc: true
+    theme:
+      light:
+        - cosmo
+        - brand
+      dark:
+        - custom-dark.scss
+        - brand
+    # Automatically detect system preference and allow user toggle
+    respect-user-color-scheme: true
+  revealjs:
     theme: 
-      - cosmo
-      - brand
-
+      - dark
+      - custom-dark-slides.scss
+    # Altres opcions per defecte per a les slides
+    transition: fade
+    slide-number: true

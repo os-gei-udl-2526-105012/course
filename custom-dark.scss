@@ -1,0 +1,111 @@
+/*-- scss:defaults --*/
+
+// Font configuration - Same as Cosmo theme
+$font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-monospace: "Source Code Pro", SFMono-Regular, Menlo, Monaco,
+  Consolas, "Liberation Mono", "Courier New", monospace !default;
+
+// Colors de fons - Pots personalitzar aquests valors
+$body-bg: #1a1a1a !default; // Fons principal (gairebé negre)
+$body-color: #dddddd !default; // Text principal (gris clar)
+
+// Colors de la sidebar
+$sidebar-bg: #1f1f1f !default; // Fons sidebar (més fosc)
+$sidebar-fg: #e0e0e0 !default; // Text sidebar
+
+// Colors d'enllaços
+$link-color: #85b9f4 !default; // Blau clar per enllaços
+$link-hover-color: #79c0ff !default; // Blau més clar al hover
+
+// Colors de codi
+$code-bg: #363636 !default; // Fons dels blocs de codi
+$code-color: #f0f0f0 !default; // Text del codi
+
+// Colors de les taules
+$table-bg: #1a1a1a !default;
+$table-border-color: #404040 !default;
+
+// Colors de les targetes/cards
+$card-bg: #242424 !default;
+$card-border-color: #404040 !default;
+
+// Colors dels botons
+$btn-bg: #2d2d2d !default;
+$btn-color: #e0e0e0 !default;
+
+/*-- scss:rules --*/
+
+// Estils addicionals personalitzats
+body {
+  background-color: $body-bg;
+  color: $body-color !important;
+}
+
+// Estil per als blocs de codi
+pre {
+  background-color: #1a1a1a !important; // Fons més fosc per als blocs de codi
+  border-radius: 4px;
+}
+
+// Forçar el fons fosc i sense border per als blocs de codi amb botó de copiar
+div.sourceCode {
+  background-color: #252525 !important;
+  border: none !important;
+}
+
+pre.sourceCode {
+  background-color: #252525 !important;
+}
+
+code {
+  background-color: $code-bg;
+  color: $code-color;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Millora de la sidebar
+.sidebar {
+  background-color: $body-bg;
+}
+
+.sidebar-navigation .sidebar-item {
+  color: $sidebar-fg;
+}
+
+// Millora de les taules
+table {
+  background-color: $table-bg;
+  border-color: $table-border-color;
+}
+
+thead {
+  background-color: #2d2d2d;
+}
+
+tbody tr:hover {
+  background-color: #242424;
+}
+
+// Millora dels blockquotes
+blockquote {
+  border-left: 4px solid #58a6ff;
+  background-color: #242424;
+  padding: 10px 15px;
+  color: $body-color !important;
+}
+
+// Fons gris clar per a les imatges (millora visibilitat d'imatges transparents)
+img {
+  background-color: #f6f6f6;
+  border-radius: 4px;
+}
+
+// Excepció per al logo de la sidebar
+.sidebar-logo img,
+img[src*="logo.png"] {
+  background-color: transparent !important;
+  padding: 0 !important;
+}

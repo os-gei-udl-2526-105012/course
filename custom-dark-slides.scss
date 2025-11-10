@@ -1,0 +1,20 @@
+/*-- scss:defaults --*/
+
+// Colors per a les slides
+$body-color: #dddddd !default;
+
+/*-- scss:rules --*/
+
+// Fons per a les imatges a les slides (millora visibilitat d'imatges transparents)
+.reveal img {
+  background-color: #f6f6f6;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+// Excepció per al logo
+.reveal img[src*="institute.png"],
+.reveal .slide-logo img {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
