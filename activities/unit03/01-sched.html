@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Laboratori 2: Configurant el meu entorn de desenvolupament amb VSCode – SO - Fall 2025</title>
+<title>Problemes bàsics de planificació de processos – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -103,6 +68,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -115,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab02.html">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit03/01-sched.html">Unitat 04</a></li><li class="breadcrumb-item"><a href="../../activities/unit03/01-sched.html">Exercici · Planificació de processos</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -251,22 +245,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Laboratoris</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Unitat 01</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../labs/01-lab-introduction.html" class="sidebar-item-text sidebar-link">
@@ -281,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../labs/01-introduction/lab02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</span></a>
   </div>
 </li>
@@ -396,13 +390,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Activitats</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
@@ -474,16 +468,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
  <span class="menu-text">Unitat 04</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../activities/unit03/01-sched.html" class="sidebar-item-text sidebar-link">
+  <a href="../../activities/unit03/01-sched.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exercici · Planificació de processos</span></a>
   </div>
 </li>
@@ -501,18 +495,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En aquesta pàgina</h2>
    
   <ul>
-  <li><a href="#objectius" id="toc-objectius" class="nav-link active" data-scroll-target="#objectius">Objectius</a></li>
-  <li><a href="#requisits-previs" id="toc-requisits-previs" class="nav-link" data-scroll-target="#requisits-previs">Requisits previs</a></li>
-  <li><a href="#configurant-vscode-per-connectar-se-a-la-màquina-virtual" id="toc-configurant-vscode-per-connectar-se-a-la-màquina-virtual" class="nav-link" data-scroll-target="#configurant-vscode-per-connectar-se-a-la-màquina-virtual">Configurant VSCode per connectar-se a la màquina virtual</a></li>
+  <li><a href="#problema-0" id="toc-problema-0" class="nav-link active" data-scroll-target="#problema-0">Problema 0</a></li>
+  <li><a href="#problema-1" id="toc-problema-1" class="nav-link" data-scroll-target="#problema-1">Problema 1</a></li>
+  <li><a href="#problema-2" id="toc-problema-2" class="nav-link" data-scroll-target="#problema-2">Problema 2</a></li>
+  <li><a href="#problema-3" id="toc-problema-3" class="nav-link" data-scroll-target="#problema-3">Problema 3</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Laboratoris</li><li class="breadcrumb-item"><a href="../../labs/01-lab-introduction.html">Unitat 01</a></li><li class="breadcrumb-item"><a href="../../labs/01-introduction/lab02.html">Laboratori 2 · Configurant el meu entorn de desenvolupament amb VSCode</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit03/01-sched.html">Unitat 04</a></li><li class="breadcrumb-item"><a href="../../activities/unit03/01-sched.html">Exercici · Planificació de processos</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Laboratori 2: Configurant el meu entorn de desenvolupament amb VSCode</h1>
+<h1 class="title">Problemes bàsics de planificació de processos</h1>
 </div>
 
 
@@ -529,84 +524,253 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objectius" class="level2">
-<h2 class="anchored" data-anchor-id="objectius">Objectius</h2>
+<p>En aquests problemes assumirem les següents convencions:</p>
 <ul>
-<li>Configurar el Visual Studio Code (VSCode) per connectar-se a la màquina virtual mitjançant SSH.</li>
+<li>El cost de canvi de context és de 0, si no s’indica el contrari.</li>
+<li>Els processos es poden trobar en el següents estats: <span style="color:blue">Preparat</span>, <span style="color:orange">Espera</span>, <span style="color:green">Execució</span> i <span style="color:red">Finalitzat</span>.</li>
+<li>Els processos poden fer E/S de forma simultània entre ells.</li>
 </ul>
-</section>
-<section id="requisits-previs" class="level2">
-<h2 class="anchored" data-anchor-id="requisits-previs">Requisits previs</h2>
-<ul>
-<li>Màquina virtual en funcionament (vegeu <a href="../../labs/01-introduction/lab01.html">Laboratori 1</a>).</li>
-<li>Visual Studio Code (VSCode) instal·lat al vostre ordinador. Podeu descarregar-lo des de <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>.</li>
-<li>Obtenir la IP de la màquina virtual. Per fer-ho, podeu:
-<ul>
-<li>Consultar la informació a VMWare: <img src="../../figures/labs/01-introduction/lab01/vmware/vmware-vm-ip.png" class="img-fluid"></li>
-<li>O bé, iniciar sessió a la màquina virtual i executar la comanda <code>ip a</code> per obtenir la IP: <img src="../../figures/labs/01-introduction/lab01/debian12/vm-ip.png" class="img-fluid"></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>En els dos casos, la IP de la màquina virtual és <strong>172.16.10.223</strong>.</p>
-</div>
-</div></li>
-</ul>
-</section>
-<section id="configurant-vscode-per-connectar-se-a-la-màquina-virtual" class="level2">
-<h2 class="anchored" data-anchor-id="configurant-vscode-per-connectar-se-a-la-màquina-virtual">Configurant VSCode per connectar-se a la màquina virtual</h2>
-<p>Un cop hagueu instal·lat el vostre entorn de desenvolupament (IDE), podeu afegir les següents extensions utilitzant el marketplace de VSCode: <strong>remote-ssh</strong>. Primer, feu clic a <strong>Marketplace (1)</strong>, després cerqueu <em>remote-ssh</em> i, finalment, feu clic a <strong>(3)</strong> per instal·lar la extensió. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/remote-ssh.png" class="img-fluid"></p>
-<p>Un cop hagueu instal·lat la extensió, ja podeu connectar-vos a la màquina virtual. Per fer-ho, feu clic a la icona de la part inferior esquerra <strong>(1)</strong> i seleccioneu l’opció <strong>Remote-SSH: Connect to Host… (2)</strong>. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/remote-ssh2.png" class="img-fluid"></p>
-<p>Ara apareixerà una finestra on podreu escriure la connexió SSH. També veureu l’opció <strong>Add a New SSH Host</strong>. Feu clic en aquesta opció i introduïu la comanda SSH per connectar-vos a la màquina virtual. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/add_new_host.png" class="img-fluid"></p>
-<p>Seleccioneu la primera opció del menú desplegable amb la ruta del vostre usuari i feu clic a <strong>Add</strong>. Consulteu la imatge:</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/select_config.png" class="img-fluid"></p>
-<p>i comproveu que l’amfitrió s’ha afegit correctament.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/host_added.png" class="img-fluid"></p>
-<p>Ara feu clic a <strong>Open Config</strong> i observeu que s’ha creat una nova entrada amb el vostre usuari i la IP de la màquina virtual:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> 172.16.10.223</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">HostName</span> 172.16.10.223</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">User</span> jordi</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Us recomano que modifiqueu el fitxer de configuració perquè sigui més fàcil de recordar. Per exemple, podeu canviar el nom de l’amfitrió per <strong>vm-curs0-debian12</strong> :</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> vm-curs0-debian12</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">HostName</span> 172.16.10.202</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">User</span> jordi</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Un cop hagueu modificat el fitxer de configuració, guardem-lo i tanquem-lo. Ara ja podeu connectar-vos a la màquina virtual <strong>vm-curs0-debian12</strong>. Per fer-ho:</p>
+<section id="problema-0" class="level2">
+<h2 class="anchored" data-anchor-id="problema-0">Problema 0</h2>
+<p>Assumeix que tens els següents processos:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 23%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Procés</th>
+<th>Temps arribada</th>
+<th>Ràfegues</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>0</td>
+<td><span class="math display">\[2_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>1</td>
+<td><span class="math display">\[6_{CPU}\]</span></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>4</td>
+<td><span class="math display">\[1_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>7</td>
+<td><span class="math display">\[4_{CPU}\]</span></td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>8</td>
+<td><span class="math display">\[3_{CPU}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Es demana:</p>
 <ol type="1">
-<li>Feu clic a la icona de la part inferior esquerra.</li>
-<li>Seleccioneu <strong>Remote-SSH: Connect to Host…</strong>.</li>
-<li>Seleccioneu <strong>vm-curs0-debian12</strong>:</li>
+<li>Mostrar la planificació dels processos en un diagrama de Gantt per l’algorisme <strong>FCFS</strong>, <strong>SRT</strong> i <strong>RR</strong> amb <strong>Q=1</strong>. Assumeix una sola CPU.</li>
 </ol>
+</section>
+<section id="problema-1" class="level2">
+<h2 class="anchored" data-anchor-id="problema-1">Problema 1</h2>
+<p>Realitza la planificació dels següents processos utilitzant els algorismes de planificació. En cas d’empat on 2 processos arribin a la cua de preparats al mateix temps, s’executarà el procés amb prioritat més elevada (<strong>1 és la prioritat més alta</strong>). Els algorismes a utilitzar són: a) <strong>FCFS amb 1 CPU</strong>, b) <strong>FCFS amb 2 CPUs</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 20%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Procés</th>
+<th>Prioritat</th>
+<th>Temps arribada</th>
+<th>Ràfegues</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>4</td>
+<td>3</td>
+<td><span class="math display">\[1_{CPU},4_{E/S},1_{CPU},5_{E/S},1_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>3</td>
+<td>0</td>
+<td><span class="math display">\[4_{CPU},1_{E/S},3_{CPU},1_{E/S},2_{CPU}\]</span></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>2</td>
+<td>1</td>
+<td><span class="math display">\[1_{CPU},5_{E/S},1_{CPU},1_{E/S},2_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>1</td>
+<td>2</td>
+<td><span class="math display">\[5_{CPU},2_{E/S},4_{CPU}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Es demana:</p>
+<ol type="1">
+<li>Mostrar la planificació dels processos en un diagrama de Gantt.</li>
+<li>Calcular totes les mètriques de planificació per a cada algorisme.</li>
+<li>Discuteix els avantatges o desavantages de la planificació, i avalua l’impacte de 1 o 2 CPUs.</li>
+</ol>
+</section>
+<section id="problema-2" class="level2">
+<h2 class="anchored" data-anchor-id="problema-2">Problema 2</h2>
+<p>Realitza la planificació dels següents processos utilitzant els algorismes de planificació. En cas d’empat on 2 processos arribin a la cua de preparats al mateix temps, s’executarà el procés amb prioritat més elevada (<strong>1 és la prioritat més alta</strong>). Els algorismes a utilitzar són: a) <strong>Round Robin Q=1 amb 1 CPU</strong>, b) <strong>Round Robin Q=3 amb 1 CPU</strong>, c) <strong>Round Robin Q=1 amb 2 CPUs</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 20%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Procés</th>
+<th>Prioritat</th>
+<th>Temps arribada</th>
+<th>Ràfegues</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>4</td>
+<td>3</td>
+<td><span class="math display">\[1_{CPU},4_{E/S},1_{CPU},5_{E/S},1_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>3</td>
+<td>0</td>
+<td><span class="math display">\[4_{CPU},1_{E/S},3_{CPU},1_{E/S},2_{CPU}\]</span></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>2</td>
+<td>4</td>
+<td><span class="math display">\[1_{CPU},5_{E/S},1_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>1</td>
+<td>2</td>
+<td><span class="math display">\[5_{CPU},2_{E/S},4_{CPU}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Es demana:</p>
+<ol type="1">
+<li>Mostrar la planificació dels processos en un diagrama de Gantt.</li>
+<li>Calcular totes les mètriques de planificació per a cada algorisme.</li>
+<li>Discuteix els avantatges o desavantages de la planificació, i avalua l’impacte de 1 o 2 CPUs i de diferents valors de <strong>quantum</strong>.</li>
+</ol>
+</section>
+<section id="problema-3" class="level2">
+<h2 class="anchored" data-anchor-id="problema-3">Problema 3</h2>
+<p>En un sistema amb 1 CPU s’executen els següents processos:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 17%">
+<col style="width: 11%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Procés</th>
+<th>Tipus</th>
+<th>Cua</th>
+<th>Temps arribada</th>
+<th>Prioritat</th>
+<th>Ràfegues</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>Temps real (prioritari)</td>
+<td>1</td>
+<td>5</td>
+<td>1</td>
+<td><span class="math display">\[1_{CPU},1_{E/S},2_{CPU},3_{CPU},1_{E/S} \]</span></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>Temps real</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td><span class="math display">\[2_{CPU},3_{E/S},1_{CPU},3_{E/S},1_{CPU}\]</span></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>InteractiU</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td><span class="math display">\[4_{CPU},4_{E/S},2_{CPU},2_{E/S},1_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>InteractiU</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td><span class="math display">\[1_{CPU},4_{E/S},3_{CPU},4_{E/S},2_{CPU}\]</span></td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>Batch</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td><span class="math display">\[2_{CPU},2_{E/S},4_{CPU},1_{E/S},2_{CPU}\]</span></td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>Batch</td>
+<td>3</td>
+<td>4</td>
+<td>6</td>
+<td><span class="math display">\[4_{CPU},1_{E/S},2_{CPU}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>El planificador disposa d’un algoritme de planificació a curt termini amb 3 cues multinivell:</p>
 <ul>
-<li>Us apareixerà una finestra emergent que us demanarà si voleu confiar en l’amfitrió. Feu clic a <strong>Continue</strong>. <img src="../../figures/labs/01-introduction/lab01/vscode/trust_host.png" class="img-fluid"></li>
-<li>Us apareixerà una altra finestra emergent que us demanarà la contrasenya de l’usuari <strong>jordi</strong>. <img src="../../figures/labs/01-introduction/lab01/vscode/enter_password.png" class="img-fluid"></li>
+<li>La cua 1 planifica els processos de temps real més prioritaris i utilitza un algoritme d’ordre d’arribada (FCFS). Aquesta cua és la més prioritària.</li>
+<li>La cua 2 planifica els processos de temps real i utilitza un algoritme de repartiment de temps (Round-Robin) amb quantum igual a 1 cicle. Aquesta cua és la segona més prioritària.</li>
+<li>La cua 3 planifica els processos d’usuari i utilitza un algoritme de repartiment de temps (Round-Robin) amb un quantum de 3 cicles. Aquesta cua és la tercera més prioritària.</li>
+<li>La cua 4 planifica els processos Batch i utilitza un algoritme SRT. Aquesta cua és la menys prioritària.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La primera vegada que us connecteu a la màquina virtual, VSCode instal·larà el servidor remot a la màquina virtual. Això pot trigar uns minuts.</p>
-</div>
-</div>
-<p>Un cop us hàgiu connectat, veureu que la finestra de VSCode ha canviat i que ara esteu treballant a la màquina virtual. Podeu comprovar-ho a la part inferior esquerra on apareix el nom de l’amfitrió <strong>vm-curs0-debian12</strong>.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/connected.png" class="img-fluid"></p>
-<p>Per comprovar que tot funciona correctament, podeu obrir una terminal integrada a VSCode i executar la comanda <code>uname -a</code> per veure la informació del sistema i comprovar que esteu a la màquina virtual.</p>
-<p><img src="../../figures/labs/01-introduction/lab01/vscode/terminal-linux.png" class="img-fluid"></p>
+<p>La planificació entre les cues segueix un algoritme prioritari, de manera que només es pot executar un procés d’una cua menys prioritària si no n’hi ha cap preparat a les cues més prioritàries. A més, els processos més prioritaris s’apropien immediatament del processador en el moment que poden executar-se.</p>
+<p>Per desfer empats entre els processos de la mateixa cua s’utilitzarà la seva prioritat (prioritat més alta 1 i prioritat més baixa 6).</p>
+<p>Es demana:</p>
+<ol type="1">
+<li>Realitzar la planificació dels processos i mostrar-la en un diagrama de Gantt.</li>
+<li>Calcular totes les mètriques de planificació per a cada procés.</li>
+<li>Analitzar l’impacte de la planificació multinivell en el rendiment del sistema.</li>
+</ol>
 
 
 </section>

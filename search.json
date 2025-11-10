@@ -232,378 +232,724 @@
     ]
   },
   {
-    "objectID": "activities/unit02/01-create.html",
-    "href": "activities/unit02/01-create.html",
-    "title": "Exercicis de Creació de processos en C",
+    "objectID": "activities/unit03/01-sched.html",
+    "href": "activities/unit03/01-sched.html",
+    "title": "Problemes bàsics de planificació de processos",
     "section": "",
-    "text": "Quants processos es creen en executar el següent codi i quina és la seqüència d’esdeveniments?\nfork();\nif (wait(st)&gt;0)\n    fork();\nexit();\nSolució:\nAquest codi crea 3 processos en total: el procés pare i dos processos fills. La seqüència d’esdeveniments és la següent:\n\n\n\n\n\n\n    sequenceDiagram\n        autonumber\n        participant P as Pare · PID 100\n        participant F1 as Fill1 · PID 101\n        participant F2 as Fill2 · PID 102\n\n        P-&gt;&gt;F1: fork → crea F1\n        P-&gt;&gt;P: wait bloquejat\n        F1-&gt;&gt;F1: wait retorna -1\n        F1-&gt;&gt;F1: exit \n        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101\n        P-&gt;&gt;F2: fork → crea F2\n        P-&gt;&gt;P: exit\n        F2-&gt;&gt;F2: exit\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEl valors del PID són només exemples i poden variar en cada execució.\n\n\n\nQuantes vegades s’imprimirà OS?\nint main(){\n    if(execel(\"bin/ls\",\"ls\",NULL) == -1){\n    perror(\"execl\");\n    }\n    printf(\"OS\\n\");\n    return 0;\n}\nQuantes vegades wait(st) retorna -1?\nid = fork();\nwait(st); //1\nif (id==0)\n    fork();\nwait(st); //2\nexit();\nSolució: En aquest cas, wait(st) retorna -1 3 vegades. La seqüència d’esdeveniments és la següent:\n\n\n\n\n\n\n    sequenceDiagram\n        autonumber\n        participant P as Pare · PID 100\n        participant F1 as Fill1 · PID 101\n        participant N1 as Net1 · PID 102\n\n        P-&gt;&gt;F1: fork → crea F1\n        P-&gt;&gt;P: wait bloquejat //1\n        F1-&gt;&gt;F1: wait retorna -1 //1\n        F1-&gt;&gt;N1: fork → crea N1\n        F1-&gt;&gt;F1: wait bloquejat //2\n        N1-&gt;&gt;N1: wait retorna -1 //2\n        N1-&gt;&gt;N1: exit\n        N1--&gt;&gt;F1: desbloqueja wait del PID 101, retorna 102\n        F1-&gt;&gt;F1: exit\n        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101\n        P--&gt;&gt;P: wait retorna -1 //2\n        P-&gt;&gt;P: exit\n\n\n\n\n\n\n\nQuantes vegades wait(st) retorna -1?\nid = fork();\nwait(st); //1\nif (id!=0)\n    fork();\nwait(st); //2\nexit();\nSolució: En aquest cas, wait(st) retorna -1 3 vegades. La seqüència d’esdeveniments és la següent:\n\n\n\n\n\n\n    sequenceDiagram\n        autonumber\n        participant P as Pare · PID 100\n        participant F1 as Fill1 · PID 101\n        participant F2 as Fill2 · PID 102\n\n        P-&gt;&gt;F1: fork → crea F1\n        P-&gt;&gt;P: wait bloquejat //1\n        F1-&gt;&gt;F1: wait retorna -1 //1\n        F1-&gt;&gt;F1: wait retorna -1 //2\n        F1-&gt;&gt;F1: exit\n        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101\n        P-&gt;&gt;F2: fork → crea F2\n        P-&gt;&gt;P: wait bloquejat //2\n        F2-&gt;&gt;F2: wait retorna -1 //2\n        F2-&gt;&gt;F2: exit\n        F2--&gt;&gt;P: desbloqueja wait del PID 100, retorna 102\n        P-&gt;&gt;P: exit\n\n\n\n\n\n\n\nAnalitza el següent codi i respon les preguntes:\nint main(void) {\n    int a = 1;\n    pid_t fork_ret = fork();\n    if (fork_ret &gt; 0) {\n        a++;\n        fprintf(stdout, \"Parent: int a is %d at %p\\n\", a, &a);\n        } else if (fork_ret == 0) { a++;}\n        fprintf(stdout, \"Child: int a is %d at %p\\n\", a, &a);\n    return 0;\n}\n\nQuin és el valor de a en el procés pare i en el procés fill?\nS’imprimirà la mateixa adreça de memòria per a a en el procés pare i en el procés fill?\nS’imprimirà a la mateixa sortida estàndard (STDOUT) en el procés pare i en el procés fill?\n\nAnalitza el següent codi i justifica quin serà el resultat de la seva execució:\nint main(void) {\n    int* stuff = malloc(sizeof(int));\n    *stuff = 5;\n    pid_t fork_ret = fork();\n    printf(\"The last digit of pi is %d\\n\", *stuff);\n    if (fork_ret == 0)\n        *stuff = 6;\n    return 0;\n}\nQuina és la sortida del següent codi?\nint main()\n{\n    switch(fork()){\n        case 0: printf(\"A\");\n                switch(fork()){\n                    case 0: printf(\"B\");exit(0);\n                    default: switch(fork()){\n                        case 0: printf(\"C\");exit(0);\n                        default: wait(&st);wait(&st);exit(0);\n                    }            \n                wait(&st);\n                }\n        default: wait(&st); exit(0);\n    }\n}\nIndiqueu quin és el resultat de l’execució del següent codi. Nombre de processos creats, parantiu, informació de stdout, procés zombi, etc.\n#define N 10\nint main()\n{\n    int pid = getpid();\n    for (int x=0; x&lt;N x++)\n    {\n        switch(fork())\n        {\n            case 0:\n                if ( (pid%2) == 0 )\n                    printf(\"Pid Fill: %d\\n\", getpid());\n                    exit(0); //3\n                break;\n\n            default:\n                if ( (pid%2) !== 0 )\n                    exit(0); //2\n                break;\n        }\n    }\n    wait(NULL);\n    exit(0); //1\n}\nSolució:\nEl comportament del codi depèn de si el pid del procés pare és parell o senar:\n\nCas parell:\n\n\n\n\n\n\n\n    sequenceDiagram\n    autonumber\n    participant P as Pare (PID parell)\n    participant F1 as Fill1\n    participant F2 as Fill2\n    participant Fx as ...\n    participant F10 as Fill10\n\n    P-&gt;&gt;F1: fork() crea Fill1\n    F1-&gt;&gt;F1: printf(\"Pid Fill: 101\") i exit() //3\n    P-&gt;&gt;F2: fork() crea Fill2\n    F2-&gt;&gt;F2: printf(\"Pid Fill: 102\") i exit() //3\n    P-&gt;&gt;Fx: fork() crea FillX\n    Fx-&gt;&gt;Fx: printf(\"Pid Fill: 10X\") i exit() //3\n    P-&gt;&gt;F10: fork() crea Fill10\n    F10-&gt;&gt;F10: printf(\"Pid Fill: 110\") i exit() //3\n    \n    P-&gt;&gt;P: wait()\n    Note over P,F10: Pare fa wait(NULL) al final i recull un fill\n    P-&gt;&gt;P: exit() //1\n\n\n\n\n\n\n\nEl procés pare crea 10 fills, un a cada iteració del bucle.\nEls fills acaben immediatament amb la crida a exit(0).\nEl pare, no fa cap wait() dins del bucle, per tant, els fills es converteixen en processos zombis temporals.\nEl pare únicament fa un wait() al final del bucle, per tant, el procés pare rebra la notificació de la finalització d’un fill i acabarà.\nTots els processos fills -1 acaben en estat zombi.\nTots els processos orfes fins que init els recull.\nCas senar:\n\n\n\n\n\n\n    sequenceDiagram\n    autonumber\n    participant P as Pare (PID senar)\n    participant F as Fill\n    participant N as Net\n    participant P10 as Pare 10e\n    participant F10 as Fill 10e\n\n    P-&gt;&gt;F: fork() crea Fill\n    P-&gt;&gt;P: exit() //2\n    F-&gt;&gt;N: fork() crea Net\n    F-&gt;&gt;F: exit() //2\n\n    P10-&gt;&gt;F10: fork() crea Fill 10e\n    P10-&gt;&gt;P10: exit() //2\n    F10-&gt;&gt;F10: surt del bucle\n    F10-&gt;&gt;F10: wait() retorna -1\n    F10-&gt;&gt;F10: exit()\n\n\n\n\n\n\n\nEn aquest cas, el pare acaba després de crear el primer fill.\nCada iteració del bucle, el nou pare (fill iteració anterior) crea un fill i acaba.\nEs creen 10 generacions a partir del pare: P -&gt; F -&gt; N -&gt; BN …\nCap pare fa cap wait(), per tant, tots els fills es converteixen en processos zombis.\nL’últim fill executarà el wait() i com no té fills, retornarà -1 i acabarà.\nTots els processos fills acaben en estat zombi temporal.\nTots els processos fills esdevenen orfes fins que init els recull.",
+    "text": "En aquests problemes assumirem les següents convencions:",
+    "crumbs": [
+      "Activitats",
+      "Unitat 04",
+      "Exercici · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "activities/unit03/01-sched.html#problema-0",
+    "href": "activities/unit03/01-sched.html#problema-0",
+    "title": "Problemes bàsics de planificació de processos",
+    "section": "Problema 0",
+    "text": "Problema 0\nAssumeix que tens els següents processos:\n\n\n\n\n\n\n\n\nProcés\nTemps arribada\nRàfegues\n\n\n\n\nA\n0\n\\[2_{CPU}\\]\n\n\nB\n1\n\\[6_{CPU}\\]\n\n\nC\n4\n\\[1_{CPU}\\]\n\n\nD\n7\n\\[4_{CPU}\\]\n\n\nE\n8\n\\[3_{CPU}\\]\n\n\n\nEs demana:\n\nMostrar la planificació dels processos en un diagrama de Gantt per l’algorisme FCFS, SRT i RR amb Q=1. Assumeix una sola CPU.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 04",
+      "Exercici · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "activities/unit03/01-sched.html#problema-1",
+    "href": "activities/unit03/01-sched.html#problema-1",
+    "title": "Problemes bàsics de planificació de processos",
+    "section": "Problema 1",
+    "text": "Problema 1\nRealitza la planificació dels següents processos utilitzant els algorismes de planificació. En cas d’empat on 2 processos arribin a la cua de preparats al mateix temps, s’executarà el procés amb prioritat més elevada (1 és la prioritat més alta). Els algorismes a utilitzar són: a) FCFS amb 1 CPU, b) FCFS amb 2 CPUs.\n\n\n\n\n\n\n\n\n\nProcés\nPrioritat\nTemps arribada\nRàfegues\n\n\n\n\nA\n4\n3\n\\[1_{CPU},4_{E/S},1_{CPU},5_{E/S},1_{CPU}\\]\n\n\nB\n3\n0\n\\[4_{CPU},1_{E/S},3_{CPU},1_{E/S},2_{CPU}\\]\n\n\nC\n2\n1\n\\[1_{CPU},5_{E/S},1_{CPU},1_{E/S},2_{CPU}\\]\n\n\nD\n1\n2\n\\[5_{CPU},2_{E/S},4_{CPU}\\]\n\n\n\nEs demana:\n\nMostrar la planificació dels processos en un diagrama de Gantt.\nCalcular totes les mètriques de planificació per a cada algorisme.\nDiscuteix els avantatges o desavantages de la planificació, i avalua l’impacte de 1 o 2 CPUs.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 04",
+      "Exercici · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "activities/unit03/01-sched.html#problema-2",
+    "href": "activities/unit03/01-sched.html#problema-2",
+    "title": "Problemes bàsics de planificació de processos",
+    "section": "Problema 2",
+    "text": "Problema 2\nRealitza la planificació dels següents processos utilitzant els algorismes de planificació. En cas d’empat on 2 processos arribin a la cua de preparats al mateix temps, s’executarà el procés amb prioritat més elevada (1 és la prioritat més alta). Els algorismes a utilitzar són: a) Round Robin Q=1 amb 1 CPU, b) Round Robin Q=3 amb 1 CPU, c) Round Robin Q=1 amb 2 CPUs.\n\n\n\n\n\n\n\n\n\nProcés\nPrioritat\nTemps arribada\nRàfegues\n\n\n\n\nA\n4\n3\n\\[1_{CPU},4_{E/S},1_{CPU},5_{E/S},1_{CPU}\\]\n\n\nB\n3\n0\n\\[4_{CPU},1_{E/S},3_{CPU},1_{E/S},2_{CPU}\\]\n\n\nC\n2\n4\n\\[1_{CPU},5_{E/S},1_{CPU}\\]\n\n\nD\n1\n2\n\\[5_{CPU},2_{E/S},4_{CPU}\\]\n\n\n\nEs demana:\n\nMostrar la planificació dels processos en un diagrama de Gantt.\nCalcular totes les mètriques de planificació per a cada algorisme.\nDiscuteix els avantatges o desavantages de la planificació, i avalua l’impacte de 1 o 2 CPUs i de diferents valors de quantum.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 04",
+      "Exercici · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "activities/unit03/01-sched.html#problema-3",
+    "href": "activities/unit03/01-sched.html#problema-3",
+    "title": "Problemes bàsics de planificació de processos",
+    "section": "Problema 3",
+    "text": "Problema 3\nEn un sistema amb 1 CPU s’executen els següents processos:\n\n\n\n\n\n\n\n\n\n\n\nProcés\nTipus\nCua\nTemps arribada\nPrioritat\nRàfegues\n\n\n\n\nA\nTemps real (prioritari)\n1\n5\n1\n\\[1_{CPU},1_{E/S},2_{CPU},3_{CPU},1_{E/S} \\]\n\n\nB\nTemps real\n1\n0\n2\n\\[2_{CPU},3_{E/S},1_{CPU},3_{E/S},1_{CPU}\\]\n\n\nC\nInteractiU\n2\n2\n3\n\\[4_{CPU},4_{E/S},2_{CPU},2_{E/S},1_{CPU}\\]\n\n\nD\nInteractiU\n2\n3\n4\n\\[1_{CPU},4_{E/S},3_{CPU},4_{E/S},2_{CPU}\\]\n\n\nE\nBatch\n3\n4\n5\n\\[2_{CPU},2_{E/S},4_{CPU},1_{E/S},2_{CPU}\\]\n\n\nF\nBatch\n3\n4\n6\n\\[4_{CPU},1_{E/S},2_{CPU}\\]\n\n\n\nEl planificador disposa d’un algoritme de planificació a curt termini amb 3 cues multinivell:\n\nLa cua 1 planifica els processos de temps real més prioritaris i utilitza un algoritme d’ordre d’arribada (FCFS). Aquesta cua és la més prioritària.\nLa cua 2 planifica els processos de temps real i utilitza un algoritme de repartiment de temps (Round-Robin) amb quantum igual a 1 cicle. Aquesta cua és la segona més prioritària.\nLa cua 3 planifica els processos d’usuari i utilitza un algoritme de repartiment de temps (Round-Robin) amb un quantum de 3 cicles. Aquesta cua és la tercera més prioritària.\nLa cua 4 planifica els processos Batch i utilitza un algoritme SRT. Aquesta cua és la menys prioritària.\n\nLa planificació entre les cues segueix un algoritme prioritari, de manera que només es pot executar un procés d’una cua menys prioritària si no n’hi ha cap preparat a les cues més prioritàries. A més, els processos més prioritaris s’apropien immediatament del processador en el moment que poden executar-se.\nPer desfer empats entre els processos de la mateixa cua s’utilitzarà la seva prioritat (prioritat més alta 1 i prioritat més baixa 6).\nEs demana:\n\nRealitzar la planificació dels processos i mostrar-la en un diagrama de Gantt.\nCalcular totes les mètriques de planificació per a cada procés.\nAnalitzar l’impacte de la planificació multinivell en el rendiment del sistema.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 04",
+      "Exercici · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "activities/unit02/02-pipes.html",
+    "href": "activities/unit02/02-pipes.html",
+    "title": "Exercicis de Pipes en C",
+    "section": "",
+    "text": "Volem implementar un programa en C que permeti generar bitllets de loteria de forma concurrent de la mateixa manera que als apunts generador_loteria, però aquesta vegada els processos fills han de comunicar els números generats al procés pare mitjançant una pipe en lloc de retornar-los com a codi de sortida.\nAnalitza el programa següent i indica la evolució de la taula de descriptors oberts de cada fitxer. Explica què fa el programa.\n#include &lt;unistd.h&gt;\n#include &lt;stdlib.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\n#include &lt;signal.h&gt;\n#include &lt;sys/wait.h&gt;\n#include &lt;fcntl.h&gt;\n\nint main(){\n    int fd;\n    int pipefd[2];\n    char msg[200];\n    char buffer[200];\n\n    fd = open(\"fitxer.txt\", O_RDONLY);\n    pipe(pipefd);\n\n    if(fork() == 0){\n        close(1);\n        close(pipefd[0]);\n        write(4, \"Hola\", 4);\n        while(1);\n        exit(0);\n    }\n\n    else{\n        close(pipefd[1]);\n        read(pipefd[0], buffer, 4);\n        sprintf(msg, \"PARE -&gt; %s\\n\", buffer);\n        write(1, msg, strlen(msg));\n        wait(NULL);\n        exit(0);\n    }\n}\nImplementa amb C la comanda següent: cat &lt; /etc/passwd | grep root utilitzant 2 fills i un pare. Per recobrir heu de fer servir obligatòriament les crides:\n\nexeclp(\"grep\", \"grep\", \"root\", NULL)\nexeclp(\"cat\", \"cat\", NULL)\n\nEn el programa anterior el filtre és estàtic root, com podriam modificar el codi anterior per tenir un filtre dinàmic passat com a argument a l’execució del programa? Per exemple: ./prog root.\nImplementa amb C el següent programa: head -10 &lt; infile | sort -n | tail -3 &gt; outfile.\nImplementa la multiplicació de matrius utilitzant processos i pipes. El procés pare ha de llegir dues matrius quadrades d’un fitxer d’entrada i crear un procés fill per a cada fila de la matriu resultat. Cada procés fill ha de calcular la fila corresponent de la matriu resultat i enviar-la al procés pare mitjançant una pipe. El procés pare ha de recollir totes les files i escriure la matriu resultat en un fitxer de sortida.\nModifica l’exercici anterior per utilitzar pipes anònimes i nominals. Compara els dos mètodes en termes de complexitat i eficiència.",
     "crumbs": [
       "Activitats",
       "Unitat 03",
-      "Exercici · Creació de processos"
+      "Exercici · Pipes i redireccions"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#repàs-de-gestió-de-processos",
-    "href": "slides/03-communicate.html#repàs-de-gestió-de-processos",
-    "title": "Comunicació de processos",
-    "section": "Repàs de gestió de processos",
-    "text": "Repàs de gestió de processos\necho \"Missatge enviat\" &gt; missatge.txt\n\n\n\n\n\n\n\n\nExercici\n\n\nImplementeu un programa en C que simuli aquest comportament.",
+    "objectID": "slides/04-sched.html#necessitat-dun-procés",
+    "href": "slides/04-sched.html#necessitat-dun-procés",
+    "title": "Planificació de processos",
+    "section": "Necessitat d’un procés",
+    "text": "Necessitat d’un procés\nEls processos presenten necessitats variades a l’hora d’utilitzar els recursos del sistema. En general, la majoria dels processos passen per cicles de burst, alternant entre períodes d’activitat intensiva d’ús del processador (CPU) i períodes d’activitat d’entrada/sortida (E/S).",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#comunicació-entre-processos-ipc",
-    "href": "slides/03-communicate.html#comunicació-entre-processos-ipc",
-    "title": "Comunicació de processos",
-    "section": "Comunicació entre processos (IPC)",
-    "text": "Comunicació entre processos (IPC)\nEn un sistema operatiu multiprogramat o distribuït, diversos processos s’executen concurrentment i sovint necessiten intercanviar dades, sincronitzar accions o compartir recursos. Aquest intercanvi s’anomena Inter-Process Communication (IPC).\n\nCoordinació i sincronització entre processos independents.\nTransferència d’informació sense accedir directament a l’espai d’adreces dels altres processos.\nCompartició controlada de recursos (fitxers, memòria, dispositius, sockets).",
+    "objectID": "slides/04-sched.html#situació-1-executant-un-procés",
+    "href": "slides/04-sched.html#situació-1-executant-un-procés",
+    "title": "Planificació de processos",
+    "section": "Situació 1: Executant un procés",
+    "text": "Situació 1: Executant un procés\n\n\n\nObrint el firefox\n\n\nAssumiu un sistema Linux on volem executar únicament Firefox, assumint que la resta de processos del sistema operatiu s’executen en un altre processador.\n\n\n\n\n\nAssumim un sistema operatiu amb un sol processador on un usuari vol executa el procés Firefox. En aquest escenari, el sistema operatiu ha de de gestionar la Memòria Principal, el Processador i el disc. Per fer-ho, l’usuari obre l’aplicació Firefox des de l’espai d’usuari i el sistema operatiu gestiona la seva execució en l’espai del nucli. Per simplificar, considerarem que tots els processos del sistema operatiu s’executen en un altre processador, i que el nucli del sistema operatiu no es veu afectat per la càrrega de treball de l’usuari.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#reptes-de-la-comunicació-ipc",
-    "href": "slides/03-communicate.html#reptes-de-la-comunicació-ipc",
-    "title": "Comunicació de processos",
-    "section": "Reptes de la comunicació (IPC)",
-    "text": "Reptes de la comunicació (IPC)\n\nCom es pot transferir la informació entre processos? Recorda que els processos operen en espais d’adreçes independents. Per tant, no poden accedir a la mateixa informació.\nCom es pot assegurar que dos processos no intentin accedir simultàniament a la mateixa informació? Imagina’t 2 processos executant una reserva en un avió i els dos processos assignen el mateix seient a dos passatgers diferents.\nCom es poden coordinar els processos dependents entre si? Imagina’t un procés que genera dades i un altre procés que les processa. El procés que processa les dades necessita esperar a que el procés que les genera les hagi generat totes.",
+    "objectID": "slides/04-sched.html#situació-1-accions-del-so",
+    "href": "slides/04-sched.html#situació-1-accions-del-so",
+    "title": "Planificació de processos",
+    "section": "Situació 1: Accions del SO",
+    "text": "Situació 1: Accions del SO\n\n\n\n\nResum\n\n\nEl SO (1) Carrega a Memòria Principal. (2) El planificador selecciona el procés. (3) Despatxa a la CPU. (4) L’usuari interactua amb l’aplicació.\n\n\n\n\nPer executar l’Aplicació 1 (APP1), el sistema operatiu realitza les següents accions:\n\nCarrega el procés (APP1) a la Memòria Principal. (Indicat amb el número 1 a la imatge)\nEl Planificador despatxa APP1 al Processador. (Pas conceptual que porta del número 2 al 3 a la imatge)\nL’usuari interactua amb APP1. (Representat a l’Espai Usuari amb el número 4)",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemples-de-comunicaciósincronització",
-    "href": "slides/03-communicate.html#exemples-de-comunicaciósincronització",
-    "title": "Comunicació de processos",
-    "section": "Exemples de comunicació/sincronització",
-    "text": "Exemples de comunicació/sincronització\n\nComunicació: Intercanvi d’informació.\n\n\ncat missatge.txt | grep \"e\"\n\n\nSincronització: Coordinació en l’accés als recursos i en l’ordre d’execució de les tasques.\n\n\necho \"hola1\"; echo \"adeu1\" && echo \"hola2\" || echo \"adeu2\"\n\n\n\nEl ; permet executar les comandes de forma seqüencial.\nEl && permet executar la segona comanda si la primera s’ha executat correctament.\nEl || permet executar la segona comanda si la primera no s’ha executat correctament.",
+    "objectID": "slides/04-sched.html#situació-1-execució-concurrent",
+    "href": "slides/04-sched.html#situació-1-execució-concurrent",
+    "title": "Planificació de processos",
+    "section": "Situació 1: Execució Concurrent",
+    "text": "Situació 1: Execució Concurrent\n\n\nImaginem ara que apareix una segona aplicació (APP2) mentre APP1 encara s’està executant o està a la memòria principal. En un sistema monoprogramat, APP2 hauria d’esperar que APP1 finalitzi per poder començar la seva execució.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#cat-missatge.txt-grep-e",
-    "href": "slides/03-communicate.html#cat-missatge.txt-grep-e",
-    "title": "Comunicació de processos",
-    "section": "cat < missatge.txt | grep \"e\"",
-    "text": "cat &lt; missatge.txt | grep \"e\"",
+    "objectID": "slides/04-sched.html#mono-vs.-multiprogramació",
+    "href": "slides/04-sched.html#mono-vs.-multiprogramació",
+    "title": "Planificació de processos",
+    "section": "Mono vs. Multiprogramació",
+    "text": "Mono vs. Multiprogramació\n\n\n\n\n\n\nQuè Succeeix?\n\n\nQuè passa en aquest escenari si el sistema operatiu és monoprogramat? I si és multiprogramat? Pensa en com es gestionarien APP1 i APP2 en cada cas.\n\n\n\n\n\nMonoprogramat: Només un procés a la memòria. APP2 ha d’esperar que APP1 acabi.\nMultiprogramat: Múltiples processos a la memòria. APP2 pot ser carregat i executat mentre APP1 està en espera o en execució.\n\n\n\nEn un sistema monoprogramat, fins que APP1 no finalitza, cap altra aplicació pot utilitzar el processador de manera activa. Per tant APP1 i APP2 no poden conviure en memòria de forma concurrent. En canvi, en un sistema multiprogramat si.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#esquema-de-la-comunicaciósincronització",
-    "href": "slides/03-communicate.html#esquema-de-la-comunicaciósincronització",
-    "title": "Comunicació de processos",
-    "section": "Esquema de la comunicació/sincronització",
-    "text": "Esquema de la comunicació/sincronització\n\n\nProcés 1\nwhile(!FiTasca1){\n  EsperarFiTasca1();\n}\n\nwhile(ExisteixTasca){\n  dades = FerTasca2();\n  EnviarMissatge(pid2,dades);\n}\n\nProcés 2\nRealitzarTasca1();\nAvisarTasca1Completada();\n\nwhile(ExisteixTasca){;\n  RebreMissatge(pid2, &dades);\n  RealitzarTasca(dades);\n}",
+    "objectID": "slides/04-sched.html#sistema-multiprogramat",
+    "href": "slides/04-sched.html#sistema-multiprogramat",
+    "title": "Planificació de processos",
+    "section": "Sistema Multiprogramat",
+    "text": "Sistema Multiprogramat\n\n\nEn un sistema operatiu multiprogramat, com els que utilitzem actualment, ambdues aplicacions (APP1 i APP2) es carreguen a la Memòria Principal, dins l’espai d’adreces de l’usuari.\nEl Planificador (representat amb el signe d’interrogació, indicant la seva decisió) utilitza un algorisme per decidir quin procés (APP1 o APP2) s’executarà al Processador en un moment donat.\nAquest procés de decisió es repeteix contínuament. Un procés pot sortir del processador i tornar a la Memòria Principal i un altre procés pot deixar la Memòria Principal per accedir al processador.\nD’aquesta manera, es crea la concurrència: ambdues aplicacions semblen executar-se alhora des de la perspectiva de l’usuari, permetent una utilització més eficient dels recursos del sistema i una millor experiència d’usuari.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-cua-dimpressió",
-    "href": "slides/03-communicate.html#exemple-cua-dimpressió",
-    "title": "Comunicació de processos",
-    "section": "Exemple: Cua d’impressió",
-    "text": "Exemple: Cua d’impressió\nAssumeix que un proces A vol imprimir un document:\n\nEl procés A ha d’introduir el nom del fitxer a imprimir en una cua d’impressió.\nEl servei d’impressió procés B de forma periòdica revisa la cua d’impressió i imprimeix els fitxers que hi ha en la cua.\n\n\nPer fer-ho, implementem una cua d’impressió amb dos variables una que apunta al següent slot a imprimir (out) i una al següent slot lliure (in).",
+    "objectID": "slides/04-sched.html#quin-és-lobjectiu-de-la-planificació",
+    "href": "slides/04-sched.html#quin-és-lobjectiu-de-la-planificació",
+    "title": "Planificació de processos",
+    "section": "Quin és l’objectiu de la planificació?",
+    "text": "Quin és l’objectiu de la planificació?\n\n\nCom que hi ha múltiples processos a memòria però la CPU només pot executar-ne un a la vegada, el sistema operatiu utilitza un algorisme de planificació per decidir:\n\n\nQuin procés s’executa (i quin espera).\nEn quin ordre s’assignen els recursos.\n\n\nMaximitzar l’ús dels recursos computacionals (CPU, memòria, disc, xarxa, etc.).\nMinimitzar el temps d’espera dels processos, garantint que els usuaris puguin executar tasques de manera eficient i ràpida.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-cua-dimpressió-1",
-    "href": "slides/03-communicate.html#exemple-cua-dimpressió-1",
-    "title": "Comunicació de processos",
-    "section": "Exemple: Cua d’impressió",
-    "text": "Exemple: Cua d’impressió\n\n\n\nEl procés A llegeix la variable in i escriu el valor 7 en una variable local (next_free_slot).\nEl SO interromp el procés A i executa el procés B.\nEl procés B llegeix la variable in i escriu el valor 7 en una variable local (next_free_slot).\nEl procés B col·loca un fitxer a la cua d’impressió al slot 7 i el servei d’impressió modifica les variables in i out.\nEl procés B realitza altres tasques no relacionades amb la cua d’impressió.\nEl SO interromp el procés B i executa el procés A. El procés A utilitza la seva variable local (next_free_slot) per a escriure el fitxer a la cua d’impressió. El fitxer s’escriu al slot 7, i també actualitza les variables in i out.\n\n\n\n\nEl procés B ha perdut la impressió del fitxer. El procés A l’ha sobrescrit.\nEl servei d’impressió no ha notat cap inconsistencia en les variables in i out.",
+    "objectID": "slides/04-sched.html#com-funciona-el-planificador",
+    "href": "slides/04-sched.html#com-funciona-el-planificador",
+    "title": "Planificació de processos",
+    "section": "Com funciona el planificador?",
+    "text": "Com funciona el planificador?\n\n\n\n\n\nclassDiagram\n    direction LR\n\n    class Scheduler {\n        +selectProcess() Process\n        +dispatch()\n        +handleInterrupt(Interrupció)\n    }\n\n    class ReadyQueue {\n        +enqueue(Process)\n        +dequeue() Process\n        +sortBy()\n        +processes: Process[]\n    }\n\n    class Process {\n        +pid: int\n        +priority: int\n        +state: ProcessState\n        +pcb: PCB\n        +execute()\n        +requestIO(IODevice)\n        +yield()\n    }\n\n    class PCB {\n        +context: Context\n        +memoryInfo: MemoryInfo\n        +ioInfo: IOInfo[]\n        +saveContext()\n        +loadContext()\n    }\n\n    class CPU {\n        +currentProcess: Process\n        +executeCycle()\n        +raiseInterrupt(Interrupció)\n    }\n\n    class IODevice {\n        +deviceId: int\n        +startIO(Process)\n        +completeIO(int eventId)\n    }\n\n    class Interrupció {\n        TIMER\n        IO_COMPLETION\n        SYSCALL\n        ERROR\n    }\n\n\n    Scheduler --&gt; ReadyQueue: selecciona\n    Scheduler --&gt; Despatxador: utilitza\n\n    Despatxador --&gt; CPU: controla\n    Despatxador --&gt; PCB: gestiona\n\n    ReadyQueue \"1\" --&gt; \"*\" Process: conté\n\n    CPU --&gt; Process: executa 0..1 \n    CPU --&gt; Interrupció: genera\n    CPU --&gt; Scheduler: notifica\n\n    IODevice --&gt; Process: bloqueja/desbloqueja\n    IODevice --&gt; Interrupció: genera\n    IODevice --&gt; Scheduler: notifica\n\n    Process --&gt; PCB: té\n    Process --&gt; CPU: s'executa\n    Process --&gt; IODevice: sol·licita",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#condicions-de-carrera",
-    "href": "slides/03-communicate.html#condicions-de-carrera",
-    "title": "Comunicació de processos",
-    "section": "Condicions de carrera",
-    "text": "Condicions de carrera\nLes condicions de carrera es produeixen quan dos o més processos o fils d’execució intenten accedir simultàniament a recursos compartits o a dades sense la deguda sincronització.\n\nProblemes\nPoden conduir a resultats inesperats o incorrectes en les operacions i a la inconsistència de les dades compartides.\n\n\nSolucions\n\nExclusió Mútua: Utilitzar mecanismes com semàfors, mutex o candaus per a garantir que només un procés pugui accedir als recursos compartits a la vegada.\nSincronització: Coordinar l’execució dels processos mitjançant sincronització de manera que no interfereixin entre ells quan accedeixen als recursos compartits.",
+    "objectID": "slides/04-sched.html#quan-sha-de-planificar",
+    "href": "slides/04-sched.html#quan-sha-de-planificar",
+    "title": "Planificació de processos",
+    "section": "Quan s’ha de planificar?",
+    "text": "Quan s’ha de planificar?\n\n\n\n\n\n\n\nEl planificador s’executa:\n\n\nEn resposta a interrupcions o esdeveniments: a) Interrupcions de rellotge, b) Crides al sistema, c) Finalització d’operacions d’E/S.\n\n\n\n\n\nInterrupcions de rellotge (timer interrupts): Periodiques, per permetre el temps compartit.\nCrides al sistema: Quan un procés sol·licita un recurs o canvia el seu estat.\nFinalització d’operacions d’E/S: Quan un dispositiu completa una operació per a un procés en espera.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#evitar-les-condicions-de-carrera",
-    "href": "slides/03-communicate.html#evitar-les-condicions-de-carrera",
-    "title": "Comunicació de processos",
-    "section": "Evitar les condicions de carrera",
-    "text": "Evitar les condicions de carrera\nLa secció crítica és la part del codi on s’accedeix a recursos compartits. Per a evitar les condicions de carrera, els processos han de complir les següents condicions:\n\nDos processos no poden estar simultàniament en la secció crítica.\nNo s’ha d’assumir que els processos són executats de forma ràpida o lenta.\nCap procés que no estigui en la secció crítica pot bloquejar altres processos.\nCap procés ha d’esperar per sempre per entrar a la secció crítica.",
+    "objectID": "slides/04-sched.html#què-és-lapropiació",
+    "href": "slides/04-sched.html#què-és-lapropiació",
+    "title": "Planificació de processos",
+    "section": "Què és l’apropiació?",
+    "text": "Què és l’apropiació?\n\n\n\n\n\n\n\nObservacions\n\n\n\n↑ complexitat del SO → Canvi de contexts.\n↑ cost → Interrupcions periòdiques.\n↑ la justicia i l’equitat.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#tipus-de-comunicació",
-    "href": "slides/03-communicate.html#tipus-de-comunicació",
-    "title": "Comunicació de processos",
-    "section": "Tipus de comunicació",
-    "text": "Tipus de comunicació\nPas de missatges\n\nPermet integrar tasques de comunicació i sincronització entre processos situats en una mateixa màquina o en màquines distribuïdes.\nUn missatge és un conjunt de dades intercanviades per 2 o més processos.\n\n\nMemòria compartida\n\nEls processos es comuniquen utilitzant variables o zones de memòria compartida.\nS’utilitzen per comunicar processos en una mateixa màquina.\nEs necessita regular l’accés a la informació compartida per garantir el resultat òptim i evitar les race conditions.",
+    "objectID": "slides/04-sched.html#criteris-de-planificació-generals",
+    "href": "slides/04-sched.html#criteris-de-planificació-generals",
+    "title": "Planificació de processos",
+    "section": "Criteris de planificació (Generals)",
+    "text": "Criteris de planificació (Generals)\n\nJustícia Accés equitatiu als recursos per a tots els processos.\nEquilibri Totes les parts del sistema estiguin utilitzades.\nPriorització: Preferència a processos amb més urgència.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#característiques-de-la-comunicació-i",
-    "href": "slides/03-communicate.html#característiques-de-la-comunicació-i",
-    "title": "Comunicació de processos",
-    "section": "Característiques de la comunicació (I)",
-    "text": "Característiques de la comunicació (I)\nIdentificació\n\nMecanismes de noms\n\nSense nom\nNom local\nNom de la red\n\nIdentificador de destí\n\nDirecte: S’ha d’indicar el procés origen i destí. El missatge s’envia a un procés concret utilitzant el seu pid. El receptor pot (indicar o no) el procés que vol rebre el missatge.\nIndirecte: Els missatges s’envien a una zona contreta (bustia o port), sense identificar de forma explícita el destí.",
+    "objectID": "slides/04-sched.html#criteris-de-planificació-en-lot",
+    "href": "slides/04-sched.html#criteris-de-planificació-en-lot",
+    "title": "Planificació de processos",
+    "section": "Criteris de planificació (En lot)",
+    "text": "Criteris de planificació (En lot)\n\nUtilització de la CPU: % de temps d’ocupació.\nProductivitat: Nº de processos completats per unitat de temps.\nTemps de retorn: Temps total des que un procés s’envia fins que es completa, incloent temps d’espera i execució.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#característiques-de-la-comunicació-ii",
-    "href": "slides/03-communicate.html#característiques-de-la-comunicació-ii",
-    "title": "Comunicació de processos",
-    "section": "Característiques de la comunicació (II)",
-    "text": "Característiques de la comunicació (II)\nFlux de dades\n\nUnidireccional\nBidireccional\n\n\nBuffering\n\nAmb buffers\nSense buffers\n\n\n\nSincronització\n\nSincrons (bloquejants)\nAsíncrons (no bloquejants)",
+    "objectID": "slides/04-sched.html#criteris-de-planificació-interactius",
+    "href": "slides/04-sched.html#criteris-de-planificació-interactius",
+    "title": "Planificació de processos",
+    "section": "Criteris de planificació (Interactius)",
+    "text": "Criteris de planificació (Interactius)\n\nTemps d’espera: Temps que un procés roman a la cua de preparats.\nTemps de resposta: Temps entre una sol·licitud de l’usuari i la primera resposta.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#tipus-de-mecanismes",
-    "href": "slides/03-communicate.html#tipus-de-mecanismes",
-    "title": "Comunicació de processos",
-    "section": "Tipus de mecanismes",
-    "text": "Tipus de mecanismes\n\nFitxers.\nPipes.\nFIFOS (Pipes amb nom).\nCues de missatges.\nSockets.\nMemòria compartida (IPC).",
+    "objectID": "slides/04-sched.html#criteris-de-planificació-temps-real",
+    "href": "slides/04-sched.html#criteris-de-planificació-temps-real",
+    "title": "Planificació de processos",
+    "section": "Criteris de planificació (Temps real)",
+    "text": "Criteris de planificació (Temps real)\n\nPredictibilitat: Capacitat del sistema per complir els requisits temporals de manera sistemàtica.\nDeadline: Capacitat de garantir que els processos finalitzin abans d’un temps límit establert.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#fitxers",
-    "href": "slides/03-communicate.html#fitxers",
-    "title": "Comunicació de processos",
-    "section": "Fitxers",
-    "text": "Fitxers\nLa comunicació entre processos a través dels sistemes de fitxers és una manera simple d’intercanviar informació entre ells. Això implica que dos o més processos acorden un fitxer pel seu nom i el utilitzen per a la comunicació. Un dels processos escriu al fitxer mentre que un altre processos llegeix el contingut del fitxer.\nLimitacions\n\nPersistència: Els fitxers són persistents, la informació roman en disc fins que s’elimina de forma explícita. Això no és òptim per a la comunicació efímera o temporal entre processos.\nProblemes de Sincronització: Cal gestionar la sincronització de forma manual per garantir que un procés no llegeixi el fitxer abans que un altre procés hagi acabat d’escriure-hi. Aquesta sincronització pot ser complexa i pot conduir a errors si no es gestiona adequadament.\nEficiència: L’ús de fitxers per a la comunicació no és eficient en termes de rendiment, ja que involucra operacions d’entrada i sortida a disc, que són més lentes que altres mètodes de comunicació en memòria.",
+    "objectID": "slides/04-sched.html#minimitzar-el-temps-de-resposta",
+    "href": "slides/04-sched.html#minimitzar-el-temps-de-resposta",
+    "title": "Planificació de processos",
+    "section": "Minimitzar el temps de resposta",
+    "text": "Minimitzar el temps de resposta\n\nMinimitzar el temps transcorregut per completar una operació.\nMinimitzar el temps que l’usuari percep.\n\nTemps per mostrar una tecla en un editor.\nTemps per compilar un programa.\nTasques en temps real: complir terminis imposats per l’entorn.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-fitxers",
-    "href": "slides/03-communicate.html#exemple-comunicació-amb-fitxers",
-    "title": "Comunicació de processos",
-    "section": "Exemple: Comunicació amb fitxers",
-    "text": "Exemple: Comunicació amb fitxers\nUn procés 1 (escriptor) escriu un missatge en un fitxer anomenat fitxer_comunicacio.txt.\n// Process 1 (escriptor)\nint fd = open(\"fitxer_comunicacio.txt\", O_WRONLY | O_CREAT, 0644);\nwrite(fd, \"Missatge des de Process 1\", strlen(\"Missatge des de Process 1\"));\nclose(fd);\nUn procés 2 (lector) llegeix el missatge d’aquest fitxer i el mostra per pantalla.\n// Process 2 (lector)\nint fd = open(\"fitxer_comunicacio.txt\", O_RDONLY);\nchar buffer[100];\nread(fd, buffer, 100);\nclose(fd);\nprintf(\"Missatge rebut: %s\\n\", buffer);",
+    "objectID": "slides/04-sched.html#maximitzar-el-rendiment",
+    "href": "slides/04-sched.html#maximitzar-el-rendiment",
+    "title": "Planificació de processos",
+    "section": "Maximitzar el rendiment",
+    "text": "Maximitzar el rendiment\n\nMaximitzar les operacions per segon.\nRelacionat amb el temps de resposta, però no idèntic.\n\nMinimitzar el temps de resposta pot portar a més canvis de context que si només es maximitza el rendiment.\n\nDos aspectes per maximitzar el rendiment:\n\nMinimitzar la sobrecàrrega (per exemple, canvis de context).\nÚs eficient dels recursos (CPU, disc, memòria, etc).",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#pipes",
-    "href": "slides/03-communicate.html#pipes",
-    "title": "Comunicació de processos",
-    "section": "Pipes",
-    "text": "Pipes\nEls pipes són dispositius lògics dissenyats per permetre la comunicació entre processos. Es comporten com una cua de caràcters amb una longitud fixa on els processos poden llegir o escriure.\n\nSense Nom: Els pipes són anònims, el que significa que no estan associats amb un fitxer del sistema de fitxers.\nÚs Amb fork(): Es poden heretar i utilitzar fàcilment.\nIdentificació: Es caracteritzen per tenir dos descriptors de fitxers, un per a l’escriptura i un altre per a la lectura.\nFlux de Dades Unidireccional: El flux de dades als pipes és unidireccional, la informació només es mou d’una direcció, és a dir, del procés escriptor al procés lector.\nAmb Buffering: Els pipes utilitzen un mecanisme que permet acumular dades fins que es llegeixin.\nRestriccions d’Àmbit Local: Comunicació entre processos a la mateixa màquina, ja que no estan dissenyats per a la comunicació a través de xarxes.",
+    "objectID": "slides/04-sched.html#justícia",
+    "href": "slides/04-sched.html#justícia",
+    "title": "Planificació de processos",
+    "section": "Justícia",
+    "text": "Justícia\n\nCompartir la CPU entre els usuaris de manera equitativa.\nLa justícia no és minimitzar el temps de resposta mitjà.\n\nReduir el temps de resposta mitjà pot comportar en alguns casos planificacions injustes.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-pipes-bash",
-    "href": "slides/03-communicate.html#exemple-comunicació-amb-pipes-bash",
-    "title": "Comunicació de processos",
-    "section": "Exemple: Comunicació amb Pipes (Bash)",
-    "text": "Exemple: Comunicació amb Pipes (Bash)\nEn bash, podem utilitzar pipes per a comunicar dos processos. Per exemple, podem utilitzar el comandament echo per a enviar un missatge a través d’un pipe i el comandament cat per a llegir aquest missatge.\necho \"Missatge des de Process Pare\" | echo \"Missatge rebut: $(cat)\"",
+    "objectID": "slides/04-sched.html#planificació-òptima",
+    "href": "slides/04-sched.html#planificació-òptima",
+    "title": "Planificació de processos",
+    "section": "Planificació òptima",
+    "text": "Planificació òptima\n\nNo existeix cap política òptima que permeti satisfer tots els criteris anteriors al mateix temps.\nUn algorisme pot maximitzar el throughput però no minimitzar el temps de resposta.\n\n\nLa selecció de l’algorisme de planificació depèn dels objectius específics del sistema i de la càrrega de treball que s’espera gestionar.\n\n\nImagina un conjunt de tasques curtes i llargues, si sempre seleccionem les curtes optimitzarem el throughput però a cost del temps de resposta.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-pipes-c",
-    "href": "slides/03-communicate.html#exemple-comunicació-amb-pipes-c",
-    "title": "Comunicació de processos",
-    "section": "Exemple: Comunicació amb pipes (C)",
-    "text": "Exemple: Comunicació amb pipes (C)\n\n\nint pipe_fd[2];\npipe(pipe_fd);\nif (fork() == 0) { // Fill (lector)\n  close(pipe_fd[1]);\n  char buffer[100];\n  read(pipe_fd[0], buffer, 100);\n  close(pipe_fd[0]);\n  printf(\"Missatge rebut: %s\\n\", buffer);\n} else { // Pare (escriptor)\n  close(pipe_fd[0]);\n  write(pipe_fd[1], \n  \"Missatge des de Process pare\", \n  strlen(\"Missatge des de Process pare\")\n  );\n  close(pipe_fd[1]);\n}\n\n\n\n\npipes.c",
+    "objectID": "slides/04-sched.html#fcfs---first-come-first-served",
+    "href": "slides/04-sched.html#fcfs---first-come-first-served",
+    "title": "Planificació de processos",
+    "section": "FCFS - First-Come, First-Served",
+    "text": "FCFS - First-Come, First-Served\n\n\n\n\n\nflowchart LR\n    classDef iniciFi fill:#00A896,color:white,stroke:#007D6C,stroke-width:2px,font-size:22px;\n    classDef decisio fill:#C46B9E,color:white,stroke:#963D6D,stroke-width:2px,font-size:22px;\n    classDef proces fill:#fff,color:#333,stroke:#00A896,stroke-width:2px,font-size:22px;\n\n    A([Inici]):::iniciFi --&gt; B{Hi ha&lt;br&gt;processos&lt;br&gt;pendents?}:::decisio\n    B --&gt;|Sí| C[[Ordenar per&lt;br&gt;arribada]]:::proces\n    C --&gt; D[[Executar&lt;br&gt;fins finalització]]:::proces\n    D --&gt; E{Tots&lt;br&gt;executats?}:::decisio\n    E --&gt;|No| C\n    E --&gt;|Sí| F([Fi]):::iniciFi\n    B --&gt;|No| F\n\n    linkStyle default stroke:#666, arrowhead:vee;\n    style A text-align:center;\n    style B text-align:center;\n    style C text-align:center;\n    style D text-align:center;\n    style E text-align:center;\n    style F text-align:center;\n\n\n\n\n\n\n\nL’algorisme FCFS és un dels més senzills: funciona com una cua de persones; el primer que arriba és el primer que s’atén. Els processos s’executen en l’ordre d’arribada, sense considerar prioritat ni durada del burst. Adequat per sistemes previsibles o de lot amb processos de durada similar. Pot generar efecte convoy, on un procés llarg bloqueja els curts, augmentant el temps d’espera.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#fifos",
-    "href": "slides/03-communicate.html#fifos",
-    "title": "Comunicació de processos",
-    "section": "FIFOS",
-    "text": "FIFOS\n\nFuncionen com els pipes, però amb un mecanisme de comunicació amb nom.\nServeis:\n\nmkfifo(char *name,mode_t mode);\nopen(char *name, int flag);\n\nS’obre un FIFO per r,w, r+w\nAcció bloquejant fins que algun procés estigui a l’altre extrem.\n\nLectura i escriptura (read(), write()).\nTancament amb close().\nEliminació amb unlink().\n\n\n\nEls FIFOs ofereixen una forma de comunicació més flexible entre processos amb l’avantatge afegit de poder ser utilitzats per processos que no comparteixen un antecessor comú.",
+    "objectID": "slides/04-sched.html#fcfs---característiques",
+    "href": "slides/04-sched.html#fcfs---característiques",
+    "title": "Planificació de processos",
+    "section": "FCFS - Característiques",
+    "text": "FCFS - Característiques\n\nSimplicitat: Algorisme senzill d’implementar i comprendre.\nNo apropiatiu: Un procés s’executa fins a la seva finalització o bloqueig.\nGarantia de no inanició: Tots els processos eventualment s’executen (sota la suposició que acaben).",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-fifos-bash",
-    "href": "slides/03-communicate.html#exemple-comunicació-amb-fifos-bash",
-    "title": "Comunicació de processos",
-    "section": " Exemple: Comunicació amb FIFOS (Bash)",
-    "text": "Exemple: Comunicació amb FIFOS (Bash)\n\nCrear el FIFO en la terminal 1:\n\nmkfifo fifo_example\n\nExecutarem el process 1 (escriptor) a la terminal 1:\n\necho \"Missatge des de Process 1\" &gt; fifo_example\n\nExecutarem el process 2 (lector) a la terminal 2:\n\ncat &lt; fifo_example\n\nEliminarem el FIFO:\n\nrm fifo_example",
+    "objectID": "slides/04-sched.html#fcfs---limitacions",
+    "href": "slides/04-sched.html#fcfs---limitacions",
+    "title": "Planificació de processos",
+    "section": "FCFS - Limitacions",
+    "text": "FCFS - Limitacions\n\nEfecte Convoy: Processos curts poden quedar bloquejats per processos llargs, incrementant el temps d’espera mitjà.\nPot generar temps d’espera elevats: Especialment per a processos curts darrere de processos llargs.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-fifos-c",
-    "href": "slides/03-communicate.html#exemple-comunicació-amb-fifos-c",
-    "title": "Comunicació de processos",
-    "section": "Exemple: Comunicació amb FIFOS (C)",
-    "text": "Exemple: Comunicació amb FIFOS (C)\nmkfifo(\"fifo_example\", 0666);\n\n// Process 1 (escriptor)\nint fd = open(\"fifo_example\", O_WRONLY);\nwrite(fd, \"Missatge des de Process 1\", strlen(\"Missatge des de Process 1\"));\nclose(fd);\n\n// Process 2 (lector)\nint fd = open(\"fifo_example\", O_RDONLY);\nchar buffer[100];\nread(fd, buffer, 100);\nclose(fd);\nprintf(\"Missatge rebut: %s\\n\", buffer);\n\n\nunlink(\"fifo_example\");\n\nlector_fifos.c · escriptor_fifos.c",
+    "objectID": "slides/04-sched.html#fcfs---observacions",
+    "href": "slides/04-sched.html#fcfs---observacions",
+    "title": "Planificació de processos",
+    "section": "FCFS - Observacions",
+    "text": "FCFS - Observacions\n\n\n\n\n\n\nObservació\n\n\nAdequat per a càrregues de treball homogènies on la durada dels processos és similar. Poc òptim per a entorns amb variabilitat en la durada dels processos, ja que pot afectar la resposta i l’eficiència del sistema.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#cua-de-missatges",
-    "href": "slides/03-communicate.html#cua-de-missatges",
-    "title": "Comunicació de processos",
-    "section": "Cua de missatges",
-    "text": "Cua de missatges\n\nComunicació mitjançant pas de missatge de la llibreria IPC.\nMateixa màquina.\nIdentificació: indirecta amb identificador especial idCua.\nAmb nom local.\nAmb buffering.\nUnidireccional.\nSincronització: bloquejant i no bloquejant.\n\n\nOperacions bàsiques:\n\nint msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg): Envia un missatge msgp de mida msgz a la cua msgid.\nssize_t msgrcv(int msqid,void *msgp, size_t msgsz,long msgtyp,int msgflg): Rep un missatge de la cua msgid i el guarda a msgp.",
+    "objectID": "slides/04-sched.html#fcfs---exemple-illustratiu",
+    "href": "slides/04-sched.html#fcfs---exemple-illustratiu",
+    "title": "Planificació de processos",
+    "section": "FCFS - Exemple Il·lustratiu",
+    "text": "FCFS - Exemple Il·lustratiu\n\n\n\n\n\n\\(p\\)1\n\\(t_a\\)2\n\\(t_{cpu}\\)3\n\n\n\n\n🟢 P1\n0\n20\n\n\n🔵 P2\n5\n5\n\n\n🟣 P3\n6\n5\n\n\n\n\n\n\n\n\n\ngantt \n    title Planificació\n    dateFormat  X\n    axisFormat %s\n    \n    section Execució\n    🟢 P1 : 0, 20\n    🔵 P2 : 20, 25\n    🟣 P3 : 25, 30\n    \n    section Preparats\n    🔵 P2 a la cua : 5, 20\n    🟣 P3 a la cua : 6, 25\n\n\n\n\n\n\n\nProcésTemps d’arribadaDurada del burst",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---escriptor",
-    "href": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---escriptor",
-    "title": "Comunicació de processos",
-    "section": "Ex: Comunicació amb Cua de missatges (C) - Escriptor",
-    "text": "Ex: Comunicació amb Cua de missatges (C) - Escriptor\nstruct message {\n    long msg_type;\n    char msg_text[100];\n};\n\nint main() {\n    key_t key = ftok(\"msg_queue_example\", 65);\n    int msqid = msgget(key, 0666 | IPC_CREAT);\n    struct message msg;\n    msg.msg_type = 1;\n    strcpy(msg.msg_text, \"Aquest és un missatge de prova!\");\n    msgsnd(msqid, &msg, sizeof(msg), 0);\n    printf(\"Missatge enviat: %s\\n\", msg.msg_text);\n    return 0;\n}\n\nescriptor_msg.c",
+    "objectID": "slides/04-sched.html#fcfs---exemple-illustratiu-mètriques",
+    "href": "slides/04-sched.html#fcfs---exemple-illustratiu-mètriques",
+    "title": "Planificació de processos",
+    "section": "FCFS - Exemple Il·lustratiu (Mètriques)",
+    "text": "FCFS - Exemple Il·lustratiu (Mètriques)\n\n\n\nTemps espera:\n\\(T_{espera} = T_f + T_a - T_{cpu}\\)\nTemps retorn:\n\\(T_{retorn} = T_f - T_a\\)\nTemps resposta:\n\\(T_{resposta}= T_{inici} - T_a\\)\n\n\n\n\n\nMètrica\nP1\nP2\nP3\nAvg\n\n\n\n\n\\(T_a\\)1\n0\n5\n6\n-\n\n\n\\(T_f\\)2\n20\n25\n30\n-\n\n\n\\(T_{inici}\\)3\n0\n20\n25\n-\n\n\n\\(T_{cpu}\\)4\n20\n5\n5\n-\n\n\n\\(T_{espera}\\)\n0\n15\n19\n11.33\n\n\n\\(T_{retorn}\\)\n20\n20\n24\n21.33\n\n\n\\(T_{resposta}\\)\n0\n15\n19\n11.33\n\n\n\n\nTemps d’arribadaTemps de finalitzacióTemps del primer cicle d’execucióDurada del burst",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---lector",
-    "href": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---lector",
-    "title": "Comunicació de processos",
-    "section": "Ex: Comunicació amb Cua de missatges (C) - Lector",
-    "text": "Ex: Comunicació amb Cua de missatges (C) - Lector\nstruct message {\n    long msg_type;\n    char msg_text[100];\n};\n\nint main() {\n    key_t key = ftok(\"msg_queue_example\", 65);\n    int msqid = msgget(key, 0666 | IPC_CREAT);\n    \n    struct message msg;\n    msgrcv(msqid, &msg, sizeof(msg), 1, 0);\n    printf(\"Missatge rebut: %s\\n\", msg.msg_text);\n    return 0;\n}\n\nlector_msg.c",
+    "objectID": "slides/04-sched.html#exercici-01-fcfs---enunciat",
+    "href": "slides/04-sched.html#exercici-01-fcfs---enunciat",
+    "title": "Planificació de processos",
+    "section": "Exercici 01: FCFS - Enunciat",
+    "text": "Exercici 01: FCFS - Enunciat\nConsidera els següents escenari i respon les preguntes:\n\n\n\nProcés\nTemps arribada\nRàfegues\n\n\n\n\nA\n0\n\\(7_{CPU}\\)\n\n\nB\n2\n\\(4_{CPU}\\)\n\n\nC\n3\n\\(2_{CPU}\\)\n\n\n\n\nDibuixa el diagrama de Gantt per a l’algorisme FCFS.\nCalcula les següents mètriques de rendiment: Percentatge d’ús de la CPU, Productivitat, Temps d’espera mitjà, Temps de retorn mitjà i Temps de retorn normalitzat mitjà.\nQuin és l’efecte convoy en aquest exemple? Com afecta les mètriques calculades?",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#sockets",
-    "href": "slides/03-communicate.html#sockets",
-    "title": "Comunicació de processos",
-    "section": "Sockets",
-    "text": "Sockets\nEls sockets són eines fonamentals per a la comunicació entre processos a través d’una xarxa o dins del mateix ordinador. Poden utilitzar-se per a la comunicació mitjançant diferents protocols com TCP/IP o UDP.\n\nComunicació a través de la xarxa o local: Els sockets permeten la comunicació entre processos que poden estar en el mateix ordinador o en diferents ordinadors a través de la xarxa.\nAdreces: Els sockets estan identificats per adreces, com les adreces IP per a la comunicació a través de xarxes o adreces locals per a comunicació dins del mateix ordinador.\nProtocols: Els sockets poden utilitzar diferents protocols com TCP/IP o UDP, segons les necessitats de la comunicació.",
+    "objectID": "slides/04-sched.html#exercici-01-fcfs---solució",
+    "href": "slides/04-sched.html#exercici-01-fcfs---solució",
+    "title": "Planificació de processos",
+    "section": "Exercici 01: FCFS - Solució",
+    "text": "Exercici 01: FCFS - Solució\n\n\n\n\n\nP\n0\n2\n3\n7\n8\n11\n12\n13\n\n\n\n\nA\nE\nE\nE\nF\n\n\n\n\n\n\nB\n\nP\nP\nE\nE\nF\n\n\n\n\nC\n\n\nP\nP\nP\nE\nE\nF\n\n\n\n\n\n\\[ \\%_{CPU} = \\dfrac{Tcpu_{ocupada}}{Temps}=\\dfrac{13}{13}=1=100\\%\\]\n\n\n\\[ Productivitat = \\dfrac{\\#processos}{Temps}=\\dfrac{3}{13}=0.23\\]\n\n\n\n\\[ \\tilde{T}_{espera}= \\dfrac{\\tilde{T}_{espera}{A} + \\tilde{T}_{espera}{B} + \\tilde{T}_{espera}{C} }{\\#processos}=\\dfrac{0+5+8}{3}=4.3\\]\n\n\n\\[ \\tilde{T}_{retorn} = \\dfrac{\\tilde{T}_{retorn}{A} + \\tilde{T}_{retorn}{B} + \\tilde{T}_{retorn}{C}}{\\#processos}=\\dfrac{7+9+10}{3}=8.6\\]\n\n\n\\[ \\tilde{T}retorn_{N} = \\dfrac{7/7 + 9/4 + 10/2}{3}=2.75\\]",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-sockets",
-    "href": "slides/03-communicate.html#exemple-comunicació-amb-sockets",
-    "title": "Comunicació de processos",
-    "section": "Exemple: Comunicació amb Sockets",
-    "text": "Exemple: Comunicació amb Sockets",
+    "objectID": "slides/04-sched.html#exercici-01-fcfs---anàlisi",
+    "href": "slides/04-sched.html#exercici-01-fcfs---anàlisi",
+    "title": "Planificació de processos",
+    "section": "Exercici 01: FCFS - Anàlisi",
+    "text": "Exercici 01: FCFS - Anàlisi\n\nEfecte Convoy: El procés P1 (llarg) bloqueja els processos P2 i P3 (curts), incrementant el temps d’espera.\nSensible a l’ordre arribada: Si P2 o P3 hagués arribat abans que P1, el temps d’espera de P2 hauria estat menor.\nNo apropiatiu: P1 ocupa la CPU fins a la seva finalització, sense donar oportunitat a P2 i P3.\nNo és adequat per a sistemes interactius o en temps real: Els usuaris poden experimentar retards significatius en la resposta del sistema, ja que els processos curts poden quedar bloquejats darrere de processos llargs.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#ex-comunicació-amb-sockets-c",
-    "href": "slides/03-communicate.html#ex-comunicació-amb-sockets-c",
-    "title": "Comunicació de processos",
-    "section": "Ex: Comunicació amb Sockets (C)",
-    "text": "Ex: Comunicació amb Sockets (C)\n\n\nServidor\nint sockfd, new_sock;\nstruct sockaddr_in server_addr;\nstruct  sockaddr_in new_addr;\nsocklen_t addr_size;\nchar buffer[100];\n\nsockfd=socket(AF_INET, SOCK_STREAM, 0);\n// Configuració de la connexió...\n// Esperar connexions i llegir\nnew_sock = accept(sockfd, \n(struct sockaddr*)&new_addr, \n&addr_size);\nrecv(new_sock, buffer, 100, 0);\nprintf(\"Missatge rebut: %s\\n\", buffer);\n\nClient\nint sockfd;\nstruct sockaddr_in server_addr;\nchar buffer[100];\n\nsockfd=socket(AF_INET, SOCK_STREAM, 0);\n// Configuració de la connexió...\n\n// Enviar missatge al servidor\nsend(sockfd,\"Missatge des del client\",\nstrlen(\"Missatge des del client\"), 0);\n\n\nclient_socket.c · server_socket.c",
+    "objectID": "slides/04-sched.html#rr---diagrama-de-flux",
+    "href": "slides/04-sched.html#rr---diagrama-de-flux",
+    "title": "Planificació de processos",
+    "section": "RR - Diagrama de flux",
+    "text": "RR - Diagrama de flux\n\n\n\n\n\nflowchart LR\n    classDef iniciFi fill:#00A896,color:white,stroke:#007D6C,stroke-width:2px,font-size:22px;\n    classDef decisio fill:#C46B9E,color:white,stroke:#963D6D,stroke-width:2px,font-size:22px;\n    classDef proces fill:#fff,color:#333,stroke:#00A896,stroke-width:2px,font-size:22px;\n\n    A([Inici]):::iniciFi --&gt; B{Hi ha&lt;br&gt;processos&lt;br&gt;pendents?}:::decisio\n    B --&gt;|Sí| C[[Agafar procés&lt;br&gt;de la cua]]:::proces\n    C --&gt; D{Temps del quantum&lt;br&gt;expirat?}:::decisio\n    D --&gt;|No| E[[Executar procés]]:::proces\n    E --&gt; D\n    D --&gt;|Sí| F[[Col·locar al final de la cua]]:::proces\n    F --&gt; B\n    B --&gt;|No| G([Fi]):::iniciFi",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#memòria-compartida-1",
-    "href": "slides/03-communicate.html#memòria-compartida-1",
-    "title": "Comunicació de processos",
-    "section": "Memòria compartida",
-    "text": "Memòria compartida\nLa comunicació mitjançant memòria compartida implica compartir una àrea de memòria entre diferents processos o fils d’execució d’un mateix procés. Aquest àrea de memòria és accessible per a tots els fils d’execució involucrats, permetent un accés directe i eficient a les dades compartides.\n\nEspai d’adreçament únic: Fils d’execució d’un procés.\nMúltiples espai d’adreces: Zones de Memòria que són accessibles per processos diferents.\nS’ha de controlar/sincronitzar l’accés a les dades compartides per assegurar la consistència de les dades amb mecanismes com semàfors, mutex o candaus.",
+    "objectID": "slides/04-sched.html#round-robin-rr",
+    "href": "slides/04-sched.html#round-robin-rr",
+    "title": "Planificació de processos",
+    "section": "Round Robin (RR)",
+    "text": "Round Robin (RR)\nAquesta política és una variant de FCFS que introdueix l’apropiació mitjançant l’ús de quantums de temps.\n\nCada procés rep un quantum de temps per executar-se.\nQuan el quantum expira, el procés és interromput i col·locat al final de la cua de preparats.\n\n\nQuin és el temps d’espera en un sistema amb \\(n\\) processos i un quantum de \\(q\\) unitats de temps?Amb arribades simultànies i sense variabilitat en bursts.\n\nEl temps d’espera màxim per a qualsevol procés és de \\((n-1) \\cdot q\\) unitats de temps.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#ex-comunicació-amb-memòria-compartida-c",
-    "href": "slides/03-communicate.html#ex-comunicació-amb-memòria-compartida-c",
-    "title": "Comunicació de processos",
-    "section": "Ex: Comunicació amb Memòria Compartida (C)",
-    "text": "Ex: Comunicació amb Memòria Compartida (C)\nkey_t key = ftok(\"fitxer_clau\", 'R');\nint shmid = shmget(key, 1024, 0666 | IPC_CREAT);\nchar *shared_memory = (char *)shmat(shmid, (void *)0, 0);\n\n// Escriure dades a la memòria compartida\nstrcpy(shared_memory, \"Missatge a la memòria compartida\");\n\n// Llegir dades de la memòria compartida\nprintf(\"Missatge llegit: %s\\n\", shared_memory);\n\n// Alliberar memòria compartida\nshmdt((void *)shared_memory);\nshmctl(shmid, IPC_RMID, NULL);",
+    "objectID": "slides/04-sched.html#rr---característiques",
+    "href": "slides/04-sched.html#rr---característiques",
+    "title": "Planificació de processos",
+    "section": "RR - Característiques",
+    "text": "RR - Característiques\n\nCap procés pot monopolitzar la CPU durant un temps determinant (\\(q\\)).\nUtilitza una cua FIFO per gestionar els processos preparats.\nUtilitza una interrupció de rellotge per implementar el quantum de temps.\nÉs un algorisme apropiatiu.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#llibreries-de-memòria-compartida",
-    "href": "slides/03-communicate.html#llibreries-de-memòria-compartida",
-    "title": "Comunicació de processos",
-    "section": "Llibreries de Memòria compartida",
-    "text": "Llibreries de Memòria compartida\n\npthread (POSIX Threads): És una interfície estàndard que facilita la creació i gestió de fils d’execució (threads) en C. Permet als processos tenir múltiples fils d’execució que comparteixen memòria i recursos.\nOpenMP: És una API que facilita la programació paral·lela. Permet als desenvolupadors marcar parts del codi com a regions paral·leles, que s’executaran de forma concurrent en diferents fils d’execució.\n\n\npthread_mc.c · openmp_mc.c",
+    "objectID": "slides/04-sched.html#rr---impacte-del-quantum-de-temps",
+    "href": "slides/04-sched.html#rr---impacte-del-quantum-de-temps",
+    "title": "Planificació de processos",
+    "section": "RR - Impacte del quantum de temps",
+    "text": "RR - Impacte del quantum de temps\nSi analitzem l’elecció del quantum de temps (\\(q\\)):\n\nSi \\(q\\) és molt petit:\n\nAugmenta el nombre de canvis de context.\nIncrementa la sobrecàrrega del sistema.\nPot reduir l’eficiència i el throughput.\n\nSi \\(q\\) és molt gran:\n\nEl comportament s’assembla a FCFS.\nPot augmentar el temps de resposta per a processos curts.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#comparacióselecció-de-mecanismes-de-comunicació",
-    "href": "slides/03-communicate.html#comparacióselecció-de-mecanismes-de-comunicació",
-    "title": "Comunicació de processos",
-    "section": "Comparació/Selecció de mecanismes de comunicació",
-    "text": "Comparació/Selecció de mecanismes de comunicació\n\nFitxers: Comunicació temporal de dades. No recomanat.\nPipes: Comunicació unidireccional entre processos amb un antecessor comú.\nFIFOS: Comunicació unidireccional entre processos amb un antecessor comú.\nCues de missatges: Quan es necessita enviar missatges amb sincronització asíncrona i buffering.\nSockets: Comunicació a través de la xarxa o local.\nMemòria compartida: Quan es necessita accedir ràpidament a dades compartides entre processos.",
+    "objectID": "slides/04-sched.html#rr---exemple-en-sistemes-interactius",
+    "href": "slides/04-sched.html#rr---exemple-en-sistemes-interactius",
+    "title": "Planificació de processos",
+    "section": "RR - Exemple en sistemes interactius",
+    "text": "RR - Exemple en sistemes interactius\nRR és especialment adequat per a sistemes interactius on es requereix que els processos curts rebin resposta ràpida.\n\nEn sistemes interactius, els processos es poden classificar com a:\n\nProcessos d’usuari: Requereixen més temps de CPU.\nProcessos del sistema: Requereixen menys temps de CPU però respostes més ràpides.\n\nEs pot assignar diferents quantums de temps segons el tipus de procés.\nA UNIX, per exemple, s’utilitzen diferents quantums per a processos d’usuari i del sistema per equilibrar la resposta i l’eficiència.\n\n\\(q = 100ms\\) per a processos d’usuari.\n\\(q = 10ms\\) per a processos del sistema.\nEl overhead del canvi de context és d’aproximadament \\(0.1ms - 1ms\\). Aquest valor és petit comparat amb la durada del quantum, però rellevant si els quantum són molt petits.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
-    "objectID": "slides/03-communicate.html#això-és-tot-per-avui",
-    "href": "slides/03-communicate.html#això-és-tot-per-avui",
-    "title": "Comunicació de processos",
+    "objectID": "slides/04-sched.html#rr-q20s---exemple-illustratiu",
+    "href": "slides/04-sched.html#rr-q20s---exemple-illustratiu",
+    "title": "Planificació de processos",
+    "section": "RR Q(20s) - Exemple Il·lustratiu",
+    "text": "RR Q(20s) - Exemple Il·lustratiu\n\n\n\n\n\n\\(p\\)\n\\(t_a\\)\n\\(t_{cpu}\\)\n\n\n\n\n🟢 P1\n0\n53\n\n\n🔵 P2\n0\n8\n\n\n🟣 P3\n0\n68\n\n\n🟠 P4\n0\n24\n\n\n\n\n\n\n\nP1\nP2\nP3\nP4\nAvg\n\n\n\n\n\\(\\tilde{T}_{espera}\\)\n72\n20\n85\n88\n66.25\n\n\n\\(\\tilde{T}_{retorn}\\)\n125\n28\n153\n112\n104.5\n\n\n\n\n\n\n\n\n\ngantt\ntitle Planificació Round Robin (Q=20)\ndateFormat  X\naxisFormat %s\n\nsection Execució\n🟢 P1 : 0, 20\n🔵 P2 : 20, 28\n🟣 P3 : 28, 48\n🟠 P4 : 48, 68\n🟢 P1 : 68, 88\n🟣 P3 : 88, 108\n🟠 P4 : 108, 112\n🟢 P1 : 112, 125\n🟣 P3 : 125, 145\n🟣 P3 : 145, 153",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#rr-q20s---impacte-de-q-temps-despera",
+    "href": "slides/04-sched.html#rr-q20s---impacte-de-q-temps-despera",
+    "title": "Planificació de processos",
+    "section": "RR Q(20s) - Impacte de \\(Q\\) (Temps d’espera)",
+    "text": "RR Q(20s) - Impacte de \\(Q\\) (Temps d’espera)\n\n\n\nQuantum / Estratègia\nP1\nP2\nP3\nP4\n\n\n\n\n\nMillor FCFS\n32\n0\n85\n8\n31.25\n\n\nQ=1\n84\n22\n85\n57\n62\n\n\nQ=5\n82\n20\n85\n58\n61.25\n\n\nQ=20\n72\n20\n85\n88\n66.25\n\n\nPitjor FCFS\n68\n145\n0\n121\n83.5",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#rr-q20s---impacte-de-q-temps-de-finalització",
+    "href": "slides/04-sched.html#rr-q20s---impacte-de-q-temps-de-finalització",
+    "title": "Planificació de processos",
+    "section": "RR Q(20s) - Impacte de \\(Q\\) (Temps de finalització)",
+    "text": "RR Q(20s) - Impacte de \\(Q\\) (Temps de finalització)\n\n\n\n\n\n\n\n\n\n\n\nQuantum / Estratègia\nP1\nP2\nP3\nP4\n\n\n\n\n\nMillor FCFS\n85\n8\n153\n32\n69.5\n\n\nQ=1\n137\n30\n153\n81\n100.25\n\n\nQ=5\n135\n28\n153\n82\n99.5\n\n\nQ=20\n125\n28\n153\n112\n104.5\n\n\nPitjor FCFS\n121\n153\n68\n145\n121.75\n\n\n\n\nQuantum molt petit → molts canvis de context → sobrecàrrega i baix throughput.\nQuantum molt gran → es comporta com FCFS → mala resposta per a processos curts.\nRR és ideal per a entorns interactius, però el quantum ha de ser triat amb cura per equilibrar latència i eficiència.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#exercici-02-rr---enunciat",
+    "href": "slides/04-sched.html#exercici-02-rr---enunciat",
+    "title": "Planificació de processos",
+    "section": "Exercici 02: RR - Enunciat",
+    "text": "Exercici 02: RR - Enunciat\nConsidera els següents processos i un planificador (RR(Q=1)) si dos processos arriben al mateix temps, s’executarà el procés amb prioritat més elevada; en aquest cas concret (C,B,A):\n\n\n\nProcés\nTemps arribada\nRàfegues\n\n\n\n\nA\n0\n\\(7_{CPU}\\)\n\n\nB\n2\n\\(4_{CPU}\\)\n\n\nC\n3\n\\(2_{CPU}\\)\n\n\n\n\nDibuixa el diagrama de Gantt per a l’algorisme Round-Robin amb un quantum de 1 unitat de temps.\nCalcula les següents mètriques de rendiment: Temps d’espera mitjà, Temps de retorn mitjà, Temps de resposta mitjà i Temps de retorn normalitzat mitjà.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#exercici-02-rr---solució",
+    "href": "slides/04-sched.html#exercici-02-rr---solució",
+    "title": "Planificació de processos",
+    "section": "Exercici 02: RR - Solució",
+    "text": "Exercici 02: RR - Solució\n\n\n\nP\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n\n\n\n\nA\nE\nE\nP\nE\nP\nP\nE\nP\nP\nE\nP\nE\nE\nF\n\n\nB\n\n\nE\nP\nP\nE\nP\nP\nE\nP\nE\nF\n\n\n\n\nC\n\n\n\nP\nE\nP\nP\nE\nF\n\n\n\n\n\n\n\n\n\\[ \\tilde{T}_{espera}= \\dfrac{\\tilde{T}_{espera}{A} + \\tilde{T}_{espera}{B} + \\tilde{T}_{espera}{C} }{\\#processos}=\\dfrac{6+5+3}{3}=4.66\\] \\[ \\tilde{T}_{retorn} = \\dfrac{\\tilde{T}_{retorn}{A} + \\tilde{T}_{retorn}{B} + \\tilde{T}_{retorn}{C}}{\\#processos}=\\dfrac{13+9+5}{3}=9\\] \\[ \\tilde{T}resposta =\\dfrac{\\tilde{T}_{resposta}{A} + \\tilde{T}_{resposta}{B} + \\tilde{T}_{resposta}{C}}{\\#processos}=\\dfrac{0+0+1}{3}=0.33\\] \\[ \\tilde{T}retorn_{N} = \\dfrac{7/7 + 9/4 + 5/2}{3}=2.2\\]",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#rr-vs-fcfs-i",
+    "href": "slides/04-sched.html#rr-vs-fcfs-i",
+    "title": "Planificació de processos",
+    "section": "RR vs FCFS (I)",
+    "text": "RR vs FCFS (I)\n\nSi assumim que el canvi de context triga \\(0 ms\\), podem afirmar que RR és sempre millor que FCFS?\n\n\n\nRR no és sempre millor que FCFS.\nLa decisió depèn de la càrrega de treball, la variabilitat dels bursts i els objectius del sistema (throughput vs temps de resposta).\n\n\n\nSuposa que tenim 10 tasques, cada una amb 100s de burst de CPU i un quantum de 1s, i demostra que FCFS pot ser més eficient que RR en aquest cas.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#rr-vs-fcfs-ii",
+    "href": "slides/04-sched.html#rr-vs-fcfs-ii",
+    "title": "Planificació de processos",
+    "section": "RR vs FCFS (II)",
+    "text": "RR vs FCFS (II)\n\n\n\n\n\nTasca\nTemps finalització FCFS\nTemps finalització RR\n\n\n\n\nP1\n100s\n991s\n\n\nP2\n200s\n992s\n\n\n…\n…\n…\n\n\nP10\n1000s\n1000s\n\n\n\n\n\nEls processos s’acaben pràcticament en el mateix moment amb ambdós algorismes.\nEl throughput és molt millor amb FCFS en aquest cas, ja que RR introdueix més alternança entre processos.\nEls estats de cache poden ser compartits amb RR, però amb FCFS cada procés pot utilitzar la cache de manera més eficient.\nRR és avantatjós només quan els processos tenen durades variables o quan es busca responsivitat interactiva. En casos de processos molt llargs i uniformes, FCFS pot ser més eficient.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#prioritats",
+    "href": "slides/04-sched.html#prioritats",
+    "title": "Planificació de processos",
+    "section": "Prioritats",
+    "text": "Prioritats\n\nL’algorisme assigna un valor de prioritat a cada procés, (a linux pots utilitzar nice per ajustar la prioritat).\nEn cas d’empat, es pot aplicar un altre algorisme (habitualment FIFO).\nLes prioritats poden ser estàtiques o dinàmiques.\n\n\n\n\n\n\nflowchart LR\n    classDef iniciFi fill:#00A896,color:white,stroke:#007D6C,stroke-width:2px,font-size:22px;\n    classDef decisio fill:#C46B9E,color:white,stroke:#963D6D,stroke-width:2px,font-size:22px;\n    classDef proces fill:#fff,color:#333,stroke:#00A896,stroke-width:2px,font-size:22px;    \n\n    A([Inici]):::iniciFi --&gt; B{Hi ha&lt;br&gt;processos&lt;br&gt;pendents?}:::decisio\n    B --&gt;|Sí| C[[Ordenar per&lt;br&gt;prioritat]]:::proces\n    C --&gt; D[[Executar procés&lt;br&gt;més prioritari]]:::proces\n    D --&gt; E{Tots&lt;br&gt;executats?}:::decisio\n    E --&gt;|No| C\n    E --&gt;|Sí| F([Fi]):::iniciFi\n    B --&gt;|No| F",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#exercici-03-prioritats---enunciat",
+    "href": "slides/04-sched.html#exercici-03-prioritats---enunciat",
+    "title": "Planificació de processos",
+    "section": "Exercici 03: Prioritats - Enunciat",
+    "text": "Exercici 03: Prioritats - Enunciat\nConsidera els següents processos amb les seves respectives prioritats i respon les preguntes:\n\n\n\nProcés\nTemps arribada\nRàfegues\nPrioritat\n\n\n\n\nA\n0\n\\(7_{CPU}\\)\n5\n\n\nB\n2\n\\(4_{CPU}\\)\n1\n\n\nC\n3\n\\(2_{CPU}\\)\n6\n\n\n\n\nDibuixa el diagrama de Gantt per a l’algorisme de planificació per prioritats (suposant prioritat ascendent -&gt; B,A,C).\nCalcula les següents mètriques de rendiment: Percentatge d’ús de la CPU, Productivitat, Temps d’espera mitjà, Temps de retorn mitjà i Temps de resposta mitjà.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#exercici-03-prioritats---solució",
+    "href": "slides/04-sched.html#exercici-03-prioritats---solució",
+    "title": "Planificació de processos",
+    "section": "Exercici 03: Prioritats - Solució",
+    "text": "Exercici 03: Prioritats - Solució\n\n\n\n\n\nP\n0\n2\n3\n6\n11\n12\n13\n\n\n\n\nA\nE\nP\nP\nE\nF\n\n\n\n\nB\n\nE\nE\nF\n\n\n\n\n\nC\n\n\nP\nP\nE\nE\nF\n\n\n\n\n\\[ \\%_{CPU} = \\dfrac{Tcpu_{ocupada}}{Temps}=\\dfrac{13}{13}=1=100\\%\\] \\[ Productivitat = \\dfrac{\\#processos}{Temps}=\\dfrac{3}{13}\\]\n\n\\[ \\tilde{T}_{espera} = \\dfrac{\\tilde{T}_{espera}(A) + \\tilde{T}_{espera}(B) + \\tilde{T}_{espera}(C)}{\\#processos}=\\dfrac{4+0+8}{3}=4\\] \\[ \\tilde{T}_{retorn} = \\dfrac{\\tilde{T}_{retorn}(A) + \\tilde{T}_{retorn}(B) + \\tilde{T}_{retorn}(C)}{\\#processos}=\\dfrac{11+4+10}{3}=8.33\\] \\[ \\tilde{T}_{resposta} = \\dfrac{\\tilde{T}_{resposta}(A) + \\tilde{T}_{resposta}(B) + \\tilde{T}_{resposta}(C)}{\\#processos}=\\dfrac{0+0+8}{3}=2.66\\]",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#envelliment",
+    "href": "slides/04-sched.html#envelliment",
+    "title": "Planificació de processos",
+    "section": "Envelliment",
+    "text": "Envelliment\nAmb els algorismes de prioritat, els processos amb prioritat baixa poden quedar inactius indefinidament (inanició) si sempre hi ha processos amb prioritat més alta a la cua de preparats.\nL’envelliment és una estratègia utilitzada per abordar el problema d’inanició que pot sorgir en els algorismes de planificació basats en prioritats. Augmenta periòdicament la prioritat dels processos preparats que no aconsegueixen executar-se.\nfunction Aging(processes):\n    for each process in processes:\n        if process.waitingTime &gt;= agingThreshold:\n            process.increasePriority() // Augmenta la prioritat del procés",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#i-si-coneixem-el-futur-sjf-i-srtf",
+    "href": "slides/04-sched.html#i-si-coneixem-el-futur-sjf-i-srtf",
+    "title": "Planificació de processos",
+    "section": "I si coneixem el futur? – SJF i SRTF",
+    "text": "I si coneixem el futur? – SJF i SRTF\n\nShortest Job First (SJF)\n\nExecuta el procés amb menor temps de CPU total.\nTambé conegut com Shortest Time to Completion First (STCF).\nPolitica no apropiativa: un cop un procés comença, s’executa fins al final del burst o fi del procés.\n\nShortest Remaining Time First (SRTF)\n\nVersió apropiativa de SJF.\nSi arriba un procés amb un temps restant menor que el del procés actual, aquest és interromput immediatament.\nTambé conegut com Shortest Remaining Time to Completion First (SRTCF).",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#sjf---exemple-illustratiu",
+    "href": "slides/04-sched.html#sjf---exemple-illustratiu",
+    "title": "Planificació de processos",
+    "section": "SJF - Exemple Il·lustratiu",
+    "text": "SJF - Exemple Il·lustratiu\n\n\n\n\n\n\\(p\\)1\n\\(t_a\\)2\n\\(t_{cpu}\\)3\n\n\n\n\n🟢 P1\n0\n10\n\n\n🔵 P2\n0\n5\n\n\n🟣 P3\n1\n4\n\n\n\n\n\n\n\n\n\ngantt\ntitle Planificació SJF\ndateFormat  X\naxisFormat %s\n\nsection Execució\n🔵 P2 : 0, 5\n🟣 P3 : 5, 9\n🟢 P1 : 9, 19\n\nsection Preparats\n🟢 P1 a la cua : 0, 9\n🟣 P3 a la cua : 1, 5\n\n\n\n\n\n\n\n\n\nMètrica\nP1\nP2\nP3\nMitjana\n\n\n\n\n\\(T_{espera}\\)\n9\n0\n4\n4.33\n\n\n\\(T_{retorn}\\)\n19\n5\n8\n10.67\n\n\n\\(T_{resposta}\\)\n9\n0\n4\n4.33\n\n\n\n\nProcésTemps d’arribadaDurada del burst",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#sjf---característiques",
+    "href": "slides/04-sched.html#sjf---característiques",
+    "title": "Planificació de processos",
+    "section": "SJF - Característiques",
+    "text": "SJF - Característiques\n\nPot provocar inanició? Sí, qualsevol política que prioritzi una propietat pot provocar inanició.\nPot provocar convoy? Sí, qualsevol política no apropiativa pot provocar convoy.\nRedueix el temps de retorn? Sí, redueix el temps mitjà de finalització si i només si tots els processos arriben alhora.\nRequereix coneixement previ del temps de burst? Sí, és un dels seus inconvenients principals.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#srtf---exemple-illustratiu",
+    "href": "slides/04-sched.html#srtf---exemple-illustratiu",
+    "title": "Planificació de processos",
+    "section": "SRTF - Exemple Il·lustratiu",
+    "text": "SRTF - Exemple Il·lustratiu\n\n\n\n\n\n\\(p\\)\n\\(t_a\\)\n\\(t_{cpu}\\)\n\n\n\n\n🟢 P1\n0\n20\n\n\n🔵 P2\n5\n5\n\n\n🟣 P3\n8\n1\n\n\n\n\n\n\n\n\n\ngantt\ntitle Planificació SRTF\ndateFormat  X\naxisFormat %s\n\nsection Execució\n🟢 P1 : 0, 5\n🔵 P2 : 5, 8\n🟣 P3 : 8, 9\n🔵 P2 : 9, 11\n🟢 P1 : 11, 22\n\nsection Preparats\n🟢 P1 a la cua : 5, 11\n🔵 P2 a la cua : 8, 9\n\n\n\n\n\n\n\n\n\nMètrica\nP1\nP2\nP3\nMitjana\n\n\n\n\n\\(T_{espera}\\)\n6\n1\n0\n2.33\n\n\n\\(T_{retorn}\\)\n22\n6\n1\n9.67\n\n\n\\(T_{resposta}\\)\n0\n0\n0\n0",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#srtf---característiques",
+    "href": "slides/04-sched.html#srtf---característiques",
+    "title": "Planificació de processos",
+    "section": "SRTF - Característiques",
+    "text": "SRTF - Característiques\n\nApropiatiu: un procés curt pot interrompre un procés més llarg.\nRedueix significativament el temps mitjà de resposta per a processos curts.\nPot provocar inanició en processos llargs si arriben processos curts constantment.\nCal considerar canvis de context i el seu cost associat.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#preveient-el-futur-srtf-com-a-referència",
+    "href": "slides/04-sched.html#preveient-el-futur-srtf-com-a-referència",
+    "title": "Planificació de processos",
+    "section": "Preveient el futur: SRTF com a referència",
+    "text": "Preveient el futur: SRTF com a referència\n\nSi poguéssim conèixer el temps restant de cada procés, sempre podríem executar el procés que acabaria abans.\n\n\nCom fer-ho en la pràctica?\n\n\nAlguns sistemes demanen a l’usuari indicar la durada estimada del job. Per evitar abusos, el sistema pot interrompre jobs que superin aquesta durada.\nÉs molt difícil predir amb precisió el temps de burst, fins i tot per usuaris honestos.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#srtf-el-límit-teòric",
+    "href": "slides/04-sched.html#srtf-el-límit-teòric",
+    "title": "Planificació de processos",
+    "section": "SRTF: el límit teòric",
+    "text": "SRTF: el límit teòric\n\nSRTF (Shortest Remaining Time First) és una política òptima pel temps de resposta mitjà.\nCap altra política pot superar SRTF en aquest criteri.\nEs fa servir sovint com a referència de comparació amb altres algorismes.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#com-es-pot-predir-el-futur",
+    "href": "slides/04-sched.html#com-es-pot-predir-el-futur",
+    "title": "Planificació de processos",
+    "section": "Com es pot predir el futur?",
+    "text": "Com es pot predir el futur?\nUna estratègia comuna és utilitzar estimacions basades en l’historial de comportament dels processos. Molts programes mostren patrons repetitius en la seva utilització de la CPU i I/O. Si els processos tenen un comportament aleatori, aquesta estratègia no seria útil.\n\\[t_n = f(t_{n-1}, t_{n-2}, t_{n-3}, \\ldots)\\] On: \\(t_n\\) és la durada estimada del següent burst de CPU. \\(f\\) és una funció que utilitza els bursts anteriors per fer la predicció.\n\nSi un procés ha estat E/S o CPU en el passat, probablement continuarà sent-ho en el futur.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#exercici-04-sjf-vs-rr",
+    "href": "slides/04-sched.html#exercici-04-sjf-vs-rr",
+    "title": "Planificació de processos",
+    "section": "Exercici 04: SJF vs RR",
+    "text": "Exercici 04: SJF vs RR\nRealitza la planificació dels següents processos utilitzant els algorismes de planificació Round Robin amb un quantum de 3 unitats de temps i SJF (Shortest Job First) no apropiatiu. En cas d’empat on 2 processos arribin a la cua de preparats al mateix temps, s’executarà el procés amb prioritat més elevada en aquest cas (B,A,C).\n\n\n\nProcés\nTemps arribada\nRàfegues\n\n\n\n\nA\n7\n\\(5_{CPU},2_{E/S},4_{CPU}\\)\n\n\nB\n3\n\\(4_{CPU},1_{E/S},1_{CPU},1_{E/S},1_{CPU}\\)\n\n\nC\n1\n\\(2_{CPU},1_{E/S},3_{CPU},2_{E/S},1_{CPU}\\)\n\n\n\nEs demana:\n\nMostrar la planificació dels processos en un diagrama de Gantt.\nCalcular el temps d’espera, resposta i retorn mitjà de cada procés.\nComparar els resultats obtinguts amb els algorismes de planificació.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#què-són-les-cues-multinivell",
+    "href": "slides/04-sched.html#què-són-les-cues-multinivell",
+    "title": "Planificació de processos",
+    "section": "Què són les cues multinivell?",
+    "text": "Què són les cues multinivell?\nObjectiu: Optimitzar l’ús de la CPU separant processos segons les seves necessitats de recursos (com ara intensitat d’E/S o de CPU) i assignant-los a diferents cues, cadascuna amb polítiques de planificació personalitzades.\n\n\n\nCues Multinivell sense Retroalimentació:\n\nAssignació fixa de processos a una cua segons les seves característiques inicials.\nNo es permet el moviment entre cues; cada procés roman a la seva cua original.\n\n\n\nCues Multinivell amb Retroalimentació:\n\nEls processos poden canviar de cua en funció del seu comportament dinàmic.\nInclou promoció o degradació de prioritats segons el rendiment o el consum de recursos.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#cues-sense-retroalimentació",
+    "href": "slides/04-sched.html#cues-sense-retroalimentació",
+    "title": "Planificació de processos",
+    "section": "Cues sense Retroalimentació",
+    "text": "Cues sense Retroalimentació\n\nAssignació Estàtica de Processos a Cues:\n\nEls processos es col·loquen en una cua en funció de característiques fixes (p. ex., tipus d’operacions).\nExemples: processos intensius en E/S en cues de primer pla i processos intensius en CPU en cues de segon pla.\n\nPolítiques de Planificació Específiques per a Cada Cua:\n\nRound Robin (RR) per a cues de primer pla.\nFirst-Come-First-Served (FCFS) per a cues de segon pla.\n\nAssignació de la CPU entre les Cues:\n\nPrioritat Absoluta: S’assigna la CPU primer a la cua amb prioritat més alta i només quan està buida es passa a la següent.\nAssignació Temporal (Time Slicing): Cada cua té un percentatge fix de temps de CPU, segons la seva prioritat (p. ex., 70% per la prioritat més alta, 20% per la segona, 10% per la més baixa).",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#cues-amb-retroalimentació",
+    "href": "slides/04-sched.html#cues-amb-retroalimentació",
+    "title": "Planificació de processos",
+    "section": "Cues amb Retroalimentació",
+    "text": "Cues amb Retroalimentació\n\nEls processos s’assignen inicialment a la cua de major prioritat.\nEl moviment entre cues es basa en el comportament durant l’execució, permetent que processos intensius en E/S, de curta durada, es mantinguin a prop de la CPU, mentre que els processos CPU-intensius descendeixin per no monopolitzar els recursos.\n\n\nExemple: Els processos curts o amb alta demanda d’E/S es mantenen en la part superior, reduint la latència de resposta, mentre que processos amb alta demanda de CPU es desplacen ràpidament cap a cues de menor prioritat, aconseguint una eficiència semblant a SRT (Shortest Remaining Time).\n\n\nPromoció\nEls processos que completen la seva execució dins del seu quantum de temps poden ascendir a una cua de prioritat superior.\n\nDegradació\nEls processos que no completen la seva execució dins del quantum descendeixen a una cua de prioritat inferior.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#assignació-temporal-de-la-cpu-en-cues-amb-retroalimentació",
+    "href": "slides/04-sched.html#assignació-temporal-de-la-cpu-en-cues-amb-retroalimentació",
+    "title": "Planificació de processos",
+    "section": "Assignació Temporal de la CPU en Cues amb Retroalimentació",
+    "text": "Assignació Temporal de la CPU en Cues amb Retroalimentació\nQuantum de Temps Variable: Cada cua de prioritat té un quantum de temps específic i progressivament més llarg en cues de menor prioritat, optimitzant així la gestió de processos de llarga durada.\nExemple: Cues Round Robin amb quantums exponencials (1ms, 2ms, 4ms, etc.) per a processos de llarga durada.\nMoviment Dinàmic entre Cues: Si un procés no finalitza dins del seu quantum assignat, es mou a una cua amb menor prioritat, on rebrà un quantum més llarg però menor prioritat d’execució.\nExemple: Els processos amb alta demanda de CPU descendeixen ràpidament de prioritat, evitant que monopolitzin la CPU. Els processos de curta durada i/o intensius en E/S mantenen la prioritat alta, maximitzant el seu accés a la CPU i reduint la latència.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#estratègies-de-planificació-i-contramesures",
+    "href": "slides/04-sched.html#estratègies-de-planificació-i-contramesures",
+    "title": "Planificació de processos",
+    "section": "Estratègies de Planificació i Contramesures",
+    "text": "Estratègies de Planificació i Contramesures\n\nEstructura Flexible de Cues: Les cues amb retroalimentació permeten que els processos amb canvis de comportament puguin ajustar la seva posició.\nTemps de CPU per Cua: Cada cua rep un percentatge del temps de CPU: P. ex., cues interactives reben un percentatge més alt per a reduir el temps de resposta.\n\n\nFeta la llei, feta la trampa: els usuaris poden manipular les prioritats dels processos per obtenir un millor rendiment, tot i que això pot afectar negativament la resta de processos inversió de prioritats.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#exemple-othello",
+    "href": "slides/04-sched.html#exemple-othello",
+    "title": "Planificació de processos",
+    "section": "Exemple: Othello",
+    "text": "Exemple: Othello\n\nObjectiu: Mantenir el programa en una cua de major prioritat per garantir temps de CPU preferent i una resposta ràpida en les decisions del joc.\nEl programa executava una sèrie d’operacions de sortida (printf()), aparentment innecessàries des d’un punt de vista funcional. Aquesta activitat d’entrada/sortida feia que el sistema considerés el procés com a input/output-bound (intensiu en E/S) en lloc de CPU-bound (intensiu en CPU).\nResultat: Mantenir-se en una cua de major prioritat gràcies a la detecció del seu comportament d’E/S. Evitar el descens de prioritat que es produeix en els processos intensius en CPU que consumeixen els seus quantums sense fer operacions d’E/S.\n\n\nNota: En sistemes de producció, es poden aplicar polítiques restrictives o tècniques d’anàlisi per detectar i limitar aquest tipus de manipulacions de prioritat per mantenir l’equilibri i l’eficiència del sistema.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched.html#això-és-tot-per-avui",
+    "href": "slides/04-sched.html#això-és-tot-per-avui",
+    "title": "Planificació de processos",
     "section": "Això és tot per avui",
-    "text": "Això és tot per avui\n\n\nTAKE HOME MESSAGE\nLa comunicació entre processos és essencial per a la coordinació i sincronització en sistemes operatius multiprogramats o distribuïts. Hi ha diversos mecanismes de comunicació, cadascun amb les seves pròpies característiques, avantatges i limitacions. La selecció del mecanisme adequat depèn de les necessitats específiques de l’aplicació, com la velocitat, la complexitat i l’escala de la comunicació requerida.",
+    "text": "Això és tot per avui\n\n\nTAKE HOME MESSAGE\nLa planificació de processos és un dels aspectes més importants dels sistemes operatius. Els algorismes de planificació són fonamentals per garantir l’eficiència i el rendiment del sistema.",
     "crumbs": [
       "Diapositives",
-      "Unitat 03 · Comunicació entre processos"
+      "Unitat 04 · Planificació de processos"
     ]
   },
   {
@@ -2195,14 +2541,14 @@
     "href": "course-information/schedule.html",
     "title": "Sistemes Operatius",
     "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs\n\n\n\n\n\n\n\n\n8\nTeoria\n29/10/25\nRepàs\n\n\n\n\n🔨"
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs\n\n\n\n\n\n\n\n\n8\nTeoria\n29/10/25\nRepàs\n\n\n\n\n🔨\n\n\n\n9\nPARCIALS\n\n\n\n\n\n\n\n\n\n\n10\nTeoria/Laboratori\n03/11/25\nUnitat 04: Planificació de processos\n📖\n\n\n\n👩🏻‍💻"
   },
   {
     "objectID": "course-information/schedule.html#planificació",
     "href": "course-information/schedule.html#planificació",
     "title": "Sistemes Operatius",
     "section": "",
-    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs\n\n\n\n\n\n\n\n\n8\nTeoria\n29/10/25\nRepàs\n\n\n\n\n🔨"
+    "text": "A continuació es presenta un calendari complet dels temes, el contingut del curs i les tasques per al semestre. Tingueu en compte que aquest calendari és un document viu i es pot actualitzar. Tots els canvis es publicaran aquí per assegurar-vos que teniu la informació més actual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSetmana\nTipus\nData\nTema\nDiapositives\nApunts\nLaboratori\nAltres\nTasques\nLliuraments\n\n\n\n\n1\nTeoria\n09/09/25\nUnitat 01: Introducció\n📖\n📚\n\n\n\n\n\n\n1\nLaboratori\n10/09/25\nUnitat 01: Virtualització i Control de Versions\n📖\n\n📄 📄 📄 📄 📄\n\n\n\n\n\n2\nTeoria\n16/09/25\nUnitat 01: Introducció a la programació de Sistema (I) (C)\n📖\n📚\n\n\n👩🏻‍💻\n\n\n\n3\nTeoria/Laboratori\n22/09/25\nUnitat 02: Kernel de Linux\n📖\n\n📄\n\n\n\n\n\n3\nLaboratori\n24/09/25\nUnitat 02: Crides a sistema\n📖\n\n📄 📄👩🏻‍💻\n\n👩🏻‍💻\n\n\n\n4\nLaboratori\n29/09/25\nUnitat 02: Kernel de Linux\n\n\n📄 📄\n\n\n\n\n\n4\nTeoria/Laboratori\n01/10/25\nUnitat 03: Processos\n📖\n\n\n\n🔨\n\n\n\n5\nTeoria\n06/10/25\nUnitat 03: Creació de Processos\n📖\n\n\n\n👩🏻‍💻\n\n\n\n5\nTeoria/Laboratori\n08/10/25\nUnitat 03: Senyals\n📖\n👩🏻‍💻\n\n\n\n\n\n\n6\nTeoria/Laboratori\n13/10/25\nUnitat 03: Comunicació entre processos\n📖\n\n📄\n\n\n\n\n\n6\nLaboratori\n15/10/25\nVaga general\n\n\n\n\n\n\n\n\n7\nTeoria/Laboratori\n20/10/25\nUnitat 03: Pipes\n📖\n\n\n\n👩🏻‍💻\n\n\n\n7\nLaboratori\n20/10/25\nUnitat 03\n\n\n📄\n\n\n\n\n\n8\nTeoria\n27/10/25\nRepàs\n\n\n\n\n\n\n\n\n8\nTeoria\n29/10/25\nRepàs\n\n\n\n\n🔨\n\n\n\n9\nPARCIALS\n\n\n\n\n\n\n\n\n\n\n10\nTeoria/Laboratori\n03/11/25\nUnitat 04: Planificació de processos\n📖\n\n\n\n👩🏻‍💻"
   },
   {
     "objectID": "labs/01-introduction/lab05.html",
@@ -4934,15 +5280,378 @@
     ]
   },
   {
-    "objectID": "activities/unit02/02-pipes.html",
-    "href": "activities/unit02/02-pipes.html",
-    "title": "Exercicis de Pipes en C",
+    "objectID": "slides/03-communicate.html#repàs-de-gestió-de-processos",
+    "href": "slides/03-communicate.html#repàs-de-gestió-de-processos",
+    "title": "Comunicació de processos",
+    "section": "Repàs de gestió de processos",
+    "text": "Repàs de gestió de processos\necho \"Missatge enviat\" &gt; missatge.txt\n\n\n\n\n\n\n\n\nExercici\n\n\nImplementeu un programa en C que simuli aquest comportament.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#comunicació-entre-processos-ipc",
+    "href": "slides/03-communicate.html#comunicació-entre-processos-ipc",
+    "title": "Comunicació de processos",
+    "section": "Comunicació entre processos (IPC)",
+    "text": "Comunicació entre processos (IPC)\nEn un sistema operatiu multiprogramat o distribuït, diversos processos s’executen concurrentment i sovint necessiten intercanviar dades, sincronitzar accions o compartir recursos. Aquest intercanvi s’anomena Inter-Process Communication (IPC).\n\nCoordinació i sincronització entre processos independents.\nTransferència d’informació sense accedir directament a l’espai d’adreces dels altres processos.\nCompartició controlada de recursos (fitxers, memòria, dispositius, sockets).",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#reptes-de-la-comunicació-ipc",
+    "href": "slides/03-communicate.html#reptes-de-la-comunicació-ipc",
+    "title": "Comunicació de processos",
+    "section": "Reptes de la comunicació (IPC)",
+    "text": "Reptes de la comunicació (IPC)\n\nCom es pot transferir la informació entre processos? Recorda que els processos operen en espais d’adreçes independents. Per tant, no poden accedir a la mateixa informació.\nCom es pot assegurar que dos processos no intentin accedir simultàniament a la mateixa informació? Imagina’t 2 processos executant una reserva en un avió i els dos processos assignen el mateix seient a dos passatgers diferents.\nCom es poden coordinar els processos dependents entre si? Imagina’t un procés que genera dades i un altre procés que les processa. El procés que processa les dades necessita esperar a que el procés que les genera les hagi generat totes.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemples-de-comunicaciósincronització",
+    "href": "slides/03-communicate.html#exemples-de-comunicaciósincronització",
+    "title": "Comunicació de processos",
+    "section": "Exemples de comunicació/sincronització",
+    "text": "Exemples de comunicació/sincronització\n\nComunicació: Intercanvi d’informació.\n\n\ncat missatge.txt | grep \"e\"\n\n\nSincronització: Coordinació en l’accés als recursos i en l’ordre d’execució de les tasques.\n\n\necho \"hola1\"; echo \"adeu1\" && echo \"hola2\" || echo \"adeu2\"\n\n\n\nEl ; permet executar les comandes de forma seqüencial.\nEl && permet executar la segona comanda si la primera s’ha executat correctament.\nEl || permet executar la segona comanda si la primera no s’ha executat correctament.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#cat-missatge.txt-grep-e",
+    "href": "slides/03-communicate.html#cat-missatge.txt-grep-e",
+    "title": "Comunicació de processos",
+    "section": "cat < missatge.txt | grep \"e\"",
+    "text": "cat &lt; missatge.txt | grep \"e\"",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#esquema-de-la-comunicaciósincronització",
+    "href": "slides/03-communicate.html#esquema-de-la-comunicaciósincronització",
+    "title": "Comunicació de processos",
+    "section": "Esquema de la comunicació/sincronització",
+    "text": "Esquema de la comunicació/sincronització\n\n\nProcés 1\nwhile(!FiTasca1){\n  EsperarFiTasca1();\n}\n\nwhile(ExisteixTasca){\n  dades = FerTasca2();\n  EnviarMissatge(pid2,dades);\n}\n\nProcés 2\nRealitzarTasca1();\nAvisarTasca1Completada();\n\nwhile(ExisteixTasca){;\n  RebreMissatge(pid2, &dades);\n  RealitzarTasca(dades);\n}",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-cua-dimpressió",
+    "href": "slides/03-communicate.html#exemple-cua-dimpressió",
+    "title": "Comunicació de processos",
+    "section": "Exemple: Cua d’impressió",
+    "text": "Exemple: Cua d’impressió\nAssumeix que un proces A vol imprimir un document:\n\nEl procés A ha d’introduir el nom del fitxer a imprimir en una cua d’impressió.\nEl servei d’impressió procés B de forma periòdica revisa la cua d’impressió i imprimeix els fitxers que hi ha en la cua.\n\n\nPer fer-ho, implementem una cua d’impressió amb dos variables una que apunta al següent slot a imprimir (out) i una al següent slot lliure (in).",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-cua-dimpressió-1",
+    "href": "slides/03-communicate.html#exemple-cua-dimpressió-1",
+    "title": "Comunicació de processos",
+    "section": "Exemple: Cua d’impressió",
+    "text": "Exemple: Cua d’impressió\n\n\n\nEl procés A llegeix la variable in i escriu el valor 7 en una variable local (next_free_slot).\nEl SO interromp el procés A i executa el procés B.\nEl procés B llegeix la variable in i escriu el valor 7 en una variable local (next_free_slot).\nEl procés B col·loca un fitxer a la cua d’impressió al slot 7 i el servei d’impressió modifica les variables in i out.\nEl procés B realitza altres tasques no relacionades amb la cua d’impressió.\nEl SO interromp el procés B i executa el procés A. El procés A utilitza la seva variable local (next_free_slot) per a escriure el fitxer a la cua d’impressió. El fitxer s’escriu al slot 7, i també actualitza les variables in i out.\n\n\n\n\nEl procés B ha perdut la impressió del fitxer. El procés A l’ha sobrescrit.\nEl servei d’impressió no ha notat cap inconsistencia en les variables in i out.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#condicions-de-carrera",
+    "href": "slides/03-communicate.html#condicions-de-carrera",
+    "title": "Comunicació de processos",
+    "section": "Condicions de carrera",
+    "text": "Condicions de carrera\nLes condicions de carrera es produeixen quan dos o més processos o fils d’execució intenten accedir simultàniament a recursos compartits o a dades sense la deguda sincronització.\n\nProblemes\nPoden conduir a resultats inesperats o incorrectes en les operacions i a la inconsistència de les dades compartides.\n\n\nSolucions\n\nExclusió Mútua: Utilitzar mecanismes com semàfors, mutex o candaus per a garantir que només un procés pugui accedir als recursos compartits a la vegada.\nSincronització: Coordinar l’execució dels processos mitjançant sincronització de manera que no interfereixin entre ells quan accedeixen als recursos compartits.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#evitar-les-condicions-de-carrera",
+    "href": "slides/03-communicate.html#evitar-les-condicions-de-carrera",
+    "title": "Comunicació de processos",
+    "section": "Evitar les condicions de carrera",
+    "text": "Evitar les condicions de carrera\nLa secció crítica és la part del codi on s’accedeix a recursos compartits. Per a evitar les condicions de carrera, els processos han de complir les següents condicions:\n\nDos processos no poden estar simultàniament en la secció crítica.\nNo s’ha d’assumir que els processos són executats de forma ràpida o lenta.\nCap procés que no estigui en la secció crítica pot bloquejar altres processos.\nCap procés ha d’esperar per sempre per entrar a la secció crítica.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#tipus-de-comunicació",
+    "href": "slides/03-communicate.html#tipus-de-comunicació",
+    "title": "Comunicació de processos",
+    "section": "Tipus de comunicació",
+    "text": "Tipus de comunicació\nPas de missatges\n\nPermet integrar tasques de comunicació i sincronització entre processos situats en una mateixa màquina o en màquines distribuïdes.\nUn missatge és un conjunt de dades intercanviades per 2 o més processos.\n\n\nMemòria compartida\n\nEls processos es comuniquen utilitzant variables o zones de memòria compartida.\nS’utilitzen per comunicar processos en una mateixa màquina.\nEs necessita regular l’accés a la informació compartida per garantir el resultat òptim i evitar les race conditions.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#característiques-de-la-comunicació-i",
+    "href": "slides/03-communicate.html#característiques-de-la-comunicació-i",
+    "title": "Comunicació de processos",
+    "section": "Característiques de la comunicació (I)",
+    "text": "Característiques de la comunicació (I)\nIdentificació\n\nMecanismes de noms\n\nSense nom\nNom local\nNom de la red\n\nIdentificador de destí\n\nDirecte: S’ha d’indicar el procés origen i destí. El missatge s’envia a un procés concret utilitzant el seu pid. El receptor pot (indicar o no) el procés que vol rebre el missatge.\nIndirecte: Els missatges s’envien a una zona contreta (bustia o port), sense identificar de forma explícita el destí.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#característiques-de-la-comunicació-ii",
+    "href": "slides/03-communicate.html#característiques-de-la-comunicació-ii",
+    "title": "Comunicació de processos",
+    "section": "Característiques de la comunicació (II)",
+    "text": "Característiques de la comunicació (II)\nFlux de dades\n\nUnidireccional\nBidireccional\n\n\nBuffering\n\nAmb buffers\nSense buffers\n\n\n\nSincronització\n\nSincrons (bloquejants)\nAsíncrons (no bloquejants)",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#tipus-de-mecanismes",
+    "href": "slides/03-communicate.html#tipus-de-mecanismes",
+    "title": "Comunicació de processos",
+    "section": "Tipus de mecanismes",
+    "text": "Tipus de mecanismes\n\nFitxers.\nPipes.\nFIFOS (Pipes amb nom).\nCues de missatges.\nSockets.\nMemòria compartida (IPC).",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#fitxers",
+    "href": "slides/03-communicate.html#fitxers",
+    "title": "Comunicació de processos",
+    "section": "Fitxers",
+    "text": "Fitxers\nLa comunicació entre processos a través dels sistemes de fitxers és una manera simple d’intercanviar informació entre ells. Això implica que dos o més processos acorden un fitxer pel seu nom i el utilitzen per a la comunicació. Un dels processos escriu al fitxer mentre que un altre processos llegeix el contingut del fitxer.\nLimitacions\n\nPersistència: Els fitxers són persistents, la informació roman en disc fins que s’elimina de forma explícita. Això no és òptim per a la comunicació efímera o temporal entre processos.\nProblemes de Sincronització: Cal gestionar la sincronització de forma manual per garantir que un procés no llegeixi el fitxer abans que un altre procés hagi acabat d’escriure-hi. Aquesta sincronització pot ser complexa i pot conduir a errors si no es gestiona adequadament.\nEficiència: L’ús de fitxers per a la comunicació no és eficient en termes de rendiment, ja que involucra operacions d’entrada i sortida a disc, que són més lentes que altres mètodes de comunicació en memòria.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-fitxers",
+    "href": "slides/03-communicate.html#exemple-comunicació-amb-fitxers",
+    "title": "Comunicació de processos",
+    "section": "Exemple: Comunicació amb fitxers",
+    "text": "Exemple: Comunicació amb fitxers\nUn procés 1 (escriptor) escriu un missatge en un fitxer anomenat fitxer_comunicacio.txt.\n// Process 1 (escriptor)\nint fd = open(\"fitxer_comunicacio.txt\", O_WRONLY | O_CREAT, 0644);\nwrite(fd, \"Missatge des de Process 1\", strlen(\"Missatge des de Process 1\"));\nclose(fd);\nUn procés 2 (lector) llegeix el missatge d’aquest fitxer i el mostra per pantalla.\n// Process 2 (lector)\nint fd = open(\"fitxer_comunicacio.txt\", O_RDONLY);\nchar buffer[100];\nread(fd, buffer, 100);\nclose(fd);\nprintf(\"Missatge rebut: %s\\n\", buffer);",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#pipes",
+    "href": "slides/03-communicate.html#pipes",
+    "title": "Comunicació de processos",
+    "section": "Pipes",
+    "text": "Pipes\nEls pipes són dispositius lògics dissenyats per permetre la comunicació entre processos. Es comporten com una cua de caràcters amb una longitud fixa on els processos poden llegir o escriure.\n\nSense Nom: Els pipes són anònims, el que significa que no estan associats amb un fitxer del sistema de fitxers.\nÚs Amb fork(): Es poden heretar i utilitzar fàcilment.\nIdentificació: Es caracteritzen per tenir dos descriptors de fitxers, un per a l’escriptura i un altre per a la lectura.\nFlux de Dades Unidireccional: El flux de dades als pipes és unidireccional, la informació només es mou d’una direcció, és a dir, del procés escriptor al procés lector.\nAmb Buffering: Els pipes utilitzen un mecanisme que permet acumular dades fins que es llegeixin.\nRestriccions d’Àmbit Local: Comunicació entre processos a la mateixa màquina, ja que no estan dissenyats per a la comunicació a través de xarxes.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-pipes-bash",
+    "href": "slides/03-communicate.html#exemple-comunicació-amb-pipes-bash",
+    "title": "Comunicació de processos",
+    "section": "Exemple: Comunicació amb Pipes (Bash)",
+    "text": "Exemple: Comunicació amb Pipes (Bash)\nEn bash, podem utilitzar pipes per a comunicar dos processos. Per exemple, podem utilitzar el comandament echo per a enviar un missatge a través d’un pipe i el comandament cat per a llegir aquest missatge.\necho \"Missatge des de Process Pare\" | echo \"Missatge rebut: $(cat)\"",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-pipes-c",
+    "href": "slides/03-communicate.html#exemple-comunicació-amb-pipes-c",
+    "title": "Comunicació de processos",
+    "section": "Exemple: Comunicació amb pipes (C)",
+    "text": "Exemple: Comunicació amb pipes (C)\n\n\nint pipe_fd[2];\npipe(pipe_fd);\nif (fork() == 0) { // Fill (lector)\n  close(pipe_fd[1]);\n  char buffer[100];\n  read(pipe_fd[0], buffer, 100);\n  close(pipe_fd[0]);\n  printf(\"Missatge rebut: %s\\n\", buffer);\n} else { // Pare (escriptor)\n  close(pipe_fd[0]);\n  write(pipe_fd[1], \n  \"Missatge des de Process pare\", \n  strlen(\"Missatge des de Process pare\")\n  );\n  close(pipe_fd[1]);\n}\n\n\n\n\npipes.c",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#fifos",
+    "href": "slides/03-communicate.html#fifos",
+    "title": "Comunicació de processos",
+    "section": "FIFOS",
+    "text": "FIFOS\n\nFuncionen com els pipes, però amb un mecanisme de comunicació amb nom.\nServeis:\n\nmkfifo(char *name,mode_t mode);\nopen(char *name, int flag);\n\nS’obre un FIFO per r,w, r+w\nAcció bloquejant fins que algun procés estigui a l’altre extrem.\n\nLectura i escriptura (read(), write()).\nTancament amb close().\nEliminació amb unlink().\n\n\n\nEls FIFOs ofereixen una forma de comunicació més flexible entre processos amb l’avantatge afegit de poder ser utilitzats per processos que no comparteixen un antecessor comú.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-fifos-bash",
+    "href": "slides/03-communicate.html#exemple-comunicació-amb-fifos-bash",
+    "title": "Comunicació de processos",
+    "section": " Exemple: Comunicació amb FIFOS (Bash)",
+    "text": "Exemple: Comunicació amb FIFOS (Bash)\n\nCrear el FIFO en la terminal 1:\n\nmkfifo fifo_example\n\nExecutarem el process 1 (escriptor) a la terminal 1:\n\necho \"Missatge des de Process 1\" &gt; fifo_example\n\nExecutarem el process 2 (lector) a la terminal 2:\n\ncat &lt; fifo_example\n\nEliminarem el FIFO:\n\nrm fifo_example",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-fifos-c",
+    "href": "slides/03-communicate.html#exemple-comunicació-amb-fifos-c",
+    "title": "Comunicació de processos",
+    "section": "Exemple: Comunicació amb FIFOS (C)",
+    "text": "Exemple: Comunicació amb FIFOS (C)\nmkfifo(\"fifo_example\", 0666);\n\n// Process 1 (escriptor)\nint fd = open(\"fifo_example\", O_WRONLY);\nwrite(fd, \"Missatge des de Process 1\", strlen(\"Missatge des de Process 1\"));\nclose(fd);\n\n// Process 2 (lector)\nint fd = open(\"fifo_example\", O_RDONLY);\nchar buffer[100];\nread(fd, buffer, 100);\nclose(fd);\nprintf(\"Missatge rebut: %s\\n\", buffer);\n\n\nunlink(\"fifo_example\");\n\nlector_fifos.c · escriptor_fifos.c",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#cua-de-missatges",
+    "href": "slides/03-communicate.html#cua-de-missatges",
+    "title": "Comunicació de processos",
+    "section": "Cua de missatges",
+    "text": "Cua de missatges\n\nComunicació mitjançant pas de missatge de la llibreria IPC.\nMateixa màquina.\nIdentificació: indirecta amb identificador especial idCua.\nAmb nom local.\nAmb buffering.\nUnidireccional.\nSincronització: bloquejant i no bloquejant.\n\n\nOperacions bàsiques:\n\nint msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg): Envia un missatge msgp de mida msgz a la cua msgid.\nssize_t msgrcv(int msqid,void *msgp, size_t msgsz,long msgtyp,int msgflg): Rep un missatge de la cua msgid i el guarda a msgp.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---escriptor",
+    "href": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---escriptor",
+    "title": "Comunicació de processos",
+    "section": "Ex: Comunicació amb Cua de missatges (C) - Escriptor",
+    "text": "Ex: Comunicació amb Cua de missatges (C) - Escriptor\nstruct message {\n    long msg_type;\n    char msg_text[100];\n};\n\nint main() {\n    key_t key = ftok(\"msg_queue_example\", 65);\n    int msqid = msgget(key, 0666 | IPC_CREAT);\n    struct message msg;\n    msg.msg_type = 1;\n    strcpy(msg.msg_text, \"Aquest és un missatge de prova!\");\n    msgsnd(msqid, &msg, sizeof(msg), 0);\n    printf(\"Missatge enviat: %s\\n\", msg.msg_text);\n    return 0;\n}\n\nescriptor_msg.c",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---lector",
+    "href": "slides/03-communicate.html#ex-comunicació-amb-cua-de-missatges-c---lector",
+    "title": "Comunicació de processos",
+    "section": "Ex: Comunicació amb Cua de missatges (C) - Lector",
+    "text": "Ex: Comunicació amb Cua de missatges (C) - Lector\nstruct message {\n    long msg_type;\n    char msg_text[100];\n};\n\nint main() {\n    key_t key = ftok(\"msg_queue_example\", 65);\n    int msqid = msgget(key, 0666 | IPC_CREAT);\n    \n    struct message msg;\n    msgrcv(msqid, &msg, sizeof(msg), 1, 0);\n    printf(\"Missatge rebut: %s\\n\", msg.msg_text);\n    return 0;\n}\n\nlector_msg.c",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#sockets",
+    "href": "slides/03-communicate.html#sockets",
+    "title": "Comunicació de processos",
+    "section": "Sockets",
+    "text": "Sockets\nEls sockets són eines fonamentals per a la comunicació entre processos a través d’una xarxa o dins del mateix ordinador. Poden utilitzar-se per a la comunicació mitjançant diferents protocols com TCP/IP o UDP.\n\nComunicació a través de la xarxa o local: Els sockets permeten la comunicació entre processos que poden estar en el mateix ordinador o en diferents ordinadors a través de la xarxa.\nAdreces: Els sockets estan identificats per adreces, com les adreces IP per a la comunicació a través de xarxes o adreces locals per a comunicació dins del mateix ordinador.\nProtocols: Els sockets poden utilitzar diferents protocols com TCP/IP o UDP, segons les necessitats de la comunicació.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#exemple-comunicació-amb-sockets",
+    "href": "slides/03-communicate.html#exemple-comunicació-amb-sockets",
+    "title": "Comunicació de processos",
+    "section": "Exemple: Comunicació amb Sockets",
+    "text": "Exemple: Comunicació amb Sockets",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#ex-comunicació-amb-sockets-c",
+    "href": "slides/03-communicate.html#ex-comunicació-amb-sockets-c",
+    "title": "Comunicació de processos",
+    "section": "Ex: Comunicació amb Sockets (C)",
+    "text": "Ex: Comunicació amb Sockets (C)\n\n\nServidor\nint sockfd, new_sock;\nstruct sockaddr_in server_addr;\nstruct  sockaddr_in new_addr;\nsocklen_t addr_size;\nchar buffer[100];\n\nsockfd=socket(AF_INET, SOCK_STREAM, 0);\n// Configuració de la connexió...\n// Esperar connexions i llegir\nnew_sock = accept(sockfd, \n(struct sockaddr*)&new_addr, \n&addr_size);\nrecv(new_sock, buffer, 100, 0);\nprintf(\"Missatge rebut: %s\\n\", buffer);\n\nClient\nint sockfd;\nstruct sockaddr_in server_addr;\nchar buffer[100];\n\nsockfd=socket(AF_INET, SOCK_STREAM, 0);\n// Configuració de la connexió...\n\n// Enviar missatge al servidor\nsend(sockfd,\"Missatge des del client\",\nstrlen(\"Missatge des del client\"), 0);\n\n\nclient_socket.c · server_socket.c",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#memòria-compartida-1",
+    "href": "slides/03-communicate.html#memòria-compartida-1",
+    "title": "Comunicació de processos",
+    "section": "Memòria compartida",
+    "text": "Memòria compartida\nLa comunicació mitjançant memòria compartida implica compartir una àrea de memòria entre diferents processos o fils d’execució d’un mateix procés. Aquest àrea de memòria és accessible per a tots els fils d’execució involucrats, permetent un accés directe i eficient a les dades compartides.\n\nEspai d’adreçament únic: Fils d’execució d’un procés.\nMúltiples espai d’adreces: Zones de Memòria que són accessibles per processos diferents.\nS’ha de controlar/sincronitzar l’accés a les dades compartides per assegurar la consistència de les dades amb mecanismes com semàfors, mutex o candaus.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#ex-comunicació-amb-memòria-compartida-c",
+    "href": "slides/03-communicate.html#ex-comunicació-amb-memòria-compartida-c",
+    "title": "Comunicació de processos",
+    "section": "Ex: Comunicació amb Memòria Compartida (C)",
+    "text": "Ex: Comunicació amb Memòria Compartida (C)\nkey_t key = ftok(\"fitxer_clau\", 'R');\nint shmid = shmget(key, 1024, 0666 | IPC_CREAT);\nchar *shared_memory = (char *)shmat(shmid, (void *)0, 0);\n\n// Escriure dades a la memòria compartida\nstrcpy(shared_memory, \"Missatge a la memòria compartida\");\n\n// Llegir dades de la memòria compartida\nprintf(\"Missatge llegit: %s\\n\", shared_memory);\n\n// Alliberar memòria compartida\nshmdt((void *)shared_memory);\nshmctl(shmid, IPC_RMID, NULL);",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#llibreries-de-memòria-compartida",
+    "href": "slides/03-communicate.html#llibreries-de-memòria-compartida",
+    "title": "Comunicació de processos",
+    "section": "Llibreries de Memòria compartida",
+    "text": "Llibreries de Memòria compartida\n\npthread (POSIX Threads): És una interfície estàndard que facilita la creació i gestió de fils d’execució (threads) en C. Permet als processos tenir múltiples fils d’execució que comparteixen memòria i recursos.\nOpenMP: És una API que facilita la programació paral·lela. Permet als desenvolupadors marcar parts del codi com a regions paral·leles, que s’executaran de forma concurrent en diferents fils d’execució.\n\n\npthread_mc.c · openmp_mc.c",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#comparacióselecció-de-mecanismes-de-comunicació",
+    "href": "slides/03-communicate.html#comparacióselecció-de-mecanismes-de-comunicació",
+    "title": "Comunicació de processos",
+    "section": "Comparació/Selecció de mecanismes de comunicació",
+    "text": "Comparació/Selecció de mecanismes de comunicació\n\nFitxers: Comunicació temporal de dades. No recomanat.\nPipes: Comunicació unidireccional entre processos amb un antecessor comú.\nFIFOS: Comunicació unidireccional entre processos amb un antecessor comú.\nCues de missatges: Quan es necessita enviar missatges amb sincronització asíncrona i buffering.\nSockets: Comunicació a través de la xarxa o local.\nMemòria compartida: Quan es necessita accedir ràpidament a dades compartides entre processos.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "slides/03-communicate.html#això-és-tot-per-avui",
+    "href": "slides/03-communicate.html#això-és-tot-per-avui",
+    "title": "Comunicació de processos",
+    "section": "Això és tot per avui",
+    "text": "Això és tot per avui\n\n\nTAKE HOME MESSAGE\nLa comunicació entre processos és essencial per a la coordinació i sincronització en sistemes operatius multiprogramats o distribuïts. Hi ha diversos mecanismes de comunicació, cadascun amb les seves pròpies característiques, avantatges i limitacions. La selecció del mecanisme adequat depèn de les necessitats específiques de l’aplicació, com la velocitat, la complexitat i l’escala de la comunicació requerida.",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 03 · Comunicació entre processos"
+    ]
+  },
+  {
+    "objectID": "activities/unit02/01-create.html",
+    "href": "activities/unit02/01-create.html",
+    "title": "Exercicis de Creació de processos en C",
     "section": "",
-    "text": "Volem implementar un programa en C que permeti generar bitllets de loteria de forma concurrent de la mateixa manera que als apunts generador_loteria, però aquesta vegada els processos fills han de comunicar els números generats al procés pare mitjançant una pipe en lloc de retornar-los com a codi de sortida.\nAnalitza el programa següent i indica la evolució de la taula de descriptors oberts de cada fitxer. Explica què fa el programa.\n#include &lt;unistd.h&gt;\n#include &lt;stdlib.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\n#include &lt;signal.h&gt;\n#include &lt;sys/wait.h&gt;\n#include &lt;fcntl.h&gt;\n\nint main(){\n    int fd;\n    int pipefd[2];\n    char msg[200];\n    char buffer[200];\n\n    fd = open(\"fitxer.txt\", O_RDONLY);\n    pipe(pipefd);\n\n    if(fork() == 0){\n        close(1);\n        close(pipefd[0]);\n        write(4, \"Hola\", 4);\n        while(1);\n        exit(0);\n    }\n\n    else{\n        close(pipefd[1]);\n        read(pipefd[0], buffer, 4);\n        sprintf(msg, \"PARE -&gt; %s\\n\", buffer);\n        write(1, msg, strlen(msg));\n        wait(NULL);\n        exit(0);\n    }\n}\nImplementa amb C la comanda següent: cat &lt; /etc/passwd | grep root utilitzant 2 fills i un pare. Per recobrir heu de fer servir obligatòriament les crides:\n\nexeclp(\"grep\", \"grep\", \"root\", NULL)\nexeclp(\"cat\", \"cat\", NULL)\n\nEn el programa anterior el filtre és estàtic root, com podriam modificar el codi anterior per tenir un filtre dinàmic passat com a argument a l’execució del programa? Per exemple: ./prog root.\nImplementa amb C el següent programa: head -10 &lt; infile | sort -n | tail -3 &gt; outfile.\nImplementa la multiplicació de matrius utilitzant processos i pipes. El procés pare ha de llegir dues matrius quadrades d’un fitxer d’entrada i crear un procés fill per a cada fila de la matriu resultat. Cada procés fill ha de calcular la fila corresponent de la matriu resultat i enviar-la al procés pare mitjançant una pipe. El procés pare ha de recollir totes les files i escriure la matriu resultat en un fitxer de sortida.\nModifica l’exercici anterior per utilitzar pipes anònimes i nominals. Compara els dos mètodes en termes de complexitat i eficiència.",
+    "text": "Quants processos es creen en executar el següent codi i quina és la seqüència d’esdeveniments?\nfork();\nif (wait(st)&gt;0)\n    fork();\nexit();\nSolució:\nAquest codi crea 3 processos en total: el procés pare i dos processos fills. La seqüència d’esdeveniments és la següent:\n\n\n\n\n\n\n    sequenceDiagram\n        autonumber\n        participant P as Pare · PID 100\n        participant F1 as Fill1 · PID 101\n        participant F2 as Fill2 · PID 102\n\n        P-&gt;&gt;F1: fork → crea F1\n        P-&gt;&gt;P: wait bloquejat\n        F1-&gt;&gt;F1: wait retorna -1\n        F1-&gt;&gt;F1: exit \n        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101\n        P-&gt;&gt;F2: fork → crea F2\n        P-&gt;&gt;P: exit\n        F2-&gt;&gt;F2: exit\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEl valors del PID són només exemples i poden variar en cada execució.\n\n\n\nQuantes vegades s’imprimirà OS?\nint main(){\n    if(execel(\"bin/ls\",\"ls\",NULL) == -1){\n    perror(\"execl\");\n    }\n    printf(\"OS\\n\");\n    return 0;\n}\nQuantes vegades wait(st) retorna -1?\nid = fork();\nwait(st); //1\nif (id==0)\n    fork();\nwait(st); //2\nexit();\nSolució: En aquest cas, wait(st) retorna -1 3 vegades. La seqüència d’esdeveniments és la següent:\n\n\n\n\n\n\n    sequenceDiagram\n        autonumber\n        participant P as Pare · PID 100\n        participant F1 as Fill1 · PID 101\n        participant N1 as Net1 · PID 102\n\n        P-&gt;&gt;F1: fork → crea F1\n        P-&gt;&gt;P: wait bloquejat //1\n        F1-&gt;&gt;F1: wait retorna -1 //1\n        F1-&gt;&gt;N1: fork → crea N1\n        F1-&gt;&gt;F1: wait bloquejat //2\n        N1-&gt;&gt;N1: wait retorna -1 //2\n        N1-&gt;&gt;N1: exit\n        N1--&gt;&gt;F1: desbloqueja wait del PID 101, retorna 102\n        F1-&gt;&gt;F1: exit\n        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101\n        P--&gt;&gt;P: wait retorna -1 //2\n        P-&gt;&gt;P: exit\n\n\n\n\n\n\n\nQuantes vegades wait(st) retorna -1?\nid = fork();\nwait(st); //1\nif (id!=0)\n    fork();\nwait(st); //2\nexit();\nSolució: En aquest cas, wait(st) retorna -1 3 vegades. La seqüència d’esdeveniments és la següent:\n\n\n\n\n\n\n    sequenceDiagram\n        autonumber\n        participant P as Pare · PID 100\n        participant F1 as Fill1 · PID 101\n        participant F2 as Fill2 · PID 102\n\n        P-&gt;&gt;F1: fork → crea F1\n        P-&gt;&gt;P: wait bloquejat //1\n        F1-&gt;&gt;F1: wait retorna -1 //1\n        F1-&gt;&gt;F1: wait retorna -1 //2\n        F1-&gt;&gt;F1: exit\n        F1--&gt;&gt;P: desbloqueja wait del PID 100, retorna 101\n        P-&gt;&gt;F2: fork → crea F2\n        P-&gt;&gt;P: wait bloquejat //2\n        F2-&gt;&gt;F2: wait retorna -1 //2\n        F2-&gt;&gt;F2: exit\n        F2--&gt;&gt;P: desbloqueja wait del PID 100, retorna 102\n        P-&gt;&gt;P: exit\n\n\n\n\n\n\n\nAnalitza el següent codi i respon les preguntes:\nint main(void) {\n    int a = 1;\n    pid_t fork_ret = fork();\n    if (fork_ret &gt; 0) {\n        a++;\n        fprintf(stdout, \"Parent: int a is %d at %p\\n\", a, &a);\n        } else if (fork_ret == 0) { a++;}\n        fprintf(stdout, \"Child: int a is %d at %p\\n\", a, &a);\n    return 0;\n}\n\nQuin és el valor de a en el procés pare i en el procés fill?\nS’imprimirà la mateixa adreça de memòria per a a en el procés pare i en el procés fill?\nS’imprimirà a la mateixa sortida estàndard (STDOUT) en el procés pare i en el procés fill?\n\nAnalitza el següent codi i justifica quin serà el resultat de la seva execució:\nint main(void) {\n    int* stuff = malloc(sizeof(int));\n    *stuff = 5;\n    pid_t fork_ret = fork();\n    printf(\"The last digit of pi is %d\\n\", *stuff);\n    if (fork_ret == 0)\n        *stuff = 6;\n    return 0;\n}\nQuina és la sortida del següent codi?\nint main()\n{\n    switch(fork()){\n        case 0: printf(\"A\");\n                switch(fork()){\n                    case 0: printf(\"B\");exit(0);\n                    default: switch(fork()){\n                        case 0: printf(\"C\");exit(0);\n                        default: wait(&st);wait(&st);exit(0);\n                    }            \n                wait(&st);\n                }\n        default: wait(&st); exit(0);\n    }\n}\nIndiqueu quin és el resultat de l’execució del següent codi. Nombre de processos creats, parantiu, informació de stdout, procés zombi, etc.\n#define N 10\nint main()\n{\n    int pid = getpid();\n    for (int x=0; x&lt;N x++)\n    {\n        switch(fork())\n        {\n            case 0:\n                if ( (pid%2) == 0 )\n                    printf(\"Pid Fill: %d\\n\", getpid());\n                    exit(0); //3\n                break;\n\n            default:\n                if ( (pid%2) !== 0 )\n                    exit(0); //2\n                break;\n        }\n    }\n    wait(NULL);\n    exit(0); //1\n}\nSolució:\nEl comportament del codi depèn de si el pid del procés pare és parell o senar:\n\nCas parell:\n\n\n\n\n\n\n\n    sequenceDiagram\n    autonumber\n    participant P as Pare (PID parell)\n    participant F1 as Fill1\n    participant F2 as Fill2\n    participant Fx as ...\n    participant F10 as Fill10\n\n    P-&gt;&gt;F1: fork() crea Fill1\n    F1-&gt;&gt;F1: printf(\"Pid Fill: 101\") i exit() //3\n    P-&gt;&gt;F2: fork() crea Fill2\n    F2-&gt;&gt;F2: printf(\"Pid Fill: 102\") i exit() //3\n    P-&gt;&gt;Fx: fork() crea FillX\n    Fx-&gt;&gt;Fx: printf(\"Pid Fill: 10X\") i exit() //3\n    P-&gt;&gt;F10: fork() crea Fill10\n    F10-&gt;&gt;F10: printf(\"Pid Fill: 110\") i exit() //3\n    \n    P-&gt;&gt;P: wait()\n    Note over P,F10: Pare fa wait(NULL) al final i recull un fill\n    P-&gt;&gt;P: exit() //1\n\n\n\n\n\n\n\nEl procés pare crea 10 fills, un a cada iteració del bucle.\nEls fills acaben immediatament amb la crida a exit(0).\nEl pare, no fa cap wait() dins del bucle, per tant, els fills es converteixen en processos zombis temporals.\nEl pare únicament fa un wait() al final del bucle, per tant, el procés pare rebra la notificació de la finalització d’un fill i acabarà.\nTots els processos fills -1 acaben en estat zombi.\nTots els processos orfes fins que init els recull.\nCas senar:\n\n\n\n\n\n\n    sequenceDiagram\n    autonumber\n    participant P as Pare (PID senar)\n    participant F as Fill\n    participant N as Net\n    participant P10 as Pare 10e\n    participant F10 as Fill 10e\n\n    P-&gt;&gt;F: fork() crea Fill\n    P-&gt;&gt;P: exit() //2\n    F-&gt;&gt;N: fork() crea Net\n    F-&gt;&gt;F: exit() //2\n\n    P10-&gt;&gt;F10: fork() crea Fill 10e\n    P10-&gt;&gt;P10: exit() //2\n    F10-&gt;&gt;F10: surt del bucle\n    F10-&gt;&gt;F10: wait() retorna -1\n    F10-&gt;&gt;F10: exit()\n\n\n\n\n\n\n\nEn aquest cas, el pare acaba després de crear el primer fill.\nCada iteració del bucle, el nou pare (fill iteració anterior) crea un fill i acaba.\nEs creen 10 generacions a partir del pare: P -&gt; F -&gt; N -&gt; BN …\nCap pare fa cap wait(), per tant, tots els fills es converteixen en processos zombis.\nL’últim fill executarà el wait() i com no té fills, retornarà -1 i acabarà.\nTots els processos fills acaben en estat zombi temporal.\nTots els processos fills esdevenen orfes fins que init els recull.",
     "crumbs": [
       "Activitats",
       "Unitat 03",
-      "Exercici · Pipes i redireccions"
+      "Exercici · Creació de processos"
     ]
   },
   {
