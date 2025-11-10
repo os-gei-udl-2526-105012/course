@@ -53,6 +53,9 @@ website:
             text: Unitat 03 · Comunicació entre processos
           - href: ./slides/03-pipes.qmd
             text: Unitat 03 · Pipes
+          - href: ./slides/04-sched.qmd
+            text: Unitat 04 · Planificació de processos
+
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
@@ -120,6 +123,10 @@ website:
                 text: Exercici · Creació de processos
               - href: ./activities/unit02/02-pipes.qmd
                 text: Exercici · Pipes i redireccions
+          - section: Unitat 04
+            contents:
+              - href: ./activities/unit03/01-sched.qmd
+                text: Exercici · Planificació de processos
 
 
   

@@ -28,5 +28,7 @@ A continuació es presenta un calendari complet dels temes, el contingut del cur
 | 7    | Laboratori  |20/10/25    | **Unitat 03**   |   | | [📄](../labs/05-procs/lab02.qmd)  |  |      |
 | 8    | Teoria  |27/10/25    | **Repàs**   |    |  |  |      |
 | 8    | Teoria  |29/10/25    | **Repàs**   |    |  |  |     | [🔨](../projects/project02.qmd) | |
+| 9 | PARCIALS | |  |   |   |   |   |   |   |   |   |
+| 10    | Teoria/Laboratori  |03/11/25    | **Unitat 04**: Planificació de processos   | [📖](../slides/04-sched.html#prepare)   |  |   | | [👩🏻‍💻](../activities/unit03/01-sched.qmd) |   | 
 
 ::: 

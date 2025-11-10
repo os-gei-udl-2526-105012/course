@@ -1,0 +1,95 @@
+---
+title: Problemes bàsics de planificació de processos
+lang: ca
+---
+
+En aquests problemes assumirem les següents convencions:
+
+- El cost de canvi de context és de 0, si no s'indica el contrari.
+- Els processos es poden trobar en el següents estats: <span style="color:blue">Preparat</span>, <span style="color:orange">Espera</span>, <span style="color:green">Execució</span> i <span style="color:red">Finalitzat</span>.
+- Els processos poden fer E/S de forma simultània entre ells.
+
+## Problema 0
+
+Assumeix que tens els següents processos:
+
+| Procés | Temps arribada | Ràfegues                                    |
+|--------|----------------|---------------------------------------------|
+| A      | 0              | $$2_{CPU}$$                                 |
+| B      | 1              | $$6_{CPU}$$                                 |
+| C      | 4              | $$1_{CPU}$$                                 |
+| D      | 7              | $$4_{CPU}$$                                 |
+| E      | 8              | $$3_{CPU}$$                                 |
+
+Es demana:
+
+1. Mostrar la planificació dels processos en un diagrama de Gantt per l'algorisme **FCFS**, **SRT** i **RR** amb **Q=1**. Assumeix una sola CPU.
+
+
+
+## Problema 1
+
+Realitza la planificació dels següents processos utilitzant els algorismes de planificació. En cas d'empat on 2 processos arribin a la cua de preparats al mateix temps, s'executarà el procés amb prioritat més elevada (**1 és la prioritat més alta**). Els algorismes a utilitzar són: a) **FCFS amb 1 CPU**, b) **FCFS amb 2 CPUs**.
+  
+| Procés | Prioritat | Temps arribada | Ràfegues                                    |
+|--------|-----------|----------------|---------------------------------------------|
+| A      | 4         | 3              | $$1_{CPU},4_{E/S},1_{CPU},5_{E/S},1_{CPU}$$ |
+| B      | 3         | 0              | $$4_{CPU},1_{E/S},3_{CPU},1_{E/S},2_{CPU}$$ |
+| C      | 2         | 1              | $$1_{CPU},5_{E/S},1_{CPU},1_{E/S},2_{CPU}$$ |
+| D      | 1         | 2              | $$5_{CPU},2_{E/S},4_{CPU}$$                 |
+
+Es demana:
+
+1. Mostrar la planificació dels processos en un diagrama de Gantt.
+2. Calcular totes les mètriques de planificació per a cada algorisme.
+3. Discuteix els avantatges o desavantages de la planificació, i avalua l'impacte de 1 o 2 CPUs.
+
+
+## Problema 2
+
+Realitza la planificació dels següents processos utilitzant els algorismes de planificació. En cas d'empat on 2 processos arribin a la cua de preparats al mateix temps, s'executarà el procés amb prioritat més elevada (**1 és la prioritat més alta**). Els algorismes a utilitzar són: a) **Round Robin Q=1 amb 1 CPU**, b) **Round Robin Q=3 amb 1 CPU**, c) **Round Robin Q=1 amb 2 CPUs**.
+  
+| Procés | Prioritat | Temps arribada | Ràfegues                                    |
+|--------|-----------|----------------|---------------------------------------------|
+| A      | 4         | 3              | $$1_{CPU},4_{E/S},1_{CPU},5_{E/S},1_{CPU}$$ |
+| B      | 3         | 0              | $$4_{CPU},1_{E/S},3_{CPU},1_{E/S},2_{CPU}$$ |
+| C      | 2         | 4              | $$1_{CPU},5_{E/S},1_{CPU}$$                 |
+| D      | 1         | 2              | $$5_{CPU},2_{E/S},4_{CPU}$$                 |
+
+Es demana:
+
+1. Mostrar la planificació dels processos en un diagrama de Gantt.
+2. Calcular totes les mètriques de planificació per a cada algorisme.
+3. Discuteix els avantatges o desavantages de la planificació, i avalua l'impacte de 1 o 2 CPUs i de diferents valors de **quantum**.
+
+
+## Problema 3
+
+En un sistema amb 1 CPU s'executen els següents processos:
+
+| Procés | Tipus | Cua | Temps arribada | Prioritat | Ràfegues                                    |
+|--------|-------|-----|----------------|-----------|---------------------------------------------|
+| A      | Temps real (prioritari)  | 1   | 5 | 1 |         $$1_{CPU},1_{E/S},2_{CPU},3_{CPU},1_{E/S} $$                 |
+| B      | Temps real   | 1   | 0 | 2 |         $$2_{CPU},3_{E/S},1_{CPU},3_{E/S},1_{CPU}$$                 |
+| C      | InteractiU | 2   | 2 | 3 |        $$4_{CPU},4_{E/S},2_{CPU},2_{E/S},1_{CPU}$$                 |
+| D      | InteractiU | 2   | 3 | 4 |        $$1_{CPU},4_{E/S},3_{CPU},4_{E/S},2_{CPU}$$                 |
+| E      | Batch | 3   | 4 | 5 |        $$2_{CPU},2_{E/S},4_{CPU},1_{E/S},2_{CPU}$$                 |
+| F      | Batch | 3   | 4 | 6 |        $$4_{CPU},1_{E/S},2_{CPU}$$                 |
+
+
+El planificador disposa d’un algoritme de planificació a curt termini amb 3 cues multinivell:
+
+- La cua 1 planifica els processos de temps real més prioritaris i utilitza un algoritme d’ordre d’arribada (FCFS). Aquesta cua és la més prioritària.
+- La cua 2 planifica els processos de temps real i utilitza un algoritme de repartiment de temps (Round-Robin) amb quantum igual a 1 cicle. Aquesta cua és la segona més prioritària.
+- La cua 3 planifica els processos d’usuari i utilitza un algoritme de repartiment de temps (Round-Robin) amb un quantum de 3 cicles. Aquesta cua és la tercera més prioritària.
+- La cua 4 planifica els processos Batch i utilitza un algoritme SRT. Aquesta cua és la menys prioritària.
+
+La planificació entre les cues segueix un algoritme prioritari, de manera que només es pot executar un procés d’una cua menys prioritària si no n’hi ha cap preparat a les cues més prioritàries. A més, els processos més prioritaris s’apropien immediatament del processador en el moment que poden executar-se.
+
+Per desfer empats entre els processos de la mateixa cua s’utilitzarà la seva prioritat (prioritat més alta 1 i prioritat més baixa 6).
+
+Es demana:
+
+1. Realitzar la planificació dels processos i mostrar-la en un diagrama de Gantt.
+2. Calcular totes les mètriques de planificació per a cada procés.
+3. Analitzar l'impacte de la planificació multinivell en el rendiment del sistema.
