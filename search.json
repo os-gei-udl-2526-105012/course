@@ -528,18 +528,7 @@
     "href": "slides/04-sched.html#fcfs---limitacions",
     "title": "Planificació de processos",
     "section": "FCFS - Limitacions",
-    "text": "FCFS - Limitacions\n\nEfecte Convoy: Processos curts poden quedar bloquejats per processos llargs, incrementant el temps d’espera mitjà.\nPot generar temps d’espera elevats: Especialment per a processos curts darrere de processos llargs.",
-    "crumbs": [
-      "Diapositives",
-      "Unitat 04 · Planificació de processos"
-    ]
-  },
-  {
-    "objectID": "slides/04-sched.html#fcfs---observacions",
-    "href": "slides/04-sched.html#fcfs---observacions",
-    "title": "Planificació de processos",
-    "section": "FCFS - Observacions",
-    "text": "FCFS - Observacions\n\n\n\n\n\n\nObservació\n\n\nAdequat per a càrregues de treball homogènies on la durada dels processos és similar. Poc òptim per a entorns amb variabilitat en la durada dels processos, ja que pot afectar la resposta i l’eficiència del sistema.",
+    "text": "FCFS - Limitacions\n\nEfecte Convoy: Processos curts poden quedar bloquejats per processos llargs, incrementant el temps d’espera mitjà.\nPot generar temps d’espera elevats: Especialment per a processos curts darrere de processos llargs.\n\nAdequat per a càrregues de treball homogènies on la durada dels processos és similar. Poc òptim per a entorns amb variabilitat en la durada dels processos, ja que pot afectar la resposta i l’eficiència del sistema.",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos"
@@ -671,7 +660,7 @@
     "href": "slides/04-sched.html#rr-q20s---impacte-de-q-temps-despera",
     "title": "Planificació de processos",
     "section": "RR Q(20s) - Impacte de \\(Q\\) (Temps d’espera)",
-    "text": "RR Q(20s) - Impacte de \\(Q\\) (Temps d’espera)\n\n\n\nQuantum / Estratègia\nP1\nP2\nP3\nP4\n\n\n\n\n\nMillor FCFS\n32\n0\n85\n8\n31.25\n\n\nQ=1\n84\n22\n85\n57\n62\n\n\nQ=5\n82\n20\n85\n58\n61.25\n\n\nQ=20\n72\n20\n85\n88\n66.25\n\n\nPitjor FCFS\n68\n145\n0\n121\n83.5",
+    "text": "RR Q(20s) - Impacte de \\(Q\\) (Temps d’espera)\n\n\n\nQuantum / Estratègia\nP1\nP2\nP3\nP4\nAvg.\n\n\n\n\nMillor FCFS\n32\n0\n85\n8\n31.25\n\n\nQ=1\n84\n22\n85\n57\n62\n\n\nQ=5\n82\n20\n85\n58\n61.25\n\n\nQ=20\n72\n20\n85\n88\n66.25\n\n\nPitjor FCFS\n68\n145\n0\n121\n83.5",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos"
@@ -682,7 +671,7 @@
     "href": "slides/04-sched.html#rr-q20s---impacte-de-q-temps-de-finalització",
     "title": "Planificació de processos",
     "section": "RR Q(20s) - Impacte de \\(Q\\) (Temps de finalització)",
-    "text": "RR Q(20s) - Impacte de \\(Q\\) (Temps de finalització)\n\n\n\n\n\n\n\n\n\n\n\nQuantum / Estratègia\nP1\nP2\nP3\nP4\n\n\n\n\n\nMillor FCFS\n85\n8\n153\n32\n69.5\n\n\nQ=1\n137\n30\n153\n81\n100.25\n\n\nQ=5\n135\n28\n153\n82\n99.5\n\n\nQ=20\n125\n28\n153\n112\n104.5\n\n\nPitjor FCFS\n121\n153\n68\n145\n121.75\n\n\n\n\nQuantum molt petit → molts canvis de context → sobrecàrrega i baix throughput.\nQuantum molt gran → es comporta com FCFS → mala resposta per a processos curts.\nRR és ideal per a entorns interactius, però el quantum ha de ser triat amb cura per equilibrar latència i eficiència.",
+    "text": "RR Q(20s) - Impacte de \\(Q\\) (Temps de finalització)\n\n\n\n\n\n\n\n\n\n\n\nQuantum / Estratègia\nP1\nP2\nP3\nP4\nAvg.\n\n\n\n\nMillor FCFS\n85\n8\n153\n32\n69.5\n\n\nQ=1\n137\n30\n153\n81\n100.25\n\n\nQ=5\n135\n28\n153\n82\n99.5\n\n\nQ=20\n125\n28\n153\n112\n104.5\n\n\nPitjor FCFS\n121\n153\n68\n145\n121.75\n\n\n\n\nQuantum molt petit → molts canvis de context → sobrecàrrega i baix throughput.\nQuantum molt gran → es comporta com FCFS → mala resposta per a processos curts.\nRR és ideal per a entorns interactius, però el quantum ha de ser triat amb cura per equilibrar latència i eficiència.",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos"
