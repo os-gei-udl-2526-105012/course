@@ -329,13 +329,8 @@ L'algorisme FCFS és un dels més senzills: funciona com una cua de persones; el
 -   **Efecte Convoy:** Processos curts poden quedar bloquejats per processos llargs, incrementant el temps d'espera mitjà.
 -   **Pot generar temps d'espera elevats:** Especialment per a processos curts darrere de processos llargs.
 
-## FCFS - Observacions
+Adequat per a càrregues de treball **homogènies** on la durada dels processos és similar. Poc òptim per a entorns amb variabilitat en la durada dels processos, ja que pot afectar la resposta i l'eficiència del sistema.
 
-::: callout-tip
-## Observació
-
-Adequat per a càrregues de treball homogènies on la durada dels processos és similar. Poc òptim per a entorns amb variabilitat en la durada dels processos, ja que pot afectar la resposta i l'eficiència del sistema.
-:::
 
 ## FCFS - Exemple Il·lustratiu
 
@@ -586,7 +581,7 @@ section Execució
 
 ## RR Q(20s) - Impacte de $Q$ (Temps d'espera)
 
-| Quantum / Estratègia | P1 | P2  | P3 | P4  | |
+| Quantum / Estratègia | P1 | P2  | P3 | P4  | Avg.|
 | -------------------- | -- | --- | -- | --- | ------------------ |
 | Millor FCFS          | 32 | 0   | 85 | 8   | 31.25              |
 | Q=1                  | 84 | 22  | 85 | 57  | 62                 |
@@ -596,7 +591,7 @@ section Execució
 
 ## RR Q(20s) - Impacte de $Q$ (Temps de finalització)
 
-| Quantum / Estratègia | P1  | P2  | P3  | P4  |  |
+| Quantum / Estratègia | P1  | P2  | P3  | P4  |  Avg. |
 | -------------------- | --- | --- | --- | --- | ------------------------ |
 | Millor FCFS          | 85  | 8   | 153 | 32  | 69.5                     |
 | Q=1                  | 137 | 30  | 153 | 81  | 100.25                   |
