@@ -55,6 +55,8 @@ website:
             text: Unitat 03 · Pipes
           - href: ./slides/04-sched.qmd
             text: Unitat 04 · Planificació de processos
+          - href: ./slides/04-sched-part2.qmd
+            text: Unitat 04 · Planificació de processos · Justícia
 
       - section: Apunts
         contents:
@@ -96,6 +98,10 @@ website:
                 text: Laboratori 11 · OhMySudo!
               - href: ./labs/05-procs/lab02.qmd
                 text: Laboratori 12 · Escape Room amb processos i pipes
+          - section: Unitat 04
+            contents:
+              - href: ./labs/06-sched/01-simulador.qmd
+                text: Laboratori 13 · Simulador d'algorismes de planificació de processos
               
       - section: Projectes
         contents:
@@ -127,6 +133,7 @@ website:
             contents:
               - href: ./activities/unit03/01-sched.qmd
                 text: Exercici · Planificació de processos
+              
 
 
   

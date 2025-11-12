@@ -1,0 +1,24 @@
+---
+title: Simulador de planificació de processos
+lang: ca
+---
+
+L'objectiu d'aquesta activitat és implementar en llenguatge C un simulador de planificació de processos que permeti analitzar i resoldre els problemes fonamentals de CPU scheduling estudiats a classe.
+
+## Tasques
+
+### Tasca 1: Configuració del Repositori
+
+Per començar, heu de crear el vostre repositori de treball a partir del template proporcionat a [GitHub Classroom](https://classroom.github.com/a/hwfYTJtk).
+
+### Tasca 2: Anàlisi del Codi Base:
+
+Reuniu-vos amb el vostre grup per revisar i comprendre el codi base proporcionat. Aquest codi inclou les estructures de dades necessàries i la infraestructura bàsica d'entrada/sortida.
+
+### Tasca 3: Implementació dels Algorismes de Planificació
+
+Completeu la funció `int run_dispatcher(Process *procTable, size_t nprocs, int algorithm, int modality, int quantum);` 
+
+### Tasques extra (opcionals):
+
+Qualsevol implementació que vagi més enllà dels requisits obligatoris serà considerada com a valor afegit i atorgarà punts extra.
