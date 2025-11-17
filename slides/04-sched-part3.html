@@ -513,6 +513,7 @@ Jordi Mateo Fornés
 <li class="fragment">El node arrel és sempre negre.</li>
 <li class="fragment">Dos nodes vermells no poden ser consecutius (un node vermell no pot tenir un pare vermell).</li>
 <li class="fragment">Tots els camins des de la arrel fins a les fulles tenen el mateix nombre de nodes negres.</li>
+<li class="fragment">La part dreta és sempre més gran que l’esquerra (ordenació per vruntime).</li>
 </ul></li>
 </ul>
 </section>
@@ -610,48 +611,31 @@ Jordi Mateo Fornés
 </section>
 <section id="inserim-p3-vruntime-15" class="slide level2 smaller">
 <h2>Inserim P3 (vruntime = 15)</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
 <ul>
-<li class="fragment"><span class="math inline">\(15 &gt; 5\)</span> → dreta</li>
-<li class="fragment"><span class="math inline">\(15 &gt; 10\)</span> → dreta → és vermell</li>
+<li class="fragment"><span class="math inline">\(15 &gt; 5\)</span> → dreta, <span class="math inline">\(15 &gt; 10\)</span> → dreta → és vermell</li>
 </ul>
 <div class="fragment">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a>    <span class="op">[</span><span class="dv">5</span><span class="er">B</span><span class="op">]</span> <span class="op">(</span>P2<span class="op">)</span></span>
 <span id="cb6-2"><a></a>       \</span>
-<span id="cb6-3"><a></a>       <span class="op">[</span><span class="dv">10</span><span class="er">R</span><span class="op">]</span> <span class="op">(</span>P1<span class="op">)</span></span>
+<span id="cb6-3"><a></a>       <span class="op">[</span><span class="dv">10</span><span class="er">B</span><span class="op">]</span> <span class="op">(</span>P1<span class="op">)</span></span>
 <span id="cb6-4"><a></a>       <span class="op">/</span>   \</span>
 <span id="cb6-5"><a></a>     <span class="op">[</span><span class="dv">8</span><span class="er">B</span><span class="op">]</span> <span class="op">[</span><span class="dv">15</span><span class="er">R</span><span class="op">]</span></span>
 <span id="cb6-6"><a></a>     <span class="op">(</span>P4<span class="op">)</span>  <span class="op">(</span>P3<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div><div class="column" style="width:30%;">
 <ul>
-<li class="fragment">Recolorar P1 (10) a negre.</li>
-<li class="fragment">Recolorar P2 (5) a vermell.</li>
-<li class="fragment">Arrel no pot ser vermell.</li>
+<li class="fragment">El arbre no esta equilibrat en alçada P2 dreta té alçada 3, esquerra 0 → fem rotació a l’esquerra sobre P2.</li>
+<li class="fragment">P2 descendeix com a fill esquerre de P1. P1 ascendeix i esdevé l’arrel.</li>
+<li class="fragment">P4 es recol·loca com a fill dret de P2.</li>
 </ul>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a>    <span class="op">[</span><span class="dv">5</span><span class="er">R</span><span class="op">]</span> <span class="op">(</span>P2<span class="op">)</span></span>
-<span id="cb7-2"><a></a>       \</span>
-<span id="cb7-3"><a></a>       <span class="op">[</span><span class="dv">10</span><span class="er">N</span><span class="op">]</span> <span class="op">(</span>P1<span class="op">)</span></span>
-<span id="cb7-4"><a></a>       <span class="op">/</span>   \</span>
-<span id="cb7-5"><a></a>     <span class="op">[</span><span class="dv">8</span><span class="er">B</span><span class="op">]</span>  <span class="op">[</span><span class="dv">15</span><span class="er">R</span><span class="op">]</span> </span>
-<span id="cb7-6"><a></a>     <span class="op">(</span>P4<span class="op">)</span>   <span class="op">(</span>P3<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a>      <span class="op">[</span><span class="dv">10</span><span class="er">B</span><span class="op">]</span> <span class="op">(</span>P1<span class="op">)</span></span>
+<span id="cb7-2"><a></a>     <span class="op">/</span>     \</span>
+<span id="cb7-3"><a></a>  <span class="op">[</span><span class="dv">5</span><span class="er">R</span><span class="op">]</span>     <span class="op">[</span><span class="dv">15</span><span class="er">R</span><span class="op">]</span></span>
+<span id="cb7-4"><a></a>  <span class="op">(</span>P2<span class="op">)</span>     <span class="op">(</span>P3<span class="op">)</span></span>
+<span id="cb7-5"><a></a>     \</span>
+<span id="cb7-6"><a></a>     <span class="op">[</span><span class="dv">8</span><span class="er">B</span><span class="op">]</span></span>
+<span id="cb7-7"><a></a>     <span class="op">(</span>P4<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div><div class="column" style="width:30%;">
-<ul>
-<li class="fragment">Rotació a l’esquerra sobre P2(5): P1 (10) passa a ser l’arrel i P2 (5) el fill esquerre. La resta es manté igual.</li>
-</ul>
-<div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a>      <span class="op">[</span><span class="dv">10</span><span class="er">B</span><span class="op">]</span> <span class="op">(</span>P1<span class="op">)</span></span>
-<span id="cb8-2"><a></a>     <span class="op">/</span>     \</span>
-<span id="cb8-3"><a></a>  <span class="op">[</span><span class="dv">5</span><span class="er">R</span><span class="op">]</span>     <span class="op">[</span><span class="dv">15</span><span class="er">R</span><span class="op">]</span></span>
-<span id="cb8-4"><a></a>  <span class="op">(</span>P2<span class="op">)</span>     <span class="op">(</span>P3<span class="op">)</span></span>
-<span id="cb8-5"><a></a>     \</span>
-<span id="cb8-6"><a></a>     <span class="op">[</span><span class="dv">8</span><span class="er">B</span><span class="op">]</span></span>
-<span id="cb8-7"><a></a>     <span class="op">(</span>P4<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div></div>
 </section>
 <section id="limitacions-del-cfs" class="slide level2">
 <h2>Limitacions del CFS</h2>
@@ -880,10 +864,10 @@ Jordi Mateo Fornés
 <li class="fragment">S’executa <strong>B</strong> durant 10ms (1 quàntum)</li>
 </ul>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a></a>Temps:    |-------|</span>
-<span id="cb9-2"><a></a>Procés:     B</span>
-<span id="cb9-3"><a></a>V(t):       0 → 0.25</span>
-<span id="cb9-4"><a></a>Lag(B):     0 → -5ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a></a>Temps:    |-------|</span>
+<span id="cb8-2"><a></a>Procés:     B</span>
+<span id="cb8-3"><a></a>V(t):       0 → 0.25</span>
+<span id="cb8-4"><a></a>Lag(B):     0 → -5ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li class="fragment"><span class="math inline">\(V(t) = V(0) + \frac{10ms}{\sum w_i} = 0 + \frac{10}{40} = 0.25\)</span></li>
@@ -902,16 +886,16 @@ Jordi Mateo Fornés
 <li class="fragment">S’ha de triar un: agafem <strong>A</strong> (per FIFO)</li>
 </ul>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a></a>Temps:    |-------|-------|</span>
-<span id="cb10-2"><a></a>Procés:     B       A</span>
-<span id="cb10-3"><a></a>V(t):       0 → 0.25 → 0.50</span>
-<span id="cb10-4"><a></a>Lag(A):     0 → -5ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a></a>Temps:    |-------|-------|</span>
+<span id="cb9-2"><a></a>Procés:     B       A</span>
+<span id="cb9-3"><a></a>V(t):       0 → 0.25 → 0.50</span>
+<span id="cb9-4"><a></a>Lag(A):     0 → -5ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li class="fragment"><span class="math inline">\(V(t) = V(10) + \frac{10ms}{40} = 0.25 + 0.25 = 0.5\)</span></li>
-<li class="fragment"><strong>Ideal</strong>: <span class="math inline">\(S_A = f_A \cdot \Delta t = 0.25 \cdot 10ms = 2.5ms\)</span></li>
+<li class="fragment"><strong>Ideal</strong>: <span class="math inline">\(S_A = f_A \cdot 20ms = 0.25 \cdot 20ms = 5ms\)</span></li>
 <li class="fragment"><strong>Real</strong>: <span class="math inline">\(s_A = 10ms\)</span></li>
-<li class="fragment"><strong>Lag</strong>: <span class="math inline">\(L_A = S_A - s_A = 2.5ms - 10ms = -7.5ms\)</span></li>
+<li class="fragment"><strong>Lag</strong>: <span class="math inline">\(L_A = S_A - s_A = 5ms - 10ms = -5ms\)</span></li>
 </ul>
 </section>
 <section id="interval-3-2030ms" class="slide level2 smaller">
@@ -922,10 +906,10 @@ Jordi Mateo Fornés
 <li class="fragment">C fa un quàntum de 10ms</li>
 </ul>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a></a>Temps:    |-------|-------|-------|</span>
-<span id="cb11-2"><a></a>Procés:     B       A       C</span>
-<span id="cb11-3"><a></a>V(t):       0 → 0.25 → 0.5 → 0.75</span>
-<span id="cb11-4"><a></a>Lag(C):     0 → -2.5ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a></a>Temps:    |-------|-------|-------|</span>
+<span id="cb10-2"><a></a>Procés:     B       A       C</span>
+<span id="cb10-3"><a></a>V(t):       0 → 0.25 → 0.5 → 0.75</span>
+<span id="cb10-4"><a></a>Lag(C):     0 → -2.5ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li class="fragment"><span class="math inline">\(V(t) = V(20) + \frac{10ms}{40} = 0.5 + 0.25 = 0.75\)</span></li>
@@ -956,7 +940,7 @@ Jordi Mateo Fornés
 <td>B</td>
 <td>10ms</td>
 <td>15ms</td>
-<td>-5ms</td>
+<td>5ms</td>
 </tr>
 <tr class="odd">
 <td>C</td>
@@ -966,12 +950,19 @@ Jordi Mateo Fornés
 </tr>
 </tbody>
 </table>
-<p>Tot i les variacions locals, el sistema manté:</p>
-<ul>
-<li class="fragment">Justicia: les proporcions 50–25–25 segons el pes,</li>
-<li class="fragment">Lag mínim,</li>
-<li class="fragment">Responent bé a deadlines virtuals i prioritat temporal.</li>
-</ul>
+<aside class="notes">
+<p><span class="math inline">\(S_A(30)=0.25 \cdot 30=7.5ms\)</span>, <span class="math inline">\(s_A(30)=10ms\)</span> → <span class="math inline">\(L_A(30)=7.5-10=-2.5ms\)</span> <span class="math inline">\(S_B(30)=0.5 \cdot 30=15ms\)</span>, <span class="math inline">\(s_B(30)=10ms\)</span> → <span class="math inline">\(L_B(30)=15-10=+5ms\)</span> <span class="math inline">\(S_C(30)=0.25 \cdot 30=7.5ms\)</span>, <span class="math inline">\(s_C(30)=10ms\)</span> → <span class="math inline">\(L_C(30)=7.5-10=-2.5ms\)</span></p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="comparació-cfs-vs-eevdf" class="slide level2 smaller">
 <h2>Comparació CFS vs EEVDF</h2>

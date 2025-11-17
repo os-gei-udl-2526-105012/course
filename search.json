@@ -5022,7 +5022,7 @@
     "href": "slides/04-sched-part3.html#arbre-red-black-rb",
     "title": "Planificació de processos · Linux",
     "section": "Arbre Red-Black (RB)",
-    "text": "Arbre Red-Black (RB)\n\nUn arbre RB és un tipus d’arbre binari d’autoequilibri que garanteix:\n\nOperacions de cerca, inserció i eliminació en O(log n).\n\nL’arbre sempre es manté equilibrat en alçada, mantenint unes regles simples:\n\nCada node és vermell o negre.\nEl node arrel és sempre negre.\nDos nodes vermells no poden ser consecutius (un node vermell no pot tenir un pare vermell).\nTots els camins des de la arrel fins a les fulles tenen el mateix nombre de nodes negres.",
+    "text": "Arbre Red-Black (RB)\n\nUn arbre RB és un tipus d’arbre binari d’autoequilibri que garanteix:\n\nOperacions de cerca, inserció i eliminació en O(log n).\n\nL’arbre sempre es manté equilibrat en alçada, mantenint unes regles simples:\n\nCada node és vermell o negre.\nEl node arrel és sempre negre.\nDos nodes vermells no poden ser consecutius (un node vermell no pot tenir un pare vermell).\nTots els camins des de la arrel fins a les fulles tenen el mateix nombre de nodes negres.\nLa part dreta és sempre més gran que l’esquerra (ordenació per vruntime).",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos · Linux"
@@ -5066,7 +5066,7 @@
     "href": "slides/04-sched-part3.html#inserim-p3-vruntime-15",
     "title": "Planificació de processos · Linux",
     "section": "Inserim P3 (vruntime = 15)",
-    "text": "Inserim P3 (vruntime = 15)\n\n\n\n\\(15 &gt; 5\\) → dreta\n\\(15 &gt; 10\\) → dreta → és vermell\n\n\n    [5B] (P2)\n       \\\n       [10R] (P1)\n       /   \\\n     [8B] [15R]\n     (P4)  (P3)\n\n\n\nRecolorar P1 (10) a negre.\nRecolorar P2 (5) a vermell.\nArrel no pot ser vermell.\n\n\n    [5R] (P2)\n       \\\n       [10N] (P1)\n       /   \\\n     [8B]  [15R] \n     (P4)   (P3)\n\n\n\nRotació a l’esquerra sobre P2(5): P1 (10) passa a ser l’arrel i P2 (5) el fill esquerre. La resta es manté igual.\n\n\n      [10B] (P1)\n     /     \\\n  [5R]     [15R]\n  (P2)     (P3)\n     \\\n     [8B]\n     (P4)",
+    "text": "Inserim P3 (vruntime = 15)\n\n\\(15 &gt; 5\\) → dreta, \\(15 &gt; 10\\) → dreta → és vermell\n\n\n    [5B] (P2)\n       \\\n       [10B] (P1)\n       /   \\\n     [8B] [15R]\n     (P4)  (P3)\n\n\nEl arbre no esta equilibrat en alçada P2 dreta té alçada 3, esquerra 0 → fem rotació a l’esquerra sobre P2.\nP2 descendeix com a fill esquerre de P1. P1 ascendeix i esdevé l’arrel.\nP4 es recol·loca com a fill dret de P2.\n\n\n      [10B] (P1)\n     /     \\\n  [5R]     [15R]\n  (P2)     (P3)\n     \\\n     [8B]\n     (P4)",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos · Linux"
@@ -5209,7 +5209,7 @@
     "href": "slides/04-sched-part3.html#interval-2-1020ms",
     "title": "Planificació de processos · Linux",
     "section": "Interval 2: 10–20ms",
-    "text": "Interval 2: 10–20ms\n\nRecalcula \\(V(t)\\): 0.25 → 0.5\nA i C tenen el mateix deadline (3)\nS’ha de triar un: agafem A (per FIFO)\n\n\nTemps:    |-------|-------|\nProcés:     B       A\nV(t):       0 → 0.25 → 0.50\nLag(A):     0 → -5ms\n\n\n\\(V(t) = V(10) + \\frac{10ms}{40} = 0.25 + 0.25 = 0.5\\)\nIdeal: \\(S_A = f_A \\cdot \\Delta t = 0.25 \\cdot 10ms = 2.5ms\\)\nReal: \\(s_A = 10ms\\)\nLag: \\(L_A = S_A - s_A = 2.5ms - 10ms = -7.5ms\\)",
+    "text": "Interval 2: 10–20ms\n\nRecalcula \\(V(t)\\): 0.25 → 0.5\nA i C tenen el mateix deadline (3)\nS’ha de triar un: agafem A (per FIFO)\n\n\nTemps:    |-------|-------|\nProcés:     B       A\nV(t):       0 → 0.25 → 0.50\nLag(A):     0 → -5ms\n\n\n\\(V(t) = V(10) + \\frac{10ms}{40} = 0.25 + 0.25 = 0.5\\)\nIdeal: \\(S_A = f_A \\cdot 20ms = 0.25 \\cdot 20ms = 5ms\\)\nReal: \\(s_A = 10ms\\)\nLag: \\(L_A = S_A - s_A = 5ms - 10ms = -5ms\\)",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos · Linux"
@@ -5231,7 +5231,7 @@
     "href": "slides/04-sched-part3.html#resultats-després-de-30ms",
     "title": "Planificació de processos · Linux",
     "section": "Resultats després de 30ms",
-    "text": "Resultats després de 30ms\n\n\n\nProcés\nExecució real\nIdeal segons quota\nLag final\n\n\n\n\nA\n10ms\n7.5ms\n-2.5ms\n\n\nB\n10ms\n15ms\n-5ms\n\n\nC\n10ms\n7.5ms\n-2.5ms\n\n\n\nTot i les variacions locals, el sistema manté:\n\nJusticia: les proporcions 50–25–25 segons el pes,\nLag mínim,\nResponent bé a deadlines virtuals i prioritat temporal.",
+    "text": "Resultats després de 30ms\n\n\n\nProcés\nExecució real\nIdeal segons quota\nLag final\n\n\n\n\nA\n10ms\n7.5ms\n-2.5ms\n\n\nB\n10ms\n15ms\n5ms\n\n\nC\n10ms\n7.5ms\n-2.5ms\n\n\n\n\n\\(S_A(30)=0.25 \\cdot 30=7.5ms\\), \\(s_A(30)=10ms\\) → \\(L_A(30)=7.5-10=-2.5ms\\) \\(S_B(30)=0.5 \\cdot 30=15ms\\), \\(s_B(30)=10ms\\) → \\(L_B(30)=15-10=+5ms\\) \\(S_C(30)=0.25 \\cdot 30=7.5ms\\), \\(s_C(30)=10ms\\) → \\(L_C(30)=7.5-10=-2.5ms\\)",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos · Linux"
