@@ -231,6 +231,7 @@ Quina fracció de CPU acabarà rebent cada tasca?
   - El node arrel és sempre negre.
   - Dos nodes vermells no poden ser consecutius (un node vermell no pot tenir un pare vermell).
   - Tots els camins des de la arrel fins a les fulles tenen el mateix nombre de nodes negres.
+  - La part dreta és sempre més gran que l’esquerra (ordenació per vruntime).
 
 
 ## Construcció de l’arbre RB en el CFS
@@ -317,16 +318,13 @@ Inserim els processos a l’arbre RB per ordre de `vruntime`.
 
 ## Inserim P3 (vruntime = 15) {.smaller}
 
-:::columns
-::: {.column width="30%"}
-- $15 > 5$ → dreta
-- $15 > 10$ → dreta → és vermell
+- $15 > 5$ → dreta, $15 > 10$ → dreta → és vermell
 
 ::: {.fragment}
 ```c
     [5B] (P2)
        \
-       [10R] (P1)
+       [10B] (P1)
        /   \
      [8B] [15R]
      (P4)  (P3)
@@ -334,28 +332,9 @@ Inserim els processos a l’arbre RB per ordre de `vruntime`.
 ```
 :::
 
-:::
-::: {.column width="30%"}
-
-- Recolorar P1 (10) a negre.
-- Recolorar P2 (5) a vermell.
-- Arrel no pot ser vermell.
-  
-::: {.fragment}
-```c
-    [5R] (P2)
-       \
-       [10N] (P1)
-       /   \
-     [8B]  [15R] 
-     (P4)   (P3)
-```
-:::
-
-:::
-::: {.column width="30%"}
-
-- Rotació a l’esquerra sobre P2(5): P1 (10) passa a ser l’arrel i P2 (5) el fill esquerre. La resta es manté igual.
+- El arbre no esta equilibrat en alçada P2 dreta té alçada 3, esquerra 0 → fem rotació a l’esquerra sobre P2.
+- P2 descendeix com a fill esquerre de P1. P1 ascendeix i esdevé l’arrel.
+- P4 es recol·loca com a fill dret de P2. 
 
 ::: {.fragment}
 ```c
@@ -369,8 +348,6 @@ Inserim els processos a l’arbre RB per ordre de `vruntime`.
 ```
 :::
 
-:::
-:::
 
 ## Limitacions del CFS 
 
@@ -556,9 +533,9 @@ Lag(A):     0 → -5ms
 :::
 
 - $V(t) = V(10) + \frac{10ms}{40} = 0.25 + 0.25 = 0.5$
-- **Ideal**: $S_A = f_A \cdot \Delta t = 0.25 \cdot 10ms = 2.5ms$
+- **Ideal**: $S_A = f_A \cdot 20ms = 0.25 \cdot 20ms = 5ms$
 - **Real**: $s_A = 10ms$
-- **Lag**: $L_A = S_A - s_A = 2.5ms - 10ms = -7.5ms$
+- **Lag**: $L_A = S_A - s_A = 5ms - 10ms = -5ms$
 
 
 ## Interval 3: 20–30ms {.smaller}
@@ -586,14 +563,15 @@ Lag(C):     0 → -2.5ms
 | Procés | Execució real | Ideal segons quota | Lag final |
 |--------|----------------|--------------------|-----------|
 | A      | 10ms           | 7.5ms              | -2.5ms    |
-| B      | 10ms           | 15ms               | -5ms      |
+| B      | 10ms           | 15ms               | 5ms      |
 | C      | 10ms           | 7.5ms              | -2.5ms    |
 
-Tot i les variacions locals, el sistema manté:
 
-- Justicia: les proporcions 50–25–25 segons el pes,
-- Lag mínim,
-- Responent bé a deadlines virtuals i prioritat temporal.
+::: notes
+$S_A(30)=0.25 \cdot 30=7.5ms$, $s_A(30)=10ms$ → $L_A(30)=7.5-10=-2.5ms$
+$S_B(30)=0.5 \cdot 30=15ms$, $s_B(30)=10ms$ → $L_B(30)=15-10=+5ms$
+$S_C(30)=0.25 \cdot 30=7.5ms$, $s_C(30)=10ms$ → $L_C(30)=7.5-10=-2.5ms$
+:::
 
 ## Comparació CFS vs EEVDF {.smaller}
 
