@@ -31,5 +31,6 @@ A continuació es presenta un calendari complet dels temes, el contingut del cur
 | 9 | PARCIALS | |  |   |   |   |   |   |   |   |   |
 | 10    | Teoria/Laboratori  |10/11/25    | **Unitat 04**: Planificació de processos   | [📖](../slides/04-sched.html#prepare)   |  |   | | [👩🏻‍💻](../activities/unit03/01-sched.qmd) |   | 
 | 10    | Teoria/Laboratori  |12/11/25    | **Unitat 04**: Planificació de processos (II)   | [📖](../slides/04-sched-part2.qmd)   |  | [📄](../labs/06-sched/01-simulador.qmd)  |    [📚](../readings/eevdf.pdf)
+| 11    | Teoria/Laboratori  |17/11/25    | **Unitat 04**: Planificació de processos (III)   | [📖](../slides/04-sched-part3.qmd)   |  |  |     |
 
 ::: 

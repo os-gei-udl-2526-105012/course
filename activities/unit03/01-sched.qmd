@@ -62,6 +62,11 @@ Es demana:
 2. Calcular totes les mètriques de planificació per a cada algorisme.
 3. Discuteix els avantatges o desavantages de la planificació, i avalua l'impacte de 1 o 2 CPUs i de diferents valors de **quantum**.
 
+Les solucions es troben a: 
+
+- [Round Robin Q=1 amb 1 CPU](solutions/Problema2_RRQ1_1CPU.pdf)
+- [Round Robin Q=1 amb 2 CPU](solutions/Problema2_RRQ1_2CPU.pdf)
+
 
 ## Problema 3
 
@@ -93,3 +98,6 @@ Es demana:
 1. Realitzar la planificació dels processos i mostrar-la en un diagrama de Gantt.
 2. Calcular totes les mètriques de planificació per a cada procés.
 3. Analitzar l'impacte de la planificació multinivell en el rendiment del sistema.
+
+
+

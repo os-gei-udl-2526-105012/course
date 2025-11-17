@@ -912,6 +912,8 @@ Es demana:
 - Calcular el temps d'espera, resposta i retorn mitjà de cada procés.
 - Comparar els resultats obtinguts amb els algorismes de planificació.
 
+Les solucions es troben a: [Round Robin Q=3](../activities/unit03/solutions/Diapositives_RRQ3.pdf) i [SJF](../activities/unit03/solutions/Diapositives_SJF_Noapropiatiu.pdf).
+
 
 ## Què són les cues multinivell? {.smaller} 
 

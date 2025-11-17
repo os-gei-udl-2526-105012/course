@@ -57,6 +57,9 @@ website:
             text: Unitat 04 · Planificació de processos
           - href: ./slides/04-sched-part2.qmd
             text: Unitat 04 · Planificació de processos · Justícia
+          - href: ./slides/04-sched-part3.qmd
+            text: Unitat 04 · Planificació de processos · Linux
+          
 
       - section: Apunts
         contents:

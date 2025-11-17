@@ -1,0 +1,608 @@
+---
+title: "Planificació de processos · Linux"
+subtitle: "Unitat 4 · Sistemes Operatius (SO)"
+author: "Jordi Mateo Fornés"
+logo: "/figures/corporative/institute.png"
+format: 
+  revealjs:
+    transition: fade
+    slide-number: true
+    incremental: true 
+    chalkboard: false
+    css: styles.css
+    footer: "Unitat 4 · Sistemes Operatius (SO) [🏠](/index.html)</a>"
+editor: visual
+
+execute:
+  freeze: auto
+  echo: false
+---
+
+## Evolució de la Planificació a Linux
+
+- **Linux 1.2**:  
+  - Planificació simple: cua circular + *Round Robin (RR)*.
+  - Adequat per sistemes amb poques tasques.
+
+- **Linux 2.2**:  
+  - S'introdueixen **classes de planificació**:
+    ```c
+    #define SCHED_OTHER 0 // Processos normals d'usuari (per defecte)
+    #define SCHED_FIFO  1 // Temps real, no preemptiu
+    #define SCHED_RR    2 // Temps real, Round Robin
+    ```
+
+## `SCHED_FIFO`
+
+- **Temps real**, prioritat fixa.
+- El procés actual:
+  - Continua execució fins que acaba
+  - O bé fins que apareix un procés amb major prioritat
+- Si hi ha diversos processos amb mateixa prioritat:
+  - Execució FIFO 
+
+## `SCHED_RR`
+
+- Igual que `SCHED_FIFO`, però amb *quantum* (slice) de temps.
+- Processos de la mateixa prioritat s’alternen:
+  - Cada procés utilitza la CPU durant el seu *quantum*
+  - Després passa al final de la cua
+- Els processos amb menor prioritat només s’executen si no hi ha cap de més alta
+
+## Linux 2.4 – Planificador O(n)
+
+- **Epochs**: cicles de planificació
+- **Slices**: quota de temps assignada per epoch
+- Si un procés dorm o es bloqueja, recupera part del *slice* per al següent epoch
+
+::: {.center-container .fragment}
+Amb molts processos la selecció és $O(n)$ → poc escalable.
+:::
+
+## Linux 2.6 – Planificador O(1)
+
+- Les tasques es gestionen en llistes per prioritat (0–139):
+  - `0-99`: temps real (`SCHED_FIFO`, `SCHED_RR`)
+  - `100-139`: processos d’usuari (`SCHED_NORMAL`)
+- Selecció de tasca: O(1)
+- Més escalable que O(n), però:
+
+::: {.center-container .fragment}
+ **Prioritats rígides** → pot degradar la justicia real
+:::
+
+## `SCHED_NORMAL`
+
+- És la política per defecte per a processos d'usuari
+- Cada procés té:
+  - **Prioritat estàtica**: basada en el `nice` (−20 … +19)
+  - **Prioritat dinàmica**: ajustada segons el comportament (p.ex. interactiu o CPU-bound)
+
+## Heurística de `SCHED_NORMAL` {.smaller}
+
+:::center-container
+Com una prioritat dinàmica es tradueix en accés a CPU?
+:::
+
+$$bonus=min(10, (\frac{\text{avg.sleep time}}{100}) \text{ ms})$$
+
+$$ \text{Prioritat}=max(100, min( \text{estatica} - \text{bonus} +5,139))$$
+
+:::{.center-container .fragment}
+Prioritat alta → Quantum més llarg → més temps de CPU
+:::
+
+- 100 és la prioritat mínima per a processos d'usuari.
+- 139 és la prioritat màxima.
+- Permet que aplicacions interactives tinguin menys latència
+- Evita la fam per part dels processos I/O-bound
+
+## Limitacions de `SCHED_NORMAL` i planificador O(1)
+
+- Depèn de gestió manual d’heurístiques
+- Continuïtat i equitat amb càrregues mixtes no sempre garantides
+- Latència elevada per aplicacions interactives
+- Complexitat creixent quan augmenta nombre de processos
+
+::: {.center-container .fragment}
+Cal un planificador més just i adaptatiu → CFS
+:::
+
+## Completely Fair Scheduler (CFS)
+
+- És l'algorisme de planificació per defecte a Linux des de l'any 2007 (kernel 2.6).
+- L'objectiu: ser **just**, evitar fam, reduir latència.
+- Modela un **sistema ideal** on tots els processos reben CPU simultàniament (**Proporcional al seu pes**).
+- Com això no és possible, simula el que *hauria passat* amb la mètrica **vruntime** (temps virtual).
+- Sempre s'executa el procés amb **menys vruntime acumulat**.
+
+## `vruntime` en CFS
+
+El `vruntime` (virtual runtime) és una mesura del temps de CPU que ha utilitzat un procés, ajustat pel seu pes (prioritat).
+
+$$ vt_{i}(t) = \int_{0}^{t} \frac{dt}{w_i} $$
+
+on:
+
+- $vt_i(t)$: temps virtual del procés $i$ en el temps $t$.
+- $w_i$: pes del procés $i$ (derivat de la seva prioritat).
+- $dt$: increment de temps real.
+
+## Exemple ilustratiu de CFS {.smaller}
+
+Suposem tres tasques A, B i C.
+
+- Suposem tres processos amb diferents prioritats:
+
+  - A: `nice` = 0 → factor 1.0
+  - B: `nice` = +5 → penalització, factor 2.0
+  - C: `nice` = +10 → penalització addicional, factor 3.0
+
+- Cada procés acumula vruntime segons el seu factor:
+
+  - A: +1 unitat per tick
+  - B: +2 unitats per tick
+  - C: +3 unitats per tick
+
+- El planificador **sempre escull la tasca amb menor VT**.
+
+:::{.center-container .fragment}
+Quina fracció de CPU acabarà rebent cada tasca?
+:::
+
+## Solució de l'exemple CFS  {.smaller}
+
+::: columns
+::: {.column width="50%"}  
+- Q01: s’executa **A**  
+  - `VT={A: 1, B: 0, C: 0}`
+- Q02: s’executa **B** (té VT=0, el més petit)  
+  - `VT={A: 1, B: 2, C: 0}`
+- Q03: s’executa **C** (té VT=0)  
+  - `VT={A: 1, B: 2, C: 3}`
+- Q04: s’executa **A** (VT=1, el més petit)  
+  - `VT={A: 2, B: 2, C: 3}`
+- Q05: s’executa **B** (A i B empaten, triem B)  
+  - `VT={A: 2, B: 4, C: 3}`
+- Q06: s’executa **A** (VT=2)  
+  - `VT={A: 3, B: 4, C: 3}`
+:::
+::: {.column width="50%"}
+
+- Q07: s’executa **A** (A i C: VT=3, triem A)  
+  - `VT={A: 4, B: 4, C: 3}`
+- Q08: s’executa **C** (VT=3)  
+  - `VT={A: 4, B: 4, C: 6}`
+- Q09: s’executa **A** (VT=4)  
+  - `VT={A: 5, B: 4, C: 6}`
+- Q10: s’executa **B** (VT=4)  
+  - `VT={A: 5, B: 6, C: 6}`
+- Q11: s’executa **A** (VT=5)  
+  - `VT={A: 6, B: 6, C: 6}`
+:::
+:::
+
+## Observacions de l'exemple CFS {.smaller}
+
+- El CFS intenta repartir la CPU de manera equitativa, en funció de les prioritats (pesos) dels processos.
+- Cada procés té un vruntime (temps virtual) que creix mentre s’executa.
+- El planificador sempre tria el procés amb el vruntime més petit, és a dir, el que va **més endarrerit** respecte al que li tocaria.
+- Els processos amb `nice` més alt (menys prioritat) fan créixer el seu vruntime més de pressa i, per tant, són desprogramats abans i corren menys sovint.
+
+
+::: columns
+::: {.column width="50%"}
+
+| | A | B | C |
+|-|---|---|---|
+| Execucions| 6 | 3 | 2 |
+| Fracció de CPU | 54.5% | 27.3% | 18.2% |
+| Pes | 1.0 | 0.5 | 0.33 |
+
+:::
+::: {.column width="50%"}
+- A acumula vruntime més lentament → pot córrer més sovint.
+- C acumula vruntime més ràpid → es veu desprogramat abans i rep menys CPU.
+:::
+:::
+
+## Implementació de CFS {.smaller}
+
+- El CFS necessita una estructura de dades que permeti:
+  - Trobar ràpidament quin procés té el menor `vruntime` (el següent a executar).
+  - Modificar ràpidament la posició d’un procés dins l’ordre quan canvia el seu `vruntime`.
+  - Mantenir ordenats els processos per `vruntime` de manera eficient si en tenim molts
+
+::: {.fragment}
+| Acció                   | Llista ordenada | Arbre RB     |
+| ----------------------- | --------------- | ------------ |
+| Buscar procés mínim     | O(1) o O(n)     | **O(log n)** |
+| Inserir/eliminar procés | O(n)            | **O(log n)** |
+| Reubicar procés         | O(n)            | **O(log n)** |
+:::
+
+## Arbre Red-Black (RB) {.smaller}
+
+- Un arbre RB és un tipus d’arbre binari d’autoequilibri que garanteix:
+  - Operacions de cerca, inserció i eliminació en O(log n).
+
+- L’arbre sempre es manté equilibrat en alçada, mantenint unes regles simples:
+  - Cada node és vermell o negre.
+  - El node arrel és sempre negre.
+  - Dos nodes vermells no poden ser consecutius (un node vermell no pot tenir un pare vermell).
+  - Tots els camins des de la arrel fins a les fulles tenen el mateix nombre de nodes negres.
+
+
+## Construcció de l’arbre RB en el CFS
+
+Tenim aquests quatre processos:
+
+| Procés | Pes (nice) | `vruntime` inicial |
+| ------ | ---------- | ------------------ |
+| P1     | 1          | 10                 |
+| P2     | 2          | 5                  |
+| P3     | 3          | 15                 |
+| P4     | 1          | 8                  |
+
+Inserim els processos a l’arbre RB per ordre de `vruntime`.
+
+## Dibuixem l’arbre RB pas a pas
+
+### Inserim P2 (vruntime = 5)
+
+És el primer node → esdevé arrel, color negre.
+
+```c
+    [5B] (P2)
+```
+
+::: {.fragment}
+### Inserim P4 (vruntime = 8)
+
+- $8 > 5$ → va a la dreta. És vermell.
+
+::: {.fragment}
+```.c 
+    [5B] (P2)
+       \
+       [8R] (P4)
+```
+:::
+
+:::
+
+- Cap violació de regles.
+
+## Inserim P1 (vruntime = 10) {.smaller}
+
+- $10 > 5$ → anem a la dreta.
+- $10 > 8$ → va a la dreta de P4. Es pinta vermell.
+
+:::{.fragment}
+```c
+    [5B] (P2)
+       \
+       [8R] (P4)
+           \
+           [10R] (P1)
+```
+:::
+
+:::{.center-container .fragment}
+**VIOLACIÓ**: dos vermells consecutius (8R i 10R). Cal fer rotació **esquerra**
+:::
+
+::: columns
+::: {.column width="50%"}
+- Per mantenir l'ordre i garantir equilibri, fem una rotació a l’esquerra sobre P4 (elevació de P1):
+  - Baixem P4 com a fill de P1 a l’esquerra. 
+  - P1 ascendeix i esdevé negre.
+  - P4 descendeix i resta en vermell.
+
+:::
+::: {.column width="50%"}
+
+::: {.fragment}
+```c
+    [5B] (P2)
+         \
+         [10B] (P1)
+         /
+      [8R] (P4)
+```
+:::
+
+:::
+:::
+
+## Inserim P3 (vruntime = 15) {.smaller}
+
+:::columns
+::: {.column width="30%"}
+- $15 > 5$ → dreta
+- $15 > 10$ → dreta → és vermell
+
+::: {.fragment}
+```c
+    [5B] (P2)
+       \
+       [10R] (P1)
+       /   \
+     [8B] [15R]
+     (P4)  (P3)
+
+```
+:::
+
+:::
+::: {.column width="30%"}
+
+- Recolorar P1 (10) a negre.
+- Recolorar P2 (5) a vermell.
+- Arrel no pot ser vermell.
+  
+::: {.fragment}
+```c
+    [5R] (P2)
+       \
+       [10N] (P1)
+       /   \
+     [8B]  [15R] 
+     (P4)   (P3)
+```
+:::
+
+:::
+::: {.column width="30%"}
+
+- Rotació a l’esquerra sobre P2(5): P1 (10) passa a ser l’arrel i P2 (5) el fill esquerre. La resta es manté igual.
+
+::: {.fragment}
+```c
+      [10B] (P1)
+     /     \
+  [5R]     [15R]
+  (P2)     (P3)
+     \
+     [8B]
+     (P4)
+```
+:::
+
+:::
+:::
+
+## Limitacions del CFS 
+
+| Procés | Pes (`nice`) | Comportament                        |
+| ------ | ---------- | ------------ | ----------------------------------- |
+| A      |  1024         | Tasques curtes, apareix sovint      |
+| B      |  1024         | Processa grans blocs, no interactiu |
+| C      |  1024         | Tasques curtes, arriba més tard     |
+
+## Limitacions del CFS  {.smaller}
+
+| Temps   | Procés actiu | Context                                   |
+| ------- | ------------ | ----------------------------------------- |
+| 0–50ms  | B            | A encara no ha arribat                    |
+| 50ms    | A arriba     | A té vruntime=0, B té vruntime alt        |
+| 50–60ms | A            | CFS tria A pel vruntime baix              |
+| 60ms    | C arriba     | C té vruntime=0, A i B tenen vruntime>0   |
+| 60–70ms | C            | Tria C ara (just, basat en vruntime baix) |
+| 70–80ms | A            | Torn a A, però...                         |
+| ⋮       | ...          | ...                                       |
+
+## Limitacions del CFS 
+
+- A i C es beneficien només perquè arriben tard → `vruntime=0`.
+- Els processos interactius que tornen sovint (com A) no són tan prioritzats després.
+- Pot provocar latències no òptimes en sistemes interactius o aplicacions UI.
+
+:::{.center-container .fragment}
+El CFS considera només el **temps virtual acumulat**, però no té en compte la urgència o deadlines virtuals de les tasques.
+:::
+
+## Del CFS a EEVDF: per què canviar? {.smaller}
+
+Hem vist que el **CFS**:
+
+- Reparteix la CPU de forma **justa i proporcional** al pes (`nice`).
+- Utilitza el **`vruntime`** per decidir quin procés va “endarrerit”.
+- Manté els processos ordenats per `vruntime` amb un **arbre Red-Black**.
+
+::: {.fragment}
+Però el CFS té **limitacions**:
+
+- No modela explícitament **deadlines** ni temps d’espera **desitjats**.
+- El comportament amb **workloads interactius** o molt canviants pot tenir
+  latències no òptimes.
+- És complicat ajustar-lo a **nous requisits** (jocs, temps real tou, UI molt responsiva).
+:::
+
+
+## EEVDF: una evolució del CFS
+
+Linux introdueix **EEVDF (Earliest Eligible Virtual Deadline First)** com a
+evolució de CFS:
+
+- Manté la idea de **temps virtual** i **justícia**.
+- Introdueix el concepte de **deadline virtual** per a cada tasca.
+- Prioritza la tasca amb la **deadline virtual més urgent** (i *elegible*).
+
+:::{.center-container .fragment}
+Ara que entenem bé **pesos** i **`vruntime`**,
+podem veure com EEVDF afegeix les **deadlines virtuals** al model.
+:::
+
+
+## Què és la quota d'un procés actiu?
+
+La quota d'un procés $i$ representa la seva fracció de temps en comparació amb els altres processos actius:
+
+$$f_i(t) = \frac{w_i}{\sum_{j \in A(t)} w_j}$$
+
+On:
+
+- $w_i$ = pes del procés $i$ (importància relativa).
+- $A(t)$ = conjunt de processos actius en el temps $t$.
+
+## Què és el temps de servei acumulat?
+
+El temps de servei d'un procés $i$ en un interval $[t_0, t_1]$ és:
+
+$$S_i(t_0, t_1) = \int_{t_0}^{t_1} f_i(t) dt$$
+
+Aquesta integral representa el temps total que el procés hauria d'haver rebut segons la seva quota en l'interval de temps especificat. *En un sistema ideal, el temps de servei acumulat hauria de coincidir amb el temps real que el procés ha estat en execució*.
+
+## Què és la deadline virtual? {.smaller}
+
+El Virtual Deadline (deadline virtual) d'un procés es defineix com el temps virtual en què un procés hauria de completar la seva execució segons la seva quota. Per a una sol·licitud de servei de durada $r$, la deadline virtual es calcula com:
+
+$$D_i = ve_i + \frac{r_i}{w_i}$$
+
+on:
+
+- $ve_i$ = Temps virtual en què el procés $i$ esdevé elegible.
+- $r_i$ = durada de la sol·licitud de servei.
+- $w_i$ = pes del procés.
+
+:::{.center-container .fragment}
+El deadline virtual és una mesura que permet al planificador determinar quins processos han de ser executats primer per a garantir que es compleixin les seves quotes.
+:::
+
+## Recordatori: Lag d'un procés {.smaller}
+
+L'objectiu de l'EEVDF és mantenir el lag el més proper possible a zero per a garantir una assignació justa del temps de CPU.
+
+$$L_i(t) = S_i(t_0, t) - s_i(t_0,t)$$
+
+on:
+
+- $L_i(t)$ = lag del procés $i$ en el temps $t$.
+- $S_i(t_0, t)$ = temps de servei acumulat fins al temps $t$.
+- $s_i(t_0, t)$ = temps real d'execució del procés en l'interval $[t_0, t]$.
+
+:::{ .fragment}
+Si:
+- $L_i(t) > 0$, el procés ha rebut menys temps del que li correspondria. 
+- $L_i(t) < 0$, el procés ha rebut més temps del que li pertoca. 
+:::
+
+## Com funciona l'algorisme EEVDF? {.smaller}
+
+1. Assignació de quotes: Cada procés rep una quota de temps de CPU proporcional al seu pes.
+
+2. Càlcul del temps virtual i deadlines virtuals: Es calcula el temps virtual $V(t)$ i es determina el deadline virtual $D_i$ per a cada procés.
+
+3. Càlcul del lag: Es calcula el lag $L_i(t)$ per a cada procés, comparant el temps de servei rebut amb el temps de servei esperat.
+
+4. Selecció del procés:
+
+   - Si hi ha processos amb lag positiu, es prioritzen per a garantir que reben el temps de CPU que els falta.
+   - Es selecciona el procés amb el deadline virtual més proper per a ser executat.
+
+5. Execució: El procés seleccionat s'executa fins que es completa la seva quota o fins que es produeix una interrupció.
+
+## Exemple EEVDF: pas a pas
+
+Tres processos, amb pesos i deadlines virtuals:
+
+| Procés | Pes ($w_i$) | Quota | Deadline inicial ($D_i$) |
+|--------|-------------|-------|--------------------------|
+| **A**  | 10          | 25%   | 3                        |
+| **B**  | 20          | 50%   | 1.5                      |
+| **C**  | 10          | 25%   | 3                        |
+
+- Suma de pesos: 40
+- Quota ideal: A = 25%, B = 50%, C = 25%
+- Seleccionem el prcocés amb la deadline virtual més proper i elegible (**B**).
+
+## Interval 1: 0–10ms {.smaller}
+
+- El temps virtual $V(t)$ = 0
+- Deadline més urgent: **B** (D = 1.5)
+- S’executa **B** durant 10ms (1 quàntum)
+
+:::{.fragment}
+```text
+Temps:    |-------|
+Procés:     B
+V(t):       0 → 0.25
+Lag(B):     0 → -5ms
+```
+:::
+
+- $V(t) = V(0) + \frac{10ms}{\sum w_i} = 0 + \frac{10}{40} = 0.25$
+- **Ideal**: $S_B = f_B \cdot \Delta t = 0.5 \cdot 10ms = 5ms$
+- **Real**: $s_B = 10ms$
+- **Lag**: $L_B = S_B - s_B = 5ms - 10ms = -5ms$
+- $V(t)$ augmenta a 0.25 (B té el 50% de quota).
+- El lag de B és -5ms (ha rebut més temps del que li tocava).
+
+  
+## Interval 2: 10–20ms {.smaller}
+
+- Recalcula $V(t)$: 0.25 → 0.5
+- A i C tenen el **mateix deadline (3)**
+- S’ha de triar un: agafem **A** (per FIFO)
+  
+:::{.fragment}
+```text
+Temps:    |-------|-------|
+Procés:     B       A
+V(t):       0 → 0.25 → 0.50
+Lag(A):     0 → -5ms
+```
+:::
+
+- $V(t) = V(10) + \frac{10ms}{40} = 0.25 + 0.25 = 0.5$
+- **Ideal**: $S_A = f_A \cdot \Delta t = 0.25 \cdot 10ms = 2.5ms$
+- **Real**: $s_A = 10ms$
+- **Lag**: $L_A = S_A - s_A = 2.5ms - 10ms = -7.5ms$
+
+
+## Interval 3: 20–30ms {.smaller}
+
+- $V(t)$: 0.5 → 0.75
+- Queda **C** per executar
+- C fa un quàntum de 10ms
+
+:::{.fragment}
+```text
+Temps:    |-------|-------|-------|
+Procés:     B       A       C
+V(t):       0 → 0.25 → 0.5 → 0.75
+Lag(C):     0 → -2.5ms
+```
+:::
+
+- $V(t) = V(20) + \frac{10ms}{40} = 0.5 + 0.25 = 0.75$
+- **Ideal**: $S_C = f_C \cdot 30ms = 0.25 \cdot 30 = 7.5ms$
+- **Real**: $s_C = 10ms$
+- **Lag**: $L_C = S_C - s_C = 7.5 - 10 = -2.5ms$
+
+## Resultats després de 30ms {.smaller}
+
+| Procés | Execució real | Ideal segons quota | Lag final |
+|--------|----------------|--------------------|-----------|
+| A      | 10ms           | 7.5ms              | -2.5ms    |
+| B      | 10ms           | 15ms               | -5ms      |
+| C      | 10ms           | 7.5ms              | -2.5ms    |
+
+Tot i les variacions locals, el sistema manté:
+
+- Justicia: les proporcions 50–25–25 segons el pes,
+- Lag mínim,
+- Responent bé a deadlines virtuals i prioritat temporal.
+
+## Comparació CFS vs EEVDF {.smaller}
+
+| Característica          | CFS                         | EEVDF                       |
+|-------------------------|-----------------------------|-----------------------------|
+| Justícia proporcional   | Basada en `nice` i pes   |  Basada en pes i deadlines|
+| Temps virtual (`V(t)`)  | Sí, com a mètrica central   | Sí, ampliat amb deadline    |
+| Deadlines               | No té                    |  Sí, virtuals             |
+| Control del `lag`       | Implícit, no explícit     | Mètrica explícita        |
+| Responsivitat           | Bona, però millorable    |  Millor per interactius    |
+| Eficiència computacional| $O(log n)$                    | $O(log n)$                   |
+| Casos d’ús òptims       | Servidors generals          | Temps real, UI, jocs    |
