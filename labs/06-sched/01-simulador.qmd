@@ -18,7 +18,9 @@ Reuniu-vos amb el vostre grup per revisar i comprendre el codi base proporcionat
 ### Tasca 3: Implementació dels Algorismes de Planificació
 
 Completeu la funció `int run_dispatcher(Process *procTable, size_t nprocs, int algorithm, int modality, int quantum);` 
+- Pràctica 3: Aquestes funcionlitats del (FCFS,SJF,SJRT,RR i Prioritat) comptaran com qualificació de la pràctica 3. Recordeu que la implementació **la fem a l'aula**.
 
 ### Tasques extra (opcionals):
 
 Qualsevol implementació que vagi més enllà dels requisits obligatoris serà considerada com a valor afegit i atorgarà punts extra.
+- Qualsevol millora en aquest punt (2CPUs, I/O, etc) comptarà com a punts extra, no de la pràctica 3, de **participació**.
