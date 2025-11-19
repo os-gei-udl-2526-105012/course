@@ -1,0 +1,78 @@
+---
+title: Problemes avançats de planificació de processos
+lang: ca
+---
+
+# Problema 1 — EEVDF (sense prioritzar el lag)
+
+## Enunciat
+
+Tenim un sistema que utilitza l'algorisme de planificació **EEVDF** (Earliest Eligible Virtual Deadline First) per a la planificació de processos. Ens donen la següent taula amb tres jobs.
+
+| Job | Arribada | $r$ | $w$ |
+| --- | -------: | -----------------: | ------: |
+| J1  |        0 |                  6 |       1 |
+| J2  |        0 |                  3 |       3 |
+| J3  |        2 |                  4 |       2 |
+
+Determineu l'ordre d'execució dels jobs.
+
+Recordatori:
+
+- $\Delta V = \dfrac{dv}{dt} = \dfrac{1}{\sum w_j}$
+- $D_i = v(t) + \dfrac{r_i}{w_i}$
+
+
+# Problema 2: EEVDF (prioritzant el lag positiu)
+
+| Job | Arribada | $r$ | $w$ |
+| --- | -------: | -----------------: | ------: |
+| J1  |        0 |                  6 |       1 |
+| J2  |        0 |                  3 |       3 |
+| J3  |        2 |                  4 |       2 |
+
+Regles del sistema:
+
+- $\dfrac{dv}{dt} = \dfrac{1}{\sum w_j}$
+- $D_i = v(t) + \dfrac{r_i}{w_i}$
+- $ve_i$ és el valor de $\Delta V$ quan el job $i$ arriba.
+- Calcul del lag:
+  - $\mathrm{lag}_i(t) = w_i (V(t) - ve_i) - S_i(t)$
+  - On $S_i(t)$ és el servei rebut pel job $i$ fins al temps $t$.
+- **Els processos amb lag positiu s'executen amb prioritat**.
+
+Determineu l'ordre d'execució dels jobs.
+
+## Problema 3: Impacte del Lag Positiu
+
+Compara els resultats obtinguts en el Problema 1 i el Problema 2, i explica l'impacte de la introducció del lag positiu en l'algorisme EEVDF.
+
+
+## Problema 4: Eficiència del planificador Round Robin
+
+Considera un sistema que utilitza l'algorisme de planificació Round Robin amb quantum $Q$ i temps de canvi de context $S$. A més, suposa que els processos tenen un temps d'execució mig $T$. Proporciona una fórmula per calcular l'eficiència del planificador en funció  de $T$, $S$ i $Q$. 
+
+La eficiència es defineix com la proporció de temps que la CPU està realment executant processos útils (no canviant de context).
+
+
+## Problema 5: Red–Black Trees
+
+Inseriu, en aquest ordre, les claus en un arbre Red–Black buit:
+
+```
+10, 20, 30, 15, 25, 5, 1
+```
+
+Feu-ho pas a pas: mostrar l'arbre després de cada inserció, indicar colors (B = black, R = red), detectar violacions, i mostrar les rotacions i recoloracions aplicades.
+
+### Recordatori sobre Red–Black Trees
+- Color: escrivim `Key(B)` per a negre i `Key(R)` per a vermell.
+- Propietats d'un Red–Black Tree:
+  1. Cada node és vermell o negre.
+  2. L'arrel és negra.
+  3. Totes les fulles NIL són negres.
+  4. Si un node és vermell, ambdós fills són negres (no hi ha parells vermells consecutius).
+  5. Tot camí des d'un node a una fulla NIL té el mateix nombre de nodes negres (black-height).
+
+
+

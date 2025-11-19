@@ -135,7 +135,9 @@ website:
           - section: Unitat 04
             contents:
               - href: ./activities/unit03/01-sched.qmd
-                text: Exercici · Planificació de processos
+                text: Problemes · Planificació de processos (I)
+              - href: ./activities/unit03/02-sched.qmd
+                text: Problemes · Planificació de processos (II)
               
 
 

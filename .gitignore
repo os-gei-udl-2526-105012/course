@@ -3,3 +3,4 @@ docs
 .DS_Store
 
 **/*.quarto_ipynb
+activities/unit03/02-sched_sol.qmd
