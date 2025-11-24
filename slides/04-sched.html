@@ -973,7 +973,7 @@ Jordi Mateo Fornés
 <section id="rr---característiques" class="slide level2">
 <h2>RR - Característiques</h2>
 <ul>
-<li class="fragment">Cap procés pot monopolitzar la CPU durant un <strong>temps determinant (<span class="math inline">\(q\)</span>)</strong>.</li>
+<li class="fragment">Cap procés pot monopolitzar la CPU durant un <strong>temps determinant (</strong><span class="math inline">\(q\)</span>).</li>
 <li class="fragment">Utilitza una <strong>cua FIFO</strong> per gestionar els processos preparats.</li>
 <li class="fragment">Utilitza una <strong>interrupció de rellotge</strong> per implementar el quantum de temps.</li>
 <li class="fragment">És un algorisme <strong>apropiatiu</strong>.</li>
@@ -1169,14 +1169,6 @@ section Execució
 <section id="rr-q20s---impacte-de-q-temps-de-finalització" class="slide level2">
 <h2>RR Q(20s) - Impacte de <span class="math inline">\(Q\)</span> (Temps de finalització)</h2>
 <table class="caption-top">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 42%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Quantum / Estratègia</th>
@@ -1282,7 +1274,24 @@ section Execució
 </section>
 <section id="exercici-02-rr---solució" class="slide level2 smaller">
 <h2>Exercici 02: RR - Solució</h2>
-<table class="caption-top">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>P</th>
@@ -1360,7 +1369,7 @@ section Execució
 </section>
 <section id="rr-vs-fcfs-i" class="slide level2">
 <h2>RR vs FCFS (I)</h2>
-<div class=".{center-container}">
+<div class="{center-container}">
 <p>Si assumim que el canvi de context triga <span class="math inline">\(0 ms\)</span>, <strong>podem afirmar que RR és sempre millor que FCFS?</strong></p>
 </div>
 <div class="fragment">

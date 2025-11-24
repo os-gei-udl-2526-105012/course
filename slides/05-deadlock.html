@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
+
+  <meta name="author" content="Jordi Mateo Fornés">
+  <title>SO - Fall 2025 – Interbloqueig</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Interbloqueig</h1>
+  <p class="subtitle">Unitat 5 · Sistemes Operatius (SO)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Jordi Mateo Fornés 
+</div>
+</div>
+</div>
+
+</section>
+<section id="contextualització" class="slide level2 smaller">
+<h2>Contextualització</h2>
+<p>El <em>sistemes informàtics</em> estan formats per molts recursos que <strong>poden ser utilitzats per un o més processos a la vegada</strong>.</p>
+<p>Imagineu 2 processos al mateix temps:</p>
+<ul>
+<li class="fragment"><strong>Situació 1</strong>: escrivint a la impressora → El resultat seria un text sense sentit.</li>
+<li class="fragment"><strong>Situació 2</strong>: utilitzant la mateixa ranura de la taula del sistema de fitxers → El resultat seria un sistema de fitxers corrupte.</li>
+</ul>
+<div class="center-container fragment">
+<p>El sistema operatiu és <strong>l’encarregat de gestionar aquests recursos i garantir que no hi hagi conflictes entre els processos que els utilitzen</strong>. Per tant, poden concedir (<em>temporalment</em>) a un procés l’accés exclusiu a certs recursos.</p>
+</div>
+<aside class="notes">
+<p>Una ranura de la taula del sistema de fitxers és una estructura de dades que s’utilitza per emmagatzemar informació sobre un fitxer o un directori. Aquesta informació inclou el nom del fitxer o directori, la seva mida, els permisos d’accés i altres dades.</p>
+<p>Si dos processos intenten utilitzar la mateixa ranura al mateix temps, poden causar un conflicte. Per exemple, un procés pot estar actualitzant la informació de la ranura mentre l’altre procés està llegint la informació. Això pot provocar que la informació de la ranura quedi corrupta.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="creació-dun-fitxer" class="slide level2 smaller">
+<h2>Creació d’un fitxer</h2>
+<p>Suposem que un <strong>procés (A)</strong> està creant un nou fitxer.</p>
+<ol type="1">
+<li class="fragment">El <strong>procés A</strong> necessita accedir a la taula del sistema de fitxers per crear una nova entrada per al nou fitxer. <em>Aquesta entrada conté informació sobre el fitxer, com ara el seu nom, la seva mida i els permisos d’accés</em>.</li>
+<li class="fragment">El <strong>procés A</strong> <em>necessita</em> <strong>accés exclusiu</strong> a la ranura per al nou fitxer per poder crear l’entrada correcta.</li>
+<li class="fragment">Si un <strong>procés B</strong> intentés crear un fitxer amb el mateix nom al mateix temps, el sistema operatiu bloquejaria el <strong>procés B</strong> fins que el <strong>procés A</strong> finalitzi la creació del nou fitxer.</li>
+</ol>
+<div class="center-container fragment">
+<p><span class="alert">Aquesta és una manera de garantir que la informació del sistema de fitxers sigui precisa i consistent.</span></p>
+</div>
+</section>
+<section id="problemes-amb-recursos-compartits" class="slide level2 smaller">
+<h2>Problemes amb recursos compartits</h2>
+<p>Suposem l’escenari on tenim dos processos (<strong>A i B</strong>): Els dos processos tenen la finalitat de grabar un document escanejat en una memòria USB montada a <em>/mnt/USB</em>.</p>
+<ol type="1">
+<li class="fragment">El <strong>procés A</strong> demana permís per utilitzar l’escaner i se li concedeix.</li>
+<li class="fragment">El <strong>procés B</strong> demana permís per utilitzar la memòria USB i se li concedeix.</li>
+<li class="fragment">El <strong>procés A</strong> demana permís per utilitzar la memòria USB, però la petició queda suspesa fins que el procés B alliberi la memòria USB.</li>
+<li class="fragment">Desafortunadament,en lloc d’alliberar la memòria USB, el <strong>procés B</strong> demana permís per utilitzar l’escàner.</li>
+<li class="fragment">En aquest punt, els dos processos estan bloquejats i ho seguiran per sempre.</li>
+</ol>
+</section>
+<section id="què-és-un-interbloqueig" class="slide level2 smaller">
+<h2>Què és un interbloqueig?</h2>
+<p>Un <strong>interbloqueig</strong> és una situació en la qual dos o més processos queden bloquejats. Cada un d’ells espera que l’altre acabi la seva tasca per poder continuar. Aquesta situació pot ser causada per l’ús de recursos compartits.</p>
+<div class="center-container fragment">
+<p>Els interbloquejos poden produir-se en qualsevol sistema en què hi hagi recursos compartits.</p>
+</div>
+<ul>
+<li class="fragment"><strong>En un sistema de gestió de bases de dades</strong>, dos processos poden estar intentant actualitzar la mateixa fila d’una taula.</li>
+<li class="fragment"><strong>En un sistema de jocs en línia</strong>, dos jugadors poden estar intentant utilitzar el mateix recurs, com ara una arma o una habilitat.</li>
+<li class="fragment"><strong>En un sistema de fabricació</strong>, dues màquines poden estar esperant que una tercera màquina alliberi un recurs, com ara una peça o una eina.</li>
+</ul>
+</section>
+<section id="problema-dels-filosofs-menjant" class="slide level2 smaller">
+<h2>Problema dels filosofs menjant</h2>
+<p>Imagina 5 filòsofs asseguts al voltant d’una taula circular. On cada filòsof pensa i menja de manera cíclica. Si el filòsof vol menjar, necessita agafar els dos coberts que té al costat.</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li class="fragment">Hi ha 5 filòsofs i 5 coberts.</li>
+<li class="fragment">Cada filòsof comparteix els coberts amb els seus veïns.</li>
+<li class="fragment">Tots els filòsofs necessiten dos recursos simultàniament per menjar.</li>
+<li class="fragment">Els filòsofs no poden arrencar els coberts dels altres filòsofs (<strong>no apropiatius</strong>).</li>
+<li class="fragment">Si tots els filòsofs agafen el cobert de la dreta alhora, es produeix un interbloqueig.</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="../figures/slides/05-deadlock/philosopher.png"></p>
+</div></div>
+<div class="center-container fragment">
+<p>Això és equivalent a processos que necessiten dos recursos exclusius per continuar.</p>
+</div>
+</section>
+<section id="recursos-apropiatius-i-no-apropiatius" class="slide level2 smaller">
+<h2>Recursos apropiatius i no apropiatius</h2>
+<ul>
+<li class="fragment"><strong>Apropiatiu</strong>: el SO pot retirar-lo temporalment d’un procés sense comprometre’n la coherència.</li>
+<li class="fragment"><strong>No apropiatiu</strong>: un cop el procés l’ha adquirit, no es pot retirar fins que l’allibera.</li>
+</ul>
+<div class="center-container fragment">
+<p>La distinció no depèn del recurs en si, sinó de com el sistema operatiu està implementat.</p>
+</div>
+<ul>
+<li class="fragment">Un recurs no és inherentment apropiatiu o no apropiatiu.</li>
+<li class="fragment">Depèn de si el SO té mecanismes per guardar i restaurar el seu estat.</li>
+<li class="fragment">Si l’estat del recurs és fàcilment salvable → pot ser apropiatiu</li>
+</ul>
+</section>
+<section id="exemples-apropiatius-no-apropiatius" class="slide level2 smaller">
+<h2>Exemples apropiatius / no apropiatius</h2>
+<ul>
+<li class="fragment"><strong>CPU</strong>: Apropiatiu. El SO pot interrompre un procés (interrupt), guardar-ne l’estat (PCB) i continuar més tard → es pot expropiar sense problemes.</li>
+<li class="fragment"><strong>Memòria</strong>:
+<ul>
+<li class="fragment"><strong>Apropiativa</strong> en sistemes amb swapping o paginació → el SO pot copiar pàgines al disc i recuperar-les després.</li>
+<li class="fragment"><strong>No apropiativa</strong> en sistemes sense swapping(<em>android</em>) → no es pot retirar memòria d’un procés de manera segura → pot causar pèrdua d’estat.</li>
+</ul></li>
+<li class="fragment"><strong>Dispositius d’E/S</strong>:
+<ul>
+<li class="fragment"><strong>No apropiatius</strong>: Impressores, discos durs → no es pot interrompre una operació d’escriptura sense perdre dades.</li>
+<li class="fragment"><strong>Apropiatius</strong>: Dispositius amb búfers → el SO pot desar dades en un búfer i continuar més tard.</li>
+</ul></li>
+</ul>
+</section>
+<section id="gestió-de-la-sollicitud-de-recursos" class="slide level2 smaller">
+<h2>Gestió de la sol·licitud de recursos</h2>
+<p>En alguns sistemes, <strong>quan un recurs no està disponible</strong>, <em>el procés es bloqueja fins que el recurs torni a estar disponible</em>. En altres sistemes, <em>la petició pot fallar amb un codi d’error, transferint la responsabilitat al procés per gestionar la situació de petició fallida i intentar novament obtenir el recurs després d’un temps determinat</em>.</p>
+<div class="fragment">
+<p>Normalment, un procés utilitza un bucle de petició de recurs, dormir, nova petició de recurs, dormir, etc. Aquesta tècnica és coneguda com a <strong>polling</strong>. El procés no es bloqueja, però tampoc pot realitzar cap acció fins que el recurs estigui disponible.</p>
+</div>
+<div class="fragment">
+<p>La manera exacta de sol·licitar un recurs depèn en gran mesura del sistema. En alguns sistemes, es proporciona una <strong>crida de sistema</strong> de petició que permet als processos sol·licitar explícitament recursos. En altres, els únics recursos que el sistema operatiu coneix són fitxers especials que només un procés pot tenir oberts a la vegada. Aquests s’obtenen mitjançant la crida <strong>open</strong>. <em>Si el fitxer ja està en ús, el procés queda bloquejat fins que l’actual propietari el tanca</em>.</p>
+</div>
+</section>
+<section id="condicions-de-coffman-i" class="slide level2 smaller">
+<h2>Condicions de Coffman (I)</h2>
+<p>Les condicions perquè es produeixi un interbloqueig de recursos, com van ser presentades per Coffman et al.&nbsp;(1971), són les següents:</p>
+<ol type="1">
+<li class="fragment"><strong>Condició d’exclusió mútua</strong>: Cada recurs pot ser assignat a un únic procés.</li>
+<li class="fragment"><strong>Condició (Mantenir i Esperar)</strong>: Un procés que té recursos assignats previament pot sol·licitar nous recursos.</li>
+<li class="fragment"><strong>Condició (No apropiació)</strong>: Els recursos concedits prèviament no es poden prendre de manera forçada d’un procés. Han de ser alliberats explícitament pel procés que els té.</li>
+<li class="fragment"><strong>Condició d’Espera Circular</strong>: Ha d’existir una llista circular de dos o més processos, cadascun dels quals espera un recurs que té el següent membre de la cadena.</li>
+</ol>
+</section>
+<section id="exclusió-mútua" class="slide level2 smaller">
+<h2>Exclusió mútua</h2>
+<p>Si tots els recursos fossin c<strong>ompartibles simultàniament (no exclusius)</strong>, cap procés hauria d’esperar: múltiples processos podrien usar el mateix recurs alhora i per tant no s’origina la situació d’un procés esperant indefinidament. Com que sí hi ha deadlock, existeixen recursos que només poden ser ocupats per un procés alhora.</p>
+</section>
+<section id="condició-mantenir-i-esperar" class="slide level2">
+<h2>Condició Mantenir i Esperar</h2>
+<p>En un <em>deadlock</em> hi ha processos que ja tenen alguns recursos i alhora estan esperant altres recursos. Si cap procés tingués recursos mentre esperava (és a dir, si primer haguessin de sol·licitar tots els recursos a l’inici), llavors no podria donar-se la situació en què un procés retenint recursos impedeix que un altre progressi. Perquè el conjunt <span class="math inline">\(D\)</span> estigui bloquejat, cada procés <span class="math inline">\(P_i\)</span> reté almenys un recurs i espera al menys un recurs addicional; així s’està complint mantenir i esperar.</p>
+</section>
+<section id="condició-no-apropiació" class="slide level2">
+<h2>Condició No apropiació</h2>
+<p>Si els recursos poguessin ser forçosament recuperats (<strong>apropiació</strong>), el plan de recuperació podria prendre un recurs d’un procés bloquejat i donar-lo al que el necessita, trencant el <em>deadlock</em>. Perquè el <em>deadlock</em> persisteixi indefinidament, <strong>no es poden apropiar recursos de manera forçada</strong>; els recursos només s’alliberen voluntàriament pels processos. Per tant, la <strong>no apropiació</strong> ha de ser certa en la situació de <em>deadlock</em>.</p>
+</section>
+<section id="condició-despera-circular" class="slide level2 smaller">
+<h2>Condició d’Espera Circular</h2>
+<p>Perquè hi hagi un <em>deadlock</em>, cal que hi hagi una dependència circular entre els processos bloquejats. Cada procés dins del conjunt bloquejat <span class="math inline">\(D\)</span> espera un recurs que és posseït per un altre procés dins de <span class="math inline">\(D\)</span>. Seguint aquestes dependències, s’arriba de nou al primer procés, formant un cicle. Aquesta situació és coneguda com a <strong>espera circular</strong>. Sense aquest cicle, hi hauria algun procés que podria ser satisfet i desbloquejar la resta. Per tant, per a que hi hagi <em>deadlock</em>, la condició d’espera circular ha de ser certa.</p>
+</section>
+<section id="condicions-de-coffman-ii" class="slide level2">
+<h2>Condicions de Coffman (II)</h2>
+<div class="fragment">
+<p>Aquestes condicions estan relacionades amb una política que un sistema pot tenir o no. <em>Pot assignar-se un recurs determinat a més d’un procés alhora? Pot un procés mantenir un recurs i sol·licitar-ne un altre? Poden els recursos ser apropiats? Poden existir esperes circulars?</em></p>
+</div>
+<div class="center-container fragment">
+<p><strong>Totes quatre condicions han de ser presents perquè es produeixi un bloqueig de recursos. Si n’hi ha una que està absent, no és possible un bloqueig de recursos.</strong></p>
+</div>
+<div class="center-container fragment">
+<p>Les 4 condicions són necessàries però no sempre suficients per a un interbloqueig.</p>
+</div>
+</section>
+<section id="graf-dassignació-de-recursos" class="slide level2 smaller">
+<h2>Graf d’assignació de recursos</h2>
+<p>Un <strong>graf d’assignació de recursos</strong> és un <strong>graf dirigit</strong> que representa les relacions entre els processos i els recursos en un sistema. Els nodes del graf representen els processos i els recursos, i les arestes del graf representen les peticions de recursos.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="../figures/slides/05-deadlock/graf-assi.jpg"></p>
+</div><div class="column" style="width:60%;">
+<ul>
+<li class="fragment">Processos: Nodes (<em>Circulars</em>) del graf <span class="math inline">\(P_1, P_2, \ldots, P_n\)</span></li>
+<li class="fragment">Recursos: Nodes (<em>Rectangulars</em>) del graf <span class="math inline">\(R_1, R_2, \ldots, R_m\)</span></li>
+<li class="fragment">Instancies de recursos: Nodes (<em>Rectangulars</em>) del graf <span class="math inline">\(R_1^1, R_1^2, \ldots, R_1^{n_1}, R_2^1, R_2^2, \ldots, R_2^{n_2}, \ldots, R_m^1, R_m^2, \ldots, R_m^{n_m}\)</span></li>
+<li class="fragment">Peticions de recursos: Arestes del graf <span class="math inline">\(P_i \rightarrow R_j\)</span></li>
+<li class="fragment">Assignacions de recursos: Arestes del graf <span class="math inline">\(R_j \rightarrow P_i\)</span></li>
+</ul>
+</div></div>
+</section>
+<section id="exemples-de-modelització-de-recursos-causa-interbloqueig" class="slide level2">
+<h2>Exemples de modelització de recursos (Causa Interbloqueig)</h2>
+<div class="center-container fragment">
+<p><img data-src="../figures/slides/05-deadlock/example-causa-inter.png" style="width:60.0%"></p>
+</div>
+</section>
+<section id="exemples-de-modelització-de-recursos-evitar-interbloqueig" class="slide level2">
+<h2>Exemples de modelització de recursos (Evitar Interbloqueig)</h2>
+<div class="center-container fragment">
+<p><img data-src="../figures/slides/05-deadlock/exemple-evitar-inter.png" style="width:60.0%"></p>
+</div>
+</section>
+<section id="estratègies-per-prevenir-interbloquejos-i" class="slide level2 smaller">
+<h2>Estratègies per prevenir interbloquejos (I)</h2>
+<ul>
+<li class="fragment"><strong>Ignorar el problema</strong>: Aquesta és una opció que generalment no es recomana, ja que pot conduir a conseqüències negatives. No prendre accions pot resultar en un estancament permanent del sistema.</li>
+<li class="fragment"><strong>Detectar i Recuperar</strong>:
+<ul>
+<li class="fragment"><strong>Algorisme de detecció</strong>: Utilitzar un algorisme de detecció de bloqueig: Implementar un sistema que monitoritzi l’ús dels recursos i detecti quan hi ha un potencial bloqueig.</li>
+<li class="fragment"><strong>Algorisme de recuperació</strong>: Desenvolupar un procediment per alliberar els recursos del bloqueig i permetre la continuació del sistema. Això podria incloure la revocació de recursos o la reorganització de les prioritats.</li>
+</ul></li>
+</ul>
+</section>
+<section id="estratègies-per-prevenir-interbloquejos-ii" class="slide level2 smaller">
+<h2>Estratègies per prevenir interbloquejos (II)</h2>
+<ul>
+<li class="fragment"><strong>Evitar el Bloqueig de Forma Dinàmica</strong>: Implementar un algorisme predictiu: Desenvolupar un sistema que pugui preveure si l’assignació de recursos sol·licitada podria conduir a un bloqueig. Això permetrà prendre mesures abans que el problema esdevingui crític.</li>
+<li class="fragment"><strong>Evitar les condicions de Coffman</strong>: Analitzar les condicions de Coffman, com l’exclusió mútua, la posada en espera circular i l’espera indefinida, i prendre mesures per assegurar que aquestes condicions (<em>o alguna</em>) mai es compleixin.</li>
+</ul>
+</section>
+<section id="algorisme-ostrich" class="slide level2 smaller">
+<h2>Algorisme Ostrich</h2>
+<p>La manera més senzilla d’evitar els interbloquejos és l’algorisme de l’<strong>estruç</strong>: posar el cap sota la sorra i fingir que no hi ha cap problema.</p>
+<ul>
+<li class="fragment">Els matemàtics diuen que aquesta estratègia és inacceptable i que els interbloquejos s’han d’evitar a tota costa.</li>
+<li class="fragment">Els enginyers pregunten amb quina freqüència es produeix el problema, amb quina freqüència el sistema es bloqueja per altres motius i quan és greu un interbloqueig. Abans de prendre mesures per evitar els interbloquejos, els enginyers volen saber si el problema és greu.</li>
+</ul>
+</section>
+<section id="algorisme-ostrich-ii" class="slide level2 smaller">
+<h2>Algorisme Ostrich (II)</h2>
+<p>Imagina un sistema operatiu que no detecta els interbloquejos. Si un interbloqueig es produeix una vegada cada 10 anys, el sistema operatiu no hauria de preocupar-se per aquest problema. Si un interbloqueig es produeix una vegada cada 10 minuts, el sistema operatiu hauria de prendre mesures per evitar-lo.</p>
+<div class="center-container fragment">
+<p><span class="alert"><strong>Si un procés obté el recurs d’un USB i un altre obra la impressora i després cada procés intenta obrir el recurs de l’altre i es bloqueja, tenim un interbloqueig. Pocs sistemes actuals detectaran això.</strong></span></p>
+</div>
+</section>
+<section id="prevenir-interbloquejos" class="slide level2 smaller">
+<h2>Prevenir interbloquejos</h2>
+<ul>
+<li class="fragment"><strong>Exclusió mútua</strong>: Fer un <strong>spooling</strong> de tots els recursos. Mou el problema a un altre lloc.
+<ul>
+<li class="fragment">Aplicar de forma selectiva prioritzant els recursos crítics.</li>
+</ul></li>
+<li class="fragment"><strong>Mantenir i Esperar</strong>: Els processos demanen tots els recursos que necessiten al principi. No es pot predir quants recursos necessitarà un procés. A més a més, redueix el paral·lelisme i el rendiment.
+<ul>
+<li class="fragment">Ajustar dinàmicament les peticions segons les necessitats.</li>
+</ul></li>
+<li class="fragment"><strong>No apropiació</strong>: Recursos apropiatius. No es pot aplicar a tots els recursos.</li>
+<li class="fragment"><strong>Espera Circular</strong>: Ordenar les peticions de recursos. Molt dificil de fer.
+<ul>
+<li class="fragment">Implementar algorismes de gestió de recursos per minimizar les esperes circulars.</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p><strong>Spooling</strong>: Tècnica de gestió de recursos que consisteix en fer una cua de peticions de recursos. Aquesta tècnica es pot aplicar a qualsevol recurs, però és més comuna en els dispositius d’entrada/sortida.</p>
+</div>
+</section>
+<section id="detecció-1-recurs-de-cada-tipus" class="slide level2 smaller">
+<h2>Detecció &amp; 1 recurs de cada tipus</h2>
+<p>Assumirem que hi ha un únic recurs de cada tipus. Això significa que només hi ha una instància de cada recurs. Per aquest sistemes, podem utilitzar un graf d’assignació de recursos per determinar si hi ha un interbloqueig. <strong>Si hi ha un cicle, existeix un interbloqueig, i qualsevol procés del cicle es troba involucrat</strong>. En canvi, si no existeix cap cicle, no hi ha interbloqueig.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li class="fragment"><span class="math inline">\(A\)</span> té el recurs R i vol el recurs S.</li>
+<li class="fragment"><span class="math inline">\(B\)</span> vol el recurs T.</li>
+<li class="fragment"><span class="math inline">\(C\)</span> no té cap recurs i vol el recurs S.</li>
+<li class="fragment"><span class="math inline">\(D\)</span> té el recurs U i vol els recursos S i T.</li>
+<li class="fragment"><span class="math inline">\(E\)</span> té el recurs T i vol el recurs V.</li>
+<li class="fragment"><span class="math inline">\(F\)</span> té el recurs W i vol el recurs S.</li>
+<li class="fragment"><span class="math inline">\(G\)</span> té el recurs V i vol el recurs U.</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<p><img data-src="../figures/slides/05-deadlock/ex1-graf.png" style="width:60.0%"></p>
+<div class="fragment">
+<p><strong>Existeix un interbloqueig? Quins processos estan involucrats?</strong></p>
+</div>
+<div class="fragment">
+<p>1 cicle → Interbloqueig. Els processos involucrats són: <span class="math inline">\(D\)</span>, <span class="math inline">\(E\)</span>, <span class="math inline">\(G\)</span>.</p>
+</div>
+</div></div>
+</section>
+<section id="algorisme-de-detecció-1-recurs" class="slide level2 smaller">
+<h2>Algorisme de detecció &amp; 1 recurs</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" size="smaller"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>per cada Node N en LlistaNodes:</span>
+<span id="cb1-2"><a></a>  Inicialitzar L a la llista buida  </span>
+<span id="cb1-3"><a></a>  Marcar tots els arcs com a no marcats</span>
+<span id="cb1-4"><a></a>  detectar_cicle(N, LlistaArcs, L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:60%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" size="smaller"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> detectar_cicle(NodeActual, LlistaArcs, L):</span>
+<span id="cb2-2"><a></a>    Afegir NodeActual al final de L</span>
+<span id="cb2-3"><a></a>    <span class="co"># Si el NodeActual ja era al camí → hem format un cicle</span></span>
+<span id="cb2-4"><a></a>    si L.count(NodeActual) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb2-5"><a></a>        Imprimir <span class="st">"El graf conté un cicle: "</span>, L</span>
+<span id="cb2-6"><a></a>        Finalitzar l<span class="st">'algorisme</span></span>
+<span id="cb2-7"><a></a><span class="er">    # Obtenir arcs de sortida no marcats</span></span>
+<span id="cb2-8"><a></a>    ArcsNoMarcats <span class="op">=</span> [arc per arc en LlistaArcs</span>
+<span id="cb2-9"><a></a>        si arc.origen <span class="op">==</span> NodeActual i no arc.marcat]</span>
+<span id="cb2-10"><a></a>    si ArcsNoMarcats <span class="op">!=</span> []:</span>
+<span id="cb2-11"><a></a>        <span class="co"># Seleccionar un arc i baixar al node destí</span></span>
+<span id="cb2-12"><a></a>        arc <span class="op">=</span> Seleccionar_Arc_Atzar(ArcsNoMarcats)</span>
+<span id="cb2-13"><a></a>        arc.marcat <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-14"><a></a>        NodeSeguent <span class="op">=</span> arc.desti</span>
+<span id="cb2-15"><a></a>        detectar_cicle(NodeSeguent, LlistaArcs, L)</span>
+<span id="cb2-16"><a></a>    sinó:  </span>
+<span id="cb2-17"><a></a>        <span class="co"># No hi ha més arcs: cal retrocedir</span></span>
+<span id="cb2-18"><a></a>        <span class="co"># Retirem el NodeActual del camí i tornem enrere</span></span>
+<span id="cb2-19"><a></a>        L.pop()</span>
+<span id="cb2-20"><a></a>        si L <span class="op">==</span> []:</span>
+<span id="cb2-21"><a></a>            Imprimir <span class="st">"El subgraf explorat no conté cicles"</span></span>
+<span id="cb2-22"><a></a>            retornar</span>
+<span id="cb2-23"><a></a>        NodeAnterior <span class="op">=</span> L[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb2-24"><a></a>        detectar_cicle(NodeAnterior, LlistaArcs, L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<aside class="notes">
+<p>Aquest algorisme pren cada node, successivament, com a arrel del que espera que sigui un arbre i realitza una recerca en profunditat. Si en algun moment torna a un node que ja ha trobat, això indica que ha trobat un cicle. Si esgotem totes les arestes des d’un node donat, retrocedim al node anterior. Si retrocedim fins a l’arrel i no podem continuar, el subgraf accessible des del node actual no conté cap cicle. Si aquesta propietat es compleix per a tots els nodes, tot el graf no conté cicles, de manera que el sistema no es troba en un estat d’encallament (deadlock).</p>
+<p>En resum, l’algorisme fa una exploració en profunditat des de cada node començant pel seu suposat arbre, rastrejant camins i detectant cicles si torna a trobar un node ja visitat. Aquesta exploració en profunditat permet analitzar la connexió entre els nodes i determinar si hi ha cicles.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="exemple-dexecució-de-lalgorisme-i" class="slide level2 smaller">
+<h2>Exemple d’execució de l’algorisme (I)</h2>
+<p>Assumeix que tenim un graf dirigit amb 4 nodes (A,B,C,D) i 4 arestes (A→B, B→C, C→D, D→A). Si començem amb el <strong>Node A</strong> com a node inicial:</p>
+<ul>
+<li class="fragment">Inicialitzem L a [].</li>
+<li class="fragment">Marquem tots els arcs com a no marcats.</li>
+<li class="fragment">Executem detectar_cicle(A, LlistaArcs, [A]).</li>
+<li class="fragment">Dins de detectar_cicle amb NodeActual = A:
+<ul>
+<li class="fragment">No hi ha cicles ja que A no apareix dues vegades a L.</li>
+<li class="fragment">Seleccionem l’arc (A, B) i el marquem.</li>
+<li class="fragment">Anem al node B, i tornem a executar detectar_cicle(B, LlistaArcs, [A, B]).</li>
+</ul></li>
+<li class="fragment">Dins de detectar_cicle amb NodeActual = B:
+<ul>
+<li class="fragment">No hi ha cicles ja que B no apareix dues vegades a L.</li>
+<li class="fragment">Seleccionem l’arc (B, C) i el marquem.</li>
+<li class="fragment">Anem al node C, i tornem a executar detectar_cicle(C, LlistaArcs, [A, B, C]).</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemple-dexecució-de-lalgorisme-ii" class="slide level2 smaller">
+<h2>Exemple d’execució de l’algorisme (II)</h2>
+<ul>
+<li class="fragment">Dins de detectar_cicle amb NodeActual = C:
+<ul>
+<li class="fragment">No hi ha cicles ja que C no apareix dues vegades a L.</li>
+<li class="fragment">Seleccionem l’arc (C, D) i el marquem.</li>
+<li class="fragment">Anem al node D, i tornem a executar detectar_cicle(D, LlistaArcs, [A, B, C, D]).</li>
+</ul></li>
+<li class="fragment">Dins de detectar_cicle amb NodeActual = D:
+<ul>
+<li class="fragment">No hi ha cicles ja que D no apareix dues vegades a L.</li>
+<li class="fragment">Seleccionem l’arc (D, A) i el marquem.</li>
+<li class="fragment">Anem al node A, i tornem a executar detectar_cicle(A, LlistaArcs, [A, B, C, D, A]).</li>
+</ul></li>
+<li class="fragment">Dins de detectar_cicle amb NodeActual = A:
+<ul>
+<li class="fragment">Afegim A a L, ara L és [A, B, C, D, A].</li>
+<li class="fragment">Aquesta vegada A apareix dues vegades a L, indicant que hi ha un cicle.</li>
+<li class="fragment">Imprimim <em>El graf conté un cicle: [A, B, C, D, A]</em> i finalitzem l’algorisme.</li>
+</ul></li>
+</ul>
+</section>
+<section id="consideracions-sobre-lalgorisme" class="slide level2 smaller">
+<h2>Consideracions sobre l’algorisme</h2>
+<ul>
+<li class="fragment">Aquest algorisme no és eficient, ja que pot haver-hi molts camins per explorar.</li>
+<li class="fragment">Aquest algorisme només funciona per sistemes amb un únic recurs de cada tipus. Per sistemes amb múltiples instàncies de cada recurs, caldria utilitzar un altre algorisme.</li>
+<li class="fragment">Hi ha altres algorismes més eficients per detectar cicles en un graf dirigit, com ara l’algorisme de <em>Tarjan</em>. <strong>Tarjan</strong>: Mitjançant un recorregut en profunditat (<em>DFS</em>), assigna números de baixada i d’arribada als nodes i actualitza els valors <em>low</em> que indiquen el número de baixada més petit accessible des del subarbre d’un node, incloent les arestes de retrocés. <strong>Quan es troba un cicle</strong>, els nodes del cicle tenen els mateixos valors de número de baixada i <em>low</em>, revelant components fortes. Aquesta informació jeràrquica ajuda a identificar de manera eficient les relacions de dependència entre els nodes del graf.</li>
+</ul>
+</section>
+<section id="graf-despera" class="slide level2 smaller">
+<h2>Graf d’espera</h2>
+<p>Un graf d’espera es construeix a partir d’un graf d’assignació de recursos. Els nodes del graf d’espera són els processos, i les arestes són les peticions de recursos. Una aresta del graf d’espera indica que el procés que es troba a l’origen de l’aresta està esperant un recurs que té el procés que es troba al final de l’aresta.</p>
+<ol type="1">
+<li class="fragment">Eliminar tots els nodes corresponents als recursos.</li>
+<li class="fragment">Ajustar els arcs perquè apuntin als processos en lloc dels recursos.</li>
+</ol>
+<div class="center-container fragment">
+<p><img data-src="../figures/slides/05-deadlock/graf-espera.png" style="width:60.0%"></p>
+</div>
+<div class="center-container fragment">
+<p><strong>Si el graf d’espera conté un cicle, hi ha un interbloqueig.</strong></p>
+</div>
+</section>
+<section id="detecció-graf-despera" class="slide level2 smaller">
+<h2>Detecció &amp; graf d’espera</h2>
+<p>Si creem una matriu <span class="math inline">\(A\)</span> de mida <span class="math inline">\(N \times N\)</span> on <span class="math inline">\(N\)</span> és el nombre de processos, i <span class="math inline">\(A_{ij}\)</span> és el nombre d’arestes del graf d’espera que connecten el procés <span class="math inline">\(P_i\)</span> amb el procés <span class="math inline">\(P_j\)</span>, podem utilitzar aquesta matriu per detectar interbloquejos.</p>
+<div class="fragment">
+<p>Per fer-ho, inicialitzarem <span class="math inline">\(A\)</span> a 0. Si existeix un arc del procés <span class="math inline">\(P_i\)</span> al procés <span class="math inline">\(P_j\)</span>, incrementarem <span class="math inline">\(A_{ij}\)</span> en 1. Multipliquem la matriu <span class="math inline">\(A\)</span> per ella mateixa: <span class="math inline">\(A^k = A^{k-1} \times A\)</span>. Aquesta operació es pot realitzar de manera eficient utilitzant l’algorisme de <strong>Strassen</strong>. <em>Si apareix un nombre diferent a 0 a la diagonal de la matriu</em> <span class="math inline">\(A^k\)</span>, hi ha un interbloqueig.</p>
+</div>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="fragment">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+  0 &amp; 1 &amp; 0 \\
+  0 &amp; 0 &amp; 1 \\
+  1 &amp; 1 &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+</div>
+</div><div class="column" style="width:35%;">
+<div class="fragment">
+<p><span class="math display">\[
+A^2 = A \cdot A =
+\begin{bmatrix}
+  0 &amp; 0 &amp; 1 \\
+  1 &amp; 1 &amp; 0 \\
+  0 &amp; 1 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+<p>P2 i P3 tenen un interbloqueig de longitud 2.</p>
+</div>
+</div><div class="column" style="width:35%;">
+<div class="fragment">
+<p><span class="math display">\[
+A^3 = A \cdot A^2 =
+\begin{bmatrix}
+  1 &amp; 1 &amp; 0 \\
+  0 &amp; 1 &amp; 1 \\
+  1 &amp; 1 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+<p>P1,P2 i P3 tenen un interbloqueig de longitud 3.</p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Per multiplicar dues matrius cal multiplicar cada element de la fila de la primera matriu per cada element de la columna de la segona matriu. El resultat de cada multiplicació es suma i es col·loca a la posició corresponent de la matriu resultant.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="detecció-m-recursos-de-cada-tipus-i" class="slide level2 smaller">
+<h2>Detecció &amp; M recursos de cada tipus (I)</h2>
+<ul>
+<li class="fragment"><p>Assumirem:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(n\)</span> processos <span class="math inline">\(P_1, P_2, \ldots, P_n\)</span>.</li>
+<li class="fragment"><span class="math inline">\(m\)</span> recursos de diferents tipus <span class="math inline">\(R_1, R_2, \ldots, R_m\)</span>.</li>
+<li class="fragment">Cada recurs <span class="math inline">\(R_i\)</span> té <span class="math inline">\(e\)</span> instàncies <span class="math inline">\(R_i^{1}, R_i^{2}, \ldots, R_i^{e}\)</span>.</li>
+</ul></li>
+<li class="fragment"><p>Definirem:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(A\)</span> és un vector que representa la disponibilitat de recursos, on <span class="math inline">\(A_j\)</span> és el nombre d’instàncies disponibles del recurs <span class="math inline">\(R_j\)</span>.</li>
+<li class="fragment"><span class="math inline">\(C\)</span> és una matriu que representa l’estat del sistema, on <span class="math inline">\(C_{ij}\)</span> és el nombre d’instàncies del recurs <span class="math inline">\(R_j\)</span> que estan assignades al procés <span class="math inline">\(P_i\)</span>.</li>
+<li class="fragment"><span class="math inline">\(R\)</span> és una matriu que representa les peticions de recursos, on <span class="math inline">\(R_{ij}\)</span> és el nombre d’instàncies del recurs <span class="math inline">\(R_j\)</span> que el procés <span class="math inline">\(P_i\)</span> està sol·licitant.</li>
+<li class="fragment"><span class="math inline">\(E\)</span> és un vector que representa el nombre total d’instàncies de cada recurs, on <span class="math inline">\(E_i\)</span> és el nombre total d’instàncies del recurs <span class="math inline">\(R_i\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="detecció-m-recursos-de-cada-tipus-ii" class="slide level2 smaller">
+<h2>Detecció &amp; M recursos de cada tipus (II)</h2>
+<p>Definirem la <strong>disponibilitat</strong> de recursos es pot calcular com <span class="math inline">\(A_j = E_j - \sum_{i=0}^{n}C_{ij}\)</span>.</p>
+<div class="center-container fragment">
+<p><strong>Si</strong> <span class="math inline">\(R_{ij} &gt; A_j\)</span>, el procés <span class="math inline">\(P_i\)</span> no pot obtenir el recurs <span class="math inline">\(R_j\)</span> i es bloqueja.</p>
+</div>
+<div class="center-container fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../figures/slides/05-deadlock/deteccio-alg-m.png" style="width:90.0%"></p>
+<figcaption>Representació de les estructures de dades</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="algorisme-detecció-m-recursos" class="slide level2 smaller">
+<h2>Algorisme detecció M recursos</h2>
+<p>L’algorisme de detecció d’interbloquejos es basa en la <strong>comparació de vectors</strong>. Definirem la relació <span class="math inline">\(A \leq B\)</span> en dos vectors <span class="math inline">\(A\)</span> i <span class="math inline">\(B\)</span> per indicar que cada element de <span class="math inline">\(A\)</span> és menor o igual que el corresponent element de <span class="math inline">\(B\)</span>. Matemàticament, <span class="math inline">\(A \leq B\)</span> es compleix <strong>si i només si</strong> <span class="math inline">\(A_i \leq B_i\)</span> per a tots els valors de <span class="math inline">\(i\)</span> entre 1 i <span class="math inline">\(m\)</span> (<span class="math inline">\(1 \leq i \leq m\)</span>).</p>
+<ol type="1">
+<li class="fragment">Cada procés es considera inicialment no marcat.</li>
+<li class="fragment">Buscar un procés no marcat, <span class="math inline">\(P_i\)</span>, per al qual la fila <span class="math inline">\(i\)</span>-èssima de <span class="math inline">\(R\)</span> sigui menor o igual a <span class="math inline">\(A\)</span> (és a dir, <span class="math inline">\(R_i \leq A\)</span>).</li>
+<li class="fragment">Si es troba un procés com aquest, sumar la fila <span class="math inline">\(i\)</span>-èssima de <span class="math inline">\(C\)</span> a <span class="math inline">\(A\)</span> (és a dir, <span class="math inline">\(A = A + C_i\)</span>), marcar el procés i tornar a 2.</li>
+<li class="fragment">Si no existeix cap procés com aquest, l’algorisme finalitza.</li>
+<li class="fragment">Quan l’algorisme finalitza, qualsevol procés no marcat es coneix com interbloquejat.</li>
+</ol>
+<div class="center-container fragment">
+<p>Aquest algorisme assumeix un escenari de pitjor cas: tots els processos mantenen tots els recursos adquirits fins que surten.</p>
+</div>
+</section>
+<section id="exemple-dexecució-i" class="slide level2 smaller">
+<h2>Exemple d’execució (I)</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+  2 &amp; 1 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+E =
+\begin{bmatrix}
+  4 &amp; 2 &amp; 3 &amp; 1
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><span class="math display">\[
+C =
+\begin{bmatrix}
+  0 &amp; 0 &amp; 1 &amp; 0 \\
+  2 &amp; 0 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 2 &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><span class="math display">\[
+R =
+\begin{bmatrix}
+  2 &amp; 0 &amp; 0 &amp; 1 \\
+  1 &amp; 0 &amp; 1 &amp; 0 \\
+  2 &amp; 1 &amp; 0 &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<ul>
+<li class="fragment">Pas 1: Buscar un procés que es pugui satisfer totes les seves sol·licituts.
+<ul>
+<li class="fragment"><span class="math inline">\(P1\)</span> no es pot satisfer ja que sol·licita 1 instancia de <span class="math inline">\(R4\)</span> i no ni ha cap disponible.</li>
+<li class="fragment"><span class="math inline">\(P2\)</span> no es pot satifer ja que sol·licita 1 instancia de <span class="math inline">\(R3\)</span> i no ni ha cap disponible.</li>
+<li class="fragment"><span class="math inline">\(P3\)</span> es pot satisfer ja que sol·licita 2 instancies de <span class="math inline">\(R1\)</span> i 1 de <span class="math inline">\(R2\)</span> i aquestes estan disponibles a <span class="math inline">\(A\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemple-dexecució-i-1" class="slide level2 smaller">
+<h2>Exemple d’execució (I)</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+  2 &amp; 1 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+E =
+\begin{bmatrix}
+  4 &amp; 2 &amp; 3 &amp; 1
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><span class="math display">\[
+C =
+\begin{bmatrix}
+  0 &amp; 0 &amp; 1 &amp; 0 \\
+  2 &amp; 0 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 2 &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><span class="math display">\[
+R =
+\begin{bmatrix}
+  2 &amp; 0 &amp; 0 &amp; 1 \\
+  1 &amp; 0 &amp; 1 &amp; 0 \\
+  2 &amp; 1 &amp; 0 &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<ul>
+<li class="fragment">Pas 2: Sumar la fila <span class="math inline">\(i\)</span>-èssima de <span class="math inline">\(C\)</span> a <span class="math inline">\(A\)</span>.
+<ul>
+<li class="fragment"><span class="math inline">\(A = A + C_3 = [2,1,0,0] + [0,1,2,0] = [2,2,2,0]\)</span></li>
+<li class="fragment">Marquem el procés <span class="math inline">\(P3\)</span>. En aquest moment, <span class="math inline">\(P3\)</span> pot finalitzar i alliberar els recursos que té assignats. <span class="math inline">\(A = [4,3,2,0]\)</span></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p>Amb aquests recursos alliberats, podem satisfer les sol·licituds de <span class="math inline">\(P1\)</span> i <span class="math inline">\(P2\)</span>. Per tant no hi ha interbloqueig. Si <span class="math inline">\(P3\)</span> hagués sol·licitat 1 instacia de <span class="math inline">\(R4\)</span> llavors no es podria satisfer cap sol·licitud i tindríem un interbloqueig.</p>
+</div>
+</section>
+<section id="quan-sha-de-fer-la-detecció-dinterbloquejos" class="slide level2 smaller">
+<h2>Quan s’ha de fer la detecció d’interbloquejos?</h2>
+<div class="cemter-container fragment">
+<p>Ara que sabem com detectar interbloquejos, assumint que coneixem amb <strong>antelació la sol·licitud de recursos (estàtic)</strong>, la pregunta és quan hauríem de buscar-los.</p>
+</div>
+<div class="fragment">
+<p>Una possibilitat és comprovar-ho cada vegada que es fa una sol·licitud de recursos. Això assegura detectar-los tan aviat com sigui possible, però pot ser potencialment costos en termes de temps de CPU. → <strong>Sobrecàrrega del sistema</strong>.</p>
+</div>
+<div class="fragment">
+<p>Una estratègia alternativa és comprovar-ho cada <em>k minuts</em>, o quan la utilització de la CPU hagi baixat per sota d’un cert llindar <span class="math inline">\(\theta\)</span>. → <strong>Pot ser que no es detectin interbloquejos immediatament, si existeixen cicles diferents, pot ser difícil determinar quin procés està involucrat en cada cicle.</strong></p>
+</div>
+<div class="fragment center-container">
+<p>La raó per considerar la utilització de la CPU és que si suficients processos estan interbloquejats, hi haurà pocs processos executables, i la CPU sovint estarà inactiva.</p>
+</div>
+</section>
+<section id="recuperació-dinterbloquejos" class="slide level2 smaller">
+<h2>Recuperació d’interbloquejos</h2>
+<p>Suposeu que un sistema operatiu detecta un interbloqueig. Què hauria de fer el sistema operatiu? Hi ha dues possibilitats:</p>
+<ol type="1">
+<li class="fragment"><strong>Recuperació manual</strong>: El sistema operatiu pot demanar a l’usuari que seleccioni un procés per finalitzar-lo. Això alliberarà els recursos que el procés té assignats i permetrà que altres processos continuïn.</li>
+<li class="fragment"><strong>Recuperació automàtica</strong>: El sistema operatiu pot seleccionar un procés per finalitzar-lo. Això alliberarà els recursos que el procés té assignats i permetrà que altres processos continuïn.</li>
+</ol>
+</section>
+<section id="recuperació-amb-apropiació-i" class="slide level2 smaller">
+<h2>Recuperació amb apropiació (I)</h2>
+<p>La recuperació amb apropiació de recursos és una tècnica que permet prendre temporalment un recurs d’un procés, permetre que un altre procés el faci servir i després tornar-lo al procés original sense que aquest se’n adoni. No obstant això, aquesta capacitat de recuperació depèn en gran mesura de la naturalesa específica del recurs.</p>
+<div class="fragment">
+<p><strong>Metàfora</strong>: Imaginem que tenim una impressora compartida entre diversos usuaris. Un usuari està realitzant una gran tasca d’impressió, mentre que un altre usuari necessita imprimir un document urgent. El sistema operatiu pot prendre temporalment la impressora del primer usuari i donar-la al segon usuari. Quan el segon usuari acabi d’imprimir, el sistema operatiu pot tornar la impressora al primer usuari.</p>
+</div>
+<div class="fragment center-container">
+<p>A la realitat la impressora no es pot apropiar d’un usuari a un altre sense que l’usuari original se n’adoni.</p>
+</div>
+</section>
+<section id="recuperació-amb-apropiació-ii" class="slide level2 smaller">
+<h2>Recuperació amb apropiació (II)</h2>
+<ul>
+<li class="fragment">Recuperar amb aquesta tècnica és complex. No sempre és senzill determinar quin procés és el més adequat per ser suspès i si aquesta tècnica és aplicable depèn de la naturalesa específica del recurs i del context de la situació.</li>
+<li class="fragment">Podria comportar inanició. Si un procés és suspès repetidament, pot ser que mai pugui completar la seva tasca.</li>
+</ul>
+</section>
+<section id="recuperació-per-rollback" class="slide level2 smaller">
+<h2>Recuperació per <strong>rollback</strong></h2>
+<p>La recuperació per <strong>rollback</strong> es basa en l’ús de <strong>checkpoints</strong>.</p>
+<ul>
+<li class="fragment">Un <strong>checkpoint</strong> és un punt en el temps en què es guarda l’estat d’un procés. Per exemple, es pot guardar en un fitxer l’estat d’un procés (memòria, recursos asignats,…) en un moment determinat.</li>
+<li class="fragment">Un <strong>rollback</strong> és una operació que restaura l’estat d’un procés a un punt anterior en el temps.</li>
+</ul>
+<div class="fragment">
+<p>Quan es detecta un interbloqueig, s’observen els recursos necessaris i es selecciona un procés que els tingui assignats. A continuació, es realitza un rollback d’aquest procés a un punt anterior en el temps, abans que adquirís els recursos. Això allibera els recursos i permet que altres processos els utilitzin.</p>
+</div>
+<div class="fragment center-container">
+<p>Es perden totes les instruccions executades des del checkpoint, ja que el procés es reinicia a un estat anterior.</p>
+</div>
+</section>
+<section id="recuperació-per-finalització-de-processos" class="slide level2 smaller">
+<h2>Recuperació per finalització de processos</h2>
+<p>La manera més simple de recuperar-se d’un interbloqueig és finalitzar un procés. Això alliberarà els recursos que el procés té assignats i permetrà que altres processos continuïn. De forma dràstica, es pot finalitzar tots els processos que estan involucrats en el cicle d’interbloqueig.</p>
+<ul>
+<li class="fragment"><strong>Selecció de Processos en el Cicle</strong>: S’ha de seleccionar un dels processos involucrats en el cicle i finalitzar-lo. Aquest procés pot ser reinitiat després per evitar l’interbloqueig.</li>
+<li class="fragment"><strong>Finalització de Processos Amb Recursos Necessaris</strong>: Finalitzar un procés que tingui recursos assignats que necessitin els processos del cicle, encara que el procés no estigui directament involucrat en el cicle.</li>
+</ul>
+<div class="fragment center-container">
+<p>En aquesta selecció es pot tenir en compte la prioritat dels processos, el temps que porten en execució, el nombre de recursos que tenen assignats, etc.</p>
+</div>
+<aside class="notes">
+<p>En la mesura del possible, és millor finalitzar un procés que es pugui tornar a executar des del principi sense efectes adversos. Per exemple, una compilació sempre es pot tornar a executar perquè només llegeix un fitxer font i produeix un fitxer objecte. D’altra banda, un procés que actualitza una base de dades no sempre es pot executar de nou amb seguretat, ja que pot tenir efectes irreversibles, com un procés que suma 1 a un camp de la taula, si el tornem a executar podem estar sumant 2 (cosa incorrecta).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="evitar-interbloquejos" class="slide level2 smaller">
+<h2>Evitar interbloquejos</h2>
+<p>La evitació dels interbloquejos es basa en dos algorismes. L’agorisme del <strong>banquer</strong> proposat per Dijkstra i l’algorisme de <strong>seguretat</strong> proposat per Coffman.</p>
+<ul>
+<li class="fragment"><strong>Estat segur</strong>: Un estat és <strong>segur</strong> si hi ha una manera de que tots els processos puguin finalitzar amb èxit sense que es produeixi un interbloqueig.</li>
+<li class="fragment"><strong>Seqüencia segura</strong>: Una seqüència de processos <span class="math inline">\(P_1, P_2, \ldots, P_n\)</span> és una <strong>seqüència segura</strong> si el procés <span class="math inline">\(P_i\)</span> pot satisfer les seves sol·licituds de recursos i finalitzar amb èxit després de la finalització del procés <span class="math inline">\(P_{i-1}\)</span>, per a tots els valors de <span class="math inline">\(i\)</span> entre 1 i <span class="math inline">\(n\)</span> (<span class="math inline">\(1 \leq i \leq n\)</span>).</li>
+<li class="fragment"><strong>Estat insegur</strong>: Un estat és <strong>insegur</strong> si no és segur.</li>
+</ul>
+</section>
+<section id="algorisme-del-banquer-per-a-1-recurs" class="slide level2 smaller">
+<h2>Algorisme del banquer per a 1 recurs</h2>
+<p>L’algorisme del banquer és un algorisme d’evitació d’interbloquejos que es basa en la idea de prevenir-los. Aquest algorisme es basa en el fet que si un sistema es troba en un estat segur, no es produirà un interbloqueig.</p>
+<ul>
+<li class="fragment">El processos (<em>clients</em>) sol·liciten recursos (<em>diners</em>).</li>
+<li class="fragment">El sistema operatiu (<em>banquer</em>) únicament concedeix els recursos si comporten un estat segur.</li>
+<li class="fragment">Les demandes màximes de recursos (<em>crèdits</em>) són conegudes amb antelació.</li>
+</ul>
+</section>
+<section id="exemple---banquer-1-recurs" class="slide level2 smaller">
+<h2>Exemple - Banquer &amp; 1 recurs</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="fragment">
+<p><span class="math display">\[
+\begin{bmatrix}
+    &amp; Assignat &amp; Max \\
+  A &amp; 0        &amp; 6 \\
+  B &amp; 0        &amp; 5 \\
+  C &amp; 0        &amp; 4 \\
+  D &amp; 0        &amp; 7 \\
+\end{bmatrix}
+\]</span></p>
+<p>Si hi ha diponibles 10 recursos. <strong>Estat segur</strong>, tots poden finalitzar amb èxit.</p>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="fragment">
+<p><span class="math display">\[
+\begin{bmatrix}
+    &amp; Assignat &amp; Max \\
+  A &amp; 1        &amp; 6 \\
+  B &amp; 1        &amp; 5 \\
+  C &amp; 2        &amp; 4 \\
+  D &amp; 4        &amp; 7 \\
+\end{bmatrix}
+\]</span></p>
+<p>Si hi ha diponibles 2 recursos. <strong>Estat segur</strong>, <strong>C</strong> primer i després la resta.</p>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="fragment">
+<p><span class="math display">\[
+\begin{bmatrix}
+    &amp; Assignat &amp; Max \\
+  A &amp; 1        &amp; 6 \\
+  B &amp; 2        &amp; 5 \\
+  C &amp; 2        &amp; 4 \\
+  D &amp; 4        &amp; 7 \\
+\end{bmatrix}
+\]</span></p>
+<p>Si hi ha diponibles 1 recurs. <strong>Estat insegur</strong>, ningú pot acabar.</p>
+</div>
+</div></div>
+</section>
+<section id="algorisme-del-banquer-per-a-m-recursos" class="slide level2 smaller">
+<h2>Algorisme del banquer per a <span class="math inline">\(M\)</span> recursos</h2>
+<p>L’algorisme del banquer es pot generalitzar per a sistemes amb múltiples recursos de cada tipus. En aquest cas, el sistema operatiu ha de mantenir una matriu <span class="math inline">\(A\)</span> de mida <span class="math inline">\(M \times N\)</span> on <span class="math inline">\(M\)</span> és el nombre de recursos i <span class="math inline">\(N\)</span> és el nombre de processos. Els elements de la matriu <span class="math inline">\(A_{ij}\)</span> indiquen el nombre d’instàncies del recurs <span class="math inline">\(R_i\)</span> que el procés <span class="math inline">\(P_j\)</span> té assignades.</p>
+<ol type="1">
+<li class="fragment">Seleccioneu un procés <span class="math inline">\(P_i\)</span> que no s’hagi finalitzat i que tingui una demanda màxima <span class="math inline">\(R_i\)</span> que sigui menor o igual a <span class="math inline">\(A\)</span>.</li>
+<li class="fragment">Marqueu el procés <span class="math inline">\(P_i\)</span> i afegiu la fila <span class="math inline">\(i\)</span>-èssima de <span class="math inline">\(C\)</span> a <span class="math inline">\(A\)</span>.</li>
+<li class="fragment">Repeteix els passos fins acabar en un (estat segur) o un (estat insegur).</li>
+</ol>
+</section>
+<section id="algorisme-del-banquer" class="slide level2 smaller">
+<h2>Algorisme del banquer</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" size="tiny"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>procedure banquer(M: integer, N: integer, C: matrix, R: matrix)</span>
+<span id="cb3-2"><a></a>    <span class="op">//</span> M: nombre de recursos, N: nombre de processos, C: matriu d<span class="st">'estat actual del sistema (disponibilitat dels recursos)</span></span>
+<span id="cb3-3"><a></a><span class="er">    // R: matriu de màxims requerits pels processos</span></span>
+<span id="cb3-4"><a></a>    finish: array of boolean of length N <span class="op">//</span> indica si un procés ha finalitzat</span>
+<span id="cb3-5"><a></a>    work: array of integer of length M   <span class="op">//</span> matriu que representa els recursos disponibles</span>
+<span id="cb3-6"><a></a>    <span class="cf">for</span> i <span class="op">:=</span> <span class="dv">1</span> to M do</span>
+<span id="cb3-7"><a></a>        work[i] <span class="op">:=</span> C[<span class="dv">0</span>, i] <span class="op">//</span> inicialitzar work amb la disponibilitat actual de recursos</span>
+<span id="cb3-8"><a></a>    <span class="cf">for</span> i <span class="op">:=</span> <span class="dv">1</span> to N do</span>
+<span id="cb3-9"><a></a>        finish[i] <span class="op">:=</span> false <span class="op">//</span> inicialitzar tots els processos com a no finalitzats</span>
+<span id="cb3-10"><a></a>    repeat</span>
+<span id="cb3-11"><a></a>        found <span class="op">:=</span> false <span class="op">//</span> indica si s<span class="st">'ha trobat un procés adequat en aquesta iteració</span></span>
+<span id="cb3-12"><a></a><span class="er">        for i := 1 to N do</span></span>
+<span id="cb3-13"><a></a>            <span class="cf">if</span> <span class="kw">not</span> finish[i] <span class="kw">and</span> <span class="bu">all</span>(R[i, j] <span class="op">&lt;=</span> work[j] <span class="cf">for</span> j <span class="op">:=</span> <span class="dv">1</span> to M) then</span>
+<span id="cb3-14"><a></a>                <span class="op">//</span> El procés i no ha finalitzat i la seva demanda és menor o igual als recursos disponibles</span>
+<span id="cb3-15"><a></a>                <span class="cf">for</span> j <span class="op">:=</span> <span class="dv">1</span> to M do</span>
+<span id="cb3-16"><a></a>                    work[j] <span class="op">:=</span> work[j] <span class="op">+</span> C[i, j] <span class="op">//</span> alliberar els recursos <span class="kw">del</span> procés i</span>
+<span id="cb3-17"><a></a>                finish[i] <span class="op">:=</span> true <span class="op">//</span> marcar el procés com a finalitzat</span>
+<span id="cb3-18"><a></a>                found <span class="op">:=</span> true <span class="op">//</span> indicar que s<span class="st">'ha trobat un procés en aquesta iteració</span></span>
+<span id="cb3-19"><a></a><span class="er">                break </span></span>
+<span id="cb3-20"><a></a>        until <span class="kw">not</span> found</span>
+<span id="cb3-21"><a></a>    <span class="op">//</span> Comprovar si tots els processos s<span class="st">'han finalitzat</span></span>
+<span id="cb3-22"><a></a><span class="er">    if all</span>(finish[i] <span class="cf">for</span> i <span class="op">:=</span> <span class="dv">1</span> to N) then <span class="bu">print</span>(<span class="st">"L'estat és segur"</span>)</span>
+<span id="cb3-23"><a></a>    <span class="cf">else</span> <span class="bu">print</span>(<span class="st">"L'estat és insegur"</span>)</span>
+<span id="cb3-24"><a></a>end procedure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exemple---concesiói" class="slide level2 smaller">
+<h2>Exemple - Concesió(I)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math display">\[
+Disponible =
+\begin{bmatrix}
+  R1 &amp; R2 &amp; R3 \\
+   3 &amp;  3 &amp;  2 \\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+Max =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  7 &amp;  5 &amp;  3 \\
+  P2 &amp;  3 &amp;  2 &amp;  2 \\
+  P3 &amp;  9 &amp;  0 &amp;  2 \\
+  P4 &amp;  2 &amp;  2 &amp;  2 \\
+  P5 &amp;  4 &amp;  3 &amp;  3 \\
+\end{bmatrix}
+\]</span></p>
+<div class="center">
+<p><strong>P1 sol·licita una instància de</strong> <span class="math inline">\(R1\)</span> i dos de <span class="math inline">\(R3\)</span>. Es concediran?</p>
+</div>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+Necessito =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  7 &amp;  4 &amp;  3 \\
+  P2 &amp;  0 &amp;  2 &amp;  0 \\
+  P3 &amp;  6 &amp;  0 &amp;  0 \\
+  P4 &amp;  0 &amp;  1 &amp;  1 \\
+  P5 &amp;  4 &amp;  3 &amp;  1 \\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+Assignat =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  0 &amp;  1 &amp;  0 \\
+  P2 &amp;  3 &amp;  0 &amp;  2 \\
+  P3 &amp;  3 &amp;  0 &amp;  2 \\
+  P4 &amp;  2 &amp;  1 &amp;  1 \\
+  P5 &amp;  0 &amp;  0 &amp;  2 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+</section>
+<section id="exemple---concesióii" class="slide level2 smaller">
+<h2>Exemple - Concesió(II)</h2>
+<h3 id="pas-1-comprovació-de-la-sollicitud">Pas 1: Comprovació de la sol·licitud</h3>
+<p>P1 sol·licita 1 instància de R1 i 2 instàncies de R3.</p>
+<ul>
+<li class="fragment">Solicito[1,0,2] <span class="math inline">\(\leq\)</span> Disponible [3,3,2].</li>
+<li class="fragment">Solicito[1,0,2] <span class="math inline">\(\leq\)</span> Necessito [7,4,3].</li>
+</ul>
+<div class="fragment">
+<h3 id="pas-2-simulació-de-lassignació">Pas 2: Simulació de l’assignació</h3>
+<p>P1 obté els recursos.</p>
+<ul>
+<li class="fragment">Disponible = Disponible - Solicito = [2,3,0]</li>
+<li class="fragment">Assignat = Assignat + Solicito = [1,1,2]</li>
+<li class="fragment">Necesito = Necesito - Solicito = [6,4,1]</li>
+</ul>
+</div>
+</section>
+<section id="exemple---concesióiii" class="slide level2 smaller">
+<h2>Exemple - Concesió(III)</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><span class="math display">\[
+D =
+\begin{bmatrix}
+  R1 &amp; R2 &amp; R3 \\
+   2 &amp;  3 &amp;  0 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+N =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  6 &amp;  4 &amp;  1 \\
+  P2 &amp;  0 &amp;  2 &amp;  0 \\
+  P3 &amp;  6 &amp;  0 &amp;  0 \\
+  P4 &amp;  0 &amp;  1 &amp;  1 \\
+  P5 &amp;  4 &amp;  3 &amp;  1 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  1 &amp;  1 &amp;  2 \\
+  P2 &amp;  3 &amp;  0 &amp;  2 \\
+  P3 &amp;  3 &amp;  0 &amp;  2 \\
+  P4 &amp;  2 &amp;  1 &amp;  1 \\
+  P5 &amp;  0 &amp;  0 &amp;  2 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<ul>
+<li class="fragment"><em>Iteració 1</em>:
+<ul>
+<li class="fragment">P2: Assignats[3,0,2] i Necessito[0,2,0]. Podeu satisfer P2.</li>
+<li class="fragment">P2 obté els recursos i els allibera. Disponible = [5,3,2]</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemple---concesióiv" class="slide level2 smaller">
+<h2>Exemple - Concesió(IV)</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><span class="math display">\[
+D =
+\begin{bmatrix}
+  R1 &amp; R2 &amp; R3 \\
+   2 &amp;  3 &amp;  0 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+N =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  6 &amp;  4 &amp;  1 \\
+  P2 &amp;  0 &amp;  2 &amp;  0 \\
+  P3 &amp;  6 &amp;  0 &amp;  0 \\
+  P4 &amp;  0 &amp;  1 &amp;  1 \\
+  P5 &amp;  4 &amp;  3 &amp;  1 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  1 &amp;  1 &amp;  2 \\
+  P2 &amp;  3 &amp;  0 &amp;  2 \\
+  P3 &amp;  3 &amp;  0 &amp;  2 \\
+  P4 &amp;  2 &amp;  1 &amp;  1 \\
+  P5 &amp;  0 &amp;  0 &amp;  2 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<ul>
+<li class="fragment"><em>Iteració 2</em>:
+<ul>
+<li class="fragment">P4: Assignats[2,1,1] i Necessito[0,1,1] Podeu satisfer P4.</li>
+<li class="fragment">P4 obté els recursos i els allibera. Disponible = [7,4,3]</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemple---concesióv" class="slide level2 smaller">
+<h2>Exemple - Concesió(V)</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><span class="math display">\[
+D =
+\begin{bmatrix}
+  R1 &amp; R2 &amp; R3 \\
+   2 &amp;  3 &amp;  0 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+N =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  6 &amp;  4 &amp;  1 \\
+  P2 &amp;  0 &amp;  2 &amp;  0 \\
+  P3 &amp;  6 &amp;  0 &amp;  0 \\
+  P4 &amp;  0 &amp;  1 &amp;  1 \\
+  P5 &amp;  4 &amp;  3 &amp;  1 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  1 &amp;  1 &amp;  2 \\
+  P2 &amp;  3 &amp;  0 &amp;  2 \\
+  P3 &amp;  3 &amp;  0 &amp;  2 \\
+  P4 &amp;  2 &amp;  1 &amp;  1 \\
+  P5 &amp;  0 &amp;  0 &amp;  2 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<ul>
+<li class="fragment"><em>Iteració 3</em>:
+<ul>
+<li class="fragment">P3: Assignats[3,0,2] i Necessito[6,0,0]. Podeu satisfer P3.</li>
+<li class="fragment">P3 obté els recursos i els allibera. Disponible = [10,4,5]</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemple---concesióvi" class="slide level2 smaller">
+<h2>Exemple - Concesió(VI)</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><span class="math display">\[
+D =
+\begin{bmatrix}
+  R1 &amp; R2 &amp; R3 \\
+   2 &amp;  3 &amp;  0 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+N =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  6 &amp;  4 &amp;  1 \\
+  P2 &amp;  0 &amp;  2 &amp;  0 \\
+  P3 &amp;  6 &amp;  0 &amp;  0 \\
+  P4 &amp;  0 &amp;  1 &amp;  1 \\
+  P5 &amp;  4 &amp;  3 &amp;  1 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  1 &amp;  1 &amp;  2 \\
+  P2 &amp;  3 &amp;  0 &amp;  2 \\
+  P3 &amp;  3 &amp;  0 &amp;  2 \\
+  P4 &amp;  2 &amp;  1 &amp;  1 \\
+  P5 &amp;  0 &amp;  0 &amp;  2 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<ul>
+<li class="fragment"><em>Iteració 4</em>:
+<ul>
+<li class="fragment">P1: Assignats[1,1,2] i Necessito[6,4,1]. Podeu satisfer P1.</li>
+<li class="fragment">P1 obté els recursos i els allibera. Disponible = [11,5,7]</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemple---concesióvii" class="slide level2 smaller">
+<h2>Exemple - Concesió(VII)</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><span class="math display">\[
+D =
+\begin{bmatrix}
+  R1 &amp; R2 &amp; R3 \\
+   2 &amp;  3 &amp;  0 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+N =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  6 &amp;  4 &amp;  1 \\
+  P2 &amp;  0 &amp;  2 &amp;  0 \\
+  P3 &amp;  6 &amp;  0 &amp;  0 \\
+  P4 &amp;  0 &amp;  1 &amp;  1 \\
+  P5 &amp;  4 &amp;  3 &amp;  1 \\
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:35%;">
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  1 &amp;  1 &amp;  2 \\
+  P2 &amp;  3 &amp;  0 &amp;  2 \\
+  P3 &amp;  3 &amp;  0 &amp;  2 \\
+  P4 &amp;  2 &amp;  1 &amp;  1 \\
+  P5 &amp;  0 &amp;  0 &amp;  2 \\
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<ul>
+<li class="fragment"><em>Iteració 5</em>:
+<ul>
+<li class="fragment">P5: Assignats[0,0,2] i Necessito[4,3,1]. Podeu satisfer P5.</li>
+<li class="fragment">P5 obté els recursos i els allibera. Disponible = [11,5,9]</li>
+</ul></li>
+</ul>
+<div class="center-container fragment">
+<p>La sol·licitud de recursos de P1 (1 instància de R1 i 2 instàncies de R3) pot ser concedida, ja que l’estat resultant és <strong>segur</strong>.</p>
+</div>
+</section>
+<section id="no-concesiói" class="slide level2 smaller">
+<h2>No Concesió(I)</h2>
+<p><strong>En la mateixa situació inicial anterior, P1 sol·licita 1 instàncies de R1, 2 instàncies de R2 i 2 instàncies de R3. Es concediran?</strong></p>
+<ul>
+<li class="fragment">Solicito[1,2,2] <span class="math inline">\(\leq\)</span> Disponible [3,3,2]</li>
+<li class="fragment">Solicito[1,2,2] <span class="math inline">\(\leq\)</span> Necessito [7,4,3].</li>
+<li class="fragment">Disponible = Disponible - Solicito = [2,1,0]</li>
+</ul>
+</section>
+<section id="no-concesióii" class="slide level2 smaller">
+<h2>No Concesió(II)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li class="fragment">P2: Assignats[3,0,2], Necessito[0,2,0], Disponible[2,1,0] P2 no pot satisfer la seva sol·licitud.</li>
+<li class="fragment">P3: Assignats[3,0,2], Necessito[6,0,0], Disponible[2,1,0] P3 no pot satisfer la seva sol·licitud.</li>
+<li class="fragment">P4: Assignats[2,1,1], Necessito[0,1,1], Disponible[2,1,0] P4 no pot satisfer la seva sol·licitud.</li>
+<li class="fragment">P5: Assignats[0,0,2], Necessito[4,3,1], Disponible[2,1,0] P5 no pot satisfer la seva sol·licitud.</li>
+<li class="fragment">P1: Assignats[1,2,2], Necessito[6,4,1], Disponible[2,1,0] P1 no pot satisfer la seva sol·licitud.</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><span class="math display">\[
+N =
+\begin{bmatrix}
+     &amp; R1 &amp; R2 &amp; R3 \\
+  P1 &amp;  6 &amp;  4 &amp;  1 \\
+  P2 &amp;  0 &amp;  2 &amp;  0 \\
+  P3 &amp;  6 &amp;  0 &amp;  0 \\
+  P4 &amp;  0 &amp;  1 &amp;  1 \\
+  P5 &amp;  4 &amp;  3 &amp;  1 \\
+\end{bmatrix}
+\]</span></p>
+<div class="center-container fragment">
+<p>No es pot concedir la sol·licitud de P1, ja que l’estat resultant és <strong>insegur</strong>.</p>
+</div>
+</div></div>
+</section>
+<section id="consideracions-sobre-el-banquer" class="slide level2 smaller">
+<h2>Consideracions sobre el banquer</h2>
+<ul>
+<li class="fragment">L’algorisme del banquer és un algorisme de detecció d’interbloquejos que es basa en la idea de prevenir-los.</li>
+<li class="fragment">L’algorisme del banquer no és un algorisme de detecció d’interbloquejos en temps real, ja que no detecta interbloquejos immediatament.</li>
+<li class="fragment">La prinicipal limitació de l’algorisme del banquer és que requereix conèixer amb antelació la demanda màxima de recursos de cada procés.</li>
+<li class="fragment">L’algoritme de Tarjan supera la limitació de l’algorisme del banquer en la detecció eficient de cicles i és especialment útil en grafs amb relacions complexes entre els nodes.</li>
+</ul>
+</section>
+<section id="realitat-dels-interbloquejos" class="slide level2 smaller">
+<h2>Realitat dels interbloquejos</h2>
+<ul>
+<li class="fragment"><p>Evitar els interbloquejos en sistemes reals és molt difícil. → Complexitat en predir apriori les necessitats de recursos dels processos.</p></li>
+<li class="fragment"><p>Ignora el problema: <strong>No fer res</strong>. → Últim recurs quan no hi ha altres opcions disponible.</p></li>
+<li class="fragment"><p><strong>Detecció i recuperació</strong>: Detectar interbloquejos i prendre mesures per recuperar-se d’ells. (<em>solució preferida quan hi ha mecanismes adients de detecció i recuperació disponibles</em>).</p></li>
+</ul>
+<div class="fragment center-container">
+<p><strong>Els sistemes reals eviten interbloquejos quan no poden prevenir-los globalment.</strong></p>
+</div>
+</section>
+<section id="protocols-que-eviten-i" class="slide level2 smaller">
+<h2>Protocols que EVITEN (I)</h2>
+<ul>
+<li class="fragment"><p><strong>Protocol WAIT-DIE (esperar-morir)</strong>: Assigna a cada transacció un timestamp d’arribada. Si una transacció demana un recurs bloquejat:</p>
+<ul>
+<li class="fragment">Si és més antiga → pot esperar</li>
+<li class="fragment">Si és més jove → se la mata i es reinicia</li>
+<li class="fragment">Evita cicles perquè els joves mai esperen pels vells.</li>
+</ul></li>
+<li class="fragment"><p><strong>Protocol WOUND-WAIT (ferida-espera)</strong>: Al revés:</p>
+<ul>
+<li class="fragment">Si la transacció és més antiga → <em>apunta a</em> la jove i la força a reiniciar-se.</li>
+<li class="fragment">Si és més jove → espera.</li>
+<li class="fragment">Evita interbloquejos perquè els esperes sempre van de joves cap a vells.</li>
+</ul></li>
+</ul>
+<div class="fragment center-container">
+<p>Tots dos protocols trenquen l’ESPERA CIRCULAR sense necessitat d’analitzar cicles.</p>
+</div>
+</section>
+<section id="protocols-que-eviten-ii" class="slide level2 smaller">
+<h2>Protocols que EVITEN (II)</h2>
+<ul>
+<li class="fragment"><p><strong>Timestamp Ordering (TO):</strong> En lloc de bloquejar recursos, s’ordenen totes les operacions per timestamps.</p>
+<ul>
+<li class="fragment">Tota lectura i escriptura ha de respectar l’ordre temporal global.</li>
+<li class="fragment">Si una operació viola l’ordre → la transacció es rebutja i es reinicia.</li>
+<li class="fragment">Com que no hi ha bloquejos, tampoc hi ha interbloquejos.</li>
+</ul></li>
+<li class="fragment"><p><strong>Multiversió Concurrency Control (MVCC):</strong> Manté múltiples versions de les dades.</p>
+<ul>
+<li class="fragment">Les transaccions poden llegir versions antigues sense bloquejar les escriptures.</li>
+<li class="fragment">Les escriptures creen noves versions.</li>
+<li class="fragment">Això redueix la necessitat de bloquejos i, per tant, els interbloquejos són poc freqüents.</li>
+</ul></li>
+</ul>
+</section>
+<section id="realitat-en-sistemes-operatius-i" class="slide level2 smaller">
+<h2>Realitat en Sistemes Operatius (I)</h2>
+<p>En sistemes operatius generalistes com <strong>Linux</strong>, <strong>Windows</strong> o <strong>Android</strong>, <em>no s’utilitzen algorismes d’evitació com l’algorisme del banquer</em>.<br>
+Aquests SO gestionen centenars o milers de processos amb patrons de consum de recursos <strong>imprevisibles</strong>, cosa que fa que els mètodes basats en <strong>demandes màximes conegudes</strong> siguin inviables.</p>
+<div title="Per què NO s’utilitza el banquer?">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Per què NO s’utilitza el banquer?</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment"><strong>No es pot predir</strong> quants recursos necessitarà un procés real.</li>
+<li class="fragment">El cost de comprovar contínuament si l’estat és <em>segur</em> seria <strong>massa alt</strong>.</li>
+<li class="fragment">Les aplicacions modernes tenen comportaments <strong>dinàmics i no deterministes</strong>.</li>
+<li class="fragment">Prioritat del SO: <strong>rendiment i interactivitat</strong>, no garantir absència absoluta d’interbloquejos.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment center-container">
+<p>A Linux, els interbloquejos d’espai d’usuari acostumen a ser causats per competició sobre fitxers, sockets o mutexos en aplicacions, mentre que al kernel normalment provenen de spinlocks i ordres incorrectes d’adquisició de locks.</p>
+</div>
+</section>
+<section id="realitat-en-sistemes-operatius-ii" class="slide level2 smaller">
+<h2>Realitat en Sistemes Operatius (II)</h2>
+<h3 id="detecció-dinterbloquejos-parcial-o-basada-en-heurístiques">Detecció d’interbloquejos (parcial o basada en heurístiques)</h3>
+<ul>
+<li class="fragment">Supervisió de recursos (fitxers, sockets, dispositius…).</li>
+<li class="fragment">Eines del sistema (<code>lsof</code>, <code>fuser</code>, <code>ps</code>, <em>timeouts</em>, <em>hung task detector</em> a Linux).</li>
+<li class="fragment">Identificació de processos que no progressen (<em>stalls</em>, <em>hung tasks</em>).</li>
+</ul>
+<div class="fragment">
+<h3 id="recuperació">2. Recuperació</h3>
+<ul>
+<li class="fragment"><strong>Finalització del procés</strong> que causa o pateix l’interbloqueig.</li>
+<li class="fragment">Alliberament forçat de descriptors, fitxers, sockets o connexions.</li>
+<li class="fragment">En Android: el <em>low memory killer</em> pot acabar aplicacions per recuperar el sistema.</li>
+</ul>
+</div>
+</section>
+<section id="realitat-en-sistemes-operatius-iii" class="slide level2 smaller">
+<h2>Realitat en Sistemes Operatius (III)</h2>
+<h3 id="protocols-i-polítiques-que-redueixen-la-probabilitat-dinterbloquejos">Protocols i polítiques que redueixen la probabilitat d’interbloquejos</h3>
+<p>(No els eliminen, però els fan molt poc freqüents.)</p>
+<ul>
+<li class="fragment">Ordenació d’adquisició de recursos a nivell del kernel.</li>
+<li class="fragment">Locks no bloquejants (<em>trylock</em>).</li>
+<li class="fragment">Timeouts a bloquejos i I/O.</li>
+<li class="fragment">Estructures de dades lock-free en subsistemes crítics (per ex. RCU a Linux).</li>
+<li class="fragment">Model de <em>capabilities</em> en Android/iOS: redueix el nombre de recursos globalment compartits.</li>
+</ul>
+<div class="fragment center-container">
+<p><strong>No els eliminen, però els fan molt poc freqüents.</strong></p>
+</div>
+</section>
+<section id="problema-amb-la-cpu-amd-threadripper-pro-7985wx" class="slide level2 smaller">
+<h2>Problema amb la CPU AMD Threadripper PRO 7985WX</h2>
+<p>La <strong>AMD Ryzen Threadripper PRO 7985WX</strong> fa servir el subsistema CPPC (Collaborative Processor Performance Control) per coordinar amb el firmware (UEFI) quina freqüència o estat de rendiment ha de tenir la CPU. Un kthread del kernel de Linux és l’encarregat de llegir i actualitzar aquesta informació de manera contínua.</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3 id="símptoma">Símptoma</h3>
+<p>Un servidor de còmput quedava bloquejat cada cert temps, sense missatges d’error aparents, i només es podia recuperar amb un reinici manual. A efectes pràctics: un <em>deadlock</em>.</p>
+</div><div class="column" style="width:33%;">
+<h3 id="causa">Causa</h3>
+<p>El kthread responsable del CPPC quedava atrapat en un estat d’espera o en un bucle infinit perquè el firmware proporcionava taules CPPC incompletes o inconsistents. En quedar bloquejat aquest fil del kernel, la gestió de freqüències i altres subsistemes quedaven afectats fins paralitzar el sistema.</p>
+</div><div class="column" style="width:33%;">
+<h3 id="solució">Solució</h3>
+<p>Personalitzar i adaptar els parametres CPPC i de la CPU al firmware específic de la placa base, evitant així les condicions que provocaven el bloqueig del kthread.</p>
+</div></div>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../figures/corporative/institute.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Unitat 5 · Sistemes Operatius (SO) <a href="../index.html">🏠</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/os-gei-udl-2526-105012\.github\.io\/course\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
