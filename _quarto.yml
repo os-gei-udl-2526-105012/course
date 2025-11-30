@@ -61,6 +61,9 @@ website:
             text: Unitat 04 · Planificació de processos · Linux
           - href: ./slides/05-deadlock.qmd
             text: Unitat 05 · Interbloqueig (Deadlock)
+          - href: ./slides/06-mem.qmd
+            text: Unitat 06 · Gestió de memòria (I)
+          - href: ./slides/06-mem-part2.qmd
           
 
       - section: Apunts

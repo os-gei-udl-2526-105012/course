@@ -1,0 +1,43 @@
+
+# Visió Actual (Linux/x86_64)
+
+## Arquitectura x86_64: Memòria {.smaller}
+
+El kernel de Linux en x86_64 utilitza paginació jeràrquica de 4 nivells.La traducció d’una adreça virtual a una adreça física passa per 4 taules:
+
+- PML4 (nivell 4) – Índex més alt; apunta a una PDPT. 
+- PDPT (nivell 3) – Apunta a una PD (page directory).
+- PD (nivell 2) – Apunta a una PT (page table).
+- PT (nivell 1) – Conté les PTE que apunten als frames físics.
+
+Actualment, l'adreça virtual té 48 bits, amb blocs de 9 bits per a cada nivell de taula i 12 bits per al desplaçament dins de la pàgina (4 KB). Cada taula té 512 entrades (2^9). Cada entrada (PTE) ocupa 8 bytes (64 bits).
+
+```text
+Adreça virtual (48b):  [47..39][38..30][29..21][20..12][11..0]
+                       | PML4 | PDPT |  PD  |  PT  | offset |
+                           ↓      ↓      ↓      ↓
+                      PML4[e] -> PDPT[p] -> PD[d] -> PT[t] -> frame + offset -> física
+```
+
+### Eines útils `/proc` {.fragment}
+
+- `/proc/<pid>/maps`: mostra les regions/VMAs del procés (adreces, permisos, fitxer mapejat). Útil per visualitzar les regions (codi, data, heap, stack, mmap).
+
+- `/proc/<pid>/pagemap` — informació bit a bit sobre quines pàgines virtuals estan mapejades a quin frame físic (requereix permisos i interpretació binària).
+
+- `/proc/kpagecount, /proc/kpageflags` — metadades sobre pàgines físiques.
+
+Eina pràctica: pagemap es pot parsejar per saber si una pàgina està present, és COW, etc. (exemple de script disponible si vols).
+
+### Adreçes espai usuari i espai kernel {.fragment}
+
+- Tot i que els registres són de 64 bits, les adreces virtuals han de ser canòniques: els bits 63..48 han de ser la sign-extension del bit 47.
+
+- Linux reserva la meitat alta de l’espai (adreces amb prefix 0xffff…) per al kernel; l’espai d’usuari queda en la meitat baixa. Això protegeix l’espai kernel de referències d’usuari.
+
+- El kernel no manté una taula monolítica per a tot l’espai; cada procés té el seu PGD (PML4 root) i només es materialitzen les taules que calen.
+
+- El kernel utilitza la regió alta del PML4 per mapar el space kernel (per això veus adreces sign-extended).
+
+- Quan hi ha page fault el kernel pot crear la PT/PD/PDPT necessària (on-demand), omplir la PTE i tornar al procés.
+

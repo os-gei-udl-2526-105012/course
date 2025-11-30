@@ -34,5 +34,7 @@ A continuació es presenta un calendari complet dels temes, el contingut del cur
 | 11    | Teoria/Laboratori  |17/11/25    | **Unitat 04**: Planificació de processos (III)   | [📖](../slides/04-sched-part3.qmd)   |  |  |     |
 | 11    | Teoria/Laboratori  |19/11/25    | **Unitat 04**: Planificació de processos (III)   |  |    | [👩🏻‍💻](../activities/unit03/02-sched.qmd) |  |    |
 | 12   | Teoria/Laboratori  |24/11/25    | **Unitat 05**: Interbloqueig (Deadlock)   | [📖](../slides/05-deadlock.html#prepare)   |  |  |     |   |
-
+| 12   | Laboratori  |26/11/25    | **Pràctiques**   |    |  |  |     |   |
+| 13   | Teoria/Laboratori  |01/12/25    | **Unitat 06**: Memòria (I)   | [📖](../slides/06-mem.html#prepare)   |  |  |     |   |
+ 
 ::: 
