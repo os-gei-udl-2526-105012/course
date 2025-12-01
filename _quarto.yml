@@ -63,9 +63,7 @@ website:
             text: Unitat 05 · Interbloqueig (Deadlock)
           - href: ./slides/06-mem.qmd
             text: Unitat 06 · Gestió de memòria (I)
-          - href: ./slides/06-mem-part2.qmd
           
-
       - section: Apunts
         contents:
           - href: ./notes/01-introduction.qmd
@@ -110,7 +108,10 @@ website:
             contents:
               - href: ./labs/06-sched/01-simulador.qmd
                 text: Laboratori 13 · Simulador d'algorismes de planificació de processos
-              
+          - section: Unitat 07
+            contents:
+              - href: ./labs/07-shell/01-shell.qmd
+                text: Laboratori 14 · Laboratori de Shell Scripting (I)
       - section: Projectes
         contents:
           - href: ./projects/project01.qmd

@@ -1,0 +1,177 @@
+---
+title: "Laboratori de Shell Scripting (I)"
+subtitle: "Unitat 7 · Sistemes Operatius (SO)"
+author: "Jordi Mateo Fornés"
+logo: "/figures/corporative/institute.png"
+format: 
+  revealjs:
+    transition: fade
+    slide-number: true
+    incremental: true 
+    chalkboard: false
+    pdf-separate-fragments: false
+    pdf-max-pages-per-slide: 1
+    pdf-page-height: 900
+    pdf-page-width: 1600
+    footer: "Unitat 7 · Sistemes Operatius (SO) [🏠](/index.html)</a>"
+editor: visual
+
+execute:
+  freeze: auto
+  echo: false
+---
+
+## R1: Quina és la teva shell? {.smaller}
+
+En aquest primer exercici, explorarem quin intèrpret de comandes (shell) estàs utilitzant i quines altres shells estan disponibles al teu sistema.
+
+-   Indica quina shell estàs utilitzant actualment?
+-   Quines altres shells estan instal·lades al sistema?
+-   Comprova si pots canviar a una altra shell i torna a la teva shell original.
+
+::: notes
+Pistes: - `echo $SHELL` - `cat /etc/shells` - Per canviar de shell, pots utilitzar la comanda `chsh` o simplement escriure el nom de la shell a la línia de comandes (per exemple, `bash`, `zsh`, etc.).
+
+``` bash
+chsh -s /bin/zsh
+chsh -s /bin/bash
+```
+:::
+
+## R2: Crea el teu primer script {.smaller}
+
+En aquest exercici, crearàs un script senzill que indiqui el nom del usuari i la seva shell actual.
+
+-   Com utilitzaries la shell per imprimir `Hola, [nom_usuari]! Estàs utilitzant la shell: [nom_shell]`?
+-   Crea un fitxer anomenat `hola.sh`.
+-   Afegeix-hi la comanda que mostra el missatge de benvinguda personalitzat amb el nom de l'usuari i la seva shell.
+-   Executa l'script utilitzant `bash hola.sh`.
+
+::: notes
+Exemple de contingut per a `hola.sh`:
+
+``` bash
+#!/bin/bash
+echo "Hola, $USER! Estàs utilitzant la shell: $SHELL"
+```
+:::
+
+## R3: Fes l'script executable {.smaller}
+
+Ara que has creat el teu primer script, el següent pas és fer-lo executable.
+
+-   Dona permisos d'execució al teu script.
+-   Executa'l utilitzant `./hola.sh`.
+-   Explica la diferència entre executar l'script amb `bash hola.sh` i `./hola.sh`.
+
+::: notes
+Pista: - Utilitza la comanda `chmod +x hola.sh` per donar permisos d'execució. - Quan executes amb `bash hola.sh`, estàs invocant explícitament l'intèrpret de comandes `bash` per executar l'script. En canvi, amb `./hola.sh`, el sistema utilitza la línia shebang (si està present) per determinar quin intèrpret utilitzar.
+:::
+
+## R4: Experimenta amb el codi de retorn `$?` {.smaller}
+
+El codi de retorn d'una comanda indica si aquesta s'ha executat correctament o si ha fallat. En aquest exercici, exploraràs com funciona aquest codi.
+
+-   Executa una comanda correcta (per exemple, `ls`) i observa el valor de `$?`.
+-   Executa una comanda que falli (per exemple, `ls noexisteix`) i observa el valor de `$?`.
+-   Crea un script anomenat `test_retorn.sh` que:
+    -   Executi una comanda correcta.
+    -   Executi una comanda incorrecta.
+    -   Mostri els dos codis de retorn.
+
+::: notes
+Exemple de contingut per a `test_retorn.sh`:
+
+``` bash
+#!/bin/bash
+ls
+echo "Codi de retorn de ls: $?"
+ls noexisteix
+echo "Codi de retorn de ls noexisteix: $?"
+```
+:::
+
+## R5: Comprova si un fitxer existeix {.smaller}
+
+En aquest exercici, crearàs un script que comprovi si un fitxer existeix i mostri un missatge adequat.
+
+-   Crea un script anomenat `existeix.sh`.
+-   El script ha de rebre un argument amb el nom d'un fitxer.
+-   Ha de mostrar un missatge personalitzat indicant si el fitxer existeix o no.
+-   Pista: Investiga la comanda `test` o la sintaxi `[ ]`. No podem utilitzar `if` encara.
+
+::: notes
+Exemple de contingut per a `existeix.sh`:
+
+``` bash
+#!/bin/bash
+test -f "$1" && echo "El fitxer $1 existeix." || echo "El fitxer $1 no existeix."
+[ -f "$1" ] && echo "El fitxer $1 existeix." || echo "El fitxer $1 no existeix."
+```
+:::
+
+## R6: Arguments de línia de comandes {.smaller}
+
+En aquest exercici, experimentaràs amb els arguments passats a un script des de la línia de comandes.
+
+-   Crea un script anomenat `arguments.sh`.
+-   El script ha de mostrar el primer argument passat i el nombre total d'arguments.
+-   Executa el script amb diversos arguments per veure com funciona.
+-   Executa: `./arguments.sh hola mon`
+
+::: notes
+Pistes: - `$1` representa el primer argument. - `$#` representa el nombre total d'arguments.
+
+``` bash
+echo "Primer argument: $1"
+echo "Total arguments: $#"
+```
+:::
+
+## R7: Gestiona errors en els arguments {.smaller}
+
+Ara milloraràs l'script `arguments.sh` perquè gestioni errors en cas que no es passin arguments.
+
+-   Modifica `arguments.sh` perquè:
+    -   Si no hi ha arguments, mostri un missatge d'error.
+    -   Si hi ha almenys un argument, mostri el primer argument i la quantitat total.
+
+::: notes
+Pista: - Compara `$#` amb 0 per determinar si s'han passat arguments. - Pots utilitzar `test` juntament amb els operadors `&&` i `||`.
+
+``` bash
+test $# -eq 0 && echo "Error: No s'han passat arguments." || echo "Primer argument: $1, Total arguments: $#"
+```
+:::
+
+## R8: Interacció amb l'usuari amb `read` {.smaller}
+
+En aquest exercici, crearàs un script que interactuï amb l'usuari demanant-li informació.
+
+-   Crea un script anomenat `saluda.sh`.
+-   El script ha de:
+    -   Preguntar el nom de l'usuari.
+    -   Llegir la resposta amb la comanda `read`.
+    -   Mostrar un missatge de benvinguda personalitzat.
+
+::: notes
+Exemple:
+
+``` bash
+#!/bin/bash
+echo "Quin és el teu nom?"
+read nom
+echo "Hola, $nom! Benvingut/da!"
+```
+:::
+
+## Tasca final {.smaller}
+
+Crea un script complet `perfil.sh` que:
+
+-   Mostri un missatge de benvinguda.
+-   Demani el nom i cognom.
+-   Mostri el directori actual (pwd) i la shell (\$SHELL).
+-   Guardi tota aquesta informació en un fitxer perfil.txt.
+
+Afegeix la següent línia al final del fitxer `~/.profile`: `~/perfil.sh` per executar-lo automàticament en iniciar sessió. Fes la prova tancant i obrint la sessió. `exit` i torna a entrar.

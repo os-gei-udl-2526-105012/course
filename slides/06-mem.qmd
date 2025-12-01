@@ -14,7 +14,7 @@ format:
     pdf-max-pages-per-slide: 1
     pdf-page-height: 900
     pdf-page-width: 1600
-    footer: "Unitat 5 · Sistemes Operatius (SO) [🏠](/index.html)</a>"
+    footer: "Unitat 6 · Sistemes Operatius (SO) [🏠](/index.html)</a>"
 editor: visual
 
 execute:
@@ -197,6 +197,17 @@ void main() {
 **[Repte del SO: Com es tradueixen les adreces lògiques a físiques?]{.alert}**
 :::
 
+::: notes
+- El compilador només sap offsets: a 24 bytes d’aquí.
+- El sistema operatiu decideix on col·locar el programa.
+- Per tant, hem de traduir adreces lògiques en físiques.
+- Això ho fa el loader o la MMU, i és el cor de la gestió de memòria.
+L’adreça simbòlica = *La cuina de casa de la Maria*
+L’adreça lògica = *Habitació número 3 del pis*
+L’adreça física = *Carrer Major 24, 2n 1a*
+Quan portes el pis a un altre lloc l’adreça física canvia, però l’habitació 3 segueix sent l’habitació 3.
+:::
+
 ## Repte: Reubicació de la Memòria {.smaller}
 
 Suposem que tenim dos programes carregats en zones de memòria diferents:
@@ -222,7 +233,7 @@ L’espai d’adreçament d’un programa s’ha de reubicar (traduir) segons on
 - Reubicació **estàtica** en temps de càrrega. En carregar un procés en memòria es realitza la *traducció d'adreces lògiques a físiques.* Si no podem saber on es carregarà el procés, el codi generat pel compilador únicament pot contenir *\@ lògiques*.  El **carregador** farà la traducció *\@ lògiques a físiques*.
 - Reubicació **dinàmica** en temps d'execució. La *traducció d'adreces lògiques a físiques* es realitza en temps d'execució. Permet que els processos es puguin moure d'un lloc de Memòria a un altre. Facilita el *swapping* i la compactació. Alenteix la execució i complica el màquinari.
 
-## Reubicació estàtica en temps de compilació {.smaller}
+## Reubicació estàtica en temps de compilació {.smaller}
 
 Les adreces físiques del programa es generen durant la compilació. El lloc on el procés s’executarà és conegut i fix.
 
@@ -231,17 +242,17 @@ Les adreces físiques del programa es generen durant la compilació. El lloc on 
 - No permet moure el procés ni protegir-lo.
 - Avui dia pràcticament no s’utilitza.
 
-## Reubicació estàtica en temps de càrrega {.smaller}
+## Reubicació estàtica en temps de càrrega {.smaller}
 
-El programa conté adreces lògiques/relocatables.
+El programa conté adreces lògiques.
 
 - Quan el SO carrega el procés en memòria:
-- El loader substitueix les adreces lògiques per adreces físiques, segons on decideixi ubicar el procés.
-- La traducció es fa una sola vegada en carregar el programa.
-- Durant l’execució, la CPU utilitza adreces ja reubicades.
-- El procés no pot canviar de posició un cop carregat.
+  - El loader substitueix les adreces lògiques per adreces físiques, segons on decideixi ubicar el procés.
+  - La traducció es fa una sola vegada en carregar el programa.
+  - Durant l’execució, la CPU utilitza adreces ja reubicades.
+  - El procés no pot canviar de posició un cop carregat.
 
-## Reubicació dinàmica en temps d’execució {.smaller}
+## Reubicació dinàmica temps execució {.smaller}
 
 La CPU genera sempre adreces virtuals. La traducció a adreces físiques es fa cada vegada que hi ha un accés a memòria, per hardware:
 
@@ -288,7 +299,7 @@ Així, les adreces lògiques que utilitza el programa durant l'execució (com 34
 ![](../figures/slides/06-mem/proteccio.png){width="80%"}
 :::
 
-## Protecció a nivell de pàgina {.smaller}
+## Protecció a nivell de pàgina {.smaller}
 
 Cada pàgina del procés té associats diversos bits de protecció dins la seva Page Table Entry (PTE):
 
@@ -351,6 +362,20 @@ La protecció per pàgines garanteix que un procés d’usuari no pugui llegir n
 ::: {.fragment .center-container}
 El glitch es produeix perquè l’adreçament directe a la memòria no està subjecte a cap traducció o verificació en temps d’execució, i el motor del joc tracta adreces fora del rang del nivell com a accessibles, interpretant-les erròniament com a dades vàlides.
 :::
+
+::: notes
+Imagineu que el joc és com un full quadriculat on els desenvolupadors han dibuixat el nivell.
+
+Quan el Mario surt dels límits del dibuix, el joc no té cap mecanisme per dir:
+Ei! Aquí no hi ha res, no pots passar.
+
+En comptes d’això, el joc comença a llegir memòria que conté altres coses, com dades d’enemics, de gràfics o variables internes.
+
+El motor del joc interpreta aquestes dades com si fossin blocs, parets o plataformes, i per això apareixen formes rares i comportaments estranys.
+
+És com si entréssiu en una habitació on no hi hauria d’haver res… però el joc interpreta escombraries com a mobiliari.”
+:::
+
 
 # Sistemes de gestió de la Memòria
 
@@ -672,7 +697,7 @@ Index|Cel·la | V |
 | Adreça lògica | Cel·la | Desplaçament | Adreça física | Vàlida |
 |---------------|--------|--------------|---------------|--------|
 | 015253H       | 0AH    | 253H         | 0A253H        | Sí     |
-| 003204H       | 0FH    | 204H         | 0F204H        | No     |
+| 003204H       | 0FH    | 204H         | 0F204H        | Sí     |
 | 0H            | 09H    | 0H           | 09000H        | Sí     |
 | 017253H       | 0DH    | 253H         | 0D253H        | Sí     |
 | 005100H       | 0CH    | 100H         | 0CH10H        | No     |
@@ -783,7 +808,7 @@ Calcular:
 1. Esquema de traducció.
 2. Taula de segments per un procés amb:
    - Codi: 128KB, Dades: 4KB, Dades: 256B, Pila 16KB
-3. Calcular l'adreça física per 0:01100h si les entrades a la taula de segments del procés anterior són: 0h, 1000h, 2000h i 1500h.
+3. Calcular l'adreça física per 1:01100h si les entrades a la taula de segments del procés anterior són: 0h, 1000h, 2000h i 1500h.
 :::
 
 
