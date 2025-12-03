@@ -174,4 +174,6 @@ Crea un script complet `perfil.sh` que:
 -   Mostri el directori actual (pwd) i la shell (\$SHELL).
 -   Guardi tota aquesta informació en un fitxer perfil.txt.
 
+:::{.fragment .center-container}
 Afegeix la següent línia al final del fitxer `~/.profile`: `~/perfil.sh` per executar-lo automàticament en iniciar sessió. Fes la prova tancant i obrint la sessió. `exit` i torna a entrar.
+:::

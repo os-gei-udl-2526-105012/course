@@ -1,0 +1,296 @@
+---
+title: "Laboratori de Shell Scripting (I)"
+subtitle: "Unitat 7 · Sistemes Operatius (SO)"
+author: "Jordi Mateo Fornés"
+logo: "/figures/corporative/institute.png"
+format: 
+  revealjs:
+    transition: fade
+    slide-number: true
+    incremental: true 
+    chalkboard: false
+    pdf-separate-fragments: false
+    pdf-max-pages-per-slide: 1
+    pdf-page-height: 900
+    pdf-page-width: 1600
+    footer: "Unitat 7 · Sistemes Operatius (SO) [🏠](/index.html)</a>"
+editor: visual
+
+execute:
+  freeze: auto
+  echo: false
+---
+
+## R1: Variables {.smaller}
+
+- Crea un script anomenat `variables.sh`.
+- Declara dues variables: una anomenada `NOM` amb el teu nom i una altra anomenada `EDAT` amb la teva edat.
+- Fes que l'script imprimeixi el missatge: `Hola, el meu nom és [NOM] i tinc [EDAT] anys.`
+
+1. Defineix les variables `NOM` i `EDAT` dins de l'script.
+2. Defineix les variables `NOM` i `EDAT` com a variables d'entorn abans d'executar l'script.
+
+::: notes
+``` bash
+#!/bin/bash
+NOM="Jordi"
+EDAT=30
+echo "Hola, el meu nom és $NOM i tinc $EDAT anys."
+```
+Per definir les variables com a variables d'entorn:
+``` bash
+export NOM="Jordi"
+export EDAT=30
+./variables.sh
+```
+:::
+
+## R2: Les variables sempre són cadenes {.smaller}
+
+- Crea un script anomenat `suma.sh`.
+- Declara dues variables anomenades `NUM1` i `NUM2` amb valors numèrics.
+- Fes que l'script sumi els valors de `NUM1` i `NUM2` i imprimeixi el resultat.
+
+
+::: notes
+``` bash
+#!/bin/bash
+NUM1=5
+NUM2=10
+echo "La suma de $NUM1 i $NUM2 és: $NUM1 + $NUM2"
+```
+:::
+
+## R3: Aritmètica {.smaller}
+
+- Modifica l'script `suma.sh` per realitzar la suma correcta dels valors numèrics de `NUM1` i `NUM2`.
+- `let RESULTAT=NUM1+NUM2`
+- `RESULTAT=$((NUM1 + NUM2))`
+- `RESULTAT=$(expr $NUM1 + $NUM2)`
+- Fes servir `$(( ))`, que és l’opció moderna.
+
+::: notes
+Hi ha 3 maneres comunes de fer operacions aritmètiques en bash:
+``` bash
+#!/bin/bash
+NUM1=5
+NUM2=10
+let RESULTAT=NUM1+NUM2
+echo "La suma de $NUM1 i $NUM2 és: $RESULTAT"
+
+RESULTAT=$((NUM1 + NUM2))
+echo "La suma de $NUM1 i $NUM2 és: $RESULTAT"
+
+RESULTAT=$(expr $NUM1 + $NUM2)
+echo "La suma de $NUM1 i $NUM2 és: $RESULTAT"
+```
+
+La diferència principal entre les tres maneres és la sintaxi i l'ús. `let` és específic de bash, `$(( ))` és una sintaxi més moderna i portàtil, i `expr` és una comanda externa que pot ser menys eficient.
+
+:::
+
+## R4: Calculadora bàsica {.smaller}
+
+- Crea un script anomenat `calculadora.sh`.
+- Llegeix dos números i una operació (suma, resta, multiplicació, divisió) com a arguments de línia de comandes.
+- Realitza l'operació i mostra el resultat.
+
+::: notes
+``` bash
+#!/bin/bash
+NUM1=$1
+NUM2=$2
+OPERACIO=$3
+RESULTAT=''
+
+[ "$OPERACIO" == "suma" ] && RESULTAT=$((NUM1 + NUM2))
+[ "$OPERACIO" == "resta" ] && RESULTAT=$((NUM1 - NUM2))
+[ "$OPERACIO" == "multiplicacio" ] && RESULTAT=$((NUM1 * NUM2))
+[ "$OPERACIO" == "divisio" ] && RESULTAT=$((NUM1 / NUM2))
+[ -z "$RESULTAT" ] && echo "Operació no vàlida" && exit 1
+
+echo "El resultat de la $OPERACIO entre $NUM1 i $NUM2 és: $RESULTAT"
+```
+:::
+
+## R5: Arrays bàsics {.smaller}
+
+- Crea un script arrays.sh.
+- Declara un array amb 4 fruites del diable 
+- Declara un altre array amb 4 usuaris d’aquestes fruites.
+- Llista quin personatge té quina fruita.
+
+
+:::{.fragment}
+| Fruita del diable           | Usuari                      |
+|-----------------------------|-----------------------------|
+| Hito-Hito no Mi             | Luffy                       |
+| Mera-Mera no Mi             | Ace/Sabo                    |
+| Gura-Gura no Mi             | Barbablanca/Barbanegra      |
+| Magu-Magu no Mi             | Akainu                      |
+:::
+
+:::{.fragment .center-container}
+Els array en bash són indexats començant des de 0.
+:::
+
+::: notes
+``` bash
+#!/bin/bash
+
+# Fruites del diable (versió actualitzada)
+FRUITES=(
+    "Hito-Hito no Mi, Model: Nika"   
+    "Mera-Mera no Mi"                
+    "Gura-Gura no Mi"               
+    "Magu-Magu no Mi"                
+)
+
+USUARIS=(
+    "Luffy"
+    "Ace/Sabo"
+    "Barbablanca/Barbanegra"
+    "Akainu"
+)
+
+for i in ${!FRUITES[@]}; do
+    echo "${USUARIS[i]} ha menjat la fruita: ${FRUITES[i]}"
+done
+```
+
+
+:::
+
+## R6: Diccionaris bàsics {.smaller}
+
+- Crea un script anomenat `diccionaris.sh`.
+
+:::{.fragment}
+| Clau (Regne)        | Valor (Rei/Reina)          |
+|---------------------|----------------------------|
+| Dressrosa           | Doflamingo               |
+| WholeCake           | Big Mom                  |
+| Wano                | Kaido                    |
+| Alabasta            | Cobra                    |
+:::
+
+- Inicialitza un diccionari amb el contingut de la taula.
+- Fes un bucle per imprimir cada regne amb el seu rei/reina corresponent.
+
+
+::: notes
+``` bash
+#!/bin/bash
+declare -A REGNES
+
+REGNES=(
+  ["Dressrosa"]="Doflamingo"
+  ["WholeCake"]="Big Mom"
+  ["Wano"]="Kaido"
+  ["Alabasta"]="Cobra"
+)
+
+for ILLA in "${!REGNES[@]}"; do
+    echo "A $ILLA governa ${REGNES[$ILLA]}"
+done
+```
+:::
+
+## R7: Joc de les relacions {.smaller}
+
+- Mostra els personatges disponibles.
+- Demana a l’usuari un personatge.
+- L’usuari intenta endevinar la seva fruita del diable entre les opcions mostrades.
+- L’script diu si ha encertat.
+
+
+::: notes
+``` bash
+#!/bin/bash
+declare -A FRUITES
+FRUITES=(
+  ["Luffy"]="Hito-Hito no Mi"
+  ["Ace/Sabo"]="Mera-Mera no Mi"
+  ["Barbablanca/Barbanegra"]="Gura-Gura no Mi"
+  ["Akainu"]="Magu-Magu no Mi"
+)
+
+echo "Escull un personatge:"
+read P
+
+[ -z "${FRUITES[$P]}" ] && echo "Personatge no vàlid!" && exit 1
+
+echo "${FRUITES[@]}"
+
+echo "Quina és la seva fruita del diable?"
+echo "${!FRUITES[@]}" 
+read R
+
+[ -z "$R" ] && echo "Resposta no vàlida!" && exit 1
+
+[ "$R" == "${FRUITES[$P]}" ] && echo "Correcte! $P és el/la ${FRUITES[$P]}" || echo "Incorrecte! La fruita real és ${FRUITES[$P]}"
+```
+:::
+
+
+## CH01 {.smaller}
+
+Analitzeu el codi següent i digueu quin és el resultat de l'execució d'aquest script. Raoneu la resposta. Indicant per que el resultat és diferent del que s'espera.
+
+```bash
+cat > ch01.data << 'EOT'
+102
+071
+210
+153
+EOT
+
+clear
+cat ch01.data
+declare -i SUM=0
+
+while read X; do
+    SUM+=$X
+done < ch01.data
+
+echo "Suma: $SUM != 536"
+rm -f ch01.data
+```
+
+Aquest exemple s'ha adaptat del Llibre **Bash It Out** de Sylvain Leroux. Podeu trobar més informació amb [FOSS Linux Blog](https://itsfoss.com/).
+
+::: notes
+El resultat és diferent del que s'espera perquè el nombre 071 no és un nombre decimal. Aquest nombre és un nombre octal. Per tant, el resultat de la suma és 522 i no 536. En bash, els nombres que comencen per 0 són nombres octals. Per exemple, el nombre 071 en octal és el nombre 57 en decimal. Per tant, el resultat de la suma és 522 i no 536.
+
+Per assegurar-nos que els nombres que llegim són nombres decimals, podem utilitzar la comanda bc. Aquesta comanda ens permet avaluar expressions aritmètiques. Per exemple, per avaluar l'expressió aritmètica 071:
+
+```bash
+echo "071" | bc
+# Resultat: 71
+```
+
+Per tant, podem millorar el script anterior de la següent manera:
+
+```bash
+#!/bin/bash
+# Nom: ch01.sh
+
+cat > ch01.data << 'EOT'
+102
+071
+210
+153
+EOT
+
+clear
+cat ch01.data
+declare -i SUM=0
+
+while read X; do
+    SUM+=$(echo "$X" | bc)
+done < ch01.data
+
+echo "Suma: $SUM != 536"
+rm -f ch01.data
+```
+:::

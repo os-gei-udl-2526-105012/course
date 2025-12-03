@@ -112,6 +112,8 @@ website:
             contents:
               - href: ./labs/07-shell/01-shell.qmd
                 text: Laboratori 14 · Laboratori de Shell Scripting (I)
+              - href: ./labs/07-shell/02-shell.qmd
+                text: Laboratori 15 · Laboratori de Shell Scripting (II)
       - section: Projectes
         contents:
           - href: ./projects/project01.qmd
@@ -144,6 +146,12 @@ website:
                 text: Problemes · Planificació de processos (I)
               - href: ./activities/unit03/02-sched.qmd
                 text: Problemes · Planificació de processos (II)
+
+          - section: Unitat 07
+            contents:
+              - href: ./activities/unit07/challenge01.qmd
+                text: Challenge 01 · Tic Tac Toe en Bash
+          
               
 
 
