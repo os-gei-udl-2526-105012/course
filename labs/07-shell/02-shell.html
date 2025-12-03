@@ -205,18 +205,26 @@ Jordi Mateo Fornés
 </div>
 
 </section>
-<section id="r1-quina-és-la-teva-shell" class="slide level2 smaller">
-<h2>R1: Quina és la teva shell?</h2>
-<p>En aquest primer exercici, explorarem quin intèrpret de comandes (shell) estàs utilitzant i quines altres shells estan disponibles al teu sistema.</p>
+<section id="r1-variables" class="slide level2 smaller">
+<h2>R1: Variables</h2>
 <ul>
-<li class="fragment">Indica quina shell estàs utilitzant actualment?</li>
-<li class="fragment">Quines altres shells estan instal·lades al sistema?</li>
-<li class="fragment">Comprova si pots canviar a una altra shell i torna a la teva shell original.</li>
+<li class="fragment">Crea un script anomenat <code>variables.sh</code>.</li>
+<li class="fragment">Declara dues variables: una anomenada <code>NOM</code> amb el teu nom i una altra anomenada <code>EDAT</code> amb la teva edat.</li>
+<li class="fragment">Fes que l’script imprimeixi el missatge: <code>Hola, el meu nom és [NOM] i tinc [EDAT] anys.</code></li>
 </ul>
+<ol type="1">
+<li class="fragment">Defineix les variables <code>NOM</code> i <code>EDAT</code> dins de l’script.</li>
+<li class="fragment">Defineix les variables <code>NOM</code> i <code>EDAT</code> com a variables d’entorn abans d’executar l’script.</li>
+</ol>
 <aside class="notes">
-<p>Pistes: - <code>echo $SHELL</code> - <code>cat /etc/shells</code> - Per canviar de shell, pots utilitzar la comanda <code>chsh</code> o simplement escriure el nom de la shell a la línia de comandes (per exemple, <code>bash</code>, <code>zsh</code>, etc.).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="fu">chsh</span> <span class="at">-s</span> /bin/zsh</span>
-<span id="cb1-2"><a></a><span class="fu">chsh</span> <span class="at">-s</span> /bin/bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="co">#!/bin/bash</span></span>
+<span id="cb1-2"><a></a><span class="va">NOM</span><span class="op">=</span><span class="st">"Jordi"</span></span>
+<span id="cb1-3"><a></a><span class="va">EDAT</span><span class="op">=</span>30</span>
+<span id="cb1-4"><a></a><span class="bu">echo</span> <span class="st">"Hola, el meu nom és </span><span class="va">$NOM</span><span class="st"> i tinc </span><span class="va">$EDAT</span><span class="st"> anys."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per definir les variables com a variables d’entorn:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="bu">export</span> <span class="va">NOM</span><span class="op">=</span><span class="st">"Jordi"</span></span>
+<span id="cb2-2"><a></a><span class="bu">export</span> <span class="va">EDAT</span><span class="op">=</span>30</span>
+<span id="cb2-3"><a></a><span class="ex">./variables.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -229,73 +237,18 @@ Jordi Mateo Fornés
           display:block!important;
       }</style></aside>
 </section>
-<section id="r2-crea-el-teu-primer-script" class="slide level2 smaller">
-<h2>R2: Crea el teu primer script</h2>
-<p>En aquest exercici, crearàs un script senzill que indiqui el nom del usuari i la seva shell actual.</p>
+<section id="r2-les-variables-sempre-són-cadenes" class="slide level2 smaller">
+<h2>R2: Les variables sempre són cadenes</h2>
 <ul>
-<li class="fragment">Com utilitzaries la shell per imprimir <code>Hola, [nom_usuari]! Estàs utilitzant la shell: [nom_shell]</code>?</li>
-<li class="fragment">Crea un fitxer anomenat <code>hola.sh</code>.</li>
-<li class="fragment">Afegeix-hi la comanda que mostra el missatge de benvinguda personalitzat amb el nom de l’usuari i la seva shell.</li>
-<li class="fragment">Executa l’script utilitzant <code>bash hola.sh</code>.</li>
+<li class="fragment">Crea un script anomenat <code>suma.sh</code>.</li>
+<li class="fragment">Declara dues variables anomenades <code>NUM1</code> i <code>NUM2</code> amb valors numèrics.</li>
+<li class="fragment">Fes que l’script sumi els valors de <code>NUM1</code> i <code>NUM2</code> i imprimeixi el resultat.</li>
 </ul>
 <aside class="notes">
-<p>Exemple de contingut per a <code>hola.sh</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="co">#!/bin/bash</span></span>
-<span id="cb2-2"><a></a><span class="bu">echo</span> <span class="st">"Hola, </span><span class="va">$USER</span><span class="st">! Estàs utilitzant la shell: </span><span class="va">$SHELL</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="r3-fes-lscript-executable" class="slide level2 smaller">
-<h2>R3: Fes l’script executable</h2>
-<p>Ara que has creat el teu primer script, el següent pas és fer-lo executable.</p>
-<ul>
-<li class="fragment">Dona permisos d’execució al teu script.</li>
-<li class="fragment">Executa’l utilitzant <code>./hola.sh</code>.</li>
-<li class="fragment">Explica la diferència entre executar l’script amb <code>bash hola.sh</code> i <code>./hola.sh</code>.</li>
-</ul>
-<aside class="notes">
-<p>Pista: - Utilitza la comanda <code>chmod +x hola.sh</code> per donar permisos d’execució. - Quan executes amb <code>bash hola.sh</code>, estàs invocant explícitament l’intèrpret de comandes <code>bash</code> per executar l’script. En canvi, amb <code>./hola.sh</code>, el sistema utilitza la línia shebang (si està present) per determinar quin intèrpret utilitzar.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="r4-experimenta-amb-el-codi-de-retorn" class="slide level2 smaller">
-<h2>R4: Experimenta amb el codi de retorn <code>$?</code></h2>
-<p>El codi de retorn d’una comanda indica si aquesta s’ha executat correctament o si ha fallat. En aquest exercici, exploraràs com funciona aquest codi.</p>
-<ul>
-<li class="fragment">Executa una comanda correcta (per exemple, <code>ls</code>) i observa el valor de <code>$?</code>.</li>
-<li class="fragment">Executa una comanda que falli (per exemple, <code>ls noexisteix</code>) i observa el valor de <code>$?</code>.</li>
-<li class="fragment">Crea un script anomenat <code>test_retorn.sh</code> que:
-<ul>
-<li class="fragment">Executi una comanda correcta.</li>
-<li class="fragment">Executi una comanda incorrecta.</li>
-<li class="fragment">Mostri els dos codis de retorn.</li>
-</ul></li>
-</ul>
-<aside class="notes">
-<p>Exemple de contingut per a <code>test_retorn.sh</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="co">#!/bin/bash</span></span>
-<span id="cb3-2"><a></a><span class="fu">ls</span></span>
-<span id="cb3-3"><a></a><span class="bu">echo</span> <span class="st">"Codi de retorn de ls: </span><span class="va">$?</span><span class="st">"</span></span>
-<span id="cb3-4"><a></a><span class="fu">ls</span> noexisteix</span>
-<span id="cb3-5"><a></a><span class="bu">echo</span> <span class="st">"Codi de retorn de ls noexisteix: </span><span class="va">$?</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a></a><span class="va">NUM1</span><span class="op">=</span>5</span>
+<span id="cb3-3"><a></a><span class="va">NUM2</span><span class="op">=</span>10</span>
+<span id="cb3-4"><a></a><span class="bu">echo</span> <span class="st">"La suma de </span><span class="va">$NUM1</span><span class="st"> i </span><span class="va">$NUM2</span><span class="st"> és: </span><span class="va">$NUM1</span><span class="st"> + </span><span class="va">$NUM2</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -308,20 +261,29 @@ Jordi Mateo Fornés
           display:block!important;
       }</style></aside>
 </section>
-<section id="r5-comprova-si-un-fitxer-existeix" class="slide level2 smaller">
-<h2>R5: Comprova si un fitxer existeix</h2>
-<p>En aquest exercici, crearàs un script que comprovi si un fitxer existeix i mostri un missatge adequat.</p>
+<section id="r3-aritmètica" class="slide level2 smaller">
+<h2>R3: Aritmètica</h2>
 <ul>
-<li class="fragment">Crea un script anomenat <code>existeix.sh</code>.</li>
-<li class="fragment">El script ha de rebre un argument amb el nom d’un fitxer.</li>
-<li class="fragment">Ha de mostrar un missatge personalitzat indicant si el fitxer existeix o no.</li>
-<li class="fragment">Pista: Investiga la comanda <code>test</code> o la sintaxi <code>[ ]</code>. No podem utilitzar <code>if</code> encara.</li>
+<li class="fragment">Modifica l’script <code>suma.sh</code> per realitzar la suma correcta dels valors numèrics de <code>NUM1</code> i <code>NUM2</code>.</li>
+<li class="fragment"><code>let RESULTAT=NUM1+NUM2</code></li>
+<li class="fragment"><code>RESULTAT=$((NUM1 + NUM2))</code></li>
+<li class="fragment"><code>RESULTAT=$(expr $NUM1 + $NUM2)</code></li>
+<li class="fragment">Fes servir <code>$(( ))</code>, que és l’opció moderna.</li>
 </ul>
 <aside class="notes">
-<p>Exemple de contingut per a <code>existeix.sh</code>:</p>
+<p>Hi ha 3 maneres comunes de fer operacions aritmètiques en bash:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="co">#!/bin/bash</span></span>
-<span id="cb4-2"><a></a><span class="bu">test</span> <span class="at">-f</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"El fitxer </span><span class="va">$1</span><span class="st"> existeix."</span> <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"El fitxer </span><span class="va">$1</span><span class="st"> no existeix."</span></span>
-<span id="cb4-3"><a></a><span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"El fitxer </span><span class="va">$1</span><span class="st"> existeix."</span> <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"El fitxer </span><span class="va">$1</span><span class="st"> no existeix."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a></a><span class="va">NUM1</span><span class="op">=</span>5</span>
+<span id="cb4-3"><a></a><span class="va">NUM2</span><span class="op">=</span>10</span>
+<span id="cb4-4"><a></a><span class="bu">let</span> <span class="va">RESULTAT</span><span class="op">=</span><span class="va">NUM1</span><span class="op">+</span><span class="va">NUM2</span></span>
+<span id="cb4-5"><a></a><span class="bu">echo</span> <span class="st">"La suma de </span><span class="va">$NUM1</span><span class="st"> i </span><span class="va">$NUM2</span><span class="st"> és: </span><span class="va">$RESULTAT</span><span class="st">"</span></span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="va">RESULTAT</span><span class="op">=</span><span class="va">$((NUM1</span> <span class="op">+</span> <span class="va">NUM2))</span></span>
+<span id="cb4-8"><a></a><span class="bu">echo</span> <span class="st">"La suma de </span><span class="va">$NUM1</span><span class="st"> i </span><span class="va">$NUM2</span><span class="st"> és: </span><span class="va">$RESULTAT</span><span class="st">"</span></span>
+<span id="cb4-9"><a></a></span>
+<span id="cb4-10"><a></a><span class="va">RESULTAT</span><span class="op">=</span><span class="va">$(</span><span class="fu">expr</span> <span class="va">$NUM1</span> + <span class="va">$NUM2)</span></span>
+<span id="cb4-11"><a></a><span class="bu">echo</span> <span class="st">"La suma de </span><span class="va">$NUM1</span><span class="st"> i </span><span class="va">$NUM2</span><span class="st"> és: </span><span class="va">$RESULTAT</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La diferència principal entre les tres maneres és la sintaxi i l’ús. <code>let</code> és específic de bash, <code>$(( ))</code> és una sintaxi més moderna i portàtil, i <code>expr</code> és una comanda externa que pot ser menys eficient.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -334,19 +296,27 @@ Jordi Mateo Fornés
           display:block!important;
       }</style></aside>
 </section>
-<section id="r6-arguments-de-línia-de-comandes" class="slide level2 smaller">
-<h2>R6: Arguments de línia de comandes</h2>
-<p>En aquest exercici, experimentaràs amb els arguments passats a un script des de la línia de comandes.</p>
+<section id="r4-calculadora-bàsica" class="slide level2 smaller">
+<h2>R4: Calculadora bàsica</h2>
 <ul>
-<li class="fragment">Crea un script anomenat <code>arguments.sh</code>.</li>
-<li class="fragment">El script ha de mostrar el primer argument passat i el nombre total d’arguments.</li>
-<li class="fragment">Executa el script amb diversos arguments per veure com funciona.</li>
-<li class="fragment">Executa: <code>./arguments.sh hola mon</code></li>
+<li class="fragment">Crea un script anomenat <code>calculadora.sh</code>.</li>
+<li class="fragment">Llegeix dos números i una operació (suma, resta, multiplicació, divisió) com a arguments de línia de comandes.</li>
+<li class="fragment">Realitza l’operació i mostra el resultat.</li>
 </ul>
 <aside class="notes">
-<p>Pistes: - <code>$1</code> representa el primer argument. - <code>$#</code> representa el nombre total d’arguments.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="bu">echo</span> <span class="st">"Primer argument: </span><span class="va">$1</span><span class="st">"</span></span>
-<span id="cb5-2"><a></a><span class="bu">echo</span> <span class="st">"Total arguments: </span><span class="va">$#</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="co">#!/bin/bash</span></span>
+<span id="cb5-2"><a></a><span class="va">NUM1</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb5-3"><a></a><span class="va">NUM2</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb5-4"><a></a><span class="va">OPERACIO</span><span class="op">=</span><span class="va">$3</span></span>
+<span id="cb5-5"><a></a><span class="va">RESULTAT</span><span class="op">=</span><span class="st">''</span></span>
+<span id="cb5-6"><a></a></span>
+<span id="cb5-7"><a></a><span class="bu">[</span> <span class="st">"</span><span class="va">$OPERACIO</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"suma"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">RESULTAT</span><span class="op">=</span><span class="va">$((NUM1</span> <span class="op">+</span> <span class="va">NUM2))</span></span>
+<span id="cb5-8"><a></a><span class="bu">[</span> <span class="st">"</span><span class="va">$OPERACIO</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"resta"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">RESULTAT</span><span class="op">=</span><span class="va">$((NUM1</span> <span class="op">-</span> <span class="va">NUM2))</span></span>
+<span id="cb5-9"><a></a><span class="bu">[</span> <span class="st">"</span><span class="va">$OPERACIO</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"multiplicacio"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">RESULTAT</span><span class="op">=</span><span class="va">$((NUM1</span> <span class="op">*</span> <span class="va">NUM2))</span></span>
+<span id="cb5-10"><a></a><span class="bu">[</span> <span class="st">"</span><span class="va">$OPERACIO</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"divisio"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="va">RESULTAT</span><span class="op">=</span><span class="va">$((NUM1</span> <span class="op">/</span> <span class="va">NUM2))</span></span>
+<span id="cb5-11"><a></a><span class="bu">[</span> <span class="ot">-z</span> <span class="st">"</span><span class="va">$RESULTAT</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"Operació no vàlida"</span> <span class="kw">&amp;&amp;</span> <span class="bu">exit</span> 1</span>
+<span id="cb5-12"><a></a></span>
+<span id="cb5-13"><a></a><span class="bu">echo</span> <span class="st">"El resultat de la </span><span class="va">$OPERACIO</span><span class="st"> entre </span><span class="va">$NUM1</span><span class="st"> i </span><span class="va">$NUM2</span><span class="st"> és: </span><span class="va">$RESULTAT</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -359,73 +329,243 @@ Jordi Mateo Fornés
           display:block!important;
       }</style></aside>
 </section>
-<section id="r7-gestiona-errors-en-els-arguments" class="slide level2 smaller">
-<h2>R7: Gestiona errors en els arguments</h2>
-<p>Ara milloraràs l’script <code>arguments.sh</code> perquè gestioni errors en cas que no es passin arguments.</p>
+<section id="r5-arrays-bàsics" class="slide level2 smaller">
+<h2>R5: Arrays bàsics</h2>
 <ul>
-<li class="fragment">Modifica <code>arguments.sh</code> perquè:
-<ul>
-<li class="fragment">Si no hi ha arguments, mostri un missatge d’error.</li>
-<li class="fragment">Si hi ha almenys un argument, mostri el primer argument i la quantitat total.</li>
-</ul></li>
+<li class="fragment">Crea un script arrays.sh.</li>
+<li class="fragment">Declara un array amb 4 fruites del diable</li>
+<li class="fragment">Declara un altre array amb 4 usuaris d’aquestes fruites.</li>
+<li class="fragment">Llista quin personatge té quina fruita.</li>
 </ul>
-<aside class="notes">
-<p>Pista: - Compara <code>$#</code> amb 0 per determinar si s’han passat arguments. - Pots utilitzar <code>test</code> juntament amb els operadors <code>&amp;&amp;</code> i <code>||</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="bu">test</span> <span class="va">$#</span> <span class="at">-eq</span> 0 <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"Error: No s'han passat arguments."</span> <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"Primer argument: </span><span class="va">$1</span><span class="st">, Total arguments: </span><span class="va">$#</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="r8-interacció-amb-lusuari-amb-read" class="slide level2 smaller">
-<h2>R8: Interacció amb l’usuari amb <code>read</code></h2>
-<p>En aquest exercici, crearàs un script que interactuï amb l’usuari demanant-li informació.</p>
-<ul>
-<li class="fragment">Crea un script anomenat <code>saluda.sh</code>.</li>
-<li class="fragment">El script ha de:
-<ul>
-<li class="fragment">Preguntar el nom de l’usuari.</li>
-<li class="fragment">Llegir la resposta amb la comanda <code>read</code>.</li>
-<li class="fragment">Mostrar un missatge de benvinguda personalitzat.</li>
-</ul></li>
-</ul>
-<aside class="notes">
-<p>Exemple:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="co">#!/bin/bash</span></span>
-<span id="cb7-2"><a></a><span class="bu">echo</span> <span class="st">"Quin és el teu nom?"</span></span>
-<span id="cb7-3"><a></a><span class="bu">read</span> <span class="va">nom</span></span>
-<span id="cb7-4"><a></a><span class="bu">echo</span> <span class="st">"Hola, </span><span class="va">$nom</span><span class="st">! Benvingut/da!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="tasca-final" class="slide level2 smaller">
-<h2>Tasca final</h2>
-<p>Crea un script complet <code>perfil.sh</code> que:</p>
-<ul>
-<li class="fragment">Mostri un missatge de benvinguda.</li>
-<li class="fragment">Demani el nom i cognom.</li>
-<li class="fragment">Mostri el directori actual (pwd) i la shell ($SHELL).</li>
-<li class="fragment">Guardi tota aquesta informació en un fitxer perfil.txt.</li>
-</ul>
-<div class="fragment center-container">
-<p>Afegeix la següent línia al final del fitxer <code>~/.profile</code>: <code>~/perfil.sh</code> per executar-lo automàticament en iniciar sessió. Fes la prova tancant i obrint la sessió. <code>exit</code> i torna a entrar.</p>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Fruita del diable</th>
+<th>Usuari</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hito-Hito no Mi</td>
+<td>Luffy</td>
+</tr>
+<tr class="even">
+<td>Mera-Mera no Mi</td>
+<td>Ace/Sabo</td>
+</tr>
+<tr class="odd">
+<td>Gura-Gura no Mi</td>
+<td>Barbablanca/Barbanegra</td>
+</tr>
+<tr class="even">
+<td>Magu-Magu no Mi</td>
+<td>Akainu</td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="fragment center-container">
+<p>Els array en bash són indexats començant des de 0.</p>
+</div>
+<aside class="notes">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a><span class="co"># Fruites del diable (versió actualitzada)</span></span>
+<span id="cb6-4"><a></a><span class="va">FRUITES</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb6-5"><a></a>    <span class="st">"Hito-Hito no Mi, Model: Nika"</span>   </span>
+<span id="cb6-6"><a></a>    <span class="st">"Mera-Mera no Mi"</span>                </span>
+<span id="cb6-7"><a></a>    <span class="st">"Gura-Gura no Mi"</span>               </span>
+<span id="cb6-8"><a></a>    <span class="st">"Magu-Magu no Mi"</span>                </span>
+<span id="cb6-9"><a></a><span class="va">)</span></span>
+<span id="cb6-10"><a></a></span>
+<span id="cb6-11"><a></a><span class="va">USUARIS</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb6-12"><a></a>    <span class="st">"Luffy"</span></span>
+<span id="cb6-13"><a></a>    <span class="st">"Ace/Sabo"</span></span>
+<span id="cb6-14"><a></a>    <span class="st">"Barbablanca/Barbanegra"</span></span>
+<span id="cb6-15"><a></a>    <span class="st">"Akainu"</span></span>
+<span id="cb6-16"><a></a><span class="va">)</span></span>
+<span id="cb6-17"><a></a></span>
+<span id="cb6-18"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="va">${</span><span class="op">!</span><span class="va">FRUITES</span><span class="op">[@]</span><span class="va">}</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb6-19"><a></a>    <span class="bu">echo</span> <span class="st">"</span><span class="va">${USUARIS</span><span class="op">[</span>i<span class="op">]</span><span class="va">}</span><span class="st"> ha menjat la fruita: </span><span class="va">${FRUITES</span><span class="op">[</span>i<span class="op">]</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb6-20"><a></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="r6-diccionaris-bàsics" class="slide level2 smaller">
+<h2>R6: Diccionaris bàsics</h2>
+<ul>
+<li class="fragment">Crea un script anomenat <code>diccionaris.sh</code>.</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Clau (Regne)</th>
+<th>Valor (Rei/Reina)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dressrosa</td>
+<td>Doflamingo</td>
+</tr>
+<tr class="even">
+<td>WholeCake</td>
+<td>Big Mom</td>
+</tr>
+<tr class="odd">
+<td>Wano</td>
+<td>Kaido</td>
+</tr>
+<tr class="even">
+<td>Alabasta</td>
+<td>Cobra</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">Inicialitza un diccionari amb el contingut de la taula.</li>
+<li class="fragment">Fes un bucle per imprimir cada regne amb el seu rei/reina corresponent.</li>
+</ul>
+<aside class="notes">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="co">#!/bin/bash</span></span>
+<span id="cb7-2"><a></a><span class="bu">declare</span> <span class="at">-A</span> <span class="va">REGNES</span></span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="va">REGNES</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb7-5"><a></a>  <span class="op">[</span><span class="st">"Dressrosa"</span><span class="op">]</span><span class="va">=</span><span class="st">"Doflamingo"</span></span>
+<span id="cb7-6"><a></a>  <span class="op">[</span><span class="st">"WholeCake"</span><span class="op">]</span><span class="va">=</span><span class="st">"Big Mom"</span></span>
+<span id="cb7-7"><a></a>  <span class="op">[</span><span class="st">"Wano"</span><span class="op">]</span><span class="va">=</span><span class="st">"Kaido"</span></span>
+<span id="cb7-8"><a></a>  <span class="op">[</span><span class="st">"Alabasta"</span><span class="op">]</span><span class="va">=</span><span class="st">"Cobra"</span></span>
+<span id="cb7-9"><a></a><span class="va">)</span></span>
+<span id="cb7-10"><a></a></span>
+<span id="cb7-11"><a></a><span class="cf">for</span> ILLA <span class="kw">in</span> <span class="st">"</span><span class="va">${</span><span class="op">!</span><span class="va">REGNES</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb7-12"><a></a>    <span class="bu">echo</span> <span class="st">"A </span><span class="va">$ILLA</span><span class="st"> governa </span><span class="va">${REGNES</span><span class="op">[</span><span class="va">$ILLA</span><span class="op">]</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb7-13"><a></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="r7-joc-de-les-relacions" class="slide level2 smaller">
+<h2>R7: Joc de les relacions</h2>
+<ul>
+<li class="fragment">Mostra els personatges disponibles.</li>
+<li class="fragment">Demana a l’usuari un personatge.</li>
+<li class="fragment">L’usuari intenta endevinar la seva fruita del diable entre les opcions mostrades.</li>
+<li class="fragment">L’script diu si ha encertat.</li>
+</ul>
+<aside class="notes">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="co">#!/bin/bash</span></span>
+<span id="cb8-2"><a></a><span class="bu">declare</span> <span class="at">-A</span> <span class="va">FRUITES</span></span>
+<span id="cb8-3"><a></a><span class="va">FRUITES</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb8-4"><a></a>  <span class="op">[</span><span class="st">"Luffy"</span><span class="op">]</span><span class="va">=</span><span class="st">"Hito-Hito no Mi"</span></span>
+<span id="cb8-5"><a></a>  <span class="op">[</span><span class="st">"Ace/Sabo"</span><span class="op">]</span><span class="va">=</span><span class="st">"Mera-Mera no Mi"</span></span>
+<span id="cb8-6"><a></a>  <span class="op">[</span><span class="st">"Barbablanca/Barbanegra"</span><span class="op">]</span><span class="va">=</span><span class="st">"Gura-Gura no Mi"</span></span>
+<span id="cb8-7"><a></a>  <span class="op">[</span><span class="st">"Akainu"</span><span class="op">]</span><span class="va">=</span><span class="st">"Magu-Magu no Mi"</span></span>
+<span id="cb8-8"><a></a><span class="va">)</span></span>
+<span id="cb8-9"><a></a></span>
+<span id="cb8-10"><a></a><span class="bu">echo</span> <span class="st">"Escull un personatge:"</span></span>
+<span id="cb8-11"><a></a><span class="bu">read</span> <span class="va">P</span></span>
+<span id="cb8-12"><a></a></span>
+<span id="cb8-13"><a></a><span class="bu">[</span> <span class="ot">-z</span> <span class="st">"</span><span class="va">${FRUITES</span><span class="op">[</span><span class="va">$P</span><span class="op">]</span><span class="va">}</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"Personatge no vàlid!"</span> <span class="kw">&amp;&amp;</span> <span class="bu">exit</span> 1</span>
+<span id="cb8-14"><a></a></span>
+<span id="cb8-15"><a></a><span class="bu">echo</span> <span class="st">"</span><span class="va">${FRUITES</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb8-16"><a></a></span>
+<span id="cb8-17"><a></a><span class="bu">echo</span> <span class="st">"Quina és la seva fruita del diable?"</span></span>
+<span id="cb8-18"><a></a><span class="bu">echo</span> <span class="st">"</span><span class="va">${</span><span class="op">!</span><span class="va">FRUITES</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span> </span>
+<span id="cb8-19"><a></a><span class="bu">read</span> <span class="va">R</span></span>
+<span id="cb8-20"><a></a></span>
+<span id="cb8-21"><a></a><span class="bu">[</span> <span class="ot">-z</span> <span class="st">"</span><span class="va">$R</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"Resposta no vàlida!"</span> <span class="kw">&amp;&amp;</span> <span class="bu">exit</span> 1</span>
+<span id="cb8-22"><a></a></span>
+<span id="cb8-23"><a></a><span class="bu">[</span> <span class="st">"</span><span class="va">$R</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"</span><span class="va">${FRUITES</span><span class="op">[</span><span class="va">$P</span><span class="op">]</span><span class="va">}</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"Correcte! </span><span class="va">$P</span><span class="st"> és el/la </span><span class="va">${FRUITES</span><span class="op">[</span><span class="va">$P</span><span class="op">]</span><span class="va">}</span><span class="st">"</span> <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"Incorrecte! La fruita real és </span><span class="va">${FRUITES</span><span class="op">[</span><span class="va">$P</span><span class="op">]</span><span class="va">}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ch01" class="slide level2 smaller">
+<h2>CH01</h2>
+<p>Analitzeu el codi següent i digueu quin és el resultat de l’execució d’aquest script. Raoneu la resposta. Indicant per que el resultat és diferent del que s’espera.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">cat</span> <span class="op">&gt;</span> ch01.data <span class="op">&lt;&lt; 'EOT'</span></span>
+<span id="cb9-2"><a></a><span class="st">102</span></span>
+<span id="cb9-3"><a></a><span class="st">071</span></span>
+<span id="cb9-4"><a></a><span class="st">210</span></span>
+<span id="cb9-5"><a></a><span class="st">153</span></span>
+<span id="cb9-6"><a></a><span class="op">EOT</span></span>
+<span id="cb9-7"><a></a></span>
+<span id="cb9-8"><a></a><span class="fu">clear</span></span>
+<span id="cb9-9"><a></a><span class="fu">cat</span> ch01.data</span>
+<span id="cb9-10"><a></a><span class="bu">declare</span> <span class="at">-i</span> <span class="va">SUM</span><span class="op">=</span>0</span>
+<span id="cb9-11"><a></a></span>
+<span id="cb9-12"><a></a><span class="cf">while</span> <span class="bu">read</span> <span class="va">X</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb9-13"><a></a>    <span class="va">SUM</span><span class="op">+=</span><span class="va">$X</span></span>
+<span id="cb9-14"><a></a><span class="cf">done</span> <span class="op">&lt;</span> ch01.data</span>
+<span id="cb9-15"><a></a></span>
+<span id="cb9-16"><a></a><span class="bu">echo</span> <span class="st">"Suma: </span><span class="va">$SUM</span><span class="st"> != 536"</span></span>
+<span id="cb9-17"><a></a><span class="fu">rm</span> <span class="at">-f</span> ch01.data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquest exemple s’ha adaptat del Llibre <strong>Bash It Out</strong> de Sylvain Leroux. Podeu trobar més informació amb <a href="https://itsfoss.com/">FOSS Linux Blog</a>.</p>
+<aside class="notes">
+<p>El resultat és diferent del que s’espera perquè el nombre 071 no és un nombre decimal. Aquest nombre és un nombre octal. Per tant, el resultat de la suma és 522 i no 536. En bash, els nombres que comencen per 0 són nombres octals. Per exemple, el nombre 071 en octal és el nombre 57 en decimal. Per tant, el resultat de la suma és 522 i no 536.</p>
+<p>Per assegurar-nos que els nombres que llegim són nombres decimals, podem utilitzar la comanda bc. Aquesta comanda ens permet avaluar expressions aritmètiques. Per exemple, per avaluar l’expressió aritmètica 071:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a></a><span class="bu">echo</span> <span class="st">"071"</span> <span class="kw">|</span> <span class="fu">bc</span></span>
+<span id="cb10-2"><a></a><span class="co"># Resultat: 71</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per tant, podem millorar el script anterior de la següent manera:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a></a><span class="co">#!/bin/bash</span></span>
+<span id="cb11-2"><a></a><span class="co"># Nom: ch01.sh</span></span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="fu">cat</span> <span class="op">&gt;</span> ch01.data <span class="op">&lt;&lt; 'EOT'</span></span>
+<span id="cb11-5"><a></a><span class="st">102</span></span>
+<span id="cb11-6"><a></a><span class="st">071</span></span>
+<span id="cb11-7"><a></a><span class="st">210</span></span>
+<span id="cb11-8"><a></a><span class="st">153</span></span>
+<span id="cb11-9"><a></a><span class="op">EOT</span></span>
+<span id="cb11-10"><a></a></span>
+<span id="cb11-11"><a></a><span class="fu">clear</span></span>
+<span id="cb11-12"><a></a><span class="fu">cat</span> ch01.data</span>
+<span id="cb11-13"><a></a><span class="bu">declare</span> <span class="at">-i</span> <span class="va">SUM</span><span class="op">=</span>0</span>
+<span id="cb11-14"><a></a></span>
+<span id="cb11-15"><a></a><span class="cf">while</span> <span class="bu">read</span> <span class="va">X</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb11-16"><a></a>    <span class="va">SUM</span><span class="op">+=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">"</span><span class="va">$X</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">bc</span><span class="va">)</span></span>
+<span id="cb11-17"><a></a><span class="cf">done</span> <span class="op">&lt;</span> ch01.data</span>
+<span id="cb11-18"><a></a></span>
+<span id="cb11-19"><a></a><span class="bu">echo</span> <span class="st">"Suma: </span><span class="va">$SUM</span><span class="st"> != 536"</span></span>
+<span id="cb11-20"><a></a><span class="fu">rm</span> <span class="at">-f</span> ch01.data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 
 
 </section>
