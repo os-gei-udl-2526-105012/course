@@ -642,23 +642,20 @@ Jordi Mateo Fornés
 </section>
 <section id="ex03-assignació-local-càlcul-del-mínim-nombre-de-celles" class="slide level2 smaller">
 <h2>Ex03: Assignació local – Càlcul del mínim nombre de cel·les</h2>
-<p>Suposeu que el format d’una instrucció ocupa dues paraules (mida paraula = 1 Byte):</p>
+<p>Suposeu que el format d’una instrucció ocupa <strong>dues paraules</strong> (mida paraula = 1 Byte):</p>
 <ul>
-<li class="fragment"><strong>Paraula 1</strong> = OPCODE</li>
-<li class="fragment"><strong>Paraula 2</strong> = OPERANDS, que conté els codis de mode d’adreçament dels tres operands (OP1, OP2, RES).</li>
+<li class="fragment"><strong>Paraula 1</strong> = OPCODE + <strong>Paraula 2</strong> = OPERANDS, que conté els codis de mode d’adreçament dels tres operands (OP1, OP2, RES).</li>
 <li class="fragment">Els valors o adreces referenciades pels operands no formen part de la instrucció, sinó que resideixen a cel·les de memòria independents.</li>
 </ul>
 <div class="fragment center-container">
-<p>Quin és el mínim nombre de cel·les que cal assignar a un procés?</p>
+<p>Quin és el mínim nombre de cel·les que cal assignar a un procés? <em>Suposem que OP1 i OP2 són operands d’adreçament indirecte i RES és directe.</em></p>
 </div>
 <div class="fragment">
 <ul>
-<li class="fragment">Suposem que OP1 i OP2 són operands d’adreçament indirecte i RES és directe.</li>
-<li class="fragment">Mida de la instrucció: 2 paraules = 2 cel·les de MP</li>
 <li class="fragment">OP1 (indirecte): cal llegir 2 cel·les</li>
 <li class="fragment">OP2 (indirecte): cal llegir 2 cel·les</li>
 <li class="fragment">RES (directe): cal una 1 cel·la</li>
-<li class="fragment">Total mínim = 2 + 2 + 2 + 1 = 7 cel·les de MP</li>
+<li class="fragment">Total mínim = 2 (instrucció) + 2 + 2 + 1 = 7 cel·les de MP</li>
 </ul>
 </div>
 </section>
