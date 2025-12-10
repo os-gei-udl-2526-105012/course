@@ -301,7 +301,7 @@ Jordi Mateo Fornés
 <h2>Observacions (II)</h2>
 <p>A més, els SOs utilitzen <strong>biblioteques dinàmiques</strong> que impliquen la creació de regions associades a la mateixa i que contenen les diferents seccions de la biblioteca (codi i dades globals). Per exemple, quan carreguem una biblioteca dinàmica comuna, el sistema operatiu pot crear noves regions en el mapa de memòria del procés per al codi executable i les variables globals de la biblioteca.</p>
 <div class="fragment center-container">
-<p>Els Sistemes Operatius <strong><span class="alert">ofereixen un model de memòria dinàmic</span></strong> i necessiten <strong><span class="alert">mantenir una taula de regions per cada procés</span></strong> format per un nombre variable de regions que es poden afegir o eliminar durant la seva execució.</p>
+<p>Els Sistemes Operatius <span class="alert"><strong>ofereixen un model de memòria dinàmic</strong></span> i necessiten <span class="alert"><strong>mantenir una taula de regions per cada procés</strong></span> format per un nombre variable de regions que es poden afegir o eliminar durant la seva execució.</p>
 </div>
 </section>
 <section id="ex-memòria-dun-procés-i" class="slide level2">
@@ -377,7 +377,7 @@ Jordi Mateo Fornés
 </ul>
 </div></div>
 <div class="fragment center-container">
-<p><strong><span class="alert">Repte del SO: Com es tradueixen les adreces lògiques a físiques?</span></strong></p>
+<p><span class="alert"><strong>Repte del SO: Com es tradueixen les adreces lògiques a físiques?</strong></span></p>
 </div>
 <aside class="notes">
 <ul>
@@ -405,7 +405,7 @@ Jordi Mateo Fornés
 <div class="column" style="width:45%;">
 <p><img data-src="../figures/slides/06-mem/reubicacio-necessitat.jpg"></p>
 </div><div class="column" style="width:45%;">
-<p>El programa A espera que la instrucció <code>MOV</code> estigui a la posició 24 de la memòria, i el programa B espera que la instrucció <code>CMP</code> estigui a la posició 28 de la memòria. Si no tenim un mecanisme de reubicació de la memòria, les seves expectatives es veuran compromeses. Fixeu-vos que cada programa té la seva zona de 16KB però es poden solapar. <strong><span class="alert">Necesitem un mecanisme que ens permeti reubicar la memòria</span></strong>.</p>
+<p>El programa A espera que la instrucció <code>MOV</code> estigui a la posició 24 de la memòria, i el programa B espera que la instrucció <code>CMP</code> estigui a la posició 28 de la memòria. Si no tenim un mecanisme de reubicació de la memòria, les seves expectatives es veuran compromeses. Fixeu-vos que cada programa té la seva zona de 16KB però es poden solapar. <span class="alert"><strong>Necesitem un mecanisme que ens permeti reubicar la memòria</strong></span>.</p>
 </div></div>
 </section>
 <section id="què-és-la-reubicació" class="slide level2 smaller">
@@ -1442,7 +1442,7 @@ Jordi Mateo Fornés
 <section id="segmentació-i" class="slide level2">
 <h2>Segmentació (I)</h2>
 <div class="center-container fragment">
-<p><strong><span class="alert">No es pot aplicar la segmentació</span></strong></p>
+<p><span class="alert"><strong>No es pot aplicar la segmentació</strong></span></p>
 </div>
 <ul>
 <li class="fragment">La segmentació requereix totes les pàgines d’un segment en una regió contigua de Memòria.</li>
