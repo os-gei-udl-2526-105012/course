@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Challenge 01 - Tic Tac Toe en Bash – SO - Fall 2025</title>
+<title>Challenge 01 - Calcula la mitjana d’una llista de nombres enters – SO - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Unitat 07</a></li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Challenge 01 · Tic Tac Toe en Bash</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Unitat 07</a></li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Challenge 01 · Calcula la mitjana d’una llista de nombres enters</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -623,7 +623,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../activities/unit07/challenge01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Challenge 01 · Tic Tac Toe en Bash</span></a>
+ <span class="menu-text">Challenge 01 · Calcula la mitjana d’una llista de nombres enters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../activities/unit07/challenge02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Challenge 02 · Comparació de nombres en Bash</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../activities/unit07/challenge03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Challenge 03 · Desxifrant el codi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../activities/unit07/challenge04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Challenge 04 · Acrònims</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../activities/unit07/challenge05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Challenge 05 · Tic Tac Toe en Bash</span></a>
   </div>
 </li>
       </ul>
@@ -641,9 +665,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Unitat 07</a></li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Challenge 01 · Tic Tac Toe en Bash</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Activitats</li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Unitat 07</a></li><li class="breadcrumb-item"><a href="../../activities/unit07/challenge01.html">Challenge 01 · Calcula la mitjana d’una llista de nombres enters</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Challenge 01 - Tic Tac Toe en Bash</h1>
+<h1 class="title">Challenge 01 - Calcula la mitjana d’una llista de nombres enters</h1>
 </div>
 
 
@@ -660,81 +684,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>En aquest repte, es demana implementar un joc de tres en ratlla utilitzant Bash. Per fer-ho, seguireu els seguents passos:</p>
-<ol type="1">
-<li><p>Implementar una funció que mostri el tauler del joc amb una mida fixa representada per una matriu 3x3.</p>
+<p>En aquest repte, es demana calcular la mitjana d’una llista de nombres enters utilitzant Bash. Heu de considerar les següents restriccions:</p>
 <ul>
-<li>Per fer-ho, podeu crear un array amb valors del 1 al 9, que representaran les caselles del tauler.</li>
+<li>Tots els valors s’entren per la entrada estàndard (stdin).</li>
+<li>La primera línia conté un enter, indicant el nombre de nombres enters que es volen calcular.</li>
+<li>Les següents <code>n</code> línies contenen un enter cada una.</li>
+<li>La sortida ha de mostrar la mitjana dels <code>n</code> nombres enters, arrodonida a tres decimals.</li>
+<li>La mitjana s’ha de mostrar sempre amb tres decimals, encara que siguin redundants (p.&nbsp;ex., 0.000 en lloc de 0).</li>
+<li>La sortida ha de ser mostrada per la sortida estàndard (stdout).</li>
+<li>S’ha de verificar que el nombre d’enters estiguin entre 1 i 500. En cas contrari, no es mostrarà cap sortida.</li>
+<li>S’ha de verificar que els enters estiguin entre -10000 i 10000. En cas contrari, no es mostrarà cap sortida.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">1</span> <span class="kw">|</span> <span class="ex">2</span> <span class="kw">|</span> <span class="ex">3</span> <span class="kw">|</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">4</span> <span class="kw">|</span> <span class="ex">5</span> <span class="kw">|</span> <span class="ex">6</span> <span class="kw">|</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">7</span> <span class="kw">|</span> <span class="ex">8</span> <span class="kw">|</span> <span class="ex">9</span> <span class="kw">|</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Implementar la funció <code>imprimir_tauler</code> que mostri el tauler amb els valors de l’array anomenat <strong>tauler</strong>.</li>
-</ul></li>
-<li><p>Implementar una funció que permeti als jugadors introduir les seves jugades al tauler.</p>
-<ul>
-<li>La funció <code>introduir_jugada</code> ha de permetre als jugadors introduir les seves jugades al tauler. El jugador 1 es representarà amb la lletra <code>X</code> i el jugador 2 amb la lletra <code>O</code>.</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">1</span> <span class="kw">|</span> <span class="ex">2</span> <span class="kw">|</span> <span class="ex">3</span> <span class="kw">|</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">4</span> <span class="kw">|</span> <span class="ex">5</span> <span class="kw">|</span> <span class="ex">6</span> <span class="kw">|</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">7</span> <span class="kw">|</span> <span class="ex">8</span> <span class="kw">|</span> <span class="ex">9</span> <span class="kw">|</span></span>
+<p>Per crear la vostra solució, heu de crear un fitxer anomenat <code>ch1.sh</code> amb el següent contingut:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> Your code here</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per validar la vostra solució, podeu utilitzar el següent test:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">!#/bin/bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">inputs</span><span class="op">=</span><span class="va">(</span><span class="st">"input1"</span> <span class="st">"input2"</span> <span class="st">"input3"</span> <span class="st">"input4"</span> <span class="st">"input5"</span><span class="va">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">expecteds</span><span class="op">=</span><span class="va">(</span><span class="st">"5.000"</span> <span class="st">"5175.240"</span> <span class="st">"4696.947"</span> <span class="st">""</span> <span class="st">""</span><span class="va">)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Introdueix</span> la teva jugada <span class="er">(</span><span class="ex">1-9</span><span class="kw">)</span><span class="bu">:</span> </span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="va">${</span><span class="op">!</span><span class="va">inputs</span><span class="op">[@]</span><span class="va">}</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">output</span><span class="op">=</span><span class="va">$(</span><span class="fu">bash</span> ch1.sh <span class="op">&lt;</span> <span class="va">${inputs</span><span class="op">[</span><span class="va">$i</span><span class="op">]</span><span class="va">})</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$output</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"</span><span class="va">${expecteds</span><span class="op">[</span><span class="va">$i</span><span class="op">]</span><span class="va">}</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"Test </span><span class="va">$i</span><span class="st"> passed"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"Test </span><span class="va">$i</span><span class="st"> failed"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"Expected: </span><span class="va">${expecteds</span><span class="op">[</span><span class="va">$i</span><span class="op">]</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"Got: </span><span class="va">$output</span><span class="st">"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Els inputs són fitxers de text que us podeu baixar:</p>
 <ul>
-<li>Un cop introduïda la jugada, el tauler s’actualitzarà amb la jugada del jugador. Per tant, es important validar que la casella seleccionada estigui lliure i que la casella seleccionada estigui dins dels límits del tauler.</li>
+<li><a href="./src/challenge01/input1">input1</a></li>
+<li><a href="./src/challenge01/input2">input2</a></li>
+<li><a href="./src/challenge01/input3">input3</a></li>
+<li><a href="./src/challenge01/input4">input4</a></li>
+<li><a href="./src/challenge01/input5">input5</a></li>
+<li><a href="../../src/challenge01/test.sh">test.sh</a></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">1</span> <span class="kw">|</span> <span class="ex">2</span> <span class="kw">|</span> <span class="ex">3</span> <span class="kw">|</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">4</span> <span class="kw">|</span> <span class="ex">X</span> <span class="kw">|</span> <span class="ex">6</span> <span class="kw">|</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">7</span> <span class="kw">|</span> <span class="ex">8</span> <span class="kw">|</span> <span class="ex">9</span> <span class="kw">|</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Introdueix</span> la teva jugada <span class="er">(</span><span class="ex">1-9</span><span class="kw">)</span><span class="bu">:</span> 65</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Error:</span> La casella seleccionada no és vàlida. Introdueix una casella vàlida <span class="er">(</span><span class="ex">1-9</span><span class="kw">)</span><span class="bu">:</span> 5</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Error:</span> La casella seleccionada ja està ocupada. Introdueix una casella vàlida <span class="er">(</span><span class="ex">1-9</span><span class="kw">)</span><span class="bu">:</span> 3</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Un cop validada la jugada, el tauler s’actualitzarà amb la jugada del jugador.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">1</span> <span class="kw">|</span> <span class="ex">2</span> <span class="kw">|</span> <span class="ex">O</span> <span class="kw">|</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">4</span> <span class="kw">|</span> <span class="ex">X</span> <span class="kw">|</span> <span class="ex">6</span> <span class="kw">|</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">7</span> <span class="kw">|</span> <span class="ex">8</span> <span class="kw">|</span> <span class="ex">9</span> <span class="kw">|</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Implementeu un sistema de torns per alternar les jugades dels jugadors.</p>
-<ul>
-<li>La funció <code>torn</code> ha de permetre alternar les jugades dels jugadors. El jugador 1 començarà la partida.</li>
-<li>Durant el torn del jugador 1, el tauler mostrarà el següent missatge: <code>Torn del jugador 1 (X)</code>.</li>
-<li>Es mostrarà l’estat actual del tauler.</li>
-<li>Es demanarà al jugador 1 que introdueixi la seva jugada.</li>
-<li>S’actualitzarà el tauler amb la jugada del jugador 1.</li>
-<li>Es canviarà de torn al jugador 2.</li>
-<li>Un cop acabats els 9 torns, màxima quantitat de jugades possibles, el joc acabarà.</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Torn</span> del jugador 1 <span class="er">(</span><span class="ex">X</span><span class="kw">)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">1</span> <span class="kw">|</span> <span class="ex">2</span> <span class="kw">|</span> <span class="ex">3</span> <span class="kw">|</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">4</span> <span class="kw">|</span> <span class="ex">5</span> <span class="kw">|</span> <span class="ex">6</span> <span class="kw">|</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">7</span> <span class="kw">|</span> <span class="ex">8</span> <span class="kw">|</span> <span class="ex">9</span> <span class="kw">|</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Introdueix</span> la teva jugada <span class="er">(</span><span class="ex">1-9</span><span class="kw">)</span><span class="bu">:</span> 5</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Torn</span> del jugador 2 <span class="er">(</span><span class="ex">O</span><span class="kw">)</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">1</span> <span class="kw">|</span> <span class="ex">2</span> <span class="kw">|</span> <span class="ex">3</span> <span class="kw">|</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">4</span> <span class="kw">|</span> <span class="ex">X</span> <span class="kw">|</span> <span class="ex">6</span> <span class="kw">|</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">7</span> <span class="kw">|</span> <span class="ex">8</span> <span class="kw">|</span> <span class="ex">9</span> <span class="kw">|</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Introdueix</span> la teva jugada <span class="er">(</span><span class="ex">1-9</span><span class="kw">)</span><span class="bu">:</span> 3</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Implementar una funció que comprovi si hi ha un guanyador.</p>
-<ul>
-<li><p>La funció <code>guanyador</code> ha de comprovar si hi ha un guanyador. El joc acaba quan un jugador aconsegueix fer tres en ratlla en horitzontal, vertical o diagonal.</p></li>
-<li><p>Reviseu les línies, columnes i diagonals per comprovar si hi ha un guanyador.</p></li>
-</ul></li>
-<li><p>Integrar la funció guanyador al torn per comprovar si hi ha un guanyador en cada torn.</p>
-<ul>
-<li>Si hi ha un guanyador, el joc acabarà i es mostrarà el missatge <code>El jugador X ha guanyat!</code> o <code>El jugador O ha guanyat!</code>.</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Torn</span> del jugador 2 <span class="er">(</span><span class="ex">X</span><span class="kw">)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">X</span> <span class="kw">|</span> <span class="ex">2</span> <span class="kw">|</span> <span class="ex">X</span> <span class="kw">|</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">4</span> <span class="kw">|</span> <span class="ex">O</span> <span class="kw">|</span> <span class="ex">6</span> <span class="kw">|</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">7</span> <span class="kw">|</span> <span class="ex">O</span> <span class="kw">|</span> <span class="ex">X</span> <span class="kw">|</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Introdueix</span> la teva jugada <span class="er">(</span><span class="ex">1-9</span><span class="kw">)</span><span class="bu">:</span> 2</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">El</span> jugador 2 <span class="er">(</span><span class="ex">X</span><span class="kw">)</span> <span class="ex">ha</span> guanyat!</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Implementar una funció que comprovi si hi ha un empat.</p></li>
-</ol>
 
 
 

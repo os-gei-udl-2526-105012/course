@@ -232,6 +232,66 @@
     ]
   },
   {
+    "objectID": "activities/unit07/challenge03.html",
+    "href": "activities/unit07/challenge03.html",
+    "title": "Challenge03 - Desxifrant el codi",
+    "section": "",
+    "text": "El vostre objectiu és desxifrar un codi secret analitzant una matriu. La matriu està representada per una sèrie de línies que contenen valors (lletres o números). El codi es genera extreient certs valors únics d’acord amb unes regles específiques.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 07",
+      "Challenge 03 · Desxifrant el codi"
+    ]
+  },
+  {
+    "objectID": "activities/unit07/challenge03.html#entrada",
+    "href": "activities/unit07/challenge03.html#entrada",
+    "title": "Challenge03 - Desxifrant el codi",
+    "section": "Entrada",
+    "text": "Entrada\nLa informació de la matriu es proporciona a través de l’entrada estàndard (stdin) amb el següent format:\n\nPrimera línia: Un enter n que indica el nombre de files de la matriu.\nLes següents n línies: Cada línia representa una fila de la matriu. Les entrades poden ser lletres (A-Z) o números (0-9).\n\nPer exemple:\n6\nS\n3 3 T T E C C 2 2\n2 2 E E C E 3 3 3\n3 3 R T E E T T T\n2 2 E 2\nT 3 3 E E",
+    "crumbs": [
+      "Activitats",
+      "Unitat 07",
+      "Challenge 03 · Desxifrant el codi"
+    ]
+  },
+  {
+    "objectID": "activities/unit07/challenge03.html#regles",
+    "href": "activities/unit07/challenge03.html#regles",
+    "title": "Challenge03 - Desxifrant el codi",
+    "section": "Regles",
+    "text": "Regles\nPer desxifrar el codi:\n\nCada fila de la matriu s’analitza per identificar el valor únic que coincideix amb la lletra de la paraula que desxifrem.\nCada lletra es col·loca en la posició corresponent de la paraula desxifrada.\nEl codi desxifrat serà la concatenació d’aquests valors únics.\n\nPer exemple, utilitzant la matriu anterior, el codi desxifrat seria:\nSECRET",
+    "crumbs": [
+      "Activitats",
+      "Unitat 07",
+      "Challenge 03 · Desxifrant el codi"
+    ]
+  },
+  {
+    "objectID": "activities/unit07/challenge03.html#sortida",
+    "href": "activities/unit07/challenge03.html#sortida",
+    "title": "Challenge03 - Desxifrant el codi",
+    "section": "Sortida",
+    "text": "Sortida\nEl programa ha d’imprimir el codi desxifrat a través de la sortida estàndard (stdout).\nPer validar la vostra solució, podeu utilitzar el següent test:\n\ntest.sh\ninput1\ninput2",
+    "crumbs": [
+      "Activitats",
+      "Unitat 07",
+      "Challenge 03 · Desxifrant el codi"
+    ]
+  },
+  {
+    "objectID": "activities/unit07/challenge05.html",
+    "href": "activities/unit07/challenge05.html",
+    "title": "Challenge 05 - Tic Tac Toe en Bash",
+    "section": "",
+    "text": "En aquest repte, es demana implementar un joc de tres en ratlla utilitzant Bash. Per fer-ho, seguireu els seguents passos:\n\nImplementar una funció que mostri el tauler del joc amb una mida fixa representada per una matriu 3x3.\n\nPer fer-ho, podeu crear un array amb valors del 1 al 9, que representaran les caselles del tauler.\n\n| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 | 9 |\n\nImplementar la funció imprimir_tauler que mostri el tauler amb els valors de l’array anomenat tauler.\n\nImplementar una funció que permeti als jugadors introduir les seves jugades al tauler.\n\nLa funció introduir_jugada ha de permetre als jugadors introduir les seves jugades al tauler. El jugador 1 es representarà amb la lletra X i el jugador 2 amb la lletra O.\n\n| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 | 9 |\n\nIntrodueix la teva jugada (1-9): \n\nUn cop introduïda la jugada, el tauler s’actualitzarà amb la jugada del jugador. Per tant, es important validar que la casella seleccionada estigui lliure i que la casella seleccionada estigui dins dels límits del tauler.\n\n| 1 | 2 | 3 |\n| 4 | X | 6 |\n| 7 | 8 | 9 |\n\nIntrodueix la teva jugada (1-9): 65\nError: La casella seleccionada no és vàlida. Introdueix una casella vàlida (1-9): 5\nError: La casella seleccionada ja està ocupada. Introdueix una casella vàlida (1-9): 3\nUn cop validada la jugada, el tauler s’actualitzarà amb la jugada del jugador.\n| 1 | 2 | O |\n| 4 | X | 6 |\n| 7 | 8 | 9 |\nImplementeu un sistema de torns per alternar les jugades dels jugadors.\n\nLa funció torn ha de permetre alternar les jugades dels jugadors. El jugador 1 començarà la partida.\nDurant el torn del jugador 1, el tauler mostrarà el següent missatge: Torn del jugador 1 (X).\nEs mostrarà l’estat actual del tauler.\nEs demanarà al jugador 1 que introdueixi la seva jugada.\nS’actualitzarà el tauler amb la jugada del jugador 1.\nEs canviarà de torn al jugador 2.\nUn cop acabats els 9 torns, màxima quantitat de jugades possibles, el joc acabarà.\n\nTorn del jugador 1 (X)\n| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 | 9 |\nIntrodueix la teva jugada (1-9): 5\n\nTorn del jugador 2 (O)\n| 1 | 2 | 3 |\n| 4 | X | 6 |\n| 7 | 8 | 9 |\nIntrodueix la teva jugada (1-9): 3\n\n...\nImplementar una funció que comprovi si hi ha un guanyador.\n\nLa funció guanyador ha de comprovar si hi ha un guanyador. El joc acaba quan un jugador aconsegueix fer tres en ratlla en horitzontal, vertical o diagonal.\nReviseu les línies, columnes i diagonals per comprovar si hi ha un guanyador.\n\nIntegrar la funció guanyador al torn per comprovar si hi ha un guanyador en cada torn.\n\nSi hi ha un guanyador, el joc acabarà i es mostrarà el missatge El jugador X ha guanyat! o El jugador O ha guanyat!.\n\nTorn del jugador 2 (X)\n| X | 2 | X |\n| 4 | O | 6 |\n| 7 | O | X |\nIntrodueix la teva jugada (1-9): 2\nEl jugador 2 (X) ha guanyat!\nImplementar una funció que comprovi si hi ha un empat.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 07",
+      "Challenge 05 · Tic Tac Toe en Bash"
+    ]
+  },
+  {
     "objectID": "activities/unit03/01-sched.html",
     "href": "activities/unit03/01-sched.html",
     "title": "Problemes bàsics de planificació de processos",
@@ -3500,50 +3560,6 @@
     "title": "Gestió de la Memòria (Part II)",
     "section": "Ex09: Calcul del nombre de fallades",
     "text": "Ex09: Calcul del nombre de fallades\n\nCada fila \\(i\\) provoca 50 fallades de pàgina (una per cada pàgina p(0) a p(49)).\nPer cada pàgina p(k), en una fila \\(i\\) s’accedeix dues vegades (j=0 i j=1):\n\n1a accés → fallada\n2a accés → hit (immediatament després)\n\nPer fila, hi ha 50 misses (1 per cada pàgina).\nAmb 100 files, el total de fallades és: \\(100 \\text{ files} \\times 50 \\text{ fallades/fila} = 5000 \\text{ fallades}\\).\n\n\n\n\n\n\n\n\nConclusió\n\n\nEn column-major, amb 3 marcs i LRU, es produeixen 5000 fallades de pàgina en total, o 5001 si comptem la possible fallada inicial per carregar codi/taules del procés a MP.",
-    "crumbs": [
-      "Diapositives",
-      "Unitat 06 · Gestió de memòria (II)"
-    ]
-  },
-  {
-    "objectID": "slides/06-mem-part2.html#hiperpaginació",
-    "href": "slides/06-mem-part2.html#hiperpaginació",
-    "title": "Gestió de la Memòria (Part II)",
-    "section": "Hiperpaginació",
-    "text": "Hiperpaginació\nLa hiperpaginació és un estat del sistema en què el nombre de fallades de pàgina és tan elevat que:\n\n\n\n\n\nLa taxa d’ús de CPU disminueix dràsticament, i\nEl dispositiu de paginació (disc/SSD) treballa de manera gairebé contínua.\n\n\n\nAixò passa quan els processos no disposen del nombre mínim de marcs necessaris per mantenir resident el seu conjunt de treball, i cada accés provoca una fallada immediata.\n\n\n\n\n\n\n\n\nCaracterització\n\n\nUn sistema està en hiperpaginació quan el temps invertit en gestionar fallades de pàgina és superior al temps útil d’execució dels processos.",
-    "crumbs": [
-      "Diapositives",
-      "Unitat 06 · Gestió de memòria (II)"
-    ]
-  },
-  {
-    "objectID": "slides/06-mem-part2.html#model-pff",
-    "href": "slides/06-mem-part2.html#model-pff",
-    "title": "Gestió de la Memòria (Part II)",
-    "section": "Model PFF",
-    "text": "Model PFF\nPer controlar l’estat del sistema, molts SO utilitzen la PFF (Page Fault Frequency) com a criteri de regulació de marcs.\n\\[PFF = \\frac{Nombre\\ de\\ fallades\\ de\\ pàgina}{Temps\\ d\\ 'execució\\ del\\ procés}\\]\n\n\nCada procés té dos llindars:\n\nLlindar inferior (\\(L_{inf}\\))\nLlindar superior (\\(L_{sup}\\))\nL’objectiu és mantenir cada procés dins d’una zona estable on la seva freqüència de fallades sigui acceptable.\n\n\n\nSi PFF &lt; \\(L_{inf}\\)\n\nel procés té més marcs dels que necessita\nel sistema pot retirar marcs al procés o augmentar multiprogramació\n\n\n\nSi PFF &gt; \\(L_{sup}\\)\n\nel procés no manté el conjunt de treball\nes produeix degradació severa\ncal assignar més marcs o suspendre el procés",
-    "crumbs": [
-      "Diapositives",
-      "Unitat 06 · Gestió de memòria (II)"
-    ]
-  },
-  {
-    "objectID": "slides/06-mem-part2.html#ex-identificació-dhiperpaginació",
-    "href": "slides/06-mem-part2.html#ex-identificació-dhiperpaginació",
-    "title": "Gestió de la Memòria (Part II)",
-    "section": "Ex: Identificació d’hiperpaginació",
-    "text": "Ex: Identificació d’hiperpaginació\nDisposem de les següents mesures d’un sistema amb Memòria Virtual:\n\nÚs de CPU = 15%\nOcupació del dispositiu de paginació = 97%\nDeterminar l’estat del sistema i justificar-lo.",
-    "crumbs": [
-      "Diapositives",
-      "Unitat 06 · Gestió de memòria (II)"
-    ]
-  },
-  {
-    "objectID": "slides/06-mem-part2.html#ex-identificació-dhiperpaginació-1",
-    "href": "slides/06-mem-part2.html#ex-identificació-dhiperpaginació-1",
-    "title": "Gestió de la Memòria (Part II)",
-    "section": "Ex: Identificació d’hiperpaginació",
-    "text": "Ex: Identificació d’hiperpaginació\n\nUna CPU amb una taxa d’utilització del 15% indica que els processos no estan executant instruccions, sinó que es troben majoritàriament bloquejats.\nUn dispositiu de paginació amb una ocupació del 97% indica que el SO està dedicat quasi exclusivament a servir operacions de lectura/escriptura de pàgines.\n\n\n\n\n\n\n\n\nConclusió\n\n\n\nEl sistema es troba en estat de hiperpaginació.\nEls processos no disposen de prou marcs per mantenir el seu conjunt de treball i generen fallades contínues.\n\n\n\n\n\n\n\n\n\n\n\n\nMesura correctiva\n\n\nCal reduir el grau de multiprogramació, típicament mitjançant:\n\nSuspensió temporal de processos\nRedistribució de marcs\nReducció del nombre de processos actius",
     "crumbs": [
       "Diapositives",
       "Unitat 06 · Gestió de memòria (II)"
@@ -9105,15 +9121,39 @@
     ]
   },
   {
-    "objectID": "activities/unit07/challenge01.html",
-    "href": "activities/unit07/challenge01.html",
-    "title": "Challenge 01 - Tic Tac Toe en Bash",
+    "objectID": "activities/unit07/challenge02.html",
+    "href": "activities/unit07/challenge02.html",
+    "title": "Challenge 02 - Comparació de nombres en Bash",
     "section": "",
-    "text": "En aquest repte, es demana implementar un joc de tres en ratlla utilitzant Bash. Per fer-ho, seguireu els seguents passos:\n\nImplementar una funció que mostri el tauler del joc amb una mida fixa representada per una matriu 3x3.\n\nPer fer-ho, podeu crear un array amb valors del 1 al 9, que representaran les caselles del tauler.\n\n| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 | 9 |\n\nImplementar la funció imprimir_tauler que mostri el tauler amb els valors de l’array anomenat tauler.\n\nImplementar una funció que permeti als jugadors introduir les seves jugades al tauler.\n\nLa funció introduir_jugada ha de permetre als jugadors introduir les seves jugades al tauler. El jugador 1 es representarà amb la lletra X i el jugador 2 amb la lletra O.\n\n| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 | 9 |\n\nIntrodueix la teva jugada (1-9): \n\nUn cop introduïda la jugada, el tauler s’actualitzarà amb la jugada del jugador. Per tant, es important validar que la casella seleccionada estigui lliure i que la casella seleccionada estigui dins dels límits del tauler.\n\n| 1 | 2 | 3 |\n| 4 | X | 6 |\n| 7 | 8 | 9 |\n\nIntrodueix la teva jugada (1-9): 65\nError: La casella seleccionada no és vàlida. Introdueix una casella vàlida (1-9): 5\nError: La casella seleccionada ja està ocupada. Introdueix una casella vàlida (1-9): 3\nUn cop validada la jugada, el tauler s’actualitzarà amb la jugada del jugador.\n| 1 | 2 | O |\n| 4 | X | 6 |\n| 7 | 8 | 9 |\nImplementeu un sistema de torns per alternar les jugades dels jugadors.\n\nLa funció torn ha de permetre alternar les jugades dels jugadors. El jugador 1 començarà la partida.\nDurant el torn del jugador 1, el tauler mostrarà el següent missatge: Torn del jugador 1 (X).\nEs mostrarà l’estat actual del tauler.\nEs demanarà al jugador 1 que introdueixi la seva jugada.\nS’actualitzarà el tauler amb la jugada del jugador 1.\nEs canviarà de torn al jugador 2.\nUn cop acabats els 9 torns, màxima quantitat de jugades possibles, el joc acabarà.\n\nTorn del jugador 1 (X)\n| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 | 9 |\nIntrodueix la teva jugada (1-9): 5\n\nTorn del jugador 2 (O)\n| 1 | 2 | 3 |\n| 4 | X | 6 |\n| 7 | 8 | 9 |\nIntrodueix la teva jugada (1-9): 3\n\n...\nImplementar una funció que comprovi si hi ha un guanyador.\n\nLa funció guanyador ha de comprovar si hi ha un guanyador. El joc acaba quan un jugador aconsegueix fer tres en ratlla en horitzontal, vertical o diagonal.\nReviseu les línies, columnes i diagonals per comprovar si hi ha un guanyador.\n\nIntegrar la funció guanyador al torn per comprovar si hi ha un guanyador en cada torn.\n\nSi hi ha un guanyador, el joc acabarà i es mostrarà el missatge El jugador X ha guanyat! o El jugador O ha guanyat!.\n\nTorn del jugador 2 (X)\n| X | 2 | X |\n| 4 | O | 6 |\n| 7 | O | X |\nIntrodueix la teva jugada (1-9): 2\nEl jugador 2 (X) ha guanyat!\nImplementar una funció que comprovi si hi ha un empat.",
+    "text": "Escriviu un programa en Bash que, donats dos nombres enters, determini si:\n\nEls dos nombres són iguals.\nEl primer nombre és més gran que el segon.\nEl segon nombre és més gran que el primer.\n\nEl programa ha de comprovar que les dues entrades són nombres enters vàlids. Si alguna de les entrades no és un nombre enter, s’ha de mostrar un missatge d’error adequat. També ha de comprovar que s’han llegit dues entrades.\nEls missatges d’error han de ser els següents:\n\n\n\n\n\nLa sortida del programa ha de ser una de les següents frases:\n\nX és més gran que Y\nX és igual a Y\nX és més petit que Y\n\nEntrades: Els nombres s’han d’introduir per l’entrada estàndard (stdin) en el format següent: x y.\nOn x i y són els dos nombres a comparar.\nPodeu utilitzar el següent esquelet de programa per començar:\n#!/bin/bash\n\n# Llegir els dos nombres\nread x y\n\n# Comprova que s'han llegit dos nombres\n# @TODO\n\n# Comprovar que els dos nombres són enters\n# @TODO\n\n# Comprovar si els dos nombres són iguals\n# @TODO\n\n# Comprovar si el primer nombre és més gran que el segon\n# @TODO\n\n# Comprovar si el segon nombre és més gran que el primer\n# @TODO\nPer validar la vostra solució, podeu utilitzar el següent test:\n\ntest.sh\n\nUs presento 4 possibles solucions, cadascuna amb una forma diferent de calcular si un nombre és enter i amb diferents formes d’implementar la comparació de nombres.\n\n\nMostra la solució (Versió 1)\n\n#!/bin/bash\n\nis_number() {\n    if ! [ $1 -eq $1 ] 2&gt;/dev/null; then\n        echo \"[Error]: $1 no és un nombre enter\"\n        exit 1\n    fi\n}\n\n# Llegir els dos nombres\nread x y\n\n# Comprova que s'han llegit dos nombres\n# -n comprova si la cadena no està buida\nif !([ -n \"$x\" ] && [ -n \"$y\" ] ); then\n    echo \"[Error]: No s'han llegit dos nombres\"\n    exit 1\nfi\n\n# Comprovar que els dos nombres són enters\nis_number $x\nis_number $y\n\n\n# Comprovar si els dos nombres són iguals\nif [ $x -eq $y ]; then\n    echo \"X és igual a Y\"\nfi\n\n# Comprovar si el primer nombre és més gran que el segon\nif [ $x -gt $y ]; then\n    echo \"X és més gran que Y\"\nfi\n\n# Comprovar si el segon nombre és més gran que el primer\nif [ $x -lt $y ]; then\n    echo \"X és més petit que Y\"\nfi\n\n\n\nMostra la solució (Versió 2)\n\n#!/bin/bash\n\nis_number() {\n    let \"temp = $1 + 0\" 2&gt;/dev/null\n    if (( $? != 0 )); then\n        echo \"[Error]: $1 no és un nombre enter\"\n        exit 1\n    fi\n}\n# Intenta fer una operació matemàtica per validar si és un nombre enter\n\n# Llegir els dos nombres\nread x y\n\n# Comprova que s'han llegit dos nombres\n# -n comprova si la cadena no està buida\nif !([ -n \"$x\" ] && [ -n \"$y\" ] ); then\n    echo \"[Error]: No s'han llegit dos nombres\"\n    exit 1\nfi\n\n# Comprovar que els dos nombres són enters\nis_number $x\nis_number $y\n\n\n# Comprovar si els dos nombres són iguals\nif [ $x -eq $y ]; then\n    echo \"X és igual a Y\"\nfi\n\n# Comprovar si el primer nombre és més gran que el segon\nif [ $x -gt $y ]; then\n    echo \"X és més gran que Y\"\nfi\n\n# Comprovar si el segon nombre és més gran que el primer\nif [ $x -lt $y ]; then\n    echo \"X és més petit que Y\"\nfi\n\n\n\nMostra la solució (Versió 3)\n\n#!/bin/bash\n\nis_number() {\n    if ! (( $1 + 0 )) 2&gt;/dev/null; then\n        echo \"[Error]: $1 no és un nombre enter\"\n        exit 1\n    fi\n}\n# Intenta fer una operació matemàtica per validar si és un nombre enter\n\n# Llegir els dos nombres\nread x y\n\n# Comprova que s'han llegit dos nombres\n# -n comprova si la cadena no està buida\nif !([ -n \"$x\" ] && [ -n \"$y\" ] ); then\n    echo \"[Error]: No s'han llegit dos nombres\"\n    exit 1\nfi\n\n# Comprovar que els dos nombres són enters\nis_number $x\nis_number $y\n\ncase 1 in\n    $((x == y)))\n        echo \"X és igual a Y\"\n        ;;\n    $((x &gt; y)))\n        echo \"X és més gran que Y\"\n        ;;\n    $((x &lt; y)))\n        echo \"X és més petit que Y\"\n        ;;\nesac\n\n\n\nMostra la solució (Versió 4)\n\n#!/bin/bash\n\nis_number() {\n    if ! [[ $1 =~ ^-?[0-9]+$ ]]; then\n        echo \"[Error]: $1 no és un nombre enter\"\n        exit 1\n    fi\n}\n\n# Intenta fer una operació matemàtica per validar si és un nombre enter\n\n# Llegir els dos nombres\nread x y\n\n# Comprova que s'han llegit dos nombres\n# -n comprova si la cadena no està buida\nif !([ -n \"$x\" ] && [ -n \"$y\" ] ); then\n    echo \"[Error]: No s'han llegit dos nombres\"\n    exit 1\nfi\n\n# Comprovar que els dos nombres són enters\nis_number $x\nis_number $y\n\n[ $x -eq $y ] && echo \"X és igual a Y\" || ([ $x -gt $y ] && echo \"X és més gran que Y\" || echo \"X és més petit que Y\")\n\n\nNota: Assegureu-vos d’entendre bé la sintaxis i les diferents formes de comprovar si un nombre és enter. La última no l’he explicada a classe, però algun company ha trobat la expressió regular, i m’ha semblat interessant afegir-la com a solució.",
     "crumbs": [
       "Activitats",
       "Unitat 07",
-      "Challenge 01 · Tic Tac Toe en Bash"
+      "Challenge 02 · Comparació de nombres en Bash"
+    ]
+  },
+  {
+    "objectID": "activities/unit07/challenge04.html",
+    "href": "activities/unit07/challenge04.html",
+    "title": "Challenge 04 - Acrònims",
+    "section": "",
+    "text": "Objectiu: Escriu un script en Bash que, donat un separador i una frase, generi l’acrònim corresponent a la frase, separant les paraules per l’acrònim amb el separador indicat.\nEl programa ha de complir els següents requisits:\n\nEl programa ha de poder gestionar diferents tipus de separadors (espais, guions, punts, comes, tabuladors, etc.).\n\nEl programa ha de ser capaç de:\n\nIgnorar caràcters especials (com punts, comes, guions, etc.) que apareguin al principi o al final de les paraules.\nConvertir totes les lletres a majúscules.\nEl programa ha de generar l’acrònim només amb la primera lletra de cada paraula significativa. No es consideraran paraules significatives aquelles que siguin de llargada 1 caràcter o les preposicions.\n\nPer obtenir les preposicions catalanes, podeu utilitzar la comanda següent:\ncurl -s https://ca.wiktionary.org/wiki/Viccionari:Llista_de_preposicions_en_catal%C3%A0 | grep -o -E \"title=\\\"[a-zA-ZàèéíòóúçÀÈÉÍÒÓÚÇ]+\\\"\" | sed -e 's/title=//g' -e 's/\\\"//g' &gt; preposicions.txt\nPer transformar una paraula a majúscules, podeu utilitzar la comanda següent:\necho \"paraula\" | tr '[:lower:]' '[:upper:]'\nExemples de sortides correctes:\n\nTest1:\n\nEntrada: Universitat de lleida\nSortida: UL\n\nbash ch4.sh \"Universitat de lleida\"\nTest 2:\n\nEntrada: Sistemes operatius\nSeparador: ;\nSortida: S\n\nbash ch4.sh \"Sistemes operatius\" \";\"\nTest 3:\n\nEntrada: El combinat de les paraules uniformes en 4 idiomes\nSeparador: \nSortida: CPUI\n\nbash ch4.sh \"El combinat de les paraules uniformes en 4 idiomes\" \" \"\nTest 4:\n\nEntrada: ;Casa;Pis;Universitat;Institut\nSeparador: ;\nSortida: CPUI\n\n\n\nAdicionalment, podeu generar un fitxer de test per validar la vostra solució.",
+    "crumbs": [
+      "Activitats",
+      "Unitat 07",
+      "Challenge 04 · Acrònims"
+    ]
+  },
+  {
+    "objectID": "activities/unit07/challenge01.html",
+    "href": "activities/unit07/challenge01.html",
+    "title": "Challenge 01 - Calcula la mitjana d’una llista de nombres enters",
+    "section": "",
+    "text": "En aquest repte, es demana calcular la mitjana d’una llista de nombres enters utilitzant Bash. Heu de considerar les següents restriccions:\n\nTots els valors s’entren per la entrada estàndard (stdin).\nLa primera línia conté un enter, indicant el nombre de nombres enters que es volen calcular.\nLes següents n línies contenen un enter cada una.\nLa sortida ha de mostrar la mitjana dels n nombres enters, arrodonida a tres decimals.\nLa mitjana s’ha de mostrar sempre amb tres decimals, encara que siguin redundants (p. ex., 0.000 en lloc de 0).\nLa sortida ha de ser mostrada per la sortida estàndard (stdout).\nS’ha de verificar que el nombre d’enters estiguin entre 1 i 500. En cas contrari, no es mostrarà cap sortida.\nS’ha de verificar que els enters estiguin entre -10000 i 10000. En cas contrari, no es mostrarà cap sortida.\n\nPer crear la vostra solució, heu de crear un fitxer anomenat ch1.sh amb el següent contingut:\n#!/bin/bash\n// Your code here\nPer validar la vostra solució, podeu utilitzar el següent test:\n!#/bin/bash\ndeclare -a inputs=(\"input1\" \"input2\" \"input3\" \"input4\" \"input5\")\ndeclare -a expecteds=(\"5.000\" \"5175.240\" \"4696.947\" \"\" \"\")\n\nfor i in ${!inputs[@]}; do\n    output=$(bash ch1.sh &lt; ${inputs[$i]})\n    if [ \"$output\" == \"${expecteds[$i]}\" ]; then\n        echo \"Test $i passed\"\n    else\n        echo \"Test $i failed\"\n        echo \"Expected: ${expecteds[$i]}\"\n        echo \"Got: $output\"\n    fi\ndone\nEls inputs són fitxers de text que us podeu baixar:\n\ninput1\ninput2\ninput3\ninput4\ninput5\ntest.sh",
+    "crumbs": [
+      "Activitats",
+      "Unitat 07",
+      "Challenge 01 · Calcula la mitjana d'una llista de nombres enters"
     ]
   },
   {
