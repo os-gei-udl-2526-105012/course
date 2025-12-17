@@ -1557,7 +1557,29 @@
     "href": "slides/04-sched-part3.html#arbre-red-black-rb",
     "title": "Planificació de processos · Linux",
     "section": "Arbre Red-Black (RB)",
-    "text": "Arbre Red-Black (RB)\n\nUn arbre RB és un tipus d’arbre binari d’autoequilibri que garanteix:\n\nOperacions de cerca, inserció i eliminació en O(log n).\n\nL’arbre sempre es manté equilibrat en alçada, mantenint unes regles simples:\n\nCada node és vermell o negre.\nEl node arrel és sempre negre.\nDos nodes vermells no poden ser consecutius (un node vermell no pot tenir un pare vermell).\nTots els camins des de la arrel fins a les fulles tenen el mateix nombre de nodes negres.\nLa part dreta és sempre més gran que l’esquerra (ordenació per vruntime).",
+    "text": "Arbre Red-Black (RB)\n\nUn arbre RB és un tipus d’arbre binari d’autoequilibri que garanteix:\n\nOperacions de cerca, inserció i eliminació en O(log n).\n\nL’arbre sempre es manté equilibrat en alçada , mantenint unes regles simples:\n\nCada node és vermell o negre.\nEl node arrel és sempre negre.\nDos nodes vermells no poden ser consecutius (un node vermell no pot tenir un pare vermell).\nTots els camins des de la arrel fins a les fulles tenen el mateix nombre de nodes negres.\nLa part dreta és sempre més gran que l’esquerra (ordenació per vruntime).",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos · Linux"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched-part3.html#inserció-en-arbre-rb",
+    "href": "slides/04-sched-part3.html#inserció-en-arbre-rb",
+    "title": "Planificació de processos · Linux",
+    "section": "Inserció en arbre RB",
+    "text": "Inserció en arbre RB\n\nInserir el node\nEl nou node es marca roig\nSi hi ha conflictes:\n\nPare i oncle roigs → recoloració\nPare roig i oncle negre → rotació + recoloració\n\nL’arrel sempre acaba sent negra",
+    "crumbs": [
+      "Diapositives",
+      "Unitat 04 · Planificació de processos · Linux"
+    ]
+  },
+  {
+    "objectID": "slides/04-sched-part3.html#eliminar-en-arbre-rb",
+    "href": "slides/04-sched-part3.html#eliminar-en-arbre-rb",
+    "title": "Planificació de processos · Linux",
+    "section": "Eliminar en arbre RB",
+    "text": "Eliminar en arbre RB\n\nApareix el concepte de doble negre\nEs corregeix mitjançant:\n\nRotacions\nRecoloracions\n\nÉs l’operació més complexa",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos · Linux"
@@ -1590,7 +1612,7 @@
     "href": "slides/04-sched-part3.html#inserim-p1-vruntime-10",
     "title": "Planificació de processos · Linux",
     "section": "Inserim P1 (vruntime = 10)",
-    "text": "Inserim P1 (vruntime = 10)\n\n\\(10 &gt; 5\\) → anem a la dreta.\n\\(10 &gt; 8\\) → va a la dreta de P4. Es pinta vermell.\n\n\n    [5B] (P2)\n       \\\n       [8R] (P4)\n           \\\n           [10R] (P1)\n\n\nVIOLACIÓ: dos vermells consecutius (8R i 10R). Cal fer rotació esquerra\n\n\n\n\nPer mantenir l’ordre i garantir equilibri, fem una rotació a l’esquerra sobre P4 (elevació de P1):\n\nBaixem P4 com a fill de P1 a l’esquerra.\nP1 ascendeix i esdevé negre.\nP4 descendeix i resta en vermell.\n\n\n\n\n    [5B] (P2)\n         \\\n         [10B] (P1)\n         /\n      [8R] (P4)",
+    "text": "Inserim P1 (vruntime = 10)\n\n\\(10 &gt; 5\\) → anem a la dreta.\n\\(10 &gt; 8\\) → va a la dreta de P4. Es pinta vermell.\n\n\n    [5B] (P2)\n       \\\n       [8R] (P4)\n           \\\n           [10R] (P1)\n\n\nVIOLACIÓ: dos vermells consecutius (8R i 10R). Pare roig sense oncle. Rotació necessària.\n\n\n\n\n\nRotació a l’esquerra sobre P2:\n\nP4 ara l’arrel.\nP2 és fill esquerre de P4.\nP1 és fill dret de P4.\n\n\n        [8R] (P4)\n       /     \\\n   [5B]     [10R]\n   (P2)      (P1)\n\n\n\n\nRecoloració:\n\nP4 es pinta negre.\nP2 es pinta vermell.\n\n\n        [8B] (P4)\n       /     \\\n   [5R]     [10R]\n   (P2)      (P1)",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos · Linux"
@@ -1601,7 +1623,7 @@
     "href": "slides/04-sched-part3.html#inserim-p3-vruntime-15",
     "title": "Planificació de processos · Linux",
     "section": "Inserim P3 (vruntime = 15)",
-    "text": "Inserim P3 (vruntime = 15)\n\n\\(15 &gt; 5\\) → dreta, \\(15 &gt; 10\\) → dreta → és vermell\n\n\n    [5B] (P2)\n       \\\n       [10B] (P1)\n       /   \\\n     [8B] [15R]\n     (P4)  (P3)\n\n\nEl arbre no esta equilibrat en alçada P2 dreta té alçada 3, esquerra 0 → fem rotació a l’esquerra sobre P2.\nP2 descendeix com a fill esquerre de P1. P1 ascendeix i esdevé l’arrel.\nP4 es recol·loca com a fill dret de P2.\n\n\n      [10B] (P1)\n     /     \\\n  [5R]     [15R]\n  (P2)     (P3)\n     \\\n     [8B]\n     (P4)",
+    "text": "Inserim P3 (vruntime = 15)\n\n\\(15 &gt; 5\\) → dreta, \\(15 &gt; 10\\) → dreta → és vermell\n\n\n        [8B] (P4)\n       /     \\\n  (P2) [5R]   [10R] (P1)\n                \\\n                [15R]\n                 (P3)\n\n\nEl pare (P1) és vermell i l’oncle (P2) també → recoloració\n\n\n        [8B] (P4)\n       /     \\\n  (P2) [5B]   [10B] (P1)\n                \\\n                [15R]\n                 (P3)",
     "crumbs": [
       "Diapositives",
       "Unitat 04 · Planificació de processos · Linux"
