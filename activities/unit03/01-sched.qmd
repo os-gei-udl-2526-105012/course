@@ -99,5 +99,19 @@ Es demana:
 2. Calcular totes les mètriques de planificació per a cada procés.
 3. Analitzar l'impacte de la planificació multinivell en el rendiment del sistema.
 
+## Problema 4 
+
+No fa falta seguir la convenció, és un exercici teòric.
+(Descripció Formal d’Algorismes) Enunciat: 
+
+- Quan un procés espera per entrar a la CPU, la seva prioritat va variant a una velocitat constant A.
+- Un procés està dins de la CPU, la seva prioritat varia a una velocitat també constant B.
+- Els processos entren dins la cua de preparats, reben la prioritat 0. 
+- Un procés entra en la cua de preparats i té més prioritat que el que està en la CPU, el pot fer fora. 
+    
+1. Quin algorisme de planiﬁcació de la CPU resulta quan B > A > 0? 
+2. Quin algorisme de planiﬁcació de la CPU resulta quan A < B < 0?
+
+
 
 

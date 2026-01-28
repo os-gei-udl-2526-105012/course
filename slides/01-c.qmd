@@ -419,7 +419,7 @@ En el llenguatge de programació C, la directiva **#include** diu al preprocessa
 ## Include: Header més improtants {.smaller}
 
 | Header | Funcionalitat |
-|--------------|----------------------------------------------------------|
+|-------------------|-----------------------------------------------------|
 | stdio | Subministra entrada i sortida: funcions *FILE, stdin, stdout, stderr i fprint()*. |
 | stdlib | Subministra funcions d'utilitat: *malloc(), calloc() i realloc()*. |
 | unistd | Subministraments *EXIT_FAILURE, EXIT_SUCCESS*. |
@@ -1195,6 +1195,10 @@ capta_dades(int n, int* nums) {
 }
 ```
 
+## Video Resumit de Heap VS Stack (en anglès)
+
+-   https://www.youtube.com/watch?v=\_8-ht2AKyH4.
+
 # Structs i TypeDef
 
 ## Qué són els structs?
@@ -1292,6 +1296,282 @@ int main(){
   exit (0);
 }
 ```
+
+## Preguntes sobre el temari {.smaller}
+
+Completeu els espais de codi:
+
+``` c
+/* Suposeu la següent execució:
+    ./my_Strlen GeometryDash
+  Sortida:12
+*/
+
+#include <stdio.h> //Crida a sistema
+
+int my_strlen(char *str);
+
+int main(int argc, char* argv[])
+{
+    if(argc < 2)
+    {
+        printf("Ús : %s <string>\n", argv[0]);
+        return 1;
+    }
+
+    /*(1)*/ string = argv[/*(2)*/];
+    int len = my_strlen(string);
+    printf("La mida de l'String és: %d \n", len );
+    return 0;
+
+}
+
+int my_strlen(char * str)
+{
+    int len;
+    while(/*(3)*/ != '\0')
+    {
+        len++;
+        /*(4)*/++;
+    }
+    return len;
+}
+```
+
+## Respostes als espais de codi
+
+**(1)**: És la manera de crear un string en C
+``` c
+  char *
+```
+
+**(2)**: Agafem l'string passat per entrada estàndard
+
+``` c
+  1
+```
+
+**(3)**: str* apunta a la lletra de cada string.
+
+``` c
+  *str
+```
+
+**(4)**:Anem a la següent posició (lletra) de l'string
+
+``` c
+  str++
+```
+
+::: center-container
+Fitxer: [sources/my_Strlen.c](./01-sources/sources/my_Strlen.c)
+:::
+
+## Completeu el codi
+
+### Enunciat
+::::: columns
+::: {.column width="45%"}
+1.Es considera una matriu `m` de mida **MIDA × MIDA** on cada posició `(i,j)` representa el resultat d’un partit entre els equips *i* i *j*:
+
+-   l’equip *i* ha marcat **x** gols\
+-   l’equip *j* ha marcat **y** gols
+:::
+
+::: {.column width="50%"}
+2.Es vol determinar **quants partits compleixen**:
+
+\[x + y = n\]
+
+on `n` és un enter passat per línia de comandes.
+
+-   La matriu es crea amb **memòria dinàmica**
+-   Els gols es generen aleatòriament entre **1 i 6**
+:::
+:::::
+
+------------------------------------------------------------------------
+
+### Exemple d’execució
+
+./partits 9
+
+1 1 | 2 2 | 2 2
+
+2 0 | 6 3 | 0 0
+
+1 1 | 2 3 | 1 2
+
+El total de partits amb suma 9 son: 1
+
+(A la matriu original no hi ha:|)
+
+------------------------------------------------------------------------
+
+## Codi de la Creació de la Matriu incomplet
+
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define MIDA 3
+
+typedef struct {
+    int golsFavor;
+    int golsContra;
+} partit;
+
+int generar_valor();
+int checkParells(int* suma, partit** partits);
+
+int main(int argc, char* argv[])
+{
+    if (argc < 2) {
+        printf("Ús: %s <n>\n", argv[0]);
+        return 1;
+    }
+
+    srand(time(NULL));
+
+    /*(0) Inicialització de la matriu*/ partits = malloc(/* (1) */);
+
+    for (int i = 0; i < MIDA; i++) {
+        partits[i] = malloc(/* (2) */);
+    }
+
+    for (int i = 0; i < MIDA; i++) {
+        for (int j = 0; j < MIDA; j++) {
+            partits[i][j] /* (3) -> o . */ golsFavor  = generar_valor();
+            partits[i][j] /* (3) -> o . */ golsContra = generar_valor();
+        }
+    }
+
+    // (4) Expliqueu per què aquest bucle NO imprimeix correctament la matriu
+    for (int i = 0; i < MIDA; i++) {
+        for (int j = 0; j < MIDA; j++) {
+            printf("%3d ", partits[i][j]);
+        }
+        printf("\n");
+    }
+
+    int suma = /* (5) funció */ (argv[1]);
+    int count = checkParells(&suma, partits);
+    //Aneu a la següent diapositiva
+
+    printf("El total de partits amb suma %d son: %d\n", suma, count);
+
+    for (int i = 0; i < MIDA; i++) {
+        /* (7) Alliberar memòria */
+    }
+    /* (8) Alliberar memòria */
+    return 0;
+}
+```
+
+## Codi dels mètodes incomplet
+
+``` c
+int generar_valor() {
+    double r = (double) rand() / RAND_MAX;
+    if (r < 0.25) return 0;
+    else if (r < 0.5) return 1;
+    else if (r < 0.7) return 2;
+    else if (r < 0.85) return 3;
+    else if (r < 0.93) return 4;
+    else if (r < 0.975) return 5;
+    else return 6;
+}
+
+int checkParells(int* suma, partit** partits)
+{
+    int count = 0;
+    for(int i = 0; i < MIDA; i++)
+    {
+        for(int j = 0; j < MIDA; j++)
+        {
+            if((partits[i][j].golsFavor + partits[i][j].golsContra) == /*(6)*/)
+            {
+              count++;
+            }
+        }
+    }
+    return count;
+}
+```
+
+::: center-container
+Fitxer: [sources/partits.c](./01-sources/sources/partits.c)
+:::
+
+
+## Solucions
+
+- (0): En ser una matriu necessitem un doble apuntador. (Matriu = Vectors de vectors)
+```c
+ partits**
+```
+- (1): Reservem l'espai per les files. (Matriu = Vectors de vectors)
+``` c
+MIDA * sizeof(partit *)
+```
+- (2): Reservem l'espai per a cada partit
+``` c
+MIDA * sizeof(partit)
+```
+- (3): "." De cada partit, en volem els seus atributs
+
+## Solucions{.smaller}
+
+-   (4): No imprimeix correctament perquè partits[i][j] és una estructura, no un enter, i printf amb %d espera un int.
+-   (5): La funció atoi converteix la part inicial de la cadena la qual apunta argv[1] a int
+```c
+atoi(argv[1])
+```
+- (6): Pas de paràmetres
+```c
+*suma
+```
+- (7): Alliberem cada fila.
+```c
+free(partits[i])
+```
+- (8):I finalment les columnes
+```c
+free(partits)
+```
+::: center-container
+Fitxer: [sources/partits.c](./01-sources/sources/partits.c)
+:::
+
+------------------------
+## Observació / Pregunta {.smaller}
+- Que hauriem de canviar a nivell de el codi si en comptes de tenir:
+``` c
+ partit** partits = malloc(MIDA * sizeof(partit *));
+```
+
+Tinguessim:
+``` c
+partit *** partits = malloc(MIDA * sizeof(partit**));
+```
+
+En aquesta estructura de codi:
+```c
+for (int i = 0; i < MIDA; i++) {
+        partits[i] = malloc(/*(1)*/);
+    }
+
+    for (int i = 0; i < MIDA; i++) {
+        for (int j = 0; j < MIDA; j++) {
+            partits[i][j] /* (2) -> o . */ golsFavor  = generar_valor();
+            partits[i][j] /* (2) -> o . */ golsContra = generar_valor();
+        }
+    }
+```
+- (1) Bàsicament que el malloc s'hauria de fer de MIDA * SIZEOF(partit*) perquè cada partit[i][j] apunta a un partit. 
+- (2) I es cambiaria la notació de "." per "->" , pel mateix motiu. (cada partit[i][j] apunta a un partit)
+
 
 ## Exercicis
 

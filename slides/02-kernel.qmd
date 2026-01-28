@@ -333,6 +333,16 @@ S'inspiren en els contenidors, però en lloc d’executar-se en un sistema opera
 S'inspiren en els exokernels, però en lloc de proporcionar un conjunt de primitives de baix nivell per accedir directament als recursos de la màquina, proporcionen un conjunt de primitives de baix nivell per accedir directament als recursos de l’aplicació.
 :::
 
+## Digueu si les afirmacions son certes o falses.{.smaller}
+
+-   **"La capacitat dels nuclis moderns com Linux de carregar mòduls dinàmicament (com drivers) els converteix en micronuclis, ja que aquests mòduls es poden carregar i descarregar sense reiniciar el sistema."**
+
+-   FALS
+
+-   **"Els nuclis híbrids, com Windows NT o XNU (macOS), són en realitat micronuclis purs als quals s'hi han afegit algunes optimitzacions de rendiment, sense incorporar característiques dels nuclis monolítics."**
+
+-   FALS
+
 ## Això és tot per avui {.smaller}
 
 ::::: columns

@@ -221,7 +221,7 @@ Quina fracció de CPU acabarà rebent cada tasca?
 
 ## Arbre Red-Black (RB) {.smaller}
 
--   Un arbre RB és un tipus d’arbre binari d’autoequilibri que garanteix:
+-   Un arbre RB és un tipus d’arbre binari equilibrat que garanteix:
     -   Operacions de cerca, inserció i eliminació en O(log n).
 -   L’arbre sempre es manté equilibrat en alçada , mantenint unes regles simples:
     -   Cada node és vermell o negre.
